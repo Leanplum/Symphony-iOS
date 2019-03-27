@@ -10,6 +10,8 @@
 		A850466A224C0A7900BACA81 /* Symphony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8504660224C0A7900BACA81 /* Symphony.framework */; };
 		A850466F224C0A7900BACA81 /* SymphonyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A850466E224C0A7900BACA81 /* SymphonyTests.m */; };
 		A8504671224C0A7900BACA81 /* Symphony.h in Headers */ = {isa = PBXBuildFile; fileRef = A8504663224C0A7900BACA81 /* Symphony.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B430A22E224C1EBC00DC8140 /* LPResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = B430A22C224C1EBC00DC8140 /* LPResponse.h */; };
+		B430A22F224C1EBC00DC8140 /* LPResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = B430A22D224C1EBC00DC8140 /* LPResponse.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +31,8 @@
 		A8504669224C0A7900BACA81 /* SymphonyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SymphonyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A850466E224C0A7900BACA81 /* SymphonyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SymphonyTests.m; sourceTree = "<group>"; };
 		A8504670224C0A7900BACA81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B430A22C224C1EBC00DC8140 /* LPResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPResponse.h; sourceTree = "<group>"; };
+		B430A22D224C1EBC00DC8140 /* LPResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPResponse.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +75,9 @@
 		A8504662224C0A7900BACA81 /* Symphony */ = {
 			isa = PBXGroup;
 			children = (
+				B430A22A224C1CA600DC8140 /* Utils */,
+				B430A229224C1C8D00DC8140 /* Api */,
+				B430A228224C1C8100DC8140 /* Classes */,
 				A8504663224C0A7900BACA81 /* Symphony.h */,
 				A8504664224C0A7900BACA81 /* Info.plist */,
 			);
@@ -86,6 +93,29 @@
 			path = SymphonyTests;
 			sourceTree = "<group>";
 		};
+		B430A228224C1C8100DC8140 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				B430A22C224C1EBC00DC8140 /* LPResponse.h */,
+				B430A22D224C1EBC00DC8140 /* LPResponse.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		B430A229224C1C8D00DC8140 /* Api */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Api;
+			sourceTree = "<group>";
+		};
+		B430A22A224C1CA600DC8140 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -94,6 +124,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8504671224C0A7900BACA81 /* Symphony.h in Headers */,
+				B430A22E224C1EBC00DC8140 /* LPResponse.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,6 +224,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B430A22F224C1EBC00DC8140 /* LPResponse.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
