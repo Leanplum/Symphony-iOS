@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface LPResponse : NSObject
 
 @property (nonatomic, strong) LPActionDefinitions *actionDefinitions;
@@ -29,5 +27,3 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)   NSDictionary<NSString *, id> *varsFromCode;
 
 @end
-
-NS_ASSUME_NONNULL_END
