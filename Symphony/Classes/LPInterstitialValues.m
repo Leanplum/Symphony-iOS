@@ -1,12 +1,13 @@
 //
-//  LPResponse.m
+//  LPInterstitialValues.m
 //  Symphony
 //
 //  Created by Hrishikesh Amravatkar on 3/27/19.
 //  Copyright © 2019 Leanplum. All rights reserved.
 //
 
-#import "LPResponse.h"
+#import "LPInterstitialValues.h"
 
-@implementation LPResponse
+@implementation LPInterstitialValues
+
 @end

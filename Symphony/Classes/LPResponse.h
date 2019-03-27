@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface LPResponse : NSObject
-
 @property (nonatomic, strong) LPActionDefinitions *actionDefinitions;
 @property (nonatomic, strong) LPFileAttributes *fileAttributes;
 @property (nonatomic, copy)   NSArray *interfaceEvents;
@@ -25,5 +24,4 @@
 @property (nonatomic, copy)   NSArray<LPVariant *> *variants;
 @property (nonatomic, strong) LPResponseVars *vars;
 @property (nonatomic, copy)   NSDictionary<NSString *, id> *varsFromCode;
-
 @end
