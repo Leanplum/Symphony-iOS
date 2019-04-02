@@ -6,7 +6,7 @@
 //  Copyright © 2019 Leanplum. All rights reserved.
 //
 
-#import "LPResponse.h"
+#import "LPStartResponse.h"
 
-@implementation LPResponse
+@implementation LPStartResponse
 @end

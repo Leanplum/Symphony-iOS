@@ -10,7 +10,7 @@
 
 @class LPRegion;
 
-@interface LPResponse : NSObject
+@interface LPStartResponse : NSObject
 
 @property (nonatomic, strong) NSArray<LPRegion *> *regions;
 

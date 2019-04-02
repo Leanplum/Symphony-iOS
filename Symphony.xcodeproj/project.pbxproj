@@ -110,9 +110,9 @@
 		A850466A224C0A7900BACA81 /* Symphony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8504660224C0A7900BACA81 /* Symphony.framework */; };
 		A850466F224C0A7900BACA81 /* SymphonyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A850466E224C0A7900BACA81 /* SymphonyTests.m */; };
 		A8504671224C0A7900BACA81 /* Symphony.h in Headers */ = {isa = PBXBuildFile; fileRef = A8504663224C0A7900BACA81 /* Symphony.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B430A23B224C212500DC8140 /* LPResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = B430A239224C212500DC8140 /* LPResponse.h */; };
-		B430A23C224C212500DC8140 /* LPResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = B430A23A224C212500DC8140 /* LPResponse.m */; };
-		B430A23D224C212500DC8140 /* LPResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = B430A23A224C212500DC8140 /* LPResponse.m */; };
+		B430A23B224C212500DC8140 /* LPStartResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = B430A239224C212500DC8140 /* LPStartResponse.h */; };
+		B430A23C224C212500DC8140 /* LPStartResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = B430A23A224C212500DC8140 /* LPStartResponse.m */; };
+		B430A23D224C212500DC8140 /* LPStartResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = B430A23A224C212500DC8140 /* LPStartResponse.m */; };
 		B430A240224C213500DC8140 /* LPActionDefinitions.h in Headers */ = {isa = PBXBuildFile; fileRef = B430A23E224C213500DC8140 /* LPActionDefinitions.h */; };
 		B430A241224C213500DC8140 /* LPActionDefinitions.m in Sources */ = {isa = PBXBuildFile; fileRef = B430A23F224C213500DC8140 /* LPActionDefinitions.m */; };
 		B430A242224C213500DC8140 /* LPActionDefinitions.m in Sources */ = {isa = PBXBuildFile; fileRef = B430A23F224C213500DC8140 /* LPActionDefinitions.m */; };
@@ -295,8 +295,8 @@
 		A8504669224C0A7900BACA81 /* SymphonyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SymphonyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A850466E224C0A7900BACA81 /* SymphonyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SymphonyTests.m; sourceTree = "<group>"; };
 		A8504670224C0A7900BACA81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B430A239224C212500DC8140 /* LPResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPResponse.h; sourceTree = "<group>"; };
-		B430A23A224C212500DC8140 /* LPResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPResponse.m; sourceTree = "<group>"; };
+		B430A239224C212500DC8140 /* LPStartResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPStartResponse.h; sourceTree = "<group>"; };
+		B430A23A224C212500DC8140 /* LPStartResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPStartResponse.m; sourceTree = "<group>"; };
 		B430A23E224C213500DC8140 /* LPActionDefinitions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPActionDefinitions.h; sourceTree = "<group>"; };
 		B430A23F224C213500DC8140 /* LPActionDefinitions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPActionDefinitions.m; sourceTree = "<group>"; };
 		B430A243224C214E00DC8140 /* LPAlert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPAlert.h; sourceTree = "<group>"; };
@@ -551,8 +551,8 @@
 		B430A228224C1C8100DC8140 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				B430A239224C212500DC8140 /* LPResponse.h */,
-				B430A23A224C212500DC8140 /* LPResponse.m */,
+				B430A239224C212500DC8140 /* LPStartResponse.h */,
+				B430A23A224C212500DC8140 /* LPStartResponse.m */,
 				A868DBCB225404C900E8C4D4 /* Autogen */,
 			);
 			path = Classes;
@@ -612,7 +612,7 @@
 				65D4AB74224D7345009BA5F3 /* LPFluffyCancelAction.h in Headers */,
 				65D4AB44224C2EA1009BA5F3 /* LPTentacledAcceptButton.h in Headers */,
 				65D4AC00224D80CC009BA5F3 /* LPFriskyChild.h in Headers */,
-				B430A23B224C212500DC8140 /* LPResponse.h in Headers */,
+				B430A23B224C212500DC8140 /* LPStartResponse.h in Headers */,
 				65D4AB94224D7507009BA5F3 /* LPWebInterstitialValues.h in Headers */,
 				65D4ABAC224D77A5009BA5F3 /* LPNoneClass.h in Headers */,
 				B430A240224C213500DC8140 /* LPActionDefinitions.h in Headers */,
@@ -810,7 +810,7 @@
 				B430A273224C233F00DC8140 /* LPPurpleLayout.m in Sources */,
 				65D4AB51224D6E73009BA5F3 /* LPFluffyMessage.m in Sources */,
 				B430A29B224C242900DC8140 /* LPInterstitial.m in Sources */,
-				B430A23C224C212500DC8140 /* LPResponse.m in Sources */,
+				B430A23C224C212500DC8140 /* LPStartResponse.m in Sources */,
 				65D4ABF5224D807C009BA5F3 /* LPFluffyDismissAction.m in Sources */,
 				65D4AB55224D6EB8009BA5F3 /* LPFluffyTitle.m in Sources */,
 				65D4AB79224D7379009BA5F3 /* LPCencelButton.m in Sources */,
@@ -845,7 +845,7 @@
 				B430A265224C22E900DC8140 /* LPCenterPopupValues.m in Sources */,
 				B430A288224C23B200DC8140 /* LPConfirmKinds.m in Sources */,
 				B430A2A6224C246100DC8140 /* LPInterstitialValues.m in Sources */,
-				B430A23D224C212500DC8140 /* LPResponse.m in Sources */,
+				B430A23D224C212500DC8140 /* LPStartResponse.m in Sources */,
 				A850466F224C0A7900BACA81 /* SymphonyTests.m in Sources */,
 				B430A242224C213500DC8140 /* LPActionDefinitions.m in Sources */,
 				B430A2A1224C244400DC8140 /* LPInterstitialKinds.m in Sources */,
