@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LPRegions : NSObject
+@interface LPRegion : NSObject
 //@property (nonatomic, strong) LPAliporePanchsheel *aliporePanchsheel;
 //@property (nonatomic, strong) LPAppleOffice *appleOffice;
 //@property (nonatomic, strong) LPBcn *bcn;

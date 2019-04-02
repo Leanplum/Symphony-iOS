@@ -384,6 +384,8 @@
 				B430A22A224C1CA600DC8140 /* Utils */,
 				B430A229224C1C8D00DC8140 /* Api */,
 				B430A228224C1C8100DC8140 /* Classes */,
+				65D4AC0A224D825A009BA5F3 /* LPRegions.h */,
+				65D4AC0B224D825A009BA5F3 /* LPRegions.m */,
 				A8504663224C0A7900BACA81 /* Symphony.h */,
 				A8504664224C0A7900BACA81 /* Info.plist */,
 			);
@@ -399,11 +401,9 @@
 			path = SymphonyTests;
 			sourceTree = "<group>";
 		};
-		B430A228224C1C8100DC8140 /* Classes */ = {
+		A868DBCB225404C900E8C4D4 /* Autogen */ = {
 			isa = PBXGroup;
 			children = (
-				B430A239224C212500DC8140 /* LPResponse.h */,
-				B430A23A224C212500DC8140 /* LPResponse.m */,
 				B430A23E224C213500DC8140 /* LPActionDefinitions.h */,
 				B430A23F224C213500DC8140 /* LPActionDefinitions.m */,
 				B430A243224C214E00DC8140 /* LPAlert.h */,
@@ -540,12 +540,20 @@
 				65D4AC03224D8102009BA5F3 /* LPMischievousChild.m */,
 				65D4AC06224D8123009BA5F3 /* LPBraggodociousChild.h */,
 				65D4AC07224D8123009BA5F3 /* LPBraggodociousChild.m */,
-				65D4AC0A224D825A009BA5F3 /* LPRegions.h */,
-				65D4AC0B224D825A009BA5F3 /* LPRegions.m */,
 				65D4AC0E224D8279009BA5F3 /* LPVariant.h */,
 				65D4AC0F224D8279009BA5F3 /* LPVariant.m */,
 				65D4AC12224D8296009BA5F3 /* LPResponseVars.h */,
 				65D4AC13224D8296009BA5F3 /* LPResponseVars.m */,
+			);
+			name = Autogen;
+			sourceTree = "<group>";
+		};
+		B430A228224C1C8100DC8140 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				B430A239224C212500DC8140 /* LPResponse.h */,
+				B430A23A224C212500DC8140 /* LPResponse.m */,
+				A868DBCB225404C900E8C4D4 /* Autogen */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
