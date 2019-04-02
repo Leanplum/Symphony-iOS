@@ -9,10 +9,12 @@
 #import <Foundation/Foundation.h>
 
 @class LPRegion;
+@class LPMessage;
 
 @interface LPStartResponse : NSObject
 
 @property (nonatomic, strong) NSArray<LPRegion *> *regions;
+@property (nonatomic, strong) NSArray<LPMessage *> *messages;
 
 ////@property (nonatomic, strong) LPActionDefinitions *actionDefinitions;
 ////@property (nonatomic, strong) LPFileAttributes *fileAttributes;
@@ -20,7 +22,6 @@
 //@property (nonatomic, copy)   NSArray *interfaceRules;
 //@property (nonatomic, assign) BOOL isRegistered;
 //@property (nonatomic, assign) BOOL isRegisteredFromOtherApp;
-////@property (nonatomic, strong) LPMessages *messages;
 //@property (nonatomic, assign) BOOL isSuccess;
 //@property (nonatomic, assign) BOOL isSyncNewsfeed;
 //@property (nonatomic, copy)   NSString *token;
