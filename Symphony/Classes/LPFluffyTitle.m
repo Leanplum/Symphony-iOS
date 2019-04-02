@@ -9,6 +9,4 @@
 #import "LPFluffyTitle.h"
 
 @implementation LPFluffyTitle
-@property (nonatomic, assign) NSInteger color;
-@property (nonatomic, copy)   NSString *text;
 @end

@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LPFine2PNGClass : NSObject
-@property (nonatomic, strong) LPMozartJpg *empty;
+//@property (nonatomic, strong) LPMozartJpg *empty;
 @end
 
 NS_ASSUME_NONNULL_END

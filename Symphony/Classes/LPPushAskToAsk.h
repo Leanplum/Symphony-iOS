@@ -12,9 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LPPushAskToAsk : NSObject
 @property (nonatomic, assign)         NSInteger kind;
-@property (nonatomic, strong)         LPPushAskToAskKinds *kinds;
+//@property (nonatomic, strong)         LPPushAskToAskKinds *kinds;
 @property (nonatomic, nullable, copy) id options;
-@property (nonatomic, strong)         LPPushAskToAskValues *values;
+//@property (nonatomic, strong)         LPPushAskToAskValues *values;
 @end
 
 NS_ASSUME_NONNULL_END

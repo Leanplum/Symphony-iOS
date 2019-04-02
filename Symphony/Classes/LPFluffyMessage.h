@@ -11,6 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LPFluffyMessage : NSObject
+@property (nonatomic, assign) NSInteger color;
+@property (nonatomic, copy)   NSString *text;
 
 @end
 

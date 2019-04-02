@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LPNoneClass : NSObject
-@property (nonatomic, strong) LPNone *empty;
+//@property (nonatomic, strong) LPNone *empty;
 @end
 
 NS_ASSUME_NONNULL_END

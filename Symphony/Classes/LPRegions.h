@@ -11,12 +11,12 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LPRegions : NSObject
-@property (nonatomic, strong) LPAliporePanchsheel *aliporePanchsheel;
-@property (nonatomic, strong) LPAppleOffice *appleOffice;
-@property (nonatomic, strong) LPBcn *bcn;
-@property (nonatomic, strong) LPLeanplum *leanplum;
-@property (nonatomic, strong) LPNyc *nyc;
-@property (nonatomic, strong) LPPiedmont *piedmont;
+//@property (nonatomic, strong) LPAliporePanchsheel *aliporePanchsheel;
+//@property (nonatomic, strong) LPAppleOffice *appleOffice;
+//@property (nonatomic, strong) LPBcn *bcn;
+//@property (nonatomic, strong) LPLeanplum *leanplum;
+//@property (nonatomic, strong) LPNyc *nyc;
+//@property (nonatomic, strong) LPPiedmont *piedmont;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -11,7 +11,7 @@
 
 @interface LPInterstitial : NSObject
 @property (nonatomic, assign)         NSInteger kind;
-@property (nonatomic, strong)         LPInterstitialKinds *kinds;
+//@property (nonatomic, strong)         LPInterstitialKinds *kinds;
 @property (nonatomic, nullable, copy) id options;
-@property (nonatomic, strong)         LPInterstitialValues *values;
+//@property (nonatomic, strong)         LPInterstitialValues *values;
 @end

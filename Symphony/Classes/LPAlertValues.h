@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface LPAlertValues : NSObject
-@property (nonatomic, strong) LPValuesDismissAction *dismissAction;
+//@property (nonatomic, strong) LPValuesDismissAction *dismissAction;
 @property (nonatomic, copy)   NSString *dismissText;
 @property (nonatomic, copy)   NSString *message;
 @property (nonatomic, copy)   NSString *title;

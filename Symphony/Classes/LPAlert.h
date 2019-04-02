@@ -10,7 +10,7 @@
 
 @interface LPAlert : NSObject
 @property (nonatomic, assign)         NSInteger kind;
-@property (nonatomic, strong)         LPAlertKinds *kinds;
+//@property (nonatomic, strong)         LPAlertKinds *kinds;
 @property (nonatomic, nullable, copy) id options;
-@property (nonatomic, strong)         LPAlertValues *values;
+//@property (nonatomic, strong)         LPAlertValues *values;
 @end

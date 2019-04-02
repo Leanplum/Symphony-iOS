@@ -11,14 +11,14 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LPPushAskToAskValues : NSObject
-@property (nonatomic, strong) LPTentacledAcceptButton *acceptButton;
+//@property (nonatomic, strong) LPTentacledAcceptButton *acceptButton;
 @property (nonatomic, assign) NSInteger backgroundColor;
 @property (nonatomic, copy)   NSString *backgroundImage;
-@property (nonatomic, strong) LPFluffyCancelAction *cancelAction;
-@property (nonatomic, strong) LPCancelButton *cancelButton;
-@property (nonatomic, strong) LPFluffyLayout *layout;
-@property (nonatomic, strong) LPTentacledMessage *message;
-@property (nonatomic, strong) LPTentacledTitle *title;
+//@property (nonatomic, strong) LPFluffyCancelAction *cancelAction;
+//@property (nonatomic, strong) LPCancelButton *cancelButton;
+//@property (nonatomic, strong) LPFluffyLayout *layout;
+//@property (nonatomic, strong) LPTentacledMessage *message;
+//@property (nonatomic, strong) LPTentacledTitle *title;
 @end
 
 NS_ASSUME_NONNULL_END

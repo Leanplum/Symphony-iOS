@@ -11,7 +11,7 @@
 
 @interface LPConfirm : NSObject
 @property (nonatomic, assign)         NSInteger kind;
-@property (nonatomic, strong)         LPConfirmKinds *kinds;
+//@property (nonatomic, strong)         LPConfirmKinds *kinds;
 @property (nonatomic, nullable, copy) id options;
-@property (nonatomic, strong)         LPConfirmValues *values;
+//@property (nonatomic, strong)         LPConfirmValues *values;
 @end

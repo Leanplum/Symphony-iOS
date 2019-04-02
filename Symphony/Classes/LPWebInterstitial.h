@@ -12,9 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LPWebInterstitial : NSObject
 @property (nonatomic, assign)         NSInteger kind;
-@property (nonatomic, strong)         LPWebInterstitialKinds *kinds;
+//@property (nonatomic, strong)         LPWebInterstitialKinds *kinds;
 @property (nonatomic, nullable, copy) id options;
-@property (nonatomic, strong)         LPWebInterstitialValues *values;
+//@property (nonatomic, strong)         LPWebInterstitialValues *values;
 @end
 
 NS_ASSUME_NONNULL_END

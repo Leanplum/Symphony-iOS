@@ -10,7 +10,7 @@
 
 @interface LPCenterPopup : NSObject
 @property (nonatomic, assign)         NSInteger kind;
-@property (nonatomic, strong)         LPCenterPopupKinds *kinds;
+//@property (nonatomic, strong)         LPCenterPopupKinds *kinds;
 @property (nonatomic, nullable, copy) id options;
-@property (nonatomic, strong)         LPCenterPopupValues *values;
+//@property (nonatomic, strong)         LPCenterPopupValues *values;
 @end

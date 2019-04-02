@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LPDownloadJPEGClass : NSObject
-@property (nonatomic, strong) LPDownloadJPEG *empty;
+//@property (nonatomic, strong) LPDownloadJPEG *empty;
 @end
 
 NS_ASSUME_NONNULL_END

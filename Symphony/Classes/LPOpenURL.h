@@ -12,9 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LPOpenURL : NSObject
 @property (nonatomic, assign)         NSInteger kind;
-@property (nonatomic, strong)         LPOpenURLKinds *kinds;
+//@property (nonatomic, strong)         LPOpenURLKinds *kinds;
 @property (nonatomic, nullable, copy) id options;
-@property (nonatomic, strong)         LPOpenURLValues *values;
+//@property (nonatomic, strong)         LPOpenURLValues *values;
 @end
 
 NS_ASSUME_NONNULL_END

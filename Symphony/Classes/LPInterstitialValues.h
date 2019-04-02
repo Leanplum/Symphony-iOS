@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @interface LPInterstitialValues : NSObject
-@property (nonatomic, strong) LPTentacledAcceptAction *acceptAction;
-@property (nonatomic, strong) LPFluffyAcceptButton *acceptButton;
+//@property (nonatomic, strong) LPTentacledAcceptAction *acceptAction;
+//@property (nonatomic, strong) LPFluffyAcceptButton *acceptButton;
 @property (nonatomic, assign) NSInteger backgroundColor;
 @property (nonatomic, copy)   NSString *backgroundImage;
-@property (nonatomic, strong) LPFluffyMessage *message;
-@property (nonatomic, strong) LPFluffyTitle *title;
+//@property (nonatomic, strong) LPFluffyMessage *message;
+//@property (nonatomic, strong) LPFluffyTitle *title;
 @end
