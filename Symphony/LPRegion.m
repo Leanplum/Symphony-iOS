@@ -6,8 +6,8 @@
 //  Copyright © 2019 Leanplum. All rights reserved.
 //
 
-#import "LPRegions.h"
+#import "LPRegion.h"
 
-@implementation LPRegions
+@implementation LPRegion
 
 @end
