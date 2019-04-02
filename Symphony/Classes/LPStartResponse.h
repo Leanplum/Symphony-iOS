@@ -14,6 +14,10 @@
 
 @interface LPStartResponse : NSObject
 
+@property (nonatomic, assign) BOOL success;
+@property (nonatomic, assign) BOOL syncNewsfeed;
+@property (nonatomic, strong) NSString *token;
+
 @property (nonatomic, strong) NSArray<LPRegion *> *regions;
 @property (nonatomic, strong) NSArray<LPMessage *> *messages;
 @property (nonatomic, strong) NSArray<LPFileAttribute *> *fileAttributes;
