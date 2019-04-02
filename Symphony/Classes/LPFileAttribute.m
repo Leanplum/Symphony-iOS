@@ -6,8 +6,8 @@
 //  Copyright © 2019 Leanplum. All rights reserved.
 //
 
-#import "LPFileAttributes.h"
+#import "LPFileAttribute.h"
 
-@implementation LPFileAttributes
+@implementation LPFileAttribute
 
 @end

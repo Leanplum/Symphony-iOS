@@ -10,11 +10,13 @@
 
 @class LPRegion;
 @class LPMessage;
+@class LPFileAttribute;
 
 @interface LPStartResponse : NSObject
 
 @property (nonatomic, strong) NSArray<LPRegion *> *regions;
 @property (nonatomic, strong) NSArray<LPMessage *> *messages;
+@property (nonatomic, strong) NSArray<LPFileAttribute *> *fileAttributes;
 
 ////@property (nonatomic, strong) LPActionDefinitions *actionDefinitions;
 ////@property (nonatomic, strong) LPFileAttributes *fileAttributes;

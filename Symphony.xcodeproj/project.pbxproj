@@ -45,8 +45,8 @@
 		65D4AB91224D74E5009BA5F3 /* LPWebInterstitialKinds.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D4AB8F224D74E5009BA5F3 /* LPWebInterstitialKinds.m */; };
 		65D4AB94224D7507009BA5F3 /* LPWebInterstitialValues.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D4AB92224D7507009BA5F3 /* LPWebInterstitialValues.h */; };
 		65D4AB95224D7507009BA5F3 /* LPWebInterstitialValues.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D4AB93224D7507009BA5F3 /* LPWebInterstitialValues.m */; };
-		65D4AB98224D752B009BA5F3 /* LPFileAttributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D4AB96224D752B009BA5F3 /* LPFileAttributes.h */; };
-		65D4AB99224D752B009BA5F3 /* LPFileAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D4AB97224D752B009BA5F3 /* LPFileAttributes.m */; };
+		65D4AB98224D752B009BA5F3 /* LPFileAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D4AB96224D752B009BA5F3 /* LPFileAttribute.h */; };
+		65D4AB99224D752B009BA5F3 /* LPFileAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D4AB97224D752B009BA5F3 /* LPFileAttribute.m */; };
 		65D4AB9C224D76CB009BA5F3 /* LPDownloadJPEGClass.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D4AB9A224D76CB009BA5F3 /* LPDownloadJPEGClass.h */; };
 		65D4AB9D224D76CB009BA5F3 /* LPDownloadJPEGClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D4AB9B224D76CB009BA5F3 /* LPDownloadJPEGClass.m */; };
 		65D4ABA0224D76EE009BA5F3 /* LPDownloadJPEG.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D4AB9E224D76EE009BA5F3 /* LPDownloadJPEG.h */; };
@@ -229,8 +229,8 @@
 		65D4AB8F224D74E5009BA5F3 /* LPWebInterstitialKinds.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPWebInterstitialKinds.m; sourceTree = "<group>"; };
 		65D4AB92224D7507009BA5F3 /* LPWebInterstitialValues.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPWebInterstitialValues.h; sourceTree = "<group>"; };
 		65D4AB93224D7507009BA5F3 /* LPWebInterstitialValues.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPWebInterstitialValues.m; sourceTree = "<group>"; };
-		65D4AB96224D752B009BA5F3 /* LPFileAttributes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPFileAttributes.h; sourceTree = "<group>"; };
-		65D4AB97224D752B009BA5F3 /* LPFileAttributes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPFileAttributes.m; sourceTree = "<group>"; };
+		65D4AB96224D752B009BA5F3 /* LPFileAttribute.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPFileAttribute.h; sourceTree = "<group>"; };
+		65D4AB97224D752B009BA5F3 /* LPFileAttribute.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPFileAttribute.m; sourceTree = "<group>"; };
 		65D4AB9A224D76CB009BA5F3 /* LPDownloadJPEGClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPDownloadJPEGClass.h; sourceTree = "<group>"; };
 		65D4AB9B224D76CB009BA5F3 /* LPDownloadJPEGClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPDownloadJPEGClass.m; sourceTree = "<group>"; };
 		65D4AB9E224D76EE009BA5F3 /* LPDownloadJPEG.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPDownloadJPEG.h; sourceTree = "<group>"; };
@@ -486,8 +486,6 @@
 				65D4AB8F224D74E5009BA5F3 /* LPWebInterstitialKinds.m */,
 				65D4AB92224D7507009BA5F3 /* LPWebInterstitialValues.h */,
 				65D4AB93224D7507009BA5F3 /* LPWebInterstitialValues.m */,
-				65D4AB96224D752B009BA5F3 /* LPFileAttributes.h */,
-				65D4AB97224D752B009BA5F3 /* LPFileAttributes.m */,
 				65D4AB9A224D76CB009BA5F3 /* LPDownloadJPEGClass.h */,
 				65D4AB9B224D76CB009BA5F3 /* LPDownloadJPEGClass.m */,
 				65D4AB9E224D76EE009BA5F3 /* LPDownloadJPEG.h */,
@@ -559,6 +557,8 @@
 				65D4AC0B224D825A009BA5F3 /* LPRegion.m */,
 				A868DBCC2254161C00E8C4D4 /* LPMessage.h */,
 				A868DBCD2254161C00E8C4D4 /* LPMessage.m */,
+				65D4AB96224D752B009BA5F3 /* LPFileAttribute.h */,
+				65D4AB97224D752B009BA5F3 /* LPFileAttribute.m */,
 				A868DBCB225404C900E8C4D4 /* Autogen */,
 			);
 			path = Classes;
@@ -656,7 +656,7 @@
 				B430A27C224C237800DC8140 /* LPPurpleTitle.h in Headers */,
 				65D4AB9C224D76CB009BA5F3 /* LPDownloadJPEGClass.h in Headers */,
 				B430A286224C23B200DC8140 /* LPConfirmKinds.h in Headers */,
-				65D4AB98224D752B009BA5F3 /* LPFileAttributes.h in Headers */,
+				65D4AB98224D752B009BA5F3 /* LPFileAttribute.h in Headers */,
 				65D4AB78224D7379009BA5F3 /* LPCencelButton.h in Headers */,
 				65D4AB8C224D744F009BA5F3 /* LPWebInterstitial.h in Headers */,
 			);
@@ -807,7 +807,7 @@
 				B430A24B224C216500DC8140 /* LPAlertKinds.m in Sources */,
 				65D4ABE9224D8028009BA5F3 /* LPIndecentChild.m in Sources */,
 				A868DBCF2254161C00E8C4D4 /* LPMessage.m in Sources */,
-				65D4AB99224D752B009BA5F3 /* LPFileAttributes.m in Sources */,
+				65D4AB99224D752B009BA5F3 /* LPFileAttribute.m in Sources */,
 				65D4ABC5224D7F1A009BA5F3 /* LPPurpleChild.m in Sources */,
 				B430A25A224C22A800DC8140 /* LPCenterPopup.m in Sources */,
 				65D4ABC1224D7EF0009BA5F3 /* LPStickyTitle.m in Sources */,
