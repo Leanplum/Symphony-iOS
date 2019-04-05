@@ -178,6 +178,9 @@
 		B430A2A4224C246100DC8140 /* LPInterstitialValues.h in Headers */ = {isa = PBXBuildFile; fileRef = B430A2A2224C246100DC8140 /* LPInterstitialValues.h */; };
 		B430A2A5224C246100DC8140 /* LPInterstitialValues.m in Sources */ = {isa = PBXBuildFile; fileRef = B430A2A3224C246100DC8140 /* LPInterstitialValues.m */; };
 		B430A2A6224C246100DC8140 /* LPInterstitialValues.m in Sources */ = {isa = PBXBuildFile; fileRef = B430A2A3224C246100DC8140 /* LPInterstitialValues.m */; };
+		B4583DEC2257F2E7006A6A61 /* LPSample.m in Sources */ = {isa = PBXBuildFile; fileRef = B4583DEA2257F2E7006A6A61 /* LPSample.m */; };
+		B4583DED2257F2E7006A6A61 /* LPSample.h in Headers */ = {isa = PBXBuildFile; fileRef = B4583DEB2257F2E7006A6A61 /* LPSample.h */; };
+		B4583DEF2257F2F0006A6A61 /* LPModelProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = B4583DEE2257F2F0006A6A61 /* LPModelProtocol.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -343,6 +346,9 @@
 		B430A29E224C244400DC8140 /* LPInterstitialKinds.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPInterstitialKinds.m; sourceTree = "<group>"; };
 		B430A2A2224C246100DC8140 /* LPInterstitialValues.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPInterstitialValues.h; sourceTree = "<group>"; };
 		B430A2A3224C246100DC8140 /* LPInterstitialValues.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPInterstitialValues.m; sourceTree = "<group>"; };
+		B4583DEA2257F2E7006A6A61 /* LPSample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPSample.m; sourceTree = "<group>"; };
+		B4583DEB2257F2E7006A6A61 /* LPSample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPSample.h; sourceTree = "<group>"; };
+		B4583DEE2257F2F0006A6A61 /* LPModelProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPModelProtocol.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -385,6 +391,7 @@
 		A8504662224C0A7900BACA81 /* Symphony */ = {
 			isa = PBXGroup;
 			children = (
+				B4583DE92257F2A4006A6A61 /* Protocol */,
 				B430A22A224C1CA600DC8140 /* Utils */,
 				B430A229224C1C8D00DC8140 /* Api */,
 				B430A228224C1C8100DC8140 /* Classes */,
@@ -551,6 +558,8 @@
 		B430A228224C1C8100DC8140 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B4583DEB2257F2E7006A6A61 /* LPSample.h */,
+				B4583DEA2257F2E7006A6A61 /* LPSample.m */,
 				B430A239224C212500DC8140 /* LPStartResponse.h */,
 				B430A23A224C212500DC8140 /* LPStartResponse.m */,
 				65D4AC0A224D825A009BA5F3 /* LPRegion.h */,
@@ -578,6 +587,14 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		B4583DE92257F2A4006A6A61 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				B4583DEE2257F2F0006A6A61 /* LPModelProtocol.h */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -599,9 +616,11 @@
 				65D4ABA8224D777C009BA5F3 /* LPFine2PNGClass.h in Headers */,
 				65D4AC04224D8102009BA5F3 /* LPMischievousChild.h in Headers */,
 				65D4AB84224D73EF009BA5F3 /* LPTentacledTitle.h in Headers */,
+				B4583DED2257F2E7006A6A61 /* LPSample.h in Headers */,
 				65D4ABE8224D8028009BA5F3 /* LPIndecentChild.h in Headers */,
 				B430A24A224C216500DC8140 /* LPAlertKinds.h in Headers */,
 				65D4ABD0224D7F7B009BA5F3 /* LPTentacledChild.h in Headers */,
+				B4583DEF2257F2F0006A6A61 /* LPModelProtocol.h in Headers */,
 				65D4ABB8224D7864009BA5F3 /* LPVarsAcceptButton.h in Headers */,
 				65D4AC10224D8279009BA5F3 /* LPVariant.h in Headers */,
 				65D4ABC4224D7F1A009BA5F3 /* LPPurpleChild.h in Headers */,
@@ -829,6 +848,7 @@
 				65D4AB85224D73EF009BA5F3 /* LPTentacledTitle.m in Sources */,
 				65D4ABCD224D7F5F009BA5F3 /* LPPurpleFont.m in Sources */,
 				65D4AB71224D72D7009BA5F3 /* LPPushAskToAskValues.m in Sources */,
+				B4583DEC2257F2E7006A6A61 /* LPSample.m in Sources */,
 				B430A264224C22E900DC8140 /* LPCenterPopupValues.m in Sources */,
 				65D4ABB1224D77BF009BA5F3 /* LPNone.m in Sources */,
 			);
