@@ -107,6 +107,7 @@
 		65D4AC11224D8279009BA5F3 /* LPVariant.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D4AC0F224D8279009BA5F3 /* LPVariant.m */; };
 		65D4AC14224D8296009BA5F3 /* LPResponseVars.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D4AC12224D8296009BA5F3 /* LPResponseVars.h */; };
 		65D4AC15224D8296009BA5F3 /* LPResponseVars.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D4AC13224D8296009BA5F3 /* LPResponseVars.m */; };
+		A838827B225BF47A008ED8C9 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A838827A225BF47A008ED8C9 /* OCMock.framework */; };
 		A850466A224C0A7900BACA81 /* Symphony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8504660224C0A7900BACA81 /* Symphony.framework */; };
 		A850466F224C0A7900BACA81 /* SymphonyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A850466E224C0A7900BACA81 /* SymphonyTests.m */; };
 		A8504671224C0A7900BACA81 /* Symphony.h in Headers */ = {isa = PBXBuildFile; fileRef = A8504663224C0A7900BACA81 /* Symphony.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -294,6 +295,7 @@
 		65D4AC0F224D8279009BA5F3 /* LPVariant.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPVariant.m; sourceTree = "<group>"; };
 		65D4AC12224D8296009BA5F3 /* LPResponseVars.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPResponseVars.h; sourceTree = "<group>"; };
 		65D4AC13224D8296009BA5F3 /* LPResponseVars.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPResponseVars.m; sourceTree = "<group>"; };
+		A838827A225BF47A008ED8C9 /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OCMock.framework; sourceTree = "<group>"; };
 		A8504660224C0A7900BACA81 /* Symphony.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Symphony.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8504663224C0A7900BACA81 /* Symphony.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Symphony.h; sourceTree = "<group>"; };
 		A8504664224C0A7900BACA81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -363,6 +365,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A838827B225BF47A008ED8C9 /* OCMock.framework in Frameworks */,
 				A850466A224C0A7900BACA81 /* Symphony.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -370,6 +373,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A8388279225BF465008ED8C9 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				A838827A225BF47A008ED8C9 /* OCMock.framework */,
+			);
+			path = Dependencies;
+			sourceTree = "<group>";
+		};
 		A8504656224C0A7900BACA81 = {
 			isa = PBXGroup;
 			children = (
@@ -404,6 +415,7 @@
 		A850466D224C0A7900BACA81 /* SymphonyTests */ = {
 			isa = PBXGroup;
 			children = (
+				A8388279225BF465008ED8C9 /* Dependencies */,
 				A850466E224C0A7900BACA81 /* SymphonyTests.m */,
 				A8504670224C0A7900BACA81 /* Info.plist */,
 			);
@@ -1066,6 +1078,10 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4XLWYATZ5P;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SymphonyTests/Dependencies",
+				);
 				INFOPLIST_FILE = SymphonyTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1083,6 +1099,10 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4XLWYATZ5P;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SymphonyTests/Dependencies",
+				);
 				INFOPLIST_FILE = SymphonyTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
