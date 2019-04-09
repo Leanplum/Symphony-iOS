@@ -1,6 +1,6 @@
 language: objective-c
 osx_image: xcode10
-xcode_project: Symphony.xcodeproj # path to your xcodeproj folder
+xcode_workspace: Symphony.xcworkspace
 xcode_scheme: Symphony
 xcode_destination: platform=iOS Simulator,OS=12.0,name=iPhone X
 
