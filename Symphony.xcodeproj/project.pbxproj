@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07FBFDD3F6B7B03EED3E905E /* Pods_SymphonyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BF30B8898FFE1F1AB3BCD92 /* Pods_SymphonyTests.framework */; };
 		65D4AB44224C2EA1009BA5F3 /* LPTentacledAcceptButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D4AB42224C2EA1009BA5F3 /* LPTentacledAcceptButton.h */; };
 		65D4AB45224C2EA1009BA5F3 /* LPTentacledAcceptButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D4AB43224C2EA1009BA5F3 /* LPTentacledAcceptButton.m */; };
 		65D4AB4C224D6E15009BA5F3 /* LPFlufflyAcceptButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D4AB4A224D6E15009BA5F3 /* LPFlufflyAcceptButton.h */; };
@@ -107,6 +108,7 @@
 		65D4AC11224D8279009BA5F3 /* LPVariant.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D4AC0F224D8279009BA5F3 /* LPVariant.m */; };
 		65D4AC14224D8296009BA5F3 /* LPResponseVars.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D4AC12224D8296009BA5F3 /* LPResponseVars.h */; };
 		65D4AC15224D8296009BA5F3 /* LPResponseVars.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D4AC13224D8296009BA5F3 /* LPResponseVars.m */; };
+		72CB8D4A78C0688C104D14CF /* Pods_Symphony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C66EF7D196DE652ECB009BE7 /* Pods_Symphony.framework */; };
 		A850466A224C0A7900BACA81 /* Symphony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8504660224C0A7900BACA81 /* Symphony.framework */; };
 		A850466F224C0A7900BACA81 /* SymphonyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A850466E224C0A7900BACA81 /* SymphonyTests.m */; };
 		A8504671224C0A7900BACA81 /* Symphony.h in Headers */ = {isa = PBXBuildFile; fileRef = A8504663224C0A7900BACA81 /* Symphony.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -194,6 +196,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		48C6D19E0A8F321CFA0500CB /* Pods-Symphony.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Symphony.release.xcconfig"; path = "Pods/Target Support Files/Pods-Symphony/Pods-Symphony.release.xcconfig"; sourceTree = "<group>"; };
 		65D4AB42224C2EA1009BA5F3 /* LPTentacledAcceptButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPTentacledAcceptButton.h; sourceTree = "<group>"; };
 		65D4AB43224C2EA1009BA5F3 /* LPTentacledAcceptButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPTentacledAcceptButton.m; sourceTree = "<group>"; };
 		65D4AB4A224D6E15009BA5F3 /* LPFlufflyAcceptButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPFlufflyAcceptButton.h; sourceTree = "<group>"; };
@@ -294,6 +297,8 @@
 		65D4AC0F224D8279009BA5F3 /* LPVariant.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPVariant.m; sourceTree = "<group>"; };
 		65D4AC12224D8296009BA5F3 /* LPResponseVars.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPResponseVars.h; sourceTree = "<group>"; };
 		65D4AC13224D8296009BA5F3 /* LPResponseVars.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPResponseVars.m; sourceTree = "<group>"; };
+		6BF30B8898FFE1F1AB3BCD92 /* Pods_SymphonyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SymphonyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F6768B55036458B16448576 /* Pods-Symphony.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Symphony.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Symphony/Pods-Symphony.debug.xcconfig"; sourceTree = "<group>"; };
 		A8504660224C0A7900BACA81 /* Symphony.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Symphony.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8504663224C0A7900BACA81 /* Symphony.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Symphony.h; sourceTree = "<group>"; };
 		A8504664224C0A7900BACA81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -302,6 +307,7 @@
 		A8504670224C0A7900BACA81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A868DBCC2254161C00E8C4D4 /* LPMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPMessage.h; sourceTree = "<group>"; };
 		A868DBCD2254161C00E8C4D4 /* LPMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPMessage.m; sourceTree = "<group>"; };
+		AADF373E239F11398512D5B6 /* Pods-SymphonyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SymphonyTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SymphonyTests/Pods-SymphonyTests.release.xcconfig"; sourceTree = "<group>"; };
 		B430A239224C212500DC8140 /* LPStartResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPStartResponse.h; sourceTree = "<group>"; };
 		B430A23A224C212500DC8140 /* LPStartResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPStartResponse.m; sourceTree = "<group>"; };
 		B430A23E224C213500DC8140 /* LPActionDefinitions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPActionDefinitions.h; sourceTree = "<group>"; };
@@ -349,6 +355,8 @@
 		B4583DEA2257F2E7006A6A61 /* LPSample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPSample.m; sourceTree = "<group>"; };
 		B4583DEB2257F2E7006A6A61 /* LPSample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPSample.h; sourceTree = "<group>"; };
 		B4583DEE2257F2F0006A6A61 /* LPModelProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPModelProtocol.h; sourceTree = "<group>"; };
+		C66EF7D196DE652ECB009BE7 /* Pods_Symphony.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Symphony.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E16A564BA7BCA1174E2B2B86 /* Pods-SymphonyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SymphonyTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SymphonyTests/Pods-SymphonyTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -356,6 +364,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72CB8D4A78C0688C104D14CF /* Pods_Symphony.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,18 +373,41 @@
 			buildActionMask = 2147483647;
 			files = (
 				A850466A224C0A7900BACA81 /* Symphony.framework in Frameworks */,
+				07FBFDD3F6B7B03EED3E905E /* Pods_SymphonyTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2187453B18DD2AE05BBB75EC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7F6768B55036458B16448576 /* Pods-Symphony.debug.xcconfig */,
+				48C6D19E0A8F321CFA0500CB /* Pods-Symphony.release.xcconfig */,
+				E16A564BA7BCA1174E2B2B86 /* Pods-SymphonyTests.debug.xcconfig */,
+				AADF373E239F11398512D5B6 /* Pods-SymphonyTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		4B684442A4B111DF13DFFFC0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C66EF7D196DE652ECB009BE7 /* Pods_Symphony.framework */,
+				6BF30B8898FFE1F1AB3BCD92 /* Pods_SymphonyTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A8504656224C0A7900BACA81 = {
 			isa = PBXGroup;
 			children = (
 				A8504662224C0A7900BACA81 /* Symphony */,
 				A850466D224C0A7900BACA81 /* SymphonyTests */,
 				A8504661224C0A7900BACA81 /* Products */,
+				2187453B18DD2AE05BBB75EC /* Pods */,
+				4B684442A4B111DF13DFFFC0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -688,6 +720,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A8504674224C0A7900BACA81 /* Build configuration list for PBXNativeTarget "Symphony" */;
 			buildPhases = (
+				9B23B6202DDF6ADA43A219C0 /* [CP] Check Pods Manifest.lock */,
 				A850465B224C0A7900BACA81 /* Headers */,
 				A850465C224C0A7900BACA81 /* Sources */,
 				A850465D224C0A7900BACA81 /* Frameworks */,
@@ -706,9 +739,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A8504677224C0A7900BACA81 /* Build configuration list for PBXNativeTarget "SymphonyTests" */;
 			buildPhases = (
+				1BC8CCAAC539029284DC975C /* [CP] Check Pods Manifest.lock */,
 				A8504665224C0A7900BACA81 /* Sources */,
 				A8504666224C0A7900BACA81 /* Frameworks */,
 				A8504667224C0A7900BACA81 /* Resources */,
+				610B089320E4BD912CA750E3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -771,6 +806,65 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1BC8CCAAC539029284DC975C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SymphonyTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		610B089320E4BD912CA750E3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SymphonyTests/Pods-SymphonyTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/OCMock/OCMock.framework",
+				"${BUILT_PRODUCTS_DIR}/OHHTTPStubs/OHHTTPStubs.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OCMock.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OHHTTPStubs.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SymphonyTests/Pods-SymphonyTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9B23B6202DDF6ADA43A219C0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Symphony-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A850465C224C0A7900BACA81 /* Sources */ = {
@@ -1015,6 +1109,7 @@
 		};
 		A8504675224C0A7900BACA81 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7F6768B55036458B16448576 /* Pods-Symphony.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
@@ -1039,6 +1134,7 @@
 		};
 		A8504676224C0A7900BACA81 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 48C6D19E0A8F321CFA0500CB /* Pods-Symphony.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
@@ -1063,9 +1159,11 @@
 		};
 		A8504678224C0A7900BACA81 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E16A564BA7BCA1174E2B2B86 /* Pods-SymphonyTests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4XLWYATZ5P;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = SymphonyTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1080,9 +1178,11 @@
 		};
 		A8504679224C0A7900BACA81 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AADF373E239F11398512D5B6 /* Pods-SymphonyTests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4XLWYATZ5P;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = SymphonyTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

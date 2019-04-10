@@ -7,6 +7,8 @@
 //
 
 #import <XCTest/XCTest.h>
+#import <OCMock/OCMock.h>
+#import <OHHTTPStubs/OHHTTPStubs.h>
 
 @interface SymphonyTests : XCTestCase
 
