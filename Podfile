@@ -1,11 +1,11 @@
-project  'Symphony.xcodeproj'
+project  'Leanplum.xcodeproj'
 
 use_frameworks!
 
-target 'Symphony' do
+target 'Leanplum' do
   platform :ios, '9.0'
   
-  target 'SymphonyTests' do
+  target 'LeanplumTests' do
       inherit! :search_paths
       pod 'OCMock'
       pod 'OHHTTPStubs'
