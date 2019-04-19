@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07FBFDD3F6B7B03EED3E905E /* Pods_SymphonyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BF30B8898FFE1F1AB3BCD92 /* Pods_SymphonyTests.framework */; };
 		3E602556D1B3536C723F9A2B /* Pods_LeanplumTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57C1368237547C8F4A14F75E /* Pods_LeanplumTests.framework */; };
 		65D4AB44224C2EA1009BA5F3 /* LPTentacledAcceptButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D4AB42224C2EA1009BA5F3 /* LPTentacledAcceptButton.h */; };
 		65D4AB45224C2EA1009BA5F3 /* LPTentacledAcceptButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D4AB43224C2EA1009BA5F3 /* LPTentacledAcceptButton.m */; };
@@ -380,7 +379,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A850466A224C0A7900BACA81 /* Leanplum.framework in Frameworks */,
-				07FBFDD3F6B7B03EED3E905E /* Pods_SymphonyTests.framework in Frameworks */,
 				3E602556D1B3536C723F9A2B /* Pods_LeanplumTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
