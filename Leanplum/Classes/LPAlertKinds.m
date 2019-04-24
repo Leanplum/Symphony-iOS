@@ -1,17 +1,20 @@
 //
-//  LPValuesDismissAction.m
+//  LPAlertKinds.m
 //  Symphony
 //
 //  Created by Grace on 4/16/19.
 //  Copyright © 2019 Leanplum. All rights reserved.
 //
 
-#import "LPValuesDismissAction.h"
+#import "LPAlertKinds.h"
 
-@implementation LPValuesDismissAction
+@implementation LPAlertKinds
 
 - (NSDictionary *) classMapping {
-    NSDictionary *mapping = @{@"name": @"name",
+    NSDictionary *mapping = @{@"dismissAction": @"dismissAction",
+                              @"dismissText": @"dismissText",
+                              @"message": @"message",
+                              @"title": @"title",
                               };
     return mapping;
 }

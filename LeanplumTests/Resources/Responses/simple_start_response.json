@@ -103,20 +103,26 @@
                     }
                 }
             ],
-            "actionDefinitions": [
-                {
-                    "name": "mozart.jpg",
-                    "size": 89447,
-                    "hash": null,
-                    "servingUrl": "http://lh3.googleusercontent.com/e2z4y3k9XdthAt_3B2p1HsxZ3BmExqdxaoj7kqaxECGlmtDLrAW6H2-AI-jpIyM3GcADoNeGZuzPs8P9NAMy"
-                },
-                {
-                    "name": "mozart2.jpg",
-                    "size": 89448,
-                    "hash": "ABC",
-                    "servingUrl": "http://lh3.googleusercontent.com/e2z4y3k9XdthAt_3B2p1HsxZ3BmExqdxaoj7kqaxECGlmtDLrAW6H2-AI-jpIyM3GcADoNeGZuzPs8P9NAMyy"
+            "actionDefinitions": {
+                "alert": {
+                    "kind": 3,
+                    "values": {
+                        "dismissAction": {
+                            "__name__": ""
+                        },
+                        "message": "Alert message goes here.",
+                        "title": "LeanplumSample",
+                        "dismissText": "OK"
+                    },
+                    "options": null,
+                    "kinds": {
+                        "dismissAction": "ACTION",
+                        "message": "TEXT",
+                        "title": "TEXT",
+                        "dismissText": "TEXT"
+                    }
                 }
-            ]
+            }
         }
     ]
 }
