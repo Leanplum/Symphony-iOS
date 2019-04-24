@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		3E602556D1B3536C723F9A2B /* Pods_LeanplumTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57C1368237547C8F4A14F75E /* Pods_LeanplumTests.framework */; };
+		6515E1CE2270DE0300C5A2F0 /* LPActionDefinition.h in Headers */ = {isa = PBXBuildFile; fileRef = 6515E1CC2270DE0300C5A2F0 /* LPActionDefinition.h */; };
+		6515E1CF2270DE0300C5A2F0 /* LPActionDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 6515E1CD2270DE0300C5A2F0 /* LPActionDefinition.m */; };
+		6515E1D42270DEB300C5A2F0 /* simple_start_response.json in Resources */ = {isa = PBXBuildFile; fileRef = 6515E1D32270DEB300C5A2F0 /* simple_start_response.json */; };
+		6515E1D52270DEB300C5A2F0 /* simple_start_response.json in Resources */ = {isa = PBXBuildFile; fileRef = 6515E1D32270DEB300C5A2F0 /* simple_start_response.json */; };
+		6515E1D72270DF2200C5A2F0 /* LPRegionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6515E1D62270DF2200C5A2F0 /* LPRegionTest.m */; };
+		6515E1D92270DF5600C5A2F0 /* LPFileAttributeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6515E1D82270DF5600C5A2F0 /* LPFileAttributeTest.m */; };
+		6515E1DB2270DF7F00C5A2F0 /* LPMessageTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6515E1DA2270DF7F00C5A2F0 /* LPMessageTest.m */; };
+		6515E1DD2270DFC600C5A2F0 /* LPStartResponseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6515E1DC2270DFC600C5A2F0 /* LPStartResponseTest.m */; };
 		65D4AB44224C2EA1009BA5F3 /* LPTentacledAcceptButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D4AB42224C2EA1009BA5F3 /* LPTentacledAcceptButton.h */; };
 		65D4AB45224C2EA1009BA5F3 /* LPTentacledAcceptButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D4AB43224C2EA1009BA5F3 /* LPTentacledAcceptButton.m */; };
 		65D4AB4C224D6E15009BA5F3 /* LPFlufflyAcceptButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D4AB4A224D6E15009BA5F3 /* LPFlufflyAcceptButton.h */; };
@@ -117,18 +125,6 @@
 		B430A23B224C212500DC8140 /* LPStartResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = B430A239224C212500DC8140 /* LPStartResponse.h */; };
 		B430A23C224C212500DC8140 /* LPStartResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = B430A23A224C212500DC8140 /* LPStartResponse.m */; };
 		B430A23D224C212500DC8140 /* LPStartResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = B430A23A224C212500DC8140 /* LPStartResponse.m */; };
-		B430A240224C213500DC8140 /* LPActionDefinitions.h in Headers */ = {isa = PBXBuildFile; fileRef = B430A23E224C213500DC8140 /* LPActionDefinitions.h */; };
-		B430A241224C213500DC8140 /* LPActionDefinitions.m in Sources */ = {isa = PBXBuildFile; fileRef = B430A23F224C213500DC8140 /* LPActionDefinitions.m */; };
-		B430A242224C213500DC8140 /* LPActionDefinitions.m in Sources */ = {isa = PBXBuildFile; fileRef = B430A23F224C213500DC8140 /* LPActionDefinitions.m */; };
-		B430A245224C214E00DC8140 /* LPAlert.h in Headers */ = {isa = PBXBuildFile; fileRef = B430A243224C214E00DC8140 /* LPAlert.h */; };
-		B430A246224C214E00DC8140 /* LPAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = B430A244224C214E00DC8140 /* LPAlert.m */; };
-		B430A247224C214E00DC8140 /* LPAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = B430A244224C214E00DC8140 /* LPAlert.m */; };
-		B430A24A224C216500DC8140 /* LPAlertKinds.h in Headers */ = {isa = PBXBuildFile; fileRef = B430A248224C216500DC8140 /* LPAlertKinds.h */; };
-		B430A24B224C216500DC8140 /* LPAlertKinds.m in Sources */ = {isa = PBXBuildFile; fileRef = B430A249224C216500DC8140 /* LPAlertKinds.m */; };
-		B430A24C224C216500DC8140 /* LPAlertKinds.m in Sources */ = {isa = PBXBuildFile; fileRef = B430A249224C216500DC8140 /* LPAlertKinds.m */; };
-		B430A24F224C220700DC8140 /* LPAlertValues.h in Headers */ = {isa = PBXBuildFile; fileRef = B430A24D224C220700DC8140 /* LPAlertValues.h */; };
-		B430A250224C220700DC8140 /* LPAlertValues.m in Sources */ = {isa = PBXBuildFile; fileRef = B430A24E224C220700DC8140 /* LPAlertValues.m */; };
-		B430A251224C220700DC8140 /* LPAlertValues.m in Sources */ = {isa = PBXBuildFile; fileRef = B430A24E224C220700DC8140 /* LPAlertValues.m */; };
 		B430A254224C226900DC8140 /* LPValuesDismissAction.h in Headers */ = {isa = PBXBuildFile; fileRef = B430A252224C226900DC8140 /* LPValuesDismissAction.h */; };
 		B430A255224C226900DC8140 /* LPValuesDismissAction.m in Sources */ = {isa = PBXBuildFile; fileRef = B430A253224C226900DC8140 /* LPValuesDismissAction.m */; };
 		B430A256224C226900DC8140 /* LPValuesDismissAction.m in Sources */ = {isa = PBXBuildFile; fileRef = B430A253224C226900DC8140 /* LPValuesDismissAction.m */; };
@@ -199,6 +195,13 @@
 		479B3A67B356F9B222B5CACC /* Pods-LeanplumTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeanplumTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LeanplumTests/Pods-LeanplumTests.release.xcconfig"; sourceTree = "<group>"; };
 		48C6D19E0A8F321CFA0500CB /* Pods-Symphony.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Symphony.release.xcconfig"; path = "Pods/Target Support Files/Pods-Symphony/Pods-Symphony.release.xcconfig"; sourceTree = "<group>"; };
 		57C1368237547C8F4A14F75E /* Pods_LeanplumTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LeanplumTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6515E1CC2270DE0300C5A2F0 /* LPActionDefinition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPActionDefinition.h; sourceTree = "<group>"; };
+		6515E1CD2270DE0300C5A2F0 /* LPActionDefinition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPActionDefinition.m; sourceTree = "<group>"; };
+		6515E1D32270DEB300C5A2F0 /* simple_start_response.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = simple_start_response.json; sourceTree = "<group>"; };
+		6515E1D62270DF2200C5A2F0 /* LPRegionTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPRegionTest.m; sourceTree = "<group>"; };
+		6515E1D82270DF5600C5A2F0 /* LPFileAttributeTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPFileAttributeTest.m; sourceTree = "<group>"; };
+		6515E1DA2270DF7F00C5A2F0 /* LPMessageTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPMessageTest.m; sourceTree = "<group>"; };
+		6515E1DC2270DFC600C5A2F0 /* LPStartResponseTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPStartResponseTest.m; sourceTree = "<group>"; };
 		65D4AB42224C2EA1009BA5F3 /* LPTentacledAcceptButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPTentacledAcceptButton.h; sourceTree = "<group>"; };
 		65D4AB43224C2EA1009BA5F3 /* LPTentacledAcceptButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPTentacledAcceptButton.m; sourceTree = "<group>"; };
 		65D4AB4A224D6E15009BA5F3 /* LPFlufflyAcceptButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPFlufflyAcceptButton.h; sourceTree = "<group>"; };
@@ -314,14 +317,6 @@
 		B3CDAF5B231D5B4ED4D64D2F /* Pods-Leanplum.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Leanplum.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Leanplum/Pods-Leanplum.debug.xcconfig"; sourceTree = "<group>"; };
 		B430A239224C212500DC8140 /* LPStartResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPStartResponse.h; sourceTree = "<group>"; };
 		B430A23A224C212500DC8140 /* LPStartResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPStartResponse.m; sourceTree = "<group>"; };
-		B430A23E224C213500DC8140 /* LPActionDefinitions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPActionDefinitions.h; sourceTree = "<group>"; };
-		B430A23F224C213500DC8140 /* LPActionDefinitions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPActionDefinitions.m; sourceTree = "<group>"; };
-		B430A243224C214E00DC8140 /* LPAlert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPAlert.h; sourceTree = "<group>"; };
-		B430A244224C214E00DC8140 /* LPAlert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPAlert.m; sourceTree = "<group>"; };
-		B430A248224C216500DC8140 /* LPAlertKinds.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPAlertKinds.h; sourceTree = "<group>"; };
-		B430A249224C216500DC8140 /* LPAlertKinds.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPAlertKinds.m; sourceTree = "<group>"; };
-		B430A24D224C220700DC8140 /* LPAlertValues.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPAlertValues.h; sourceTree = "<group>"; };
-		B430A24E224C220700DC8140 /* LPAlertValues.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPAlertValues.m; sourceTree = "<group>"; };
 		B430A252224C226900DC8140 /* LPValuesDismissAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPValuesDismissAction.h; sourceTree = "<group>"; };
 		B430A253224C226900DC8140 /* LPValuesDismissAction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPValuesDismissAction.m; sourceTree = "<group>"; };
 		B430A257224C22A800DC8140 /* LPCenterPopup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPCenterPopup.h; sourceTree = "<group>"; };
@@ -412,6 +407,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		6515E1D12270DE7100C5A2F0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6515E1D22270DE7C00C5A2F0 /* Responses */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		6515E1D22270DE7C00C5A2F0 /* Responses */ = {
+			isa = PBXGroup;
+			children = (
+				6515E1D32270DEB300C5A2F0 /* simple_start_response.json */,
+			);
+			path = Responses;
+			sourceTree = "<group>";
+		};
 		A8504656224C0A7900BACA81 = {
 			isa = PBXGroup;
 			children = (
@@ -448,8 +459,13 @@
 		A850466D224C0A7900BACA81 /* LeanplumTests */ = {
 			isa = PBXGroup;
 			children = (
+				6515E1D12270DE7100C5A2F0 /* Resources */,
 				A850466E224C0A7900BACA81 /* LeanplumTests.m */,
+				6515E1D62270DF2200C5A2F0 /* LPRegionTest.m */,
+				6515E1DA2270DF7F00C5A2F0 /* LPMessageTest.m */,
 				A8504670224C0A7900BACA81 /* Info.plist */,
+				6515E1D82270DF5600C5A2F0 /* LPFileAttributeTest.m */,
+				6515E1DC2270DFC600C5A2F0 /* LPStartResponseTest.m */,
 			);
 			path = LeanplumTests;
 			sourceTree = "<group>";
@@ -457,14 +473,6 @@
 		A868DBCB225404C900E8C4D4 /* Autogen */ = {
 			isa = PBXGroup;
 			children = (
-				B430A23E224C213500DC8140 /* LPActionDefinitions.h */,
-				B430A23F224C213500DC8140 /* LPActionDefinitions.m */,
-				B430A243224C214E00DC8140 /* LPAlert.h */,
-				B430A244224C214E00DC8140 /* LPAlert.m */,
-				B430A248224C216500DC8140 /* LPAlertKinds.h */,
-				B430A249224C216500DC8140 /* LPAlertKinds.m */,
-				B430A24D224C220700DC8140 /* LPAlertValues.h */,
-				B430A24E224C220700DC8140 /* LPAlertValues.m */,
 				B430A252224C226900DC8140 /* LPValuesDismissAction.h */,
 				B430A253224C226900DC8140 /* LPValuesDismissAction.m */,
 				B430A257224C22A800DC8140 /* LPCenterPopup.h */,
@@ -612,6 +620,8 @@
 				A868DBCD2254161C00E8C4D4 /* LPMessage.m */,
 				65D4AB96224D752B009BA5F3 /* LPFileAttribute.h */,
 				65D4AB97224D752B009BA5F3 /* LPFileAttribute.m */,
+				6515E1CC2270DE0300C5A2F0 /* LPActionDefinition.h */,
+				6515E1CD2270DE0300C5A2F0 /* LPActionDefinition.m */,
 				A868DBCB225404C900E8C4D4 /* Autogen */,
 			);
 			path = Classes;
@@ -660,9 +670,9 @@
 				65D4ABA8224D777C009BA5F3 /* LPFine2PNGClass.h in Headers */,
 				65D4AC04224D8102009BA5F3 /* LPMischievousChild.h in Headers */,
 				65D4AB84224D73EF009BA5F3 /* LPTentacledTitle.h in Headers */,
+				6515E1CE2270DE0300C5A2F0 /* LPActionDefinition.h in Headers */,
 				B4583DED2257F2E7006A6A61 /* LPSample.h in Headers */,
 				65D4ABE8224D8028009BA5F3 /* LPIndecentChild.h in Headers */,
-				B430A24A224C216500DC8140 /* LPAlertKinds.h in Headers */,
 				65D4ABD0224D7F7B009BA5F3 /* LPTentacledChild.h in Headers */,
 				B4583DEF2257F2F0006A6A61 /* LPModelProtocol.h in Headers */,
 				65D4ABB8224D7864009BA5F3 /* LPVarsAcceptButton.h in Headers */,
@@ -684,7 +694,6 @@
 				B430A23B224C212500DC8140 /* LPStartResponse.h in Headers */,
 				65D4AB94224D7507009BA5F3 /* LPWebInterstitialValues.h in Headers */,
 				65D4ABAC224D77A5009BA5F3 /* LPNoneClass.h in Headers */,
-				B430A240224C213500DC8140 /* LPActionDefinitions.h in Headers */,
 				65D4AB60224D71E4009BA5F3 /* LPOpenURLKinds.h in Headers */,
 				B430A254224C226900DC8140 /* LPValuesDismissAction.h in Headers */,
 				65D4AC0C224D825A009BA5F3 /* LPRegion.h in Headers */,
@@ -707,7 +716,6 @@
 				65D4AB68224D7275009BA5F3 /* LPPushAskToAsk.h in Headers */,
 				65D4AC14224D8296009BA5F3 /* LPResponseVars.h in Headers */,
 				A868DBCE2254161C00E8C4D4 /* LPMessage.h in Headers */,
-				B430A245224C214E00DC8140 /* LPAlert.h in Headers */,
 				65D4AB4C224D6E15009BA5F3 /* LPFlufflyAcceptButton.h in Headers */,
 				65D4ABBC224D7ECB009BA5F3 /* LPStickyMessage.h in Headers */,
 				B430A259224C22A800DC8140 /* LPCenterPopup.h in Headers */,
@@ -715,7 +723,6 @@
 				65D4AB70224D72D7009BA5F3 /* LPPushAskToAskValues.h in Headers */,
 				65D4ABEC224D8043009BA5F3 /* LPHilariousChild.h in Headers */,
 				65D4ABF4224D807C009BA5F3 /* LPFluffyDismissAction.h in Headers */,
-				B430A24F224C220700DC8140 /* LPAlertValues.h in Headers */,
 				B430A27C224C237800DC8140 /* LPPurpleTitle.h in Headers */,
 				65D4AB9C224D76CB009BA5F3 /* LPDownloadJPEGClass.h in Headers */,
 				B430A286224C23B200DC8140 /* LPConfirmKinds.h in Headers */,
@@ -807,6 +814,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6515E1D42270DEB300C5A2F0 /* simple_start_response.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -814,6 +822,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6515E1D52270DEB300C5A2F0 /* simple_start_response.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -883,7 +892,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B430A250224C220700DC8140 /* LPAlertValues.m in Sources */,
 				65D4AC09224D8123009BA5F3 /* LPBraggodociousChild.m in Sources */,
 				B430A278224C235900DC8140 /* LPPurpleMessage.m in Sources */,
 				B430A28C224C23CE00DC8140 /* LPConfirmValues.m in Sources */,
@@ -904,7 +912,6 @@
 				65D4ABB9224D7864009BA5F3 /* LPVarsAcceptButton.m in Sources */,
 				65D4AB7D224D73A1009BA5F3 /* LPFluffyLayout.m in Sources */,
 				B430A27D224C237800DC8140 /* LPPurpleTitle.m in Sources */,
-				B430A246224C214E00DC8140 /* LPAlert.m in Sources */,
 				65D4AB95224D7507009BA5F3 /* LPWebInterstitialValues.m in Sources */,
 				65D4ABF9224D8097009BA5F3 /* LPCunningChild.m in Sources */,
 				65D4AC0D224D825A009BA5F3 /* LPRegion.m in Sources */,
@@ -924,13 +931,12 @@
 				B430A255224C226900DC8140 /* LPValuesDismissAction.m in Sources */,
 				B430A282224C239600DC8140 /* LPConfirm.m in Sources */,
 				65D4ABFD224D80B1009BA5F3 /* LPMagentaChild.m in Sources */,
-				B430A241224C213500DC8140 /* LPActionDefinitions.m in Sources */,
 				65D4AC15224D8296009BA5F3 /* LPResponseVars.m in Sources */,
 				65D4ABE5224D8005009BA5F3 /* LPIndigoTitle.m in Sources */,
 				65D4ABA1224D76EE009BA5F3 /* LPDownloadJPEG.m in Sources */,
 				65D4AB8D224D744F009BA5F3 /* LPWebInterstitial.m in Sources */,
-				B430A24B224C216500DC8140 /* LPAlertKinds.m in Sources */,
 				65D4ABE9224D8028009BA5F3 /* LPIndecentChild.m in Sources */,
+				6515E1CF2270DE0300C5A2F0 /* LPActionDefinition.m in Sources */,
 				A868DBCF2254161C00E8C4D4 /* LPMessage.m in Sources */,
 				65D4AB99224D752B009BA5F3 /* LPFileAttribute.m in Sources */,
 				65D4ABC5224D7F1A009BA5F3 /* LPPurpleChild.m in Sources */,
@@ -966,22 +972,22 @@
 			files = (
 				B430A292224C23EC00DC8140 /* LPFluffyAcceptAction.m in Sources */,
 				B430A283224C239600DC8140 /* LPConfirm.m in Sources */,
-				B430A24C224C216500DC8140 /* LPAlertKinds.m in Sources */,
 				B430A256224C226900DC8140 /* LPValuesDismissAction.m in Sources */,
 				B430A29C224C242900DC8140 /* LPInterstitial.m in Sources */,
 				B430A274224C233F00DC8140 /* LPPurpleLayout.m in Sources */,
 				B430A28D224C23CE00DC8140 /* LPConfirmValues.m in Sources */,
-				B430A247224C214E00DC8140 /* LPAlert.m in Sources */,
 				B430A25B224C22A800DC8140 /* LPCenterPopup.m in Sources */,
-				B430A251224C220700DC8140 /* LPAlertValues.m in Sources */,
 				B430A297224C240900DC8140 /* LPPurpleCancelAction.m in Sources */,
 				B430A26F224C232300DC8140 /* LPPurpleAcceptButton.m in Sources */,
 				B430A265224C22E900DC8140 /* LPCenterPopupValues.m in Sources */,
 				B430A288224C23B200DC8140 /* LPConfirmKinds.m in Sources */,
 				B430A2A6224C246100DC8140 /* LPInterstitialValues.m in Sources */,
 				B430A23D224C212500DC8140 /* LPStartResponse.m in Sources */,
+				6515E1D72270DF2200C5A2F0 /* LPRegionTest.m in Sources */,
 				A850466F224C0A7900BACA81 /* LeanplumTests.m in Sources */,
-				B430A242224C213500DC8140 /* LPActionDefinitions.m in Sources */,
+				6515E1DD2270DFC600C5A2F0 /* LPStartResponseTest.m in Sources */,
+				6515E1DB2270DF7F00C5A2F0 /* LPMessageTest.m in Sources */,
+				6515E1D92270DF5600C5A2F0 /* LPFileAttributeTest.m in Sources */,
 				B430A2A1224C244400DC8140 /* LPInterstitialKinds.m in Sources */,
 				B430A279224C235900DC8140 /* LPPurpleMessage.m in Sources */,
 				B430A260224C22CA00DC8140 /* LPCenterPopupKinds.m in Sources */,

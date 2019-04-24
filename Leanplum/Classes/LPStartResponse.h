@@ -5,14 +5,16 @@
 //  Created by Hrishikesh Amravatkar on 3/27/19.
 //  Copyright © 2019 Leanplum. All rights reserved.
 //
+//  Edit by Grace Gu on 3/28/19
 
 #import <Foundation/Foundation.h>
+#import "LPModelProtocol.h"
 
 @class LPRegion;
 @class LPMessage;
 @class LPFileAttribute;
 
-@interface LPStartResponse : NSObject
+@interface LPStartResponse : NSObject<LPModelProtocol>
 
 @property (nonatomic, assign) BOOL success;
 @property (nonatomic, assign) BOOL syncNewsfeed;
