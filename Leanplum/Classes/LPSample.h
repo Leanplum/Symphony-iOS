@@ -10,7 +10,7 @@
 #import "LPModelProtocol.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LPSample : NSObject <LPModelProtocol>
+@interface LPSample : NSObject<LPModelProtocol>
 @property (nonatomic,retain) NSString *sampleId;
 @property (nonatomic, retain) NSString *title;
 @property NSInteger viewCount;

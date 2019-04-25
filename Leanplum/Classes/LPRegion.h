@@ -7,14 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LPModelProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LPRegion : NSObject
+@interface LPRegion : NSObject<LPModelProtocol>
 
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSString *lon;
-@property (nonatomic, strong) NSString *lat;
+@property (nonatomic, assign) double lon;
+@property (nonatomic, assign) double lat;
 @property (nonatomic, assign) float radius;
 @property (nonatomic, assign) float version;
 

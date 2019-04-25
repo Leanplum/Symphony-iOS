@@ -7,14 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LPModelProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LPFileAttribute : NSObject
+@interface LPFileAttribute : NSObject<LPModelProtocol>
 
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, assign) double size;
-@property (nonatomic, strong) NSString *hash;
+@property (nonatomic, strong, nullable) NSString *fileAttributeHash; //changed to fileAttributeHash because hash is a keyword in NSObject
 @property (nonatomic, strong) NSURL *servingUrl;
 
 @end

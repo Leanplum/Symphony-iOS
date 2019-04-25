@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LPModelProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LPMessage : NSObject
+@interface LPMessage : NSObject<LPModelProtocol>
 
 @property (nonatomic, strong) NSString *id;
 @property (nonatomic, strong) NSString *action;

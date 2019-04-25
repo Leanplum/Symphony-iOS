@@ -1,16 +1,25 @@
 //
 //  LPAlert.h
-//  Leanplum
+//  Symphony
 //
-//  Created by Hrishikesh Amravatkar on 3/27/19.
+//  Created by Grace on 4/16/19.
 //  Copyright © 2019 Leanplum. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import "LPModelProtocol.h"
+#import "LPAlertKinds.h"
+#import "LPAlertValues.h"
 
-@interface LPAlert : NSObject
-@property (nonatomic, assign)         NSInteger kind;
-//@property (nonatomic, strong)         LPAlertKinds *kinds;
-@property (nonatomic, nullable, copy) id options;
-//@property (nonatomic, strong)         LPAlertValues *values;
+NS_ASSUME_NONNULL_BEGIN
+
+@interface LPAlert : NSObject<LPModelProtocol>
+
+@property (nonatomic, assign) NSInteger kind;
+@property (nonatomic, strong) LPAlertKinds *kinds;
+@property (nonatomic, nullable, copy) NSDictionary *options;
+@property (nonatomic, strong) LPAlertValues *values;
+
 @end
+
+NS_ASSUME_NONNULL_END

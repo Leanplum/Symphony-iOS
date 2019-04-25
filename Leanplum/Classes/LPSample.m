@@ -10,7 +10,7 @@
 
 @implementation LPSample
 
-- (NSDictionary *) getClasMapping {
+- (NSDictionary *) classMapping {
     NSDictionary *mapping = @{@"id": @"sampleId",
                               @"title": @"title",
                               @"viewCount": @"viewCount",
@@ -19,12 +19,12 @@
 }
 
 - (id) initWithDictionary:(NSDictionary *)responseDict {
-    NSDictionary *mapping = [self getClasMapping];
+    NSDictionary *mapping = [self classMapping];
     for (id key in (responseDict[@"response"] ? responseDict[@"response"] : responseDict)) {
-            if (mapping[key]) {
-                [self setValue:[responseDict objectForKey:key] forKey:mapping[key]];
-            }
+        if (mapping[key]) {
+            [self setValue:[responseDict objectForKey:key] forKey:mapping[key]];
         }
+    }
     return self;
 }
 

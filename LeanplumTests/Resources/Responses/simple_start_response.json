@@ -1,0 +1,129 @@
+{
+    "response": [
+        {
+            "regions": [
+                {
+                    "name": "Apple Office",
+                    "lon": -122.02973470209167,
+                    "radius": 460,
+                    "version": 0,
+                    "lat": 37.3315925570794
+                },
+                {
+                    "name": "NYC",
+                    "lon": -74.00598724660182,
+                    "radius": 10000,
+                    "version": 0,
+                    "lat": 40.71550836434393
+                }
+            ],
+            "fileAttributes": [
+                {
+                    "name": "mozart.jpg",
+                    "size": 89447,
+                    "hash": null,
+                    "servingUrl": "http://lh3.googleusercontent.com/e2z4y3k9XdthAt_3B2p1HsxZ3BmExqdxaoj7kqaxECGlmtDLrAW6H2-AI-jpIyM3GcADoNeGZuzPs8P9NAMy"
+                },
+                {
+                    "name": "mozart2.jpg",
+                    "size": 89448,
+                    "hash": "ABC",
+                    "servingUrl": "http://lh3.googleusercontent.com/e2z4y3k9XdthAt_3B2p1HsxZ3BmExqdxaoj7kqaxECGlmtDLrAW6H2-AI-jpIyM3GcADoNeGZuzPs8P9NAMyy"
+                }
+            ],
+            "messages": [
+                {
+                    "id": "4529829664129024",
+                    "countdown": 86400,
+                    "action": "Alert",
+                    "whenTriggers": {
+                        "children": [{
+                            "subject": "event",
+                            "objects": [],
+                            "verb": "triggers",
+                            "noun": "chainedInApp",
+                            "secondaryVerb": "="
+                        }],
+                        "verb": "OR"
+                    },
+                    "parentCampaignId": null,
+                    "vars": {
+                        "Dismiss action": {
+                            "Chained message": "5325124949114880",
+                            "__name__": "Chain to Existing Message"
+                        },
+                        "Message": "This app is chained to an interstitial",
+                        "__name__": "Alert",
+                        "Title": "First Alert"
+                    },
+                    "hasImpressionCriteria": false,
+                    "priority": 1000,
+                    "whenLimits": {
+                        "children": [],
+                        "subject": null,
+                        "objects": []
+                    }
+                },
+                {
+                    "id": "4543656572354560",
+                    "countdown": 86400,
+                    "action": "Center Popup",
+                    "whenTriggers": {
+                        "children": [{
+                            "subject": "event",
+                            "objects": [],
+                            "verb": "triggers",
+                            "noun": "centerPopup",
+                            "secondaryVerb": "="
+                        }],
+                        "verb": "OR"
+                    },
+                    "parentCampaignId": "ABC",
+                    "vars": {
+                        "Message": {
+                            "Color": -16750849,
+                            "Text": "This should be blue"
+                        },
+                        "__name__": "Center Popup",
+                        "Title": {
+                            "Color": -914934,
+                            "Text": "Red Popup Title"
+                        },
+                        "Accept button": {
+                            "Text": "Green OK",
+                            "Text color": -15954073
+                        }
+                    },
+                    "hasImpressionCriteria": true,
+                    "priority": 1000,
+                    "whenLimits": {
+                        "children": [],
+                        "subject": null,
+                        "objects": []
+                    }
+                }
+            ],
+            "actionDefinitions": {
+                "alert": {
+                    "kind": 3,
+                    "values": {
+                        "dismissAction": {
+                            "__name__": ""
+                        },
+                        "message": "Alert message goes here.",
+                        "title": "LeanplumSample",
+                        "dismissText": "OK"
+                    },
+                    "options": null,
+                    "kinds": {
+                        "dismissAction": "ACTION",
+                        "message": "TEXT",
+                        "title": "TEXT",
+                        "dismissText": "TEXT"
+                    }
+                }
+            }
+        }
+    ]
+}
+
