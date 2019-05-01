@@ -9,16 +9,53 @@
 #import "LPWSManager.h"
 #import "NSString+NSString_Extended.h"
 #import "LPApiConstants.h"
+#import "LPAPIConfig.h"
+#import "LPConstants.h"
+#import <UIKit/UIKit.h>
 
 @interface LPWSManager () {
     void (^returnSuccess)(NSDictionary *);
     void (^returnFail)(NSError *);
     NSString *webService;
-    //NSMutableDictionary *params;
+    NSURLSessionConfiguration *sessionConfiguration;
 }
 @end
 
 @implementation LPWSManager
+
+/**
+ * Initialize default NSURLSession. Should not be used in public.
+ */
+- (id)init
+{
+    if (self = [super init]) {
+        sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+        sessionConfiguration.URLCache = nil;
+        sessionConfiguration.URLCredentialStorage = nil;
+        sessionConfiguration.requestCachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
+        sessionConfiguration.HTTPAdditionalHeaders = [self createHeaders];
+    }
+    return self;
+}
+
+- (NSDictionary *)createHeaders {
+    NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
+    NSString *userAgentString = [NSString stringWithFormat:@"%@/%@/%@/%@/%@/%@/%@/%@/%@",
+                                 infoDict[(NSString *)kCFBundleNameKey],
+                                 infoDict[(NSString *)kCFBundleVersionKey],
+                                 [LPAPIConfig sharedConfig].appId,
+                                 LEANPLUM_CLIENT,
+                                 LEANPLUM_SDK_VERSION,
+                                 [[UIDevice currentDevice] systemName],
+                                 [[UIDevice currentDevice] systemVersion],
+                                 LEANPLUM_SUPPORTED_ENCODING,
+                                 LEANPLUM_PACKAGE_IDENTIFIER];
+    
+    NSString *languageHeader = [NSString stringWithFormat:@"%@, en-us",
+                                [[NSLocale preferredLanguages] componentsJoinedByString:@", "]];
+    
+    return @{@"User-Agent": userAgentString, @"Accept-Language" : languageHeader, @"Accept-Encoding" : LEANPLUM_SUPPORTED_ENCODING};
+}
 
 #pragma mark - Web Service Requests
 

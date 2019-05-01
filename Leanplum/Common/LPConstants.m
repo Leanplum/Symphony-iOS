@@ -11,5 +11,12 @@
 @implementation LPConstants
 
 
-
 @end
+
+#pragma mark - The rest of the Leanplum constants
+
+#ifdef PACKAGE_IDENTIFIER
+NSString *LEANPLUM_PACKAGE_IDENTIFIER = @MACRO_VALUE(PACKAGE_IDENTIFIER);
+#else
+NSString *LEANPLUM_PACKAGE_IDENTIFIER = @"s";
+#endif
