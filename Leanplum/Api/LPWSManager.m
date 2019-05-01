@@ -93,7 +93,7 @@
     NSURL *url = [NSURL URLWithString:webservice];
     NSMutableURLRequest *request  = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"POST"];
-    [request setHTTPBody:[self generateEncodedQueryString:userParams]];
+    [request setHTTPBody:[[self generateEncodedQueryString:userParams] dataUsingEncoding:NSUTF8StringEncoding]];
     return request;
 }
 
