@@ -109,7 +109,27 @@
     NSMutableURLRequest *request = [self createGETRequest:webService withParams:userParams];
     [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
     [request setTimeoutInterval:60];
-    //[self requestAsynchronousWebService:request];
+ 
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                            completionHandler:
+                                  ^(NSData *data, NSURLResponse *response, NSError *error) {
+                                      NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+                                      if(httpResponse.statusCode == 200) {
+                                          NSError *parseError = nil;
+                                          NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
+                                          NSLog(@"The response is - %@",responseDictionary);
+                                          success(responseDictionary);
+                                      } else {
+                                          NSLog(@"Error");
+                                          if (error != nil) {
+                                              failure(error);
+                                          }
+                                          //ToDo: Create custom errors, make a default class for based on common errors.
+                                          failure(nil);
+                                      }
+                                  }];
+    [task resume];
 }
 
 - (void)sendPOSTWebService:(NSString*)service userParams:(NSMutableDictionary *)userParams successBlock:(void (^)(NSDictionary *))success failureBlock:(void (^)(NSError *))failure {
