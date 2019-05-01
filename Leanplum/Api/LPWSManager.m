@@ -11,7 +11,7 @@
 
 @interface LPWSManager () {
     void (^returnSuccess)(NSDictionary *);
-    void (^returnFail)(void);
+    void (^returnFail)(NSError *);
     NSString *webService;
     NSMutableDictionary *params;
 }
@@ -62,7 +62,7 @@
     params = [[NSMutableDictionary alloc] init];
 }
 
-- (void)sendAsynchronousGETWebService:(NSString*)service userParams:(NSMutableDictionary *)userParams successBlock:(void (^)(NSDictionary *))success failureBlock:(void (^)())failure {
+- (void)sendGETWebService:(NSString*)service userParams:(NSMutableDictionary *)userParams successBlock:(void (^)(NSDictionary *))success failureBlock:(void (^)(NSError *))failure {
     NSLog(@"sendAsynchronousGETWebService");
     [self setupWebService];
     returnSuccess = success;
@@ -76,4 +76,17 @@
     //[self requestAsynchronousWebService:request];
 }
 
+- (void)sendPOSTWebService:(NSString*)service userParams:(NSMutableDictionary *)userParams successBlock:(void (^)(NSDictionary *))success failureBlock:(void (^)(NSError *))failure {
+    NSLog(@"sendAsynchronousPOSTWebService");
+    [self setupWebService];
+    returnSuccess = success;
+    returnFail = failure;
+    //webService = [NSString stringWithFormat:@"%@%@?", Utils.getBaseURL, service];
+    //[params addEntriesFromDictionary:userParams];
+    NSLog(@"Api Call %@ with params %@", service, params);
+    NSMutableURLRequest *request = [self createGETRequest:webService withParams:params];
+    [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
+    [request setTimeoutInterval:60];
+    //[self requestAsynchronousWebService:request];
+}
 @end
