@@ -10,6 +10,45 @@
 
 @implementation LPApiConstants
 
++ (LPApiConstants *)sharedState {
+    static LPApiConstants *sharedLPConstantsState = nil;
+    static dispatch_once_t onceLPConstantsStateToken;
+    dispatch_once(&onceLPConstantsStateToken, ^{
+        sharedLPConstantsState = [[self alloc] init];
+    });
+    return sharedLPConstantsState;
+}
+
+- (id)init {
+    if (self = [super init]) {
+        _apiHostName = @"api.leanplum.com";
+        _apiServlet = @"api";
+        _apiSSL = YES;
+        _socketHost = @"dev.leanplum.com";
+        _socketPort = 443;
+        _networkTimeoutSeconds = 10;
+        _networkTimeoutSecondsForDownloads = 15;
+        _syncNetworkTimeoutSeconds = 5;
+        _checkForUpdatesInDevelopmentMode = YES;
+        _isDevelopmentModeEnabled = NO;
+        _loggingEnabled = NO;
+        _canDownloadContentMidSessionInProduction = NO;
+        _isTestMode = NO;
+        _isInPermanentFailureState = NO;
+        _verboseLoggingInDevelopmentMode = NO;
+        _networkActivityIndicatorEnabled = YES;
+        _client = LEANPLUM_CLIENT;
+        _sdkVersion = LEANPLUM_SDK_VERSION;
+        _isLocationCollectionEnabled = YES;
+        _isInboxImagePrefetchingEnabled = YES;
+    }
+    return self;
+}
+
+@end
+
+#pragma mark - API calls constants
+
 NSString *LP_API_METHOD_START = @"start";
 NSString *LP_API_METHOD_GET_VARS = @"getVars";
 NSString *LP_API_METHOD_SET_VARS = @"setVars";
@@ -37,5 +76,3 @@ NSString *LP_API_METHOD_LOG = @"log";
 NSString *LP_API_METHOD_GET_INBOX_MESSAGES = @"getNewsfeedMessages";
 NSString *LP_API_METHOD_MARK_INBOX_MESSAGE_AS_READ = @"markNewsfeedMessageAsRead";
 NSString *LP_API_METHOD_DELETE_INBOX_MESSAGE = @"deleteNewsfeedMessage";
-
-@end
