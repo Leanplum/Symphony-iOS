@@ -7,6 +7,7 @@
 //
 #import "LPUserApi.h"
 #import "LPWSManager.h"
+#import "LPApiConstants.h"
 
 @implementation LPUserApi
 
@@ -33,8 +34,8 @@
     
     
     LPWSManager *wsManager = [[LPWSManager alloc] init];
-   /* [wsManager sendPOSTWebService:LP_API_METHOD_SET_USER_ATTRIBUTES
-                                  userParams:nil successBlock:successResponse failureBlock:failureResponse];*/
+    [wsManager sendPOSTWebService:LP_API_METHOD_SET_USER_ATTRIBUTES
+                                  userParams:nil successBlock:successResponse failureBlock:failureResponse];
     
 }
 

@@ -8,10 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
+
+#define LEANPLUM_SDK_VERSION @"2.4.1"
+#define LEANPLUM_CLIENT @"ios"
+#define LEANPLUM_SUPPORTED_ENCODING @"gzip"
 
 @interface LPConstants : NSObject
 
 @end
 
-NS_ASSUME_NONNULL_END
+

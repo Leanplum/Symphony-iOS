@@ -23,7 +23,6 @@
 		6515E1E82270E19500C5A2F0 /* LPAlertValues.h in Headers */ = {isa = PBXBuildFile; fileRef = 6515E1E62270E19500C5A2F0 /* LPAlertValues.h */; };
 		6515E1E92270E19500C5A2F0 /* LPAlertValues.m in Sources */ = {isa = PBXBuildFile; fileRef = 6515E1E72270E19500C5A2F0 /* LPAlertValues.m */; };
 		6515E1EC2270E1C500C5A2F0 /* LPValuesDismissAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 6515E1EA2270E1C500C5A2F0 /* LPValuesDismissAction.h */; };
-		6515E1ED2270E1C500C5A2F0 /* LPValuesDismissAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 6515E1EB2270E1C500C5A2F0 /* LPValuesDismissAction.m */; };
 		6515E1EF2270E1F100C5A2F0 /* LPActionDefinitionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6515E1EE2270E1F100C5A2F0 /* LPActionDefinitionTest.m */; };
 		65D4AB44224C2EA1009BA5F3 /* LPTentacledAcceptButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D4AB42224C2EA1009BA5F3 /* LPTentacledAcceptButton.h */; };
 		65D4AB45224C2EA1009BA5F3 /* LPTentacledAcceptButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D4AB43224C2EA1009BA5F3 /* LPTentacledAcceptButton.m */; };
@@ -134,7 +133,6 @@
 		B430A23B224C212500DC8140 /* LPStartResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = B430A239224C212500DC8140 /* LPStartResponse.h */; };
 		B430A23C224C212500DC8140 /* LPStartResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = B430A23A224C212500DC8140 /* LPStartResponse.m */; };
 		B430A23D224C212500DC8140 /* LPStartResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = B430A23A224C212500DC8140 /* LPStartResponse.m */; };
-		B430A254224C226900DC8140 /* LPValuesDismissAction.h in Headers */ = {isa = PBXBuildFile; fileRef = B430A252224C226900DC8140 /* LPValuesDismissAction.h */; };
 		B430A255224C226900DC8140 /* LPValuesDismissAction.m in Sources */ = {isa = PBXBuildFile; fileRef = B430A253224C226900DC8140 /* LPValuesDismissAction.m */; };
 		B430A256224C226900DC8140 /* LPValuesDismissAction.m in Sources */ = {isa = PBXBuildFile; fileRef = B430A253224C226900DC8140 /* LPValuesDismissAction.m */; };
 		B430A259224C22A800DC8140 /* LPCenterPopup.h in Headers */ = {isa = PBXBuildFile; fileRef = B430A257224C22A800DC8140 /* LPCenterPopup.h */; };
@@ -188,6 +186,8 @@
 		B4583DEC2257F2E7006A6A61 /* LPSample.m in Sources */ = {isa = PBXBuildFile; fileRef = B4583DEA2257F2E7006A6A61 /* LPSample.m */; };
 		B4583DED2257F2E7006A6A61 /* LPSample.h in Headers */ = {isa = PBXBuildFile; fileRef = B4583DEB2257F2E7006A6A61 /* LPSample.h */; };
 		B4583DEF2257F2F0006A6A61 /* LPModelProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = B4583DEE2257F2F0006A6A61 /* LPModelProtocol.h */; };
+		B4591DCA227A32D30076F9E2 /* LPApiConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = B4591DC8227A32D30076F9E2 /* LPApiConstants.h */; };
+		B4591DCB227A32D30076F9E2 /* LPApiConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = B4591DC9227A32D30076F9E2 /* LPApiConstants.m */; };
 		B4FCB10022722AE1004F5D63 /* LPWSManager.h in Headers */ = {isa = PBXBuildFile; fileRef = B4FCB0FC22722AE1004F5D63 /* LPWSManager.h */; };
 		B4FCB10122722AE1004F5D63 /* LPWSManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FCB0FD22722AE1004F5D63 /* LPWSManager.m */; };
 		B4FCB10222722AE1004F5D63 /* LPUserApi.h in Headers */ = {isa = PBXBuildFile; fileRef = B4FCB0FE22722AE1004F5D63 /* LPUserApi.h */; };
@@ -382,6 +382,8 @@
 		B4583DEA2257F2E7006A6A61 /* LPSample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPSample.m; sourceTree = "<group>"; };
 		B4583DEB2257F2E7006A6A61 /* LPSample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPSample.h; sourceTree = "<group>"; };
 		B4583DEE2257F2F0006A6A61 /* LPModelProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPModelProtocol.h; sourceTree = "<group>"; };
+		B4591DC8227A32D30076F9E2 /* LPApiConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPApiConstants.h; sourceTree = "<group>"; };
+		B4591DC9227A32D30076F9E2 /* LPApiConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPApiConstants.m; sourceTree = "<group>"; };
 		B4FCB0FC22722AE1004F5D63 /* LPWSManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPWSManager.h; sourceTree = "<group>"; };
 		B4FCB0FD22722AE1004F5D63 /* LPWSManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPWSManager.m; sourceTree = "<group>"; };
 		B4FCB0FE22722AE1004F5D63 /* LPUserApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPUserApi.h; sourceTree = "<group>"; };
@@ -718,6 +720,8 @@
 			children = (
 				B4FCB11422723277004F5D63 /* LPConstants.h */,
 				B4FCB11522723277004F5D63 /* LPConstants.m */,
+				B4591DC8227A32D30076F9E2 /* LPApiConstants.h */,
+				B4591DC9227A32D30076F9E2 /* LPApiConstants.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -775,7 +779,6 @@
 				65D4AB94224D7507009BA5F3 /* LPWebInterstitialValues.h in Headers */,
 				65D4ABAC224D77A5009BA5F3 /* LPNoneClass.h in Headers */,
 				65D4AB60224D71E4009BA5F3 /* LPOpenURLKinds.h in Headers */,
-				B430A254224C226900DC8140 /* LPValuesDismissAction.h in Headers */,
 				65D4AC0C224D825A009BA5F3 /* LPRegion.h in Headers */,
 				65D4AB7C224D73A1009BA5F3 /* LPFluffyLayout.h in Headers */,
 				B430A290224C23EC00DC8140 /* LPFluffyAcceptAction.h in Headers */,
@@ -788,6 +791,7 @@
 				65D4AB90224D74E5009BA5F3 /* LPWebInterstitialKinds.h in Headers */,
 				6515E1E42270E17100C5A2F0 /* LPAlertKinds.h in Headers */,
 				65D4ABCC224D7F5F009BA5F3 /* LPPurpleFont.h in Headers */,
+				B4591DCA227A32D30076F9E2 /* LPApiConstants.h in Headers */,
 				65D4ABA4224D7711009BA5F3 /* LPFine2PNG.h in Headers */,
 				65D4ABC0224D7EF0009BA5F3 /* LPStickyTitle.h in Headers */,
 				B430A268224C230700DC8140 /* LPPurpleAcceptAction.h in Headers */,
@@ -879,6 +883,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = A8504656224C0A7900BACA81;
 			productRefGroup = A8504661224C0A7900BACA81 /* Products */;
@@ -1027,7 +1032,6 @@
 				65D4AB99224D752B009BA5F3 /* LPFileAttribute.m in Sources */,
 				65D4ABC5224D7F1A009BA5F3 /* LPPurpleChild.m in Sources */,
 				B430A25A224C22A800DC8140 /* LPCenterPopup.m in Sources */,
-				6515E1ED2270E1C500C5A2F0 /* LPValuesDismissAction.m in Sources */,
 				65D4ABC1224D7EF0009BA5F3 /* LPStickyTitle.m in Sources */,
 				65D4AB89224D741C009BA5F3 /* LPRegisterForPush.m in Sources */,
 				65D4AB69224D7275009BA5F3 /* LPPushAskToAsk.m in Sources */,
@@ -1052,6 +1056,7 @@
 				65D4AB71224D72D7009BA5F3 /* LPPushAskToAskValues.m in Sources */,
 				B4583DEC2257F2E7006A6A61 /* LPSample.m in Sources */,
 				B430A264224C22E900DC8140 /* LPCenterPopupValues.m in Sources */,
+				B4591DCB227A32D30076F9E2 /* LPApiConstants.m in Sources */,
 				B4FCB11322722F48004F5D63 /* LPDeviceApi.m in Sources */,
 				65D4ABB1224D77BF009BA5F3 /* LPNone.m in Sources */,
 			);
