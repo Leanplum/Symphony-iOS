@@ -6,12 +6,12 @@
 //  Copyright © 2019 Leanplum. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
 #import "LPWSManager.h"
 #import "NSString+NSString_Extended.h"
 #import "LPApiConstants.h"
 #import "LPAPIConfig.h"
 #import "LPConstants.h"
-#import <UIKit/UIKit.h>
 
 @interface LPWSManager () {
     void (^returnSuccess)(NSDictionary *);
@@ -57,9 +57,7 @@
     return @{@"User-Agent": userAgentString, @"Accept-Language" : languageHeader, @"Accept-Encoding" : LEANPLUM_SUPPORTED_ENCODING};
 }
 
-#pragma mark - Web Service Requests
-
-- (NSMutableURLRequest *)createGETRequest:(NSString *)webservice withParams:(NSDictionary *)userParams {
+- (NSString *)generateEncodedQueryString:(NSDictionary *)userParams {
     NSMutableString *queryString = [NSMutableString string];
     if (userParams != nil) {
         for (id key in userParams) {
@@ -69,7 +67,21 @@
             [queryString appendString:paramString];
         }
     }
-    NSString *urlString = [NSString stringWithFormat:@"%@%@", webservice, queryString];
+    NSString *appIdParamString = [NSString stringWithFormat:@"%@=%@&", LP_PARAM_APP_ID, [LPAPIConfig sharedConfig].appId];
+    appIdParamString = [appIdParamString urlencode];
+    [queryString appendString:appIdParamString];
+    
+    NSString *clientKeyParamString = [NSString stringWithFormat:@"%@=%@&", LP_PARAM_CLIENT_KEY, [LPAPIConfig sharedConfig].accessKey];
+    clientKeyParamString = [clientKeyParamString urlencode];
+    [queryString appendString:clientKeyParamString];
+    
+    return queryString;
+}
+
+#pragma mark - Web Service Requests
+
+- (NSMutableURLRequest *)createGETRequest:(NSString *)webservice withParams:(NSDictionary *)userParams {
+    NSString *urlString = [NSString stringWithFormat:@"%@%@", webservice, [self generateEncodedQueryString:userParams]];
     NSURL *url = [NSURL URLWithString:urlString];
     NSLog(@"Get request URL %@",url);
     NSMutableURLRequest *request  = [NSMutableURLRequest requestWithURL:url];
@@ -78,20 +90,10 @@
 }
 
 - (NSMutableURLRequest *)createPOSTRequest:(NSString *)webservice withParams:(NSDictionary *)userParams {
-    
-    NSMutableString *queryString = [NSMutableString string];
-    if (userParams != nil) {
-        for (id key in userParams) {
-            id value = userParams[key];
-            NSString *paramString = [NSString stringWithFormat:@"%@=%@&", key, value];
-            paramString = [paramString urlencode];
-            [queryString appendString:paramString];
-        }
-    }
     NSURL *url = [NSURL URLWithString:webservice];
     NSMutableURLRequest *request  = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"POST"];
-    [request setHTTPBody:[queryString dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPBody:[self generateEncodedQueryString:userParams]];
     return request;
 }
 
