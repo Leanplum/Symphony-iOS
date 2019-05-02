@@ -140,7 +140,7 @@
     returnSuccess = success;
     returnFail = failure;
     NSLog(@"Api Call %@ with params %@", service, userParams);
-    NSMutableURLRequest *request = [self createGETRequest:webService withParams:userParams];
+    NSMutableURLRequest *request = [self createPOSTRequest:webService withParams:userParams];
     [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
     [request setTimeoutInterval:60];
     

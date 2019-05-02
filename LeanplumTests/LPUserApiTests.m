@@ -26,12 +26,21 @@
 }
 
 - (void)testUserApi {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     LPAPIConfig *lpApiConfig = [LPAPIConfig sharedConfig];
     [lpApiConfig setAppId:APPLICATION_ID withAccessKey:APPLICATION_ID];
     [LPUserApi setUsersAttributes:@"1" withUserAttributes:nil success:^(NSString *httpCode) {
         NSLog(@"HERE");
+        [expectation fulfill];
     } failure:^(NSError *error) {
         NSLog(@"Error");
+        [expectation fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:5.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
     }];
 }
 
