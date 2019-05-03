@@ -137,8 +137,8 @@
 - (void)sendPOSTWebService:(NSString*)service userParams:(NSMutableDictionary *)userParams successBlock:(void (^)(NSDictionary *))success failureBlock:(void (^)(NSError *))failure {
     NSLog(@"sendAsynchronousPOSTWebService");
     [self setupWebService:service];
-    returnSuccess = success;
-    returnFail = failure;
+    //returnSuccess = success;
+    //returnFail = failure;
     NSLog(@"Api Call %@ with params %@", service, userParams);
     NSMutableURLRequest *request = [self createPOSTRequest:webService withParams:userParams];
     [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
