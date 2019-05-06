@@ -17,15 +17,14 @@
     
     void (^successResponse) (NSDictionary *) = ^(NSDictionary *response) {
         NSError *error = nil;
-        NSData *data_response = response[@"response"];
-        NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:data_response options:0 error:&error];
-        
-        NSLog(@"responseDict %@",responseDict);
+        NSArray *responseArray = [response valueForKey:@"response"];
+        NSDictionary *resultDict = responseArray[0];
+        NSLog(@"responseDict %@",resultDict);
         if (error != nil) {
             failure(error);
         }
         else {
-            success(nil);
+            success(resultDict[@"success"]);
         }
     };
     
@@ -40,32 +39,4 @@
     
 }
 
-//ToDo: Later
-/*
-+ (void) getUsersAttributes:(LPUser *)user
-                    success:(void (^)(LPUser *))success
-                    failure:(void (^)(NSError *error))failure
-{
-    void (^successResponse) (NSDictionary *) = ^(NSDictionary *response) {
-        NSError *error = nil;
-        NSData *data_response = response[@"response"];
-        NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:data_response options:0 error:&error];
-        NSLog(@"responseDict %@",responseDict);
-        if (error != nil) {
-            failure(error);
-        }
-        else {
-            LPUser *valueObject = [[LPUser alloc] initWithDictionary:responseDict];
-            success(valueObject);
-        }
-    };
-    
-    void (^failureResponse) (NSError *) = ^(NSError *error ){
-        failure(error);
-    };
-    
-    LPWSManager *wsManager = [[KWWSManager alloc] init];
-    [wsManager sendAsynchronousGETWebService:@"/rest/users/me"
-                                  userParams:nil successBlock:successResponse failureBlock:failureResponse];
-}*/
 @end

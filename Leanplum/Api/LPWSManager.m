@@ -15,8 +15,6 @@
 #import "LPJSON.h"
 
 @interface LPWSManager () {
-    void (^returnSuccess)(NSDictionary *);
-    void (^returnFail)(NSError *);
     NSString *webService;
     NSURLSessionConfiguration *sessionConfiguration;
 }
@@ -65,7 +63,7 @@
     NSString *deviceIdParamString = [NSString stringWithFormat:@"%@=%@", LP_PARAM_DEVICE_ID, [LPAPIConfig sharedConfig].deviceId];
     [queryString appendString:deviceIdParamString];*/
 
-    NSArray *requestsToSend = @[@{LP_PARAM_DEVICE_ID : [LPAPIConfig sharedConfig].deviceId, LP_PARAM_DEV_MODE : @"true", LP_PARAM_USER_ID : [LPAPIConfig sharedConfig].deviceId}];
+    NSArray *requestsToSend = @[@{LP_PARAM_DEVICE_ID : [LPAPIConfig sharedConfig].deviceId, LP_PARAM_DEV_MODE : @"true", LP_PARAM_USER_ID : [LPAPIConfig sharedConfig].deviceId, LP_KIND_ACTION : @"setUserAttributes"}];
     NSString *requestData = [LPJSON stringFromJSON:@{LP_PARAM_DATA:requestsToSend}];
     return requestData;
 }
@@ -88,7 +86,7 @@
     //clientKeyParamString = [clientKeyParamString urlencode];
     [queryString appendString:clientKeyParamString];
     
-    NSString *actionKeyParamString = [NSString stringWithFormat:@"%@=%@&", LP_KIND_ACTION,action];
+    NSString *actionKeyParamString = [NSString stringWithFormat:@"%@=%@&", LP_KIND_ACTION,@"multi"];
     //actionKeyParamString = [actionKeyParamString urlencode];
     [queryString appendString:actionKeyParamString];
     
@@ -150,8 +148,6 @@
 - (void)sendGETWebService:(NSString*)service userParams:(NSMutableDictionary *)userParams successBlock:(void (^)(NSDictionary *))success failureBlock:(void (^)(NSError *))failure {
     NSLog(@"sendAsynchronousGETWebService");
     [self setupWebService:service];
-    returnSuccess = success;
-    returnFail = failure;
     NSMutableURLRequest *request = [self createGETRequest:webService withParams:userParams];
     [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
     [request setTimeoutInterval:60];
@@ -181,8 +177,6 @@
 - (void)sendPOSTWebService:(NSString*)service userParams:(NSMutableDictionary *)userParams successBlock:(void (^)(NSDictionary *))success failureBlock:(void (^)(NSError *))failure {
     NSLog(@"sendAsynchronousPOSTWebService");
     [self setupWebService:service];
-    //returnSuccess = success;
-    //returnFail = failure;
     NSLog(@"Api Call %@ with params %@", service, userParams);
     NSMutableURLRequest *request = [self createPOSTRequest:webService withParams:userParams withAction:service];
     [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
