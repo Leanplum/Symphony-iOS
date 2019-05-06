@@ -30,7 +30,7 @@
     LPAPIConfig *lpApiConfig = [LPAPIConfig sharedConfig];
     [lpApiConfig setAppId:APPLICATION_ID withAccessKey:DEVELOPMENT_KEY];
     [LPAPIConfig sharedConfig].deviceId = @"FCF96D6D-FE1C-4FC6-89D4-F862A5FFECE4";
-    [LPUserApi setUsersAttributes:@"1" withUserAttributes:nil success:^(NSString *httpCode) {
+    [LPUserApi setUsersAttributes:@"1" withUserAttributes:nil success:^ {
         NSLog(@"HERE");
         [expectation fulfill];
     } failure:^(NSError *error) {

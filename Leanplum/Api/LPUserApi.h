@@ -11,7 +11,7 @@
 @interface LPUserApi : NSObject
 
 + (void) setUsersAttributes:(NSString *)userId withUserAttributes:(NSDictionary *)attributes
-                    success:(void (^)(NSString* httpCode))success
+                    success:(void (^)(void))success
                     failure:(void (^)(NSError *error))failure;
 
 @end

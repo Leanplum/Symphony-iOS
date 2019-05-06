@@ -12,7 +12,7 @@
 @implementation LPUserApi
 
 + (void) setUsersAttributes:(NSString *)userId withUserAttributes:(NSDictionary *)attributes
-                    success:(void (^)(NSString* httpCode))success
+                    success:(void (^)(void))success
                     failure:(void (^)(NSError *error))failure {
     
     void (^successResponse) (NSDictionary *) = ^(NSDictionary *response) {
@@ -24,7 +24,12 @@
             failure(error);
         }
         else {
-            success(resultDict[@"success"]);
+            if ([resultDict objectForKey:@"success"]) {
+                success();
+            } else {
+                error = [[NSError alloc] initWithDomain:@"com.leanplumsdk" code:200 userInfo:@{@"Error reason": @"Invalid Input"}];
+                failure(error);
+            }
         }
     };
     
