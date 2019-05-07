@@ -13,6 +13,7 @@
 #import "LPAPIConfig.h"
 #import "LPConstants.h"
 #import "LPJSON.h"
+#import "LPErrorHelper.h"
 
 @interface LPWSManager () {
     NSString *webService;
@@ -156,19 +157,30 @@
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request
                                             completionHandler:
                                   ^(NSData *data, NSURLResponse *response, NSError *error) {
-                                      NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-                                      if(httpResponse.statusCode == 200) {
+                                      // handle basic connectivity issues here
+                                      if (error) {
+                                          NSLog(@"dataTaskWithRequest error: %@", error);
+                                          failure(error);
+                                      } else {
+                                          NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
                                           NSError *parseError = nil;
                                           NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
-                                          NSLog(@"The response is - %@",responseDictionary);
-                                          success(responseDictionary);
-                                      } else {
-                                          NSLog(@"Error");
-                                          if (error != nil) {
-                                              failure(error);
+                                          if(httpResponse.statusCode == 200) {
+                                              
+                                              //NSString *myString = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+                                              //NSLog(@"String data %@", myString);
+                                              NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
+                                              NSLog(@"The response is - %@",responseDictionary);
+                                              success(responseDictionary);
+                                          } else {
+                                              // Handle unsuccessful http response code.
+                                              NSLog(@"http error");
+                                              // make userInfo dict
+                                              NSDictionary *userInfo = [LPErrorHelper makeUserInfoDict:responseDictionary];
+                                              // make custom error
+                                              NSError *responseError = [NSError errorWithDomain:NSURLErrorDomain code:httpResponse.statusCode userInfo:userInfo];
+                                              failure(responseError);
                                           }
-                                          //ToDo: Create custom errors, make a default class for based on common errors.
-                                          failure(nil);
                                       }
                                   }];
     [task resume];
@@ -186,23 +198,33 @@
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request
                                             completionHandler:
                                   ^(NSData *data, NSURLResponse *response, NSError *error) {
-                                      NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-                                      if(httpResponse.statusCode == 200) {
-                                          NSError *parseError = nil;
-                                          NSString *myString = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-                                          NSLog(@"String data %@", myString);
-                                          NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
-                                          NSLog(@"The response is - %@",responseDictionary);
-                                          success(responseDictionary);
+                                      // handle basic connectivity issues here
+                                      if (error) {
+                                          NSLog(@"dataTaskWithRequest error: %@", error);
+                                          failure(error);
                                       } else {
-                                          NSLog(@"Error");
-                                          if (error != nil) {
-                                              failure(error);
+                                          NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+                                          NSError *parseError = nil;
+                                          NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
+                                          if(httpResponse.statusCode == 200) {
+
+                                              //NSString *myString = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+                                              //NSLog(@"String data %@", myString);
+                                              NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
+                                              NSLog(@"The response is - %@",responseDictionary);
+                                              success(responseDictionary);
+                                          } else {
+                                              // Handle unsuccessful http response code.
+                                              NSLog(@"http error");
+                                              // make userInfo dict
+                                              NSDictionary *userInfo = [LPErrorHelper makeUserInfoDict:responseDictionary];
+                                              // make custom error
+                                              NSError *responseError = [NSError errorWithDomain:NSURLErrorDomain code:httpResponse.statusCode userInfo:userInfo];
+                                              failure(responseError);
                                           }
-                                          //ToDo: Create custom errors, make a default class for based on common errors.
-                                          failure(nil);
                                       }
                                   }];
     [task resume];
 }
+
 @end

@@ -45,4 +45,24 @@
     }];
 }
 
+- (void)testUserApiBadData {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    LPAPIConfig *lpApiConfig = [LPAPIConfig sharedConfig];
+    [lpApiConfig setAppId:APPLICATION_ID withAccessKey:DEVELOPMENT_KEY];
+    [LPAPIConfig sharedConfig].deviceId = @"";
+    [LPUserApi setUsersAttributes:@"1" withUserAttributes:nil success:^ {
+        NSLog(@"HERE");
+        [expectation fulfill];
+    } failure:^(NSError *error) {
+        NSLog(@"Error");
+        [expectation fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+    }];
+}
+
 @end
