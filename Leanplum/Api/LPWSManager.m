@@ -142,7 +142,7 @@
 #pragma mark - pointsofinterest Web service
 - (void)setupWebService:(NSString *)service {
     LPApiConstants *lpApiConstants = LPApiConstants.sharedState;
-    webService = [NSString stringWithFormat:@"https://%@/api", lpApiConstants.apiHostName];
+    webService = [NSString stringWithFormat:@"https://%@/api?", lpApiConstants.apiHostName];
 }
 
 - (void)sendGETWebService:(NSString*)service userParams:(NSMutableDictionary *)userParams successBlock:(void (^)(NSDictionary *))success failureBlock:(void (^)(NSError *))failure {
