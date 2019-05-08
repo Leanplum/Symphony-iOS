@@ -47,7 +47,7 @@
         [expectation fulfill];
     }];
     
-    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+    [self waitForExpectationsWithTimeout:30.0 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);
         }
@@ -80,6 +80,65 @@
         
         [LPAPIConfig sharedConfig].deviceId = @"FCF96D6D-FE1C-4FC6-89D4-F862A5FFECE4";
         [LPUserApi setUsersAttributes:@"1" withUserAttributes:nil success:^ {
+        } failure:^(NSError *error) {
+            NSLog(@"Error %@", error);
+            [expectation fulfill];
+        }];
+        
+        [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+            if (error) {
+                NSLog(@"Error: %@", error);
+            }
+        }];
+    }];
+}
+
+- (void)testUserApiGet {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    LPAPIConfig *lpApiConfig = [LPAPIConfig sharedConfig];
+    [lpApiConfig setAppId:APPLICATION_ID withAccessKey:DEVELOPMENT_KEY];
+    [LPAPIConfig sharedConfig].deviceId = @"FCF96D6D-FE1C-4FC6-89D4-F862A5FFECE4";
+    [LPUserApi getUsersAttributes:@"1" withUserAttributes:nil success:^ {
+        NSLog(@"HERE");
+        [expectation fulfill];
+    } failure:^(NSError *error) {
+        NSLog(@"Error");
+        [expectation fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:30.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+    }];
+}
+
+- (void)testUserApiGetWithHTTPError {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    LPAPIConfig *lpApiConfig = [LPAPIConfig sharedConfig];
+    [lpApiConfig setAppId:APPLICATION_ID withAccessKey:DEVELOPMENT_KEY];
+    [LPAPIConfig sharedConfig].deviceId = @"";
+    [LPUserApi getUsersAttributes:@"1" withUserAttributes:nil success:^ {
+    } failure:^(NSError *error) {
+        NSLog(@"Error");
+        [expectation fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+    }];
+}
+
+- (void)testUserApiGetWithIOSError {
+    [LPTestHelper runWithApiHost:@"blah.leanplum.com" withBlock:^(void) {
+        XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+        LPAPIConfig *lpApiConfig = [LPAPIConfig sharedConfig];
+        [lpApiConfig setAppId:APPLICATION_ID withAccessKey:DEVELOPMENT_KEY];
+        
+        [LPAPIConfig sharedConfig].deviceId = @"FCF96D6D-FE1C-4FC6-89D4-F862A5FFECE4";
+        [LPUserApi getUsersAttributes:@"1" withUserAttributes:nil success:^ {
         } failure:^(NSError *error) {
             NSLog(@"Error %@", error);
             [expectation fulfill];

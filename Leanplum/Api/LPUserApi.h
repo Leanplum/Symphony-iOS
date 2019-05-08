@@ -14,5 +14,10 @@
                     success:(void (^)(void))success
                     failure:(void (^)(NSError *error))failure;
 
+//ToDo: Actual get needs to be discussed, this is for testing coverage.
++ (void) getUsersAttributes:(NSString *)userId withUserAttributes:(NSDictionary *)attributes
+                    success:(void (^)(void))success
+                    failure:(void (^)(NSError *error))failure;
+
 @end
 
