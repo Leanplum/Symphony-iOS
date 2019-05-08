@@ -21,8 +21,7 @@
 
 - (id)init {
     if (self = [super init]) {
-        //_apiHostName = @"api.leanplum.com";
-        _apiHostName = @"blah.leanplum.com";
+        _apiHostName = @"api.leanplum.com";
         _apiServlet = @"api";
         _apiSSL = YES;
         _socketHost = @"dev.leanplum.com";

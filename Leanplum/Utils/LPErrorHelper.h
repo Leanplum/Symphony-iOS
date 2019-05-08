@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LPErrorHelper : NSObject
 
 + (NSDictionary *)makeUserInfoDict:(NSDictionary *)responseDict;
-+ (NSError *)makeCustomError :(long)errorCode withDict:(NSDictionary *)dict;
++ (NSError *)makeHttpError:(long)errorCode withDict:(NSDictionary *)dict;
 
 @end
 

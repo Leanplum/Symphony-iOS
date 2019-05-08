@@ -18,9 +18,10 @@
     return userInfo;
 }
 
-+ (NSError *)makeCustomError :(long)errorCode withDict:(NSDictionary *)dict
++ (NSError *)makeHttpError:(long)errorCode withDict:(NSDictionary *)responseDict
 {
-    return [NSError errorWithDomain:@"customError" code:errorCode userInfo:dict];
+    NSDictionary *userInfo = [self makeUserInfoDict:responseDict];
+    return [NSError errorWithDomain:NSURLErrorDomain code:errorCode userInfo:userInfo];
 }
 
 @end

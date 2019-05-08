@@ -21,4 +21,6 @@ extern NSString *API_HOST;
 /// default dispatch time
 extern NSInteger DISPATCH_WAIT_TIME;
 
++ (void)runWithApiHost:(NSString *)host withBlock:(void (^)(void))block;
+
 @end

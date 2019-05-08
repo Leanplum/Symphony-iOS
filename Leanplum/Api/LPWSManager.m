@@ -153,37 +153,7 @@
     [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
     [request setTimeoutInterval:60];
  
-    NSURLSession *session = [NSURLSession sharedSession];
-    NSURLSessionDataTask *task = [session dataTaskWithRequest:request
-                                            completionHandler:
-                                  ^(NSData *data, NSURLResponse *response, NSError *error) {
-                                      // handle basic connectivity issues here
-                                      if (error) {
-                                          NSLog(@"dataTaskWithRequest error: %@", error);
-                                          failure(error);
-                                      } else {
-                                          NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-                                          NSError *parseError = nil;
-                                          NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
-                                          if(httpResponse.statusCode == 200) {
-                                              
-                                              //NSString *myString = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-                                              //NSLog(@"String data %@", myString);
-                                              NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
-                                              NSLog(@"The response is - %@",responseDictionary);
-                                              success(responseDictionary);
-                                          } else {
-                                              // Handle unsuccessful http response code.
-                                              NSLog(@"http error");
-                                              // make userInfo dict
-                                              NSDictionary *userInfo = [LPErrorHelper makeUserInfoDict:responseDictionary];
-                                              // make custom error
-                                              NSError *responseError = [NSError errorWithDomain:NSURLErrorDomain code:httpResponse.statusCode userInfo:userInfo];
-                                              failure(responseError);
-                                          }
-                                      }
-                                  }];
-    [task resume];
+    [self executeWebServiceRequest:request successBlock:success failureBlock:failure];
 }
 
 - (void)sendPOSTWebService:(NSString*)service userParams:(NSMutableDictionary *)userParams successBlock:(void (^)(NSDictionary *))success failureBlock:(void (^)(NSError *))failure {
@@ -194,6 +164,10 @@
     [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
     [request setTimeoutInterval:60];
     
+    [self executeWebServiceRequest:request successBlock:success failureBlock:failure];
+}
+
+- (void)executeWebServiceRequest:(NSURLRequest *)request successBlock:(void (^)(NSDictionary *))success failureBlock:(void (^)(NSError *))failure {
     NSURLSession *session = [NSURLSession sharedSession];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request
                                             completionHandler:
@@ -206,8 +180,8 @@
                                           NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
                                           NSError *parseError = nil;
                                           NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
-                                          if(httpResponse.statusCode == 200) {
-
+                                          if (httpResponse.statusCode == 200) {
+                                              
                                               //NSString *myString = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
                                               //NSLog(@"String data %@", myString);
                                               NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
@@ -216,10 +190,8 @@
                                           } else {
                                               // Handle unsuccessful http response code.
                                               NSLog(@"http error");
-                                              // make userInfo dict
-                                              NSDictionary *userInfo = [LPErrorHelper makeUserInfoDict:responseDictionary];
                                               // make custom error
-                                              NSError *responseError = [NSError errorWithDomain:NSURLErrorDomain code:httpResponse.statusCode userInfo:userInfo];
+                                              NSError *responseError = [LPErrorHelper makeHttpError:httpResponse.statusCode  withDict:responseDictionary];
                                               failure(responseError);
                                           }
                                       }
