@@ -11,15 +11,6 @@
 #import "LPAPIConfig.h"
 #import "LPTestHelper.h"
 
-/**
- * Expose private class methods
- */
-@interface LPAPIConfig(UnitTest)
-
-@property (nonatomic, strong) NSString *apiHostName;
-
-@end
-
 @interface LPUserApiTests : XCTestCase
 
 @end
@@ -28,6 +19,7 @@
 
 - (void)setUp {
     [super setUp];
+    [LPTestHelper setup];
 }
 
 - (void)tearDown {
@@ -36,9 +28,6 @@
 
 - (void)testUserApi {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    LPAPIConfig *lpApiConfig = [LPAPIConfig sharedConfig];
-    [lpApiConfig setAppId:APPLICATION_ID withAccessKey:DEVELOPMENT_KEY];
-    [LPAPIConfig sharedConfig].deviceId = @"FCF96D6D-FE1C-4FC6-89D4-F862A5FFECE4";
     [LPUserApi setUsersAttributes:@"1" withUserAttributes:nil success:^ {
         NSLog(@"HERE");
         [expectation fulfill];
@@ -54,14 +43,12 @@
     }];
 }
 
-- (void)testUserApiWithHTTPError {
+- (void)testUserApiWithHttpError {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    LPAPIConfig *lpApiConfig = [LPAPIConfig sharedConfig];
-    [lpApiConfig setAppId:APPLICATION_ID withAccessKey:DEVELOPMENT_KEY];
-    [LPAPIConfig sharedConfig].deviceId = @"";
+    // change device id to empty string
+    [LPTestHelper setup:APPLICATION_ID withAccessKey:DEVELOPMENT_KEY withDeviceId:@""];
     [LPUserApi setUsersAttributes:@"1" withUserAttributes:nil success:^ {
     } failure:^(NSError *error) {
-        NSLog(@"Error");
         [expectation fulfill];
     }];
     
@@ -72,16 +59,11 @@
     }];
 }
 
-- (void)testUserApiWithIOSError {
+- (void)testUserApiWithIosError {
     [LPTestHelper runWithApiHost:@"blah.leanplum.com" withBlock:^(void) {
         XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-        LPAPIConfig *lpApiConfig = [LPAPIConfig sharedConfig];
-        [lpApiConfig setAppId:APPLICATION_ID withAccessKey:DEVELOPMENT_KEY];
-        
-        [LPAPIConfig sharedConfig].deviceId = @"FCF96D6D-FE1C-4FC6-89D4-F862A5FFECE4";
         [LPUserApi setUsersAttributes:@"1" withUserAttributes:nil success:^ {
         } failure:^(NSError *error) {
-            NSLog(@"Error %@", error);
             [expectation fulfill];
         }];
         
