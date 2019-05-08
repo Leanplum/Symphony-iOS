@@ -13,5 +13,6 @@
 
 - (void)sendGETWebService:(NSString*)service userParams:(NSMutableDictionary *)userParams successBlock:(void (^)(NSDictionary *))success failureBlock:(void (^)(NSError *))failure;
 - (void)sendPOSTWebService:(NSString*)service userParams:(NSMutableDictionary *)userParams successBlock:(void (^)(NSDictionary *))success failureBlock:(void (^)(NSError *))failure;
+- (NSDictionary *)makeErrorDetailsDict:(NSDictionary *)responseDict;
 
 @end
