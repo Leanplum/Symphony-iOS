@@ -10,16 +10,14 @@
 
 @implementation LPErrorHelper
 
-+ (NSDictionary *)makeUserInfoDict:(NSDictionary *)responseDict
-{
++ (NSDictionary *)makeUserInfoDict:(NSDictionary *)responseDict {
     NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
     NSString *message = responseDict[@"message"];
     [userInfo setValue:message forKey:NSLocalizedDescriptionKey];
     return userInfo;
 }
 
-+ (NSError *)makeHttpError:(long)errorCode withDict:(NSDictionary *)responseDict
-{
++ (NSError *)makeHttpError:(long)errorCode withDict:(NSDictionary *)responseDict {
     NSDictionary *userInfo = [self makeUserInfoDict:responseDict];
     return [NSError errorWithDomain:NSURLErrorDomain code:errorCode userInfo:userInfo];
 }
