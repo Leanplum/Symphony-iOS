@@ -24,25 +24,4 @@
     return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 }
 
-+ (id)JSONFromString : (NSString *)string
-{
-    NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
-    return [LPJSON JSONFromData:data];
-}
-
-+ (id)JSONFromData: (NSData *)data
-{
-    if (!data) {
-        return nil;
-    }
-    
-    NSError *error;
-    id json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-    NSLog(@"%@", json);
-    if (error) {
-        return nil;
-    }
-    return json;
-}
-
 @end
