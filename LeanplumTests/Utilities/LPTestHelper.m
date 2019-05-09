@@ -36,13 +36,12 @@ NSInteger DISPATCH_WAIT_TIME = 4;
     [LPAPIConfig sharedConfig].deviceId = deviceId;
 }
 
-// still need to work on
-+ (void)setupStub:(NSString *)filename {
++ (void)setupStub:(long)errorCode withFileName:(NSString *)filename {
     [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest * _Nonnull request) {
         return [request.URL.host isEqualToString:API_HOST];
     } withStubResponse:^OHHTTPStubsResponse * _Nonnull(NSURLRequest * _Nonnull request) {
         NSString *response_file = OHPathForFile(filename, self.class);
-        return [OHHTTPStubsResponse responseWithFileAtPath:response_file statusCode:200
+        return [OHHTTPStubsResponse responseWithFileAtPath:response_file statusCode:errorCode
                                                    headers:@{@"Content-Type":@"application/json"}];
     }];
 }
