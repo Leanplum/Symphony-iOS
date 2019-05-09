@@ -20,14 +20,5 @@
  */
 + (NSString *)stringFromJSON : (id)object;
 
-/**
- * Returns a JSON from NSString. nil when errored.
- */
-+ (id)JSONFromString : (NSString *)string;
-
-/**
- * Returns a JSON from NSData. nil when errored.
- */
-+ (id)JSONFromData: (NSData *)data;
 
 @end
