@@ -24,6 +24,10 @@
 		6515E1E92270E19500C5A2F0 /* LPAlertValues.m in Sources */ = {isa = PBXBuildFile; fileRef = 6515E1E72270E19500C5A2F0 /* LPAlertValues.m */; };
 		6515E1EC2270E1C500C5A2F0 /* LPValuesDismissAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 6515E1EA2270E1C500C5A2F0 /* LPValuesDismissAction.h */; };
 		6515E1EF2270E1F100C5A2F0 /* LPActionDefinitionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6515E1EE2270E1F100C5A2F0 /* LPActionDefinitionTest.m */; };
+		651768742283F17600B2C17E /* simple_error_response.json in Resources */ = {isa = PBXBuildFile; fileRef = 651768732283F17600B2C17E /* simple_error_response.json */; };
+		651768752283F17A00B2C17E /* simple_error_response.json in Resources */ = {isa = PBXBuildFile; fileRef = 651768732283F17600B2C17E /* simple_error_response.json */; };
+		651768772283F1D700B2C17E /* simple_success_response.json in Resources */ = {isa = PBXBuildFile; fileRef = 651768762283F1D700B2C17E /* simple_success_response.json */; };
+		651768782283F1D700B2C17E /* simple_success_response.json in Resources */ = {isa = PBXBuildFile; fileRef = 651768762283F1D700B2C17E /* simple_success_response.json */; };
 		657AE9AC22823E32008F6BB0 /* LPErrorHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 657AE9AA22823E32008F6BB0 /* LPErrorHelper.h */; };
 		657AE9AD22823E32008F6BB0 /* LPErrorHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 657AE9AB22823E32008F6BB0 /* LPErrorHelper.m */; };
 		65D4AB44224C2EA1009BA5F3 /* LPTentacledAcceptButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D4AB42224C2EA1009BA5F3 /* LPTentacledAcceptButton.h */; };
@@ -239,6 +243,8 @@
 		6515E1EA2270E1C500C5A2F0 /* LPValuesDismissAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPValuesDismissAction.h; sourceTree = "<group>"; };
 		6515E1EB2270E1C500C5A2F0 /* LPValuesDismissAction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPValuesDismissAction.m; sourceTree = "<group>"; };
 		6515E1EE2270E1F100C5A2F0 /* LPActionDefinitionTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPActionDefinitionTest.m; sourceTree = "<group>"; };
+		651768732283F17600B2C17E /* simple_error_response.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = simple_error_response.json; sourceTree = "<group>"; };
+		651768762283F1D700B2C17E /* simple_success_response.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = simple_success_response.json; sourceTree = "<group>"; };
 		657AE9AA22823E32008F6BB0 /* LPErrorHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPErrorHelper.h; sourceTree = "<group>"; };
 		657AE9AB22823E32008F6BB0 /* LPErrorHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPErrorHelper.m; sourceTree = "<group>"; };
 		65D4AB42224C2EA1009BA5F3 /* LPTentacledAcceptButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPTentacledAcceptButton.h; sourceTree = "<group>"; };
@@ -477,6 +483,8 @@
 			isa = PBXGroup;
 			children = (
 				6515E1D32270DEB300C5A2F0 /* simple_start_response.json */,
+				651768732283F17600B2C17E /* simple_error_response.json */,
+				651768762283F1D700B2C17E /* simple_success_response.json */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -940,7 +948,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				651768752283F17A00B2C17E /* simple_error_response.json in Resources */,
 				6515E1D42270DEB300C5A2F0 /* simple_start_response.json in Resources */,
+				651768772283F1D700B2C17E /* simple_success_response.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -948,7 +958,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				651768742283F17600B2C17E /* simple_error_response.json in Resources */,
 				6515E1D52270DEB300C5A2F0 /* simple_start_response.json in Resources */,
+				651768782283F1D700B2C17E /* simple_success_response.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
