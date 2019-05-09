@@ -10,6 +10,7 @@
 
 @interface LPErrorHelper : NSObject
 
-+ (NSError *)makeHttpError:(long)errorCode withDict:(NSDictionary *)dict;
++ (NSError *)makeHttpError:(long)errorCode withDict:(NSDictionary *)responseDict;
++ (NSError *)makeResponseError:(NSDictionary *)responseDict;
 
 @end
