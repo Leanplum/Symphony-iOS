@@ -80,22 +80,27 @@
 }
 
 - (void)testUserApiStub {
-    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest * _Nonnull request) {
-        return [request.URL.host isEqualToString:API_HOST];
-    } withStubResponse:^OHHTTPStubsResponse * _Nonnull(NSURLRequest * _Nonnull request) {
-        NSString *response_file = OHPathForFile(@"simple_error_response.json", self.class);
-        NSLog(@"response file is %@", response_file);
-        return [OHHTTPStubsResponse responseWithFileAtPath:response_file statusCode:400
-                                                   headers:@{@"Content-Type":@"application/json"}];
-    }];
+    [LPTestHelper setupStub:200 withFileName:@"simple_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     [LPUserApi setUsersAttributes:@"1" withUserAttributes:nil success:^ {
-        //NSLog(@"HERE");
-        //[expectation fulfill];
+        [expectation fulfill];
     } failure:^(NSError *error) {
-        NSLog(@"Error");
-        NSString *message = @"This is a test error message";
-        XCTAssertEqualObjects(message, [error userInfo][NSLocalizedDescriptionKey]);
+    }];
+    
+    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+    }];
+}
+
+- (void)testUserApiHttpErrorStub {
+    [LPTestHelper setupStub:400 withFileName:@"simple_error_response.json"];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    [LPUserApi setUsersAttributes:@"1" withUserAttributes:nil success:^ {
+    } failure:^(NSError *error) {
+        NSString *expectedMessage = @"This is a test error message";
+        XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);
         [expectation fulfill];
     }];
     
@@ -104,7 +109,23 @@
             NSLog(@"Error: %@", error);
         }
     }];
+}
+
+- (void)testUserApiMalformedResponseStub {
+    [LPTestHelper setupStub:200 withFileName:@"malformed_success_response.json"];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    [LPUserApi setUsersAttributes:@"1" withUserAttributes:nil success:^ {
+    } failure:^(NSError *error) {
+        NSString *expectedMessage = @"Invalid Input";
+        XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);
+        [expectation fulfill];
+    }];
     
+    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+    }];
 }
 
 @end

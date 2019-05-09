@@ -6,6 +6,8 @@
 //  Copyright © 2019 Leanplum. All rights reserved.
 //
 
+#import <OHHTTPStubs/OHHTTPStubs.h>
+#import <OHHTTPStubs/OHPathHelpers.h>
 #import "LPTestHelper.h"
 #import "LPApiConstants.h"
 #import "LPAPIConfig.h"
@@ -32,6 +34,16 @@ NSInteger DISPATCH_WAIT_TIME = 4;
     LPAPIConfig *lpApiConfig = [LPAPIConfig sharedConfig];
     [lpApiConfig setAppId:applicationId withAccessKey:accessKey];
     [LPAPIConfig sharedConfig].deviceId = deviceId;
+}
+
++ (void)setupStub:(long)errorCode withFileName:(NSString *)filename {
+    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest * _Nonnull request) {
+        return [request.URL.host isEqualToString:API_HOST];
+    } withStubResponse:^OHHTTPStubsResponse * _Nonnull(NSURLRequest * _Nonnull request) {
+        NSString *response_file = OHPathForFile(filename, self.class);
+        return [OHHTTPStubsResponse responseWithFileAtPath:response_file statusCode:errorCode
+                                                   headers:@{@"Content-Type":@"application/json"}];
+    }];
 }
 
 + (void)runWithApiHost:(NSString *)host withBlock:(void (^)(void))block {
