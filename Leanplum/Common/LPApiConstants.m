@@ -47,6 +47,12 @@
 
 @end
 
+#pragma mark - Api Infrastructure
+NSString *LP_USER_AGENT = @"User-Agent";
+NSString *LP_ACCEPT_LANGUAGE = @"Accept-Language";
+NSString *LP_ACCEPT_ENCODING = @"Accept-Encoding";
+NSString *LP_EN_US = @"en-us";
+
 #pragma mark - API calls constants
 
 NSString *LP_API_METHOD_START = @"start";
