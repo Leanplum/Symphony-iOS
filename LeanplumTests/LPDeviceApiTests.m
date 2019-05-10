@@ -1,24 +1,23 @@
 //
-//  LPUserApiTests.m
+//  LPDeviceApiTests.m
 //  LeanplumTests
 //
-//  Created by Hrishikesh Amravatkar on 5/2/19.
+//  Created by Grace on 5/10/19.
 //  Copyright © 2019 Leanplum. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>
 #import <OHHTTPStubs/OHHTTPStubs.h>
 #import <OHHTTPStubs/OHPathHelpers.h>
-#import "LPUserApi.h"
+#import "LPDeviceApi.h"
 #import "LPAPIConfig.h"
 #import "LPTestHelper.h"
 
-
-@interface LPUserApiTests : XCTestCase
+@interface LPDeviceApiTests : XCTestCase
 
 @end
 
-@implementation LPUserApiTests
+@implementation LPDeviceApiTests
 
 - (void)setUp {
     [super setUp];
@@ -30,13 +29,11 @@
     [OHHTTPStubs removeAllStubs];
 }
 
-- (void)testUserApi {
+- (void)testDeviceApi {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPUserApi setUserAttributes:@"1" withUserAttributes:nil success:^ {
-        NSLog(@"HERE");
+    [LPDeviceApi setDeviceAttributes:@"1" withDeviceAttributes:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
-        NSLog(@"Error");
         [expectation fulfill];
     }];
     
@@ -47,11 +44,11 @@
     }];
 }
 
-- (void)testUserApiWithHttpError {
+- (void)testDeviceApiWithHttpError {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     // change device id to empty string
     [LPTestHelper setup:APPLICATION_ID withAccessKey:DEVELOPMENT_KEY withDeviceId:@""];
-    [LPUserApi setUserAttributes:@"1" withUserAttributes:nil success:^ {
+    [LPDeviceApi setDeviceAttributes:@"1" withDeviceAttributes:nil success:^ {
     } failure:^(NSError *error) {
         [expectation fulfill];
     }];
@@ -63,10 +60,10 @@
     }];
 }
 
-- (void)testUserApiWithIosError {
+- (void)testDeviceApiWithIosError {
     [LPTestHelper runWithApiHost:@"blah.leanplum.com" withBlock:^(void) {
         XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-        [LPUserApi setUserAttributes:@"1" withUserAttributes:nil success:^ {
+        [LPDeviceApi setDeviceAttributes:@"1" withDeviceAttributes:nil success:^ {
         } failure:^(NSError *error) {
             [expectation fulfill];
         }];
@@ -79,10 +76,10 @@
     }];
 }
 
-- (void)testUserApiStub {
+- (void)testDeviceApiStub {
     [LPTestHelper setupStub:200 withFileName:@"simple_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPUserApi setUserAttributes:@"1" withUserAttributes:nil success:^ {
+    [LPDeviceApi setDeviceAttributes:@"1" withDeviceAttributes:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -94,10 +91,10 @@
     }];
 }
 
-- (void)testUserApiHttpErrorStub {
+- (void)testDeviceApiHttpErrorStub {
     [LPTestHelper setupStub:400 withFileName:@"simple_error_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPUserApi setUserAttributes:@"1" withUserAttributes:nil success:^ {
+    [LPDeviceApi setDeviceAttributes:@"1" withDeviceAttributes:nil success:^ {
     } failure:^(NSError *error) {
         NSString *expectedMessage = @"This is a test error message";
         XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);
@@ -111,10 +108,10 @@
     }];
 }
 
-- (void)testUserApiMalformedResponseStub {
+- (void)testDeviceApiMalformedResponseStub {
     [LPTestHelper setupStub:200 withFileName:@"malformed_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPUserApi setUserAttributes:@"1" withUserAttributes:nil success:^ {
+    [LPDeviceApi setDeviceAttributes:@"1" withDeviceAttributes:nil success:^ {
     } failure:^(NSError *error) {
         NSString *expectedMessage = @"Invalid Input";
         XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);
