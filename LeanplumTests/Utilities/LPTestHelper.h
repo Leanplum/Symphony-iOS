@@ -21,6 +21,9 @@ extern NSString *API_HOST;
 /// default dispatch time
 extern NSInteger DISPATCH_WAIT_TIME;
 
++ (void)setup;
++ (void)setup:(NSString *)applicationId withAccessKey:(NSString *)accessKey withDeviceId:(NSString *)deviceId;
++ (void)setupStub:(long)errorCode withFileName:(NSString *)filename;
 + (void)runWithApiHost:(NSString *)host withBlock:(void (^)(void))block;
 
 @end

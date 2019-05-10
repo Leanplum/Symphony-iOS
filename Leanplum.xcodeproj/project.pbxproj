@@ -24,6 +24,13 @@
 		6515E1E92270E19500C5A2F0 /* LPAlertValues.m in Sources */ = {isa = PBXBuildFile; fileRef = 6515E1E72270E19500C5A2F0 /* LPAlertValues.m */; };
 		6515E1EC2270E1C500C5A2F0 /* LPValuesDismissAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 6515E1EA2270E1C500C5A2F0 /* LPValuesDismissAction.h */; };
 		6515E1EF2270E1F100C5A2F0 /* LPActionDefinitionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6515E1EE2270E1F100C5A2F0 /* LPActionDefinitionTest.m */; };
+		651768742283F17600B2C17E /* simple_error_response.json in Resources */ = {isa = PBXBuildFile; fileRef = 651768732283F17600B2C17E /* simple_error_response.json */; };
+		651768752283F17A00B2C17E /* simple_error_response.json in Resources */ = {isa = PBXBuildFile; fileRef = 651768732283F17600B2C17E /* simple_error_response.json */; };
+		651768772283F1D700B2C17E /* simple_success_response.json in Resources */ = {isa = PBXBuildFile; fileRef = 651768762283F1D700B2C17E /* simple_success_response.json */; };
+		651768782283F1D700B2C17E /* simple_success_response.json in Resources */ = {isa = PBXBuildFile; fileRef = 651768762283F1D700B2C17E /* simple_success_response.json */; };
+		6517687A2284C9A300B2C17E /* malformed_success_response.json in Resources */ = {isa = PBXBuildFile; fileRef = 651768792284C9A300B2C17E /* malformed_success_response.json */; };
+		6517687B2284C9A300B2C17E /* malformed_success_response.json in Resources */ = {isa = PBXBuildFile; fileRef = 651768792284C9A300B2C17E /* malformed_success_response.json */; };
+		6517687C2284D8B300B2C17E /* LPTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B4591DDA227BA41F0076F9E2 /* LPTestHelper.m */; };
 		657AE9AC22823E32008F6BB0 /* LPErrorHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 657AE9AA22823E32008F6BB0 /* LPErrorHelper.h */; };
 		657AE9AD22823E32008F6BB0 /* LPErrorHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 657AE9AB22823E32008F6BB0 /* LPErrorHelper.m */; };
 		65D4AB44224C2EA1009BA5F3 /* LPTentacledAcceptButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D4AB42224C2EA1009BA5F3 /* LPTentacledAcceptButton.h */; };
@@ -195,7 +202,6 @@
 		B4591DD1227B9F720076F9E2 /* LPUserApiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4591DD0227B9F720076F9E2 /* LPUserApiTests.m */; };
 		B4591DD2227BA2B80076F9E2 /* LPUserApi.h in Headers */ = {isa = PBXBuildFile; fileRef = B4FCB0FE22722AE1004F5D63 /* LPUserApi.h */; };
 		B4591DDC227BA6760076F9E2 /* LPTestHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = B4591DD9227BA41F0076F9E2 /* LPTestHelper.h */; };
-		B4591DDD227BA6780076F9E2 /* LPTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B4591DDA227BA41F0076F9E2 /* LPTestHelper.m */; };
 		B46B51FE2284D5CA00B29663 /* Leanplum.m in Sources */ = {isa = PBXBuildFile; fileRef = B46B51FD2284D5CA00B29663 /* Leanplum.m */; };
 		B46B51FF2284DDE000B29663 /* Leanplum.m in Headers */ = {isa = PBXBuildFile; fileRef = B46B51FD2284D5CA00B29663 /* Leanplum.m */; };
 		B46B52022284E2FF00B29663 /* LPUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = B46B52002284E2FE00B29663 /* LPUtils.h */; };
@@ -243,6 +249,9 @@
 		6515E1EA2270E1C500C5A2F0 /* LPValuesDismissAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPValuesDismissAction.h; sourceTree = "<group>"; };
 		6515E1EB2270E1C500C5A2F0 /* LPValuesDismissAction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPValuesDismissAction.m; sourceTree = "<group>"; };
 		6515E1EE2270E1F100C5A2F0 /* LPActionDefinitionTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPActionDefinitionTest.m; sourceTree = "<group>"; };
+		651768732283F17600B2C17E /* simple_error_response.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = simple_error_response.json; sourceTree = "<group>"; };
+		651768762283F1D700B2C17E /* simple_success_response.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = simple_success_response.json; sourceTree = "<group>"; };
+		651768792284C9A300B2C17E /* malformed_success_response.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = malformed_success_response.json; sourceTree = "<group>"; };
 		657AE9AA22823E32008F6BB0 /* LPErrorHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPErrorHelper.h; sourceTree = "<group>"; };
 		657AE9AB22823E32008F6BB0 /* LPErrorHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPErrorHelper.m; sourceTree = "<group>"; };
 		65D4AB42224C2EA1009BA5F3 /* LPTentacledAcceptButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPTentacledAcceptButton.h; sourceTree = "<group>"; };
@@ -484,6 +493,9 @@
 			isa = PBXGroup;
 			children = (
 				6515E1D32270DEB300C5A2F0 /* simple_start_response.json */,
+				651768732283F17600B2C17E /* simple_error_response.json */,
+				651768762283F1D700B2C17E /* simple_success_response.json */,
+				651768792284C9A300B2C17E /* malformed_success_response.json */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -952,7 +964,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6517687A2284C9A300B2C17E /* malformed_success_response.json in Resources */,
+				651768752283F17A00B2C17E /* simple_error_response.json in Resources */,
 				6515E1D42270DEB300C5A2F0 /* simple_start_response.json in Resources */,
+				651768772283F1D700B2C17E /* simple_success_response.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -960,7 +975,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6517687B2284C9A300B2C17E /* malformed_success_response.json in Resources */,
+				651768742283F17600B2C17E /* simple_error_response.json in Resources */,
 				6515E1D52270DEB300C5A2F0 /* simple_start_response.json in Resources */,
+				651768782283F1D700B2C17E /* simple_success_response.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1036,7 +1054,6 @@
 				B430A28C224C23CE00DC8140 /* LPConfirmValues.m in Sources */,
 				657AE9AD22823E32008F6BB0 /* LPErrorHelper.m in Sources */,
 				65D4ABE1224D7FF5009BA5F3 /* LPIndigoMessage.m in Sources */,
-				B4591DDD227BA6780076F9E2 /* LPTestHelper.m in Sources */,
 				65D4ABC9224D7F3E009BA5F3 /* LPFluffyChild.m in Sources */,
 				65D4AB9D224D76CB009BA5F3 /* LPDownloadJPEGClass.m in Sources */,
 				65D4AC11224D8279009BA5F3 /* LPVariant.m in Sources */,
@@ -1132,6 +1149,7 @@
 				B430A25B224C22A800DC8140 /* LPCenterPopup.m in Sources */,
 				B430A297224C240900DC8140 /* LPPurpleCancelAction.m in Sources */,
 				B430A26F224C232300DC8140 /* LPPurpleAcceptButton.m in Sources */,
+				6517687C2284D8B300B2C17E /* LPTestHelper.m in Sources */,
 				B430A265224C22E900DC8140 /* LPCenterPopupValues.m in Sources */,
 				B430A288224C23B200DC8140 /* LPConfirmKinds.m in Sources */,
 				B430A2A6224C246100DC8140 /* LPInterstitialValues.m in Sources */,

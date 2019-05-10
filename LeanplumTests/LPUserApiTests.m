@@ -7,18 +7,12 @@
 //
 
 #import <XCTest/XCTest.h>
+#import <OHHTTPStubs/OHHTTPStubs.h>
+#import <OHHTTPStubs/OHPathHelpers.h>
 #import "LPUserApi.h"
 #import "LPAPIConfig.h"
 #import "LPTestHelper.h"
 
-/**
- * Expose private class methods
- */
-@interface LPAPIConfig(UnitTest)
-
-@property (nonatomic, strong) NSString *apiHostName;
-
-@end
 
 @interface LPUserApiTests : XCTestCase
 
@@ -28,17 +22,16 @@
 
 - (void)setUp {
     [super setUp];
+    [LPTestHelper setup];
 }
 
 - (void)tearDown {
     [super tearDown];
+    [OHHTTPStubs removeAllStubs];
 }
 
 - (void)testUserApi {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    LPAPIConfig *lpApiConfig = [LPAPIConfig sharedConfig];
-    [lpApiConfig setAppId:APPLICATION_ID withAccessKey:DEVELOPMENT_KEY];
-    [LPAPIConfig sharedConfig].deviceId = @"FCF96D6D-FE1C-4FC6-89D4-F862A5FFECE4";
     [LPUserApi setUsersAttributes:@"1" withUserAttributes:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
@@ -52,14 +45,12 @@
     }];
 }
 
-- (void)testUserApiWithHTTPError {
+- (void)testUserApiWithHttpError {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    LPAPIConfig *lpApiConfig = [LPAPIConfig sharedConfig];
-    [lpApiConfig setAppId:APPLICATION_ID withAccessKey:DEVELOPMENT_KEY];
-    [LPAPIConfig sharedConfig].deviceId = @"";
+    // change device id to empty string
+    [LPTestHelper setup:APPLICATION_ID withAccessKey:DEVELOPMENT_KEY withDeviceId:@""];
     [LPUserApi setUsersAttributes:@"1" withUserAttributes:nil success:^ {
     } failure:^(NSError *error) {
-        NSLog(@"Error");
         [expectation fulfill];
     }];
     
@@ -70,16 +61,11 @@
     }];
 }
 
-- (void)testUserApiWithIOSError {
+- (void)testUserApiWithIosError {
     [LPTestHelper runWithApiHost:@"blah.leanplum.com" withBlock:^(void) {
         XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-        LPAPIConfig *lpApiConfig = [LPAPIConfig sharedConfig];
-        [lpApiConfig setAppId:APPLICATION_ID withAccessKey:DEVELOPMENT_KEY];
-        
-        [LPAPIConfig sharedConfig].deviceId = @"FCF96D6D-FE1C-4FC6-89D4-F862A5FFECE4";
         [LPUserApi setUsersAttributes:@"1" withUserAttributes:nil success:^ {
         } failure:^(NSError *error) {
-            NSLog(@"Error %@", error);
             [expectation fulfill];
         }];
         
@@ -88,6 +74,55 @@
                 NSLog(@"Error: %@", error);
             }
         }];
+    }];
+}
+
+- (void)testUserApiStub {
+    [LPTestHelper setupStub:200 withFileName:@"simple_success_response.json"];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    [LPUserApi setUsersAttributes:@"1" withUserAttributes:nil success:^ {
+        [expectation fulfill];
+    } failure:^(NSError *error) {
+    }];
+    
+    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+    }];
+}
+
+- (void)testUserApiHttpErrorStub {
+    [LPTestHelper setupStub:400 withFileName:@"simple_error_response.json"];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    [LPUserApi setUsersAttributes:@"1" withUserAttributes:nil success:^ {
+    } failure:^(NSError *error) {
+        NSString *expectedMessage = @"This is a test error message";
+        XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);
+        [expectation fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+    }];
+}
+
+- (void)testUserApiMalformedResponseStub {
+    [LPTestHelper setupStub:200 withFileName:@"malformed_success_response.json"];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    [LPUserApi setUsersAttributes:@"1" withUserAttributes:nil success:^ {
+    } failure:^(NSError *error) {
+        NSString *expectedMessage = @"Invalid Input";
+        XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);
+        [expectation fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
     }];
 }
 

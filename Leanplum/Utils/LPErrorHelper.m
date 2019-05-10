@@ -7,6 +7,7 @@
 //
 
 #import "LPErrorHelper.h"
+#import "LPApiConstants.h"
 
 @implementation LPErrorHelper
 
@@ -20,6 +21,12 @@
 + (NSError *)makeHttpError:(long)errorCode withDict:(NSDictionary *)responseDict {
     NSDictionary *userInfo = [self makeUserInfoDict:responseDict];
     return [NSError errorWithDomain:NSURLErrorDomain code:errorCode userInfo:userInfo];
+}
+
++ (NSError *)makeResponseError:(NSDictionary *)responseDict {
+    LPApiConstants *lpApiConstants = LPApiConstants.sharedState;
+    NSDictionary *userInfo = [self makeUserInfoDict:responseDict];
+    return [NSError errorWithDomain:lpApiConstants.apiHostName code:200 userInfo:userInfo];
 }
 
 @end

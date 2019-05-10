@@ -60,6 +60,13 @@
 
 @end
 
+#pragma mark - Api Infrastructure
+OBJC_EXPORT NSString *LP_USER_AGENT;
+OBJC_EXPORT NSString *LP_ACCEPT_LANGUAGE;
+OBJC_EXPORT NSString *LP_ACCEPT_ENCODING;
+OBJC_EXPORT NSString *LP_EN_US;
+
+
 #pragma mark - The rest of the Leanplum Api methods
 
 OBJC_EXPORT NSString *LP_API_METHOD_START;

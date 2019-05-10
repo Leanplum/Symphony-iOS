@@ -8,13 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface LPErrorHelper : NSObject
 
-+ (NSDictionary *)makeUserInfoDict:(NSDictionary *)responseDict;
-+ (NSError *)makeHttpError:(long)errorCode withDict:(NSDictionary *)dict;
++ (NSError *)makeHttpError:(long)errorCode withDict:(NSDictionary *)responseDict;
++ (NSError *)makeResponseError:(NSDictionary *)responseDict;
 
 @end
-
-NS_ASSUME_NONNULL_END

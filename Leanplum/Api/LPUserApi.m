@@ -8,6 +8,7 @@
 #import "LPUserApi.h"
 #import "LPWSManager.h"
 #import "LPApiConstants.h"
+#import "LPErrorHelper.h"
 
 @implementation LPUserApi
 
@@ -19,7 +20,6 @@
         NSError *error = nil;
         NSArray *responseArray = [response valueForKey:@"response"];
         NSDictionary *resultDict = responseArray[0];
-        NSLog(@"responseDict %@",resultDict);
         if (error != nil) {
             failure(error);
         }
@@ -27,7 +27,7 @@
             if ([resultDict objectForKey:@"success"]) {
                 success();
             } else {
-                error = [[NSError alloc] initWithDomain:@"com.leanplumsdk" code:200 userInfo:@{@"Error reason": @"Invalid Input"}];
+                NSError *error = [LPErrorHelper makeResponseError:@{@"message": @"Invalid Input"}];
                 failure(error);
             }
         }
@@ -36,7 +36,6 @@
     void (^failureResponse) (NSError *) = ^(NSError *error ){
         failure(error);
     };
-    
     
     LPWSManager *wsManager = [[LPWSManager alloc] init];
     [wsManager sendPOSTWebService:LP_API_METHOD_SET_USER_ATTRIBUTES

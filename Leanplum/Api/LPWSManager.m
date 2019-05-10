@@ -53,20 +53,10 @@
                                  LEANPLUM_SUPPORTED_ENCODING,
                                  LEANPLUM_PACKAGE_IDENTIFIER];
     
-    NSString *languageHeader = [NSString stringWithFormat:@"%@, en-us",
-                                [[NSLocale preferredLanguages] componentsJoinedByString:@", "]];
+    NSString *languageHeader = [NSString stringWithFormat:@"%@, %@",
+                                [[NSLocale preferredLanguages] componentsJoinedByString:@", "], LP_EN_US];
     
-    return @{@"User-Agent": userAgentString, @"Accept-Language" : languageHeader, @"Accept-Encoding" : LEANPLUM_SUPPORTED_ENCODING, LP_PARAM_TIME : timestamp};
-}
-
-- (NSString *)generateEncodedDataString {
-    /*NSMutableString *queryString = [NSMutableString string];
-    NSString *deviceIdParamString = [NSString stringWithFormat:@"%@=%@", LP_PARAM_DEVICE_ID, [LPAPIConfig sharedConfig].deviceId];
-    [queryString appendString:deviceIdParamString];*/
-
-    NSArray *requestsToSend = @[@{LP_PARAM_DEVICE_ID : [LPAPIConfig sharedConfig].deviceId, LP_PARAM_DEV_MODE : @"true", LP_PARAM_USER_ID : [LPAPIConfig sharedConfig].deviceId, LP_KIND_ACTION : @"setUserAttributes"}];
-    NSString *requestData = [LPJSON stringFromJSON:@{LP_PARAM_DATA:requestsToSend}];
-    return requestData;
+    return @{LP_USER_AGENT: userAgentString, LP_ACCEPT_LANGUAGE : languageHeader, LP_ACCEPT_ENCODING : LEANPLUM_SUPPORTED_ENCODING, LP_PARAM_TIME : timestamp};
 }
 
 - (NSString *)generateEncodedQueryString:(NSDictionary *)userParams withAction:(NSString *)action{
@@ -161,7 +151,6 @@
                                           NSError *parseError = nil;
                                           NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
                                           if (httpResponse.statusCode == 200) {
-                                              
                                               //NSString *myString = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
                                               //NSLog(@"String data %@", myString);
                                               NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
