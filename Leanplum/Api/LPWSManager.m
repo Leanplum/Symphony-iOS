@@ -80,46 +80,26 @@
         }
     }
     NSString *appIdParamString = [NSString stringWithFormat:@"%@=%@&", LP_PARAM_APP_ID, [LPAPIConfig sharedConfig].appId];
-    //appIdParamString = [appIdParamString urlencode];
     [queryString appendString:appIdParamString];
     
     NSString *clientKeyParamString = [NSString stringWithFormat:@"%@=%@&", LP_PARAM_CLIENT_KEY, [LPAPIConfig sharedConfig].accessKey];
-    //clientKeyParamString = [clientKeyParamString urlencode];
     [queryString appendString:clientKeyParamString];
     
-    NSString *actionKeyParamString = [NSString stringWithFormat:@"%@=%@&", LP_KIND_ACTION,@"multi"];
-    //actionKeyParamString = [actionKeyParamString urlencode];
-    [queryString appendString:actionKeyParamString];
-    
-    NSString *dataKeyParamString = [NSString stringWithFormat:@"%@=%@", LP_PARAM_DATA,[[self generateEncodedDataString] urlencode]];
-    //dataKeyParamString = [dataKeyParamString urlencode];
-    [queryString appendString:dataKeyParamString];
-
-    return queryString;
-}
-
-/*
-- (NSString *)generateEncodedQueryStringNonEncoded:(NSDictionary *)userParams withAction:(NSString *)action {
-    NSMutableString *queryString = [NSMutableString string];
-    if (userParams != nil) {
-        for (id key in userParams) {
-            id value = userParams[key];
-            NSString *paramString = [NSString stringWithFormat:@"%@=%@&", key, value];
-            [queryString appendString:paramString];
-        }
-    }
-    NSString *appIdParamString = [NSString stringWithFormat:@"%@=%@&", LP_PARAM_APP_ID, [LPAPIConfig sharedConfig].appId];
-    [queryString appendString:appIdParamString];
-    NSString *clientKeyParamString = [NSString stringWithFormat:@"%@=%@&", LP_PARAM_CLIENT_KEY, [LPAPIConfig sharedConfig].accessKey];
-    [queryString appendString:clientKeyParamString];
     NSString *actionKeyParamString = [NSString stringWithFormat:@"%@=%@&", LP_KIND_ACTION,action];
     [queryString appendString:actionKeyParamString];
-    NSString *dataKeyParamString = [NSString stringWithFormat:@"%@=%@&", LP_PARAM_DATA,[self generateEncodedDataString]];
-    [queryString appendString:dataKeyParamString];
     
+    NSString *dataKeyParamString = [NSString stringWithFormat:@"%@=%@", LP_PARAM_DATA,[[self generateEncodedDataString: action] urlencode]];
+
+    [queryString appendString:dataKeyParamString];
+
     return queryString;
 }
-*/
+
+- (NSString *)generateEncodedDataString:(NSString *)action {
+    NSDictionary *requestsToSend = @{LP_PARAM_DEVICE_ID : [LPAPIConfig sharedConfig].deviceId, LP_PARAM_DEV_MODE : @"true", LP_PARAM_USER_ID : [LPAPIConfig sharedConfig].deviceId, LP_KIND_ACTION : action};
+    NSString *requestData = [LPJSON stringFromJSON:@{LP_PARAM_DATA:requestsToSend}];
+    return requestData;
+}
 
 #pragma mark - Web Service Requests
 
