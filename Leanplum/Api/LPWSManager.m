@@ -65,23 +65,22 @@
         for (id key in userParams) {
             id value = userParams[key];
             NSString *paramString = [NSString stringWithFormat:@"%@=%@&", key, value];
-            paramString = [paramString urlencode];
             [queryString appendString:paramString];
         }
     }
     NSString *appIdParamString = [NSString stringWithFormat:@"%@=%@&", LP_PARAM_APP_ID, [LPAPIConfig sharedConfig].appId];
     [queryString appendString:appIdParamString];
-    
     NSString *clientKeyParamString = [NSString stringWithFormat:@"%@=%@&", LP_PARAM_CLIENT_KEY, [LPAPIConfig sharedConfig].accessKey];
     [queryString appendString:clientKeyParamString];
-    
     NSString *actionKeyParamString = [NSString stringWithFormat:@"%@=%@&", LP_KIND_ACTION,action];
     [queryString appendString:actionKeyParamString];
+    NSString *apiVersionKeyParamString = [NSString stringWithFormat:@"%@=%@&", LP_PARAM_API_VERSION,LEANPLUM_API_VERSION];
+    [queryString appendString:apiVersionKeyParamString];
     
-    NSString *dataKeyParamString = [NSString stringWithFormat:@"%@=%@", LP_PARAM_DATA,[[self generateEncodedDataString: action] urlencode]];
-
-    [queryString appendString:dataKeyParamString];
-
+    if ([action isEqualToString:LP_METHOD_MULTI]) {
+        NSString *dataKeyParamString = [NSString stringWithFormat:@"%@=%@", LP_PARAM_DATA,[[self generateEncodedDataString: action] urlencode]];
+        [queryString appendString:dataKeyParamString];
+    }
     return queryString;
 }
 
@@ -116,7 +115,7 @@
     webService = [NSString stringWithFormat:@"https://%@/api?", lpApiConstants.apiHostName];
 }
 
-- (void)sendGETWebService:(NSString*)service userParams:(NSMutableDictionary *)userParams successBlock:(void (^)(NSDictionary *))success failureBlock:(void (^)(NSError *))failure {
+- (void)sendGETWebService:(NSString*)service userParams:(NSDictionary *)userParams successBlock:(void (^)(NSDictionary *))success failureBlock:(void (^)(NSError *))failure {
     NSLog(@"sendAsynchronousGETWebService");
     [self setupWebService:service];
     NSMutableURLRequest *request = [self createGETRequest:webService withParams:userParams];
@@ -126,7 +125,7 @@
     [self executeWebServiceRequest:request successBlock:success failureBlock:failure];
 }
 
-- (void)sendPOSTWebService:(NSString*)service userParams:(NSMutableDictionary *)userParams successBlock:(void (^)(NSDictionary *))success failureBlock:(void (^)(NSError *))failure {
+- (void)sendPOSTWebService:(NSString*)service userParams:(NSDictionary *)userParams successBlock:(void (^)(NSDictionary *))success failureBlock:(void (^)(NSError *))failure {
     NSLog(@"sendAsynchronousPOSTWebService");
     [self setupWebService:service];
     NSLog(@"Api Call %@ with params %@", service, userParams);

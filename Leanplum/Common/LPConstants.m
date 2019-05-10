@@ -51,6 +51,7 @@ NSString *LP_METHOD_LOG = @"log";
 NSString *LP_PARAM_ACTION = @"action";
 NSString *LP_PARAM_ACTION_DEFINITIONS = @"actionDefinitions";
 NSString *LP_PARAM_APP_ID = @"appId";
+NSString *LP_PARAM_API_VERSION = @"apiVersion";
 NSString *LP_PARAM_CLIENT = @"client";
 NSString *LP_PARAM_CLIENT_KEY = @"clientKey";
 NSString *LP_PARAM_DATA = @"data";

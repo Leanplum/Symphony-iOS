@@ -7,6 +7,7 @@
 //
 #import "LPUserApi.h"
 #import "LPWSManager.h"
+#import "LPConstants.h"
 #import "LPApiConstants.h"
 #import "LPErrorHelper.h"
 
@@ -37,9 +38,15 @@
         failure(error);
     };
     
+    //NSMutableDictionary *params = @{LP_PARAM_USER_ID : userId, LP_PARAM_USER_ATTRIBUTES : attributes};
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    params[LP_PARAM_USER_ID] = userId;
+    if (attributes != nil) {
+        params[LP_PARAM_USER_ATTRIBUTES] = attributes;
+    }
     LPWSManager *wsManager = [[LPWSManager alloc] init];
     [wsManager sendPOSTWebService:LP_API_METHOD_SET_USER_ATTRIBUTES
-                                  userParams:nil successBlock:successResponse failureBlock:failureResponse];
+                                  userParams:params successBlock:successResponse failureBlock:failureResponse];
     
 }
 
