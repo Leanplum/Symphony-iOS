@@ -12,7 +12,7 @@
 
 @implementation LPUserApi
 
-+ (void) setUsersAttributes:(NSString *)userId withUserAttributes:(NSDictionary *)attributes
++ (void) setUserAttributes:(NSString *)userId withUserAttributes:(NSDictionary *)attributes
                     success:(void (^)(void))success
                     failure:(void (^)(NSError *error))failure {
     
