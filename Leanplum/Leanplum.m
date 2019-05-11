@@ -72,7 +72,7 @@
     if (!attributes) {
         attributes = @{};
     }
-    [LPUserApi setUsersAttributes:userId withUserAttributes:attributes success:^{
+    [LPUserApi setUserAttributes:userId withUserAttributes:attributes success:^{
         success();
     } failure:^(NSError *error) {
         failure(error);
