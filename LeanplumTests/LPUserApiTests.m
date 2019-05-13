@@ -32,13 +32,12 @@
 
 - (void)testUserApi {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPUserApi setUserAttributes:@"1" withUserAttributes:nil success:^ {
+    [LPUserApi setUserAttributes:DEVICE_ID withUserAttributes:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
-        [expectation fulfill];
     }];
     
-    [self waitForExpectationsWithTimeout:30.0 handler:^(NSError *error) {
+    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);
         }
@@ -49,7 +48,7 @@
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     // change device id to empty string
     [LPTestHelper setup:APPLICATION_ID withAccessKey:DEVELOPMENT_KEY withDeviceId:@""];
-    [LPUserApi setUserAttributes:@"1" withUserAttributes:nil success:^ {
+    [LPUserApi setUserAttributes:nil withUserAttributes:nil success:^ {
     } failure:^(NSError *error) {
         [expectation fulfill];
     }];
@@ -117,6 +116,21 @@
         NSString *expectedMessage = @"Invalid Input";
         XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);
         [expectation fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+    }];
+}
+
+- (void)testUserApiWithUserAttributes {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    NSDictionary *userAttributes = @{@"gender" : @"male"};
+    [LPUserApi setUserAttributes:DEVICE_ID withUserAttributes:userAttributes success:^ {
+        [expectation fulfill];
+    } failure:^(NSError *error) {
     }];
     
     [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
