@@ -81,6 +81,7 @@ NSString *LP_PARAM_STATE = @"state";
 NSString *LP_PARAM_TIME = @"time";
 NSString *LP_PARAM_TYPE = @"type";
 NSString *LP_PARAM_DEVICE_ID = @"deviceId";
+NSString *LP_PARAM_DEVICE_ATTRIBUTES = @"deviceAttributes";
 NSString *LP_PARAM_UPDATE_DATE = @"updateDate";
 NSString *LP_PARAM_USER_ID = @"userId";
 NSString *LP_PARAM_USER_ATTRIBUTES = @"userAttributes";

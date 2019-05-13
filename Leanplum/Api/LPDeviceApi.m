@@ -8,6 +8,7 @@
 
 #import "LPDeviceApi.h"
 #import "LPWSManager.h"
+#import "LPConstants.h"
 #import "LPApiConstants.h"
 #import "LPErrorHelper.h"
 
@@ -37,6 +38,11 @@
     void (^failureResponse) (NSError *) = ^(NSError *error ){
         failure(error);
     };
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    params[LP_PARAM_DEVICE_ID] = deviceId;
+    if (attributes != nil) {
+        params[LP_PARAM_DEVICE_ATTRIBUTES] = attributes;
+    }
     
     LPWSManager *wsManager = [[LPWSManager alloc] init];
     [wsManager sendPOSTWebService:LP_API_METHOD_SET_DEVICE_ATTRIBUTES
