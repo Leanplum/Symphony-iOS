@@ -76,12 +76,10 @@
     [queryString appendString:actionKeyParamString];
     NSString *apiVersionKeyParamString = [NSString stringWithFormat:@"%@=%@&", LP_PARAM_API_VERSION,LEANPLUM_API_VERSION];
     [queryString appendString:apiVersionKeyParamString];
-    
-    
-    NSString *dataKeyParamString = [NSString stringWithFormat:@"%@=%@", LP_PARAM_DATA,[[self generateEncodedDataString: action] urlencode]];
-    
-    [queryString appendString:dataKeyParamString];
-    
+    if ([action isEqualToString:LP_METHOD_MULTI]) {
+        NSString *dataKeyParamString = [NSString stringWithFormat:@"%@=%@", LP_PARAM_DATA,[[self generateEncodedDataString: action] urlencode]];
+        [queryString appendString:dataKeyParamString];
+    }
     return queryString;
 }
 
@@ -121,7 +119,7 @@
     [self setupWebService:service];
     NSMutableURLRequest *request = [self createGETRequest:webService withParams:params];
     [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
-    [request setTimeoutInterval:60];
+    [request setTimeoutInterval:[LPApiConstants sharedState].networkTimeoutSeconds];
     
     [self executeWebServiceRequest:request successBlock:success failureBlock:failure];
 }
@@ -132,7 +130,7 @@
     NSLog(@"Api Call %@ with params %@", service, params);
     NSMutableURLRequest *request = [self createPOSTRequest:webService withParams:params withAction:service];
     [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
-    [request setTimeoutInterval:60];
+    [request setTimeoutInterval:[LPApiConstants sharedState].networkTimeoutSeconds];
     
     [self executeWebServiceRequest:request successBlock:success failureBlock:failure];
 }

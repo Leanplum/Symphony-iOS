@@ -38,7 +38,6 @@
         failure(error);
     };
     
-    //NSMutableDictionary *params = @{LP_PARAM_USER_ID : userId, LP_PARAM_USER_ATTRIBUTES : attributes};
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     params[LP_PARAM_USER_ID] = userId;
     if (attributes != nil) {
