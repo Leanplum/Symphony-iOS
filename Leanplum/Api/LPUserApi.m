@@ -46,8 +46,9 @@
     }
     LPWSManager *wsManager = [[LPWSManager alloc] init];
     [wsManager sendPOSTWebService:LP_API_METHOD_SET_USER_ATTRIBUTES
-                                  userParams:params successBlock:successResponse failureBlock:failureResponse];
-    
+                       withParams:nil
+                     successBlock:successResponse
+                     failureBlock:failureResponse];
 }
 
 

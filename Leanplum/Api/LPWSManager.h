@@ -11,7 +11,7 @@
 
 @interface LPWSManager : NSObject
 
-- (void)sendGETWebService:(NSString*)service userParams:(NSDictionary *)userParams successBlock:(void (^)(NSDictionary *))success failureBlock:(void (^)(NSError *))failure;
-- (void)sendPOSTWebService:(NSString*)service userParams:(NSDictionary *)userParams successBlock:(void (^)(NSDictionary *))success failureBlock:(void (^)(NSError *))failure;
+- (void)sendGETWebService:(NSString*)service withParams:(NSMutableDictionary *)params successBlock:(void (^)(NSDictionary *))success failureBlock:(void (^)(NSError *))failure;
+- (void)sendPOSTWebService:(NSString*)service withParams:(NSMutableDictionary *)params successBlock:(void (^)(NSDictionary *))success failureBlock:(void (^)(NSError *))failure;
 
 @end

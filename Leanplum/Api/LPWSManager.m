@@ -77,10 +77,11 @@
     NSString *apiVersionKeyParamString = [NSString stringWithFormat:@"%@=%@&", LP_PARAM_API_VERSION,LEANPLUM_API_VERSION];
     [queryString appendString:apiVersionKeyParamString];
     
-    if ([action isEqualToString:LP_METHOD_MULTI]) {
-        NSString *dataKeyParamString = [NSString stringWithFormat:@"%@=%@", LP_PARAM_DATA,[[self generateEncodedDataString: action] urlencode]];
-        [queryString appendString:dataKeyParamString];
-    }
+    
+    NSString *dataKeyParamString = [NSString stringWithFormat:@"%@=%@", LP_PARAM_DATA,[[self generateEncodedDataString: action] urlencode]];
+    
+    [queryString appendString:dataKeyParamString];
+    
     return queryString;
 }
 
@@ -115,21 +116,21 @@
     webService = [NSString stringWithFormat:@"https://%@/api?", lpApiConstants.apiHostName];
 }
 
-- (void)sendGETWebService:(NSString*)service userParams:(NSDictionary *)userParams successBlock:(void (^)(NSDictionary *))success failureBlock:(void (^)(NSError *))failure {
+- (void)sendGETWebService:(NSString*)service withParams:(NSMutableDictionary *)params successBlock:(void (^)(NSDictionary *))success failureBlock:(void (^)(NSError *))failure {
     NSLog(@"sendAsynchronousGETWebService");
     [self setupWebService:service];
-    NSMutableURLRequest *request = [self createGETRequest:webService withParams:userParams];
+    NSMutableURLRequest *request = [self createGETRequest:webService withParams:params];
     [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
     [request setTimeoutInterval:60];
- 
+    
     [self executeWebServiceRequest:request successBlock:success failureBlock:failure];
 }
 
-- (void)sendPOSTWebService:(NSString*)service userParams:(NSDictionary *)userParams successBlock:(void (^)(NSDictionary *))success failureBlock:(void (^)(NSError *))failure {
+- (void)sendPOSTWebService:(NSString*)service withParams:(NSMutableDictionary *)params successBlock:(void (^)(NSDictionary *))success failureBlock:(void (^)(NSError *))failure {
     NSLog(@"sendAsynchronousPOSTWebService");
     [self setupWebService:service];
-    NSLog(@"Api Call %@ with params %@", service, userParams);
-    NSMutableURLRequest *request = [self createPOSTRequest:webService withParams:userParams withAction:service];
+    NSLog(@"Api Call %@ with params %@", service, params);
+    NSMutableURLRequest *request = [self createPOSTRequest:webService withParams:params withAction:service];
     [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
     [request setTimeoutInterval:60];
     
