@@ -10,6 +10,8 @@
 #import "LPConstants.h"
 #import "LPApiConstants.h"
 #import "LPErrorHelper.h"
+#import "LPAPIConfig.h"
+#import "LPJSON.h"
 
 @implementation LPUserApi
 
@@ -25,7 +27,8 @@
             failure(error);
         }
         else {
-            if ([resultDict objectForKey:@"success"]) {
+            BOOL successBool = [[resultDict objectForKey:@"success"] boolValue];
+            if (successBool) {
                 success();
             } else {
                 NSError *error = [LPErrorHelper makeResponseError:@{@"message": @"Invalid Input"}];
@@ -40,12 +43,14 @@
     
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     params[LP_PARAM_USER_ID] = userId;
+    params[LP_PARAM_DEVICE_ID] = [LPAPIConfig sharedConfig].deviceId;
+    
     if (attributes != nil) {
-        params[LP_PARAM_USER_ATTRIBUTES] = attributes;
+        params[LP_PARAM_USER_ATTRIBUTES] =  [LPJSON stringFromJSON:attributes];
     }
     LPWSManager *wsManager = [[LPWSManager alloc] init];
     [wsManager sendPOSTWebService:LP_API_METHOD_SET_USER_ATTRIBUTES
-                       withParams:nil
+                       withParams:params
                      successBlock:successResponse
                      failureBlock:failureResponse];
 }

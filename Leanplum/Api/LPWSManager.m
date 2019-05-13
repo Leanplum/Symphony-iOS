@@ -56,14 +56,17 @@
     NSString *languageHeader = [NSString stringWithFormat:@"%@, %@",
                                 [[NSLocale preferredLanguages] componentsJoinedByString:@", "], LP_EN_US];
     
-    return @{LP_USER_AGENT: userAgentString, LP_ACCEPT_LANGUAGE : languageHeader, LP_ACCEPT_ENCODING : LEANPLUM_SUPPORTED_ENCODING, LP_PARAM_TIME : timestamp};
+    return @{LP_USER_AGENT: userAgentString,
+             LP_ACCEPT_LANGUAGE : languageHeader,
+             LP_ACCEPT_ENCODING : LEANPLUM_SUPPORTED_ENCODING,
+             LP_PARAM_TIME : timestamp};
 }
 
-- (NSString *)generateEncodedQueryString:(NSDictionary *)userParams withAction:(NSString *)action{
+- (NSString *)generateEncodedQueryString:(NSDictionary *)params withAction:(NSString *)action{
     NSMutableString *queryString = [NSMutableString string];
-    if (userParams != nil) {
-        for (id key in userParams) {
-            id value = userParams[key];
+    if (params != nil) {
+        for (id key in params) {
+            id value = params[key];
             NSString *paramString = [NSString stringWithFormat:@"%@=%@&", key, value];
             [queryString appendString:paramString];
         }
@@ -84,15 +87,15 @@
 }
 
 - (NSString *)generateEncodedDataString:(NSString *)action {
-    NSDictionary *requestsToSend = @{LP_PARAM_DEVICE_ID : [LPAPIConfig sharedConfig].deviceId, LP_PARAM_DEV_MODE : @"true", LP_PARAM_USER_ID : [LPAPIConfig sharedConfig].deviceId, LP_KIND_ACTION : action};
+    NSDictionary *requestsToSend = @{LP_PARAM_DEVICE_ID : [LPAPIConfig sharedConfig].deviceId, LP_PARAM_DEV_MODE : [NSString stringWithFormat:@"%d",[[LPApiConstants sharedState] isDevelopmentModeEnabled]], LP_PARAM_USER_ID : [LPAPIConfig sharedConfig].deviceId, LP_KIND_ACTION : action};
     NSString *requestData = [LPJSON stringFromJSON:@{LP_PARAM_DATA:requestsToSend}];
     return requestData;
 }
 
 #pragma mark - Web Service Requests
 
-- (NSMutableURLRequest *)createGETRequest:(NSString *)webservice withParams:(NSDictionary *)userParams {
-    NSString *urlString = [NSString stringWithFormat:@"%@%@", webservice, [self generateEncodedQueryString:userParams withAction:webService]];
+- (NSMutableURLRequest *)createGETRequest:(NSString *)webservice withParams:(NSDictionary *)params {
+    NSString *urlString = [NSString stringWithFormat:@"%@%@", webservice, [self generateEncodedQueryString:params withAction:webService]];
     NSURL *url = [NSURL URLWithString:urlString];
     NSLog(@"Get request URL %@",url);
     NSMutableURLRequest *request  = [NSMutableURLRequest requestWithURL:url];
@@ -100,11 +103,11 @@
     return request;
 }
 
-- (NSMutableURLRequest *)createPOSTRequest:(NSString *)webservice withParams:(NSDictionary *)userParams withAction:(NSString *)action {
+- (NSMutableURLRequest *)createPOSTRequest:(NSString *)webservice withParams:(NSDictionary *)params withAction:(NSString *)action {
     NSURL *url = [NSURL URLWithString:webservice];
     NSMutableURLRequest *request  = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"POST"];
-    [request setHTTPBody:[[self generateEncodedQueryString:userParams withAction:action] dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPBody:[[self generateEncodedQueryString:params withAction:action] dataUsingEncoding:NSUTF8StringEncoding]];
     return request;
 }
 
