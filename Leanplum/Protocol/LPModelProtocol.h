@@ -10,7 +10,7 @@
 
 @protocol LPModelProtocol <NSObject>
 
-- (NSDictionary *) getClasMapping;
+- (NSDictionary *) classMapping;
 - (id) initWithDictionary:(NSDictionary *)responseDict;
 
 @end
