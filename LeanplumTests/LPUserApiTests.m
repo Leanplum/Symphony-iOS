@@ -33,10 +33,8 @@
 - (void)testUserApi {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     [LPUserApi setUserAttributes:@"1" withUserAttributes:nil success:^ {
-        NSLog(@"HERE");
         [expectation fulfill];
     } failure:^(NSError *error) {
-        NSLog(@"Error");
         [expectation fulfill];
     }];
     
