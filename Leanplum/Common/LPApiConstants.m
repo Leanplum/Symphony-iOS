@@ -26,7 +26,7 @@
         _apiSSL = YES;
         _socketHost = @"dev.leanplum.com";
         _socketPort = 443;
-        _networkTimeoutSeconds = 10;
+        _networkTimeoutSeconds = 20;
         _networkTimeoutSecondsForDownloads = 15;
         _syncNetworkTimeoutSeconds = 5;
         _checkForUpdatesInDevelopmentMode = YES;
