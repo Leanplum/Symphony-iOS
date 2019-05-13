@@ -16,6 +16,7 @@
 @property (nonatomic, strong) NSString *deviceId;
 @property (nonatomic, strong) NSString *userId;
 @property (nonatomic, strong) NSString *token;
+@property (nonatomic, strong) NSString *apiVersion;
 
 + (instancetype)sharedConfig;
 

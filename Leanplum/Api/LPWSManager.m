@@ -65,18 +65,18 @@
         for (id key in userParams) {
             id value = userParams[key];
             NSString *paramString = [NSString stringWithFormat:@"%@=%@&", key, value];
-            paramString = [paramString urlencode];
             [queryString appendString:paramString];
         }
     }
     NSString *appIdParamString = [NSString stringWithFormat:@"%@=%@&", LP_PARAM_APP_ID, [LPAPIConfig sharedConfig].appId];
     [queryString appendString:appIdParamString];
-    
     NSString *clientKeyParamString = [NSString stringWithFormat:@"%@=%@&", LP_PARAM_CLIENT_KEY, [LPAPIConfig sharedConfig].accessKey];
     [queryString appendString:clientKeyParamString];
-    
     NSString *actionKeyParamString = [NSString stringWithFormat:@"%@=%@&", LP_KIND_ACTION,action];
     [queryString appendString:actionKeyParamString];
+    NSString *apiVersionKeyParamString = [NSString stringWithFormat:@"%@=%@&", LP_PARAM_API_VERSION,LEANPLUM_API_VERSION];
+    [queryString appendString:apiVersionKeyParamString];
+    
     
     NSString *dataKeyParamString = [NSString stringWithFormat:@"%@=%@", LP_PARAM_DATA,[[self generateEncodedDataString: action] urlencode]];
     
