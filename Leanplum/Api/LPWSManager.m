@@ -160,7 +160,9 @@
                                               // Handle unsuccessful http response code.
                                               NSLog(@"http error");
                                               // make custom error
-                                              NSError *responseError = [LPErrorHelper makeHttpError:httpResponse.statusCode  withDict:responseDictionary];
+                                              NSArray *responseArray = [responseDictionary valueForKey:@"response"];
+                                              NSDictionary *resultDict = responseArray[0];
+                                              NSError *responseError = [LPErrorHelper makeHttpError:httpResponse.statusCode  withDict:resultDict];
                                               failure(responseError);
                                           }
                                       }
