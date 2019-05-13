@@ -12,12 +12,9 @@
 #import "LPApiConstants.h"
 #import "LPErrorHelper.h"
 
-#import <objc/runtime.h>
-#import <objc/message.h>
-
 @implementation LPDeviceApi
 
-+ (void) setDeviceAttributes:(NSString *)deviceId withAttributes:(NSDictionary *)attributes 
++ (void) setDeviceAttributes:(NSString *)deviceId withDeviceAttributes:(NSDictionary *)attributes
                     success:(void (^)(void))success
                     failure:(void (^)(NSError *error))failure {
     
@@ -41,10 +38,12 @@
     void (^failureResponse) (NSError *) = ^(NSError *error ){
         failure(error);
     };
-    NSMutableDictionary *params = [attributes mutableCopy];
     
-                                  
-                
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    if (attributes != nil) {
+        params = [attributes mutableCopy];
+    }
+    params[LP_PARAM_DEVICE_ID] = deviceId;
 
     LPWSManager *wsManager = [[LPWSManager alloc] init];
     [wsManager sendPOSTWebService:LP_API_METHOD_SET_DEVICE_ATTRIBUTES
