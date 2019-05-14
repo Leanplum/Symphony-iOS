@@ -15,8 +15,8 @@
 @implementation LPDeviceApi
 
 + (void) setDeviceAttributes:(NSString *)deviceId withDeviceAttributes:(NSDictionary *)attributes
-                    success:(void (^)(void))success
-                    failure:(void (^)(NSError *error))failure {
+                     success:(void (^)(void))success
+                     failure:(void (^)(NSError *error))failure {
     
     void (^successResponse) (NSDictionary *) = ^(NSDictionary *response) {
         NSError *error = nil;

@@ -43,6 +43,21 @@
     }];
 }
 
+- (void)testDeviceApiWithDeviceAttributes {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    NSDictionary *deviceAttributes = @{@"OS" : @"iOS"};
+    [LPDeviceApi setDeviceAttributes:DEVICE_ID withDeviceAttributes:deviceAttributes success:^ {
+        [expectation fulfill];
+    } failure:^(NSError *error) {
+    }];
+    
+    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+    }];
+}
+
 - (void)testDeviceApiWithHttpError {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     // change device id to empty string
@@ -90,6 +105,22 @@
     }];
 }
 
+- (void)testDeviceApiWithDeviceAttributesStub {
+    [LPTestHelper setupStub:200 withFileName:@"simple_success_response.json"];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    NSDictionary *deviceAttributes = @{@"OS" : @"iOS"};
+    [LPDeviceApi setDeviceAttributes:DEVICE_ID withDeviceAttributes:deviceAttributes success:^ {
+        [expectation fulfill];
+    } failure:^(NSError *error) {
+    }];
+    
+    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+    }];
+}
+
 - (void)testDeviceApiHttpErrorStub {
     [LPTestHelper setupStub:400 withFileName:@"simple_error_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
@@ -124,19 +155,6 @@
     }];
 }
 
-- (void)testDeviceApiWithDeviceAttributes {
-    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    NSDictionary *deviceAttributes = @{@"OS" : @"iOS"};
-    [LPDeviceApi setDeviceAttributes:DEVICE_ID withDeviceAttributes:deviceAttributes success:^ {
-        [expectation fulfill];
-    } failure:^(NSError *error) {
-    }];
-    
-    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
-        if (error) {
-            NSLog(@"Error: %@", error);
-        }
-    }];
-}
+
 
 @end
