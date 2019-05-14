@@ -14,8 +14,4 @@
                      success:(void (^)(void))success
                      failure:(void (^)(NSError *error))failure;
 
-+ (void) registerDevice:(NSDictionary *)attributes
-                success:(void (^)(void))success
-                failure:(void (^)(NSError *error))failure;
-
 @end

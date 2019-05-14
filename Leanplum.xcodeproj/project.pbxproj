@@ -35,6 +35,9 @@
 		657AE9AD22823E32008F6BB0 /* LPErrorHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 657AE9AB22823E32008F6BB0 /* LPErrorHelper.m */; };
 		65C5BDB922862568003EE334 /* LPDeviceApiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C5BDB822862568003EE334 /* LPDeviceApiTests.m */; };
 		65C5BDC3228A21A5003EE334 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65C5BDC2228A21A5003EE334 /* UIKit.framework */; };
+		65C5BDC6228B60FF003EE334 /* LPRegisterDeviceApi.h in Headers */ = {isa = PBXBuildFile; fileRef = 65C5BDC4228B60FF003EE334 /* LPRegisterDeviceApi.h */; };
+		65C5BDC7228B60FF003EE334 /* LPRegisterDeviceApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C5BDC5228B60FF003EE334 /* LPRegisterDeviceApi.m */; };
+		65C5BDC9228B6162003EE334 /* LPRegisterDeviceApiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C5BDC8228B6162003EE334 /* LPRegisterDeviceApiTests.m */; };
 		65D4AB44224C2EA1009BA5F3 /* LPTentacledAcceptButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D4AB42224C2EA1009BA5F3 /* LPTentacledAcceptButton.h */; };
 		65D4AB45224C2EA1009BA5F3 /* LPTentacledAcceptButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D4AB43224C2EA1009BA5F3 /* LPTentacledAcceptButton.m */; };
 		65D4AB4C224D6E15009BA5F3 /* LPFlufflyAcceptButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D4AB4A224D6E15009BA5F3 /* LPFlufflyAcceptButton.h */; };
@@ -258,6 +261,9 @@
 		657AE9AB22823E32008F6BB0 /* LPErrorHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPErrorHelper.m; sourceTree = "<group>"; };
 		65C5BDB822862568003EE334 /* LPDeviceApiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPDeviceApiTests.m; sourceTree = "<group>"; };
 		65C5BDC2228A21A5003EE334 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		65C5BDC4228B60FF003EE334 /* LPRegisterDeviceApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPRegisterDeviceApi.h; sourceTree = "<group>"; };
+		65C5BDC5228B60FF003EE334 /* LPRegisterDeviceApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPRegisterDeviceApi.m; sourceTree = "<group>"; };
+		65C5BDC8228B6162003EE334 /* LPRegisterDeviceApiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPRegisterDeviceApiTests.m; sourceTree = "<group>"; };
 		65D4AB42224C2EA1009BA5F3 /* LPTentacledAcceptButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPTentacledAcceptButton.h; sourceTree = "<group>"; };
 		65D4AB43224C2EA1009BA5F3 /* LPTentacledAcceptButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPTentacledAcceptButton.m; sourceTree = "<group>"; };
 		65D4AB4A224D6E15009BA5F3 /* LPFlufflyAcceptButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPFlufflyAcceptButton.h; sourceTree = "<group>"; };
@@ -556,6 +562,7 @@
 				6515E1EE2270E1F100C5A2F0 /* LPActionDefinitionTest.m */,
 				B4591DD0227B9F720076F9E2 /* LPUserApiTests.m */,
 				65C5BDB822862568003EE334 /* LPDeviceApiTests.m */,
+				65C5BDC8228B6162003EE334 /* LPRegisterDeviceApiTests.m */,
 			);
 			path = LeanplumTests;
 			sourceTree = "<group>";
@@ -730,6 +737,8 @@
 				B4FCB0FF22722AE1004F5D63 /* LPUserApi.m */,
 				B4FCB11022722F48004F5D63 /* LPDeviceApi.h */,
 				B4FCB11122722F48004F5D63 /* LPDeviceApi.m */,
+				65C5BDC4228B60FF003EE334 /* LPRegisterDeviceApi.h */,
+				65C5BDC5228B60FF003EE334 /* LPRegisterDeviceApi.m */,
 				B4FCB0FC22722AE1004F5D63 /* LPWSManager.h */,
 				B4FCB0FD22722AE1004F5D63 /* LPWSManager.m */,
 				B4591DCC227A4A260076F9E2 /* LPAPIConfig.h */,
@@ -869,6 +878,7 @@
 				65D4ABD8224D7FB7009BA5F3 /* LPStickyChild.h in Headers */,
 				65D4AB54224D6EB8009BA5F3 /* LPFluffyTitle.h in Headers */,
 				65D4AB68224D7275009BA5F3 /* LPPushAskToAsk.h in Headers */,
+				65C5BDC6228B60FF003EE334 /* LPRegisterDeviceApi.h in Headers */,
 				65D4AC14224D8296009BA5F3 /* LPResponseVars.h in Headers */,
 				A868DBCE2254161C00E8C4D4 /* LPMessage.h in Headers */,
 				65D4AB4C224D6E15009BA5F3 /* LPFlufflyAcceptButton.h in Headers */,
@@ -1126,6 +1136,7 @@
 				6515E1E92270E19500C5A2F0 /* LPAlertValues.m in Sources */,
 				B4FCB11722723277004F5D63 /* LPConstants.m in Sources */,
 				65D4ABF5224D807C009BA5F3 /* LPFluffyDismissAction.m in Sources */,
+				65C5BDC7228B60FF003EE334 /* LPRegisterDeviceApi.m in Sources */,
 				B4591DCF227A4A260076F9E2 /* LPAPIConfig.m in Sources */,
 				65D4AB55224D6EB8009BA5F3 /* LPFluffyTitle.m in Sources */,
 				65D4AB79224D7379009BA5F3 /* LPCencelButton.m in Sources */,
@@ -1154,6 +1165,7 @@
 				B430A274224C233F00DC8140 /* LPPurpleLayout.m in Sources */,
 				B430A28D224C23CE00DC8140 /* LPConfirmValues.m in Sources */,
 				B430A25B224C22A800DC8140 /* LPCenterPopup.m in Sources */,
+				65C5BDC9228B6162003EE334 /* LPRegisterDeviceApiTests.m in Sources */,
 				B430A297224C240900DC8140 /* LPPurpleCancelAction.m in Sources */,
 				B430A26F224C232300DC8140 /* LPPurpleAcceptButton.m in Sources */,
 				6517687C2284D8B300B2C17E /* LPTestHelper.m in Sources */,
