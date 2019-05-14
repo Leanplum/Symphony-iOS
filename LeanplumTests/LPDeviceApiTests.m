@@ -31,13 +31,27 @@
 
 - (void)testDeviceApi {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPDeviceApi setDeviceAttributes:@"1" withDeviceAttributes:nil success:^ {
+    [LPDeviceApi setDeviceAttributes:DEVICE_ID withDeviceAttributes:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
-        [expectation fulfill];
     }];
     
     [self waitForExpectationsWithTimeout:30.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+    }];
+}
+
+- (void)testDeviceApiWithDeviceAttributes {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    NSDictionary *deviceAttributes = @{@"OS" : @"iOS"};
+    [LPDeviceApi setDeviceAttributes:DEVICE_ID withDeviceAttributes:deviceAttributes success:^ {
+        [expectation fulfill];
+    } failure:^(NSError *error) {
+    }];
+    
+    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);
         }
@@ -48,7 +62,7 @@
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     // change device id to empty string
     [LPTestHelper setup:APPLICATION_ID withAccessKey:DEVELOPMENT_KEY withDeviceId:@""];
-    [LPDeviceApi setDeviceAttributes:@"1" withDeviceAttributes:nil success:^ {
+    [LPDeviceApi setDeviceAttributes:nil withDeviceAttributes:nil success:^ {
     } failure:^(NSError *error) {
         [expectation fulfill];
     }];
@@ -80,6 +94,22 @@
     [LPTestHelper setupStub:200 withFileName:@"simple_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     [LPDeviceApi setDeviceAttributes:@"1" withDeviceAttributes:nil success:^ {
+        [expectation fulfill];
+    } failure:^(NSError *error) {
+    }];
+    
+    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+    }];
+}
+
+- (void)testDeviceApiWithDeviceAttributesStub {
+    [LPTestHelper setupStub:200 withFileName:@"simple_success_response.json"];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    NSDictionary *deviceAttributes = @{@"OS" : @"iOS"};
+    [LPDeviceApi setDeviceAttributes:DEVICE_ID withDeviceAttributes:deviceAttributes success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -124,5 +154,7 @@
         }
     }];
 }
+
+
 
 @end

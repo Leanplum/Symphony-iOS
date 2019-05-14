@@ -15,8 +15,8 @@
 @implementation LPDeviceApi
 
 + (void) setDeviceAttributes:(NSString *)deviceId withDeviceAttributes:(NSDictionary *)attributes
-                    success:(void (^)(void))success
-                    failure:(void (^)(NSError *error))failure {
+                     success:(void (^)(void))success
+                     failure:(void (^)(NSError *error))failure {
     
     void (^successResponse) (NSDictionary *) = ^(NSDictionary *response) {
         NSError *error = nil;
@@ -38,15 +38,16 @@
     void (^failureResponse) (NSError *) = ^(NSError *error ){
         failure(error);
     };
-    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-    params[LP_PARAM_DEVICE_ID] = deviceId;
-    if (attributes != nil) {
-        params[LP_PARAM_DEVICE_ATTRIBUTES] = attributes;
-    }
     
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    if (attributes != nil) {
+        params = [attributes mutableCopy];
+    }
+    params[LP_PARAM_DEVICE_ID] = deviceId;
+
     LPWSManager *wsManager = [[LPWSManager alloc] init];
     [wsManager sendPOSTWebService:LP_API_METHOD_SET_DEVICE_ATTRIBUTES
-                       withParams:nil
+                       withParams:params
                      successBlock:successResponse
                      failureBlock:failureResponse];
     

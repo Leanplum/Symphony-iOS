@@ -34,6 +34,7 @@
 		657AE9AC22823E32008F6BB0 /* LPErrorHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 657AE9AA22823E32008F6BB0 /* LPErrorHelper.h */; };
 		657AE9AD22823E32008F6BB0 /* LPErrorHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 657AE9AB22823E32008F6BB0 /* LPErrorHelper.m */; };
 		65C5BDB922862568003EE334 /* LPDeviceApiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C5BDB822862568003EE334 /* LPDeviceApiTests.m */; };
+		65C5BDC3228A21A5003EE334 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65C5BDC2228A21A5003EE334 /* UIKit.framework */; };
 		65D4AB44224C2EA1009BA5F3 /* LPTentacledAcceptButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D4AB42224C2EA1009BA5F3 /* LPTentacledAcceptButton.h */; };
 		65D4AB45224C2EA1009BA5F3 /* LPTentacledAcceptButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D4AB43224C2EA1009BA5F3 /* LPTentacledAcceptButton.m */; };
 		65D4AB4C224D6E15009BA5F3 /* LPFlufflyAcceptButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D4AB4A224D6E15009BA5F3 /* LPFlufflyAcceptButton.h */; };
@@ -256,6 +257,7 @@
 		657AE9AA22823E32008F6BB0 /* LPErrorHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPErrorHelper.h; sourceTree = "<group>"; };
 		657AE9AB22823E32008F6BB0 /* LPErrorHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPErrorHelper.m; sourceTree = "<group>"; };
 		65C5BDB822862568003EE334 /* LPDeviceApiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPDeviceApiTests.m; sourceTree = "<group>"; };
+		65C5BDC2228A21A5003EE334 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		65D4AB42224C2EA1009BA5F3 /* LPTentacledAcceptButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPTentacledAcceptButton.h; sourceTree = "<group>"; };
 		65D4AB43224C2EA1009BA5F3 /* LPTentacledAcceptButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPTentacledAcceptButton.m; sourceTree = "<group>"; };
 		65D4AB4A224D6E15009BA5F3 /* LPFlufflyAcceptButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPFlufflyAcceptButton.h; sourceTree = "<group>"; };
@@ -441,6 +443,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65C5BDC3228A21A5003EE334 /* UIKit.framework in Frameworks */,
 				99AEB2AB07AAA8F636EB66AF /* Pods_Leanplum.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -475,6 +478,7 @@
 		4B684442A4B111DF13DFFFC0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				65C5BDC2228A21A5003EE334 /* UIKit.framework */,
 				C66EF7D196DE652ECB009BE7 /* Pods_Symphony.framework */,
 				6BF30B8898FFE1F1AB3BCD92 /* Pods_SymphonyTests.framework */,
 				ECABFFC13BC4491EEC4088CE /* Pods_Leanplum.framework */,
@@ -1012,7 +1016,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-LeanplumTests/Pods-LeanplumTests-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-LeanplumTests/Pods-LeanplumTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/OCMock/OCMock.framework",
 				"${BUILT_PRODUCTS_DIR}/OHHTTPStubs/OHHTTPStubs.framework",
 			);
@@ -1023,7 +1027,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LeanplumTests/Pods-LeanplumTests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LeanplumTests/Pods-LeanplumTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9B23B6202DDF6ADA43A219C0 /* [CP] Check Pods Manifest.lock */ = {

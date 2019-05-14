@@ -8,11 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-
 @interface LPDeviceApi : NSObject
 
 + (void) setDeviceAttributes:(NSString *)deviceId withDeviceAttributes:(NSDictionary *)attributes
-                    success:(void (^)(void))success
-                    failure:(void (^)(NSError *error))failure;
+                     success:(void (^)(void))success
+                     failure:(void (^)(NSError *error))failure;
 
 @end

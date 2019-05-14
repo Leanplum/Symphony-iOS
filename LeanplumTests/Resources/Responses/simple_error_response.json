@@ -1,5 +1,8 @@
 {
-    "success": false,
-    "message": "This is a test error message"
+    "response": [
+        {
+            "success": false,
+            "message": "This is a test error message"
+        }
+    ]
 }
-

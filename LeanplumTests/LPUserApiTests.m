@@ -44,6 +44,21 @@
     }];
 }
 
+- (void)testUserApiWithUserAttributes {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    NSDictionary *userAttributes = @{@"gender" : @"male"};
+    [LPUserApi setUserAttributes:DEVICE_ID withUserAttributes:userAttributes success:^ {
+        [expectation fulfill];
+    } failure:^(NSError *error) {
+    }];
+    
+    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+    }];
+}
+
 - (void)testUserApiWithHttpError {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     // change device id to empty string
@@ -91,6 +106,22 @@
     }];
 }
 
+- (void)testUserApiWithUserAttributesStub {
+    [LPTestHelper setupStub:200 withFileName:@"simple_success_response.json"];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    NSDictionary *userAttributes = @{@"gender" : @"male"};
+    [LPUserApi setUserAttributes:DEVICE_ID withUserAttributes:userAttributes success:^ {
+        [expectation fulfill];
+    } failure:^(NSError *error) {
+    }];
+    
+    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+    }];
+}
+
 - (void)testUserApiHttpErrorStub {
     [LPTestHelper setupStub:400 withFileName:@"simple_error_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
@@ -116,21 +147,6 @@
         NSString *expectedMessage = @"Invalid Input";
         XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);
         [expectation fulfill];
-    }];
-    
-    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
-        if (error) {
-            NSLog(@"Error: %@", error);
-        }
-    }];
-}
-
-- (void)testUserApiWithUserAttributes {
-    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    NSDictionary *userAttributes = @{@"gender" : @"male"};
-    [LPUserApi setUserAttributes:DEVICE_ID withUserAttributes:userAttributes success:^ {
-        [expectation fulfill];
-    } failure:^(NSError *error) {
     }];
     
     [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
