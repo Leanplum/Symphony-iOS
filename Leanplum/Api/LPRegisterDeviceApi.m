@@ -1,23 +1,23 @@
 //
-//  LPUserApi.m
-//  Symphony
+//  LPRegisterDeviceApi.m
+//  Leanplum
 //
-//  Created by Hrishikesh Amravatkar on 4/5/19.
+//  Created by Grace on 5/14/19.
 //  Copyright © 2019 Leanplum. All rights reserved.
 //
-#import "LPUserApi.h"
+
+#import "LPRegisterDeviceApi.h"
 #import "LPWSManager.h"
 #import "LPConstants.h"
 #import "LPApiConstants.h"
-#import "LPErrorHelper.h"
 #import "LPAPIConfig.h"
-#import "LPJSON.h"
+#import "LPErrorHelper.h"
 
-@implementation LPUserApi
+@implementation LPRegisterDeviceApi
 
-+ (void) setUserAttributes:(NSString *)userId withUserAttributes:(NSDictionary *)attributes
-                    success:(void (^)(void))success
-                    failure:(void (^)(NSError *error))failure {
++ (void) registerDevice:(NSDictionary *)attributes
+                success:(void (^)(void))success
+                failure:(void (^)(NSError *error))failure {
     
     void (^successResponse) (NSDictionary *) = ^(NSDictionary *response) {
         NSError *error = nil;
@@ -27,8 +27,7 @@
             failure(error);
         }
         else {
-            BOOL successBool = [[resultDict objectForKey:@"success"] boolValue];
-            if (successBool) {
+            if ([resultDict objectForKey:@"success"]) {
                 success();
             } else {
                 NSError *error = [LPErrorHelper makeResponseError:resultDict];
@@ -36,24 +35,23 @@
             }
         }
     };
-    
     void (^failureResponse) (NSError *) = ^(NSError *error ){
         failure(error);
     };
     
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-    params[LP_PARAM_USER_ID] = userId;
+    if (attributes != nil) {
+        if ([attributes objectForKey:LP_PARAM_EMAIL]) {
+            params[LP_PARAM_EMAIL] = attributes[LP_PARAM_EMAIL];
+        }
+    }
     params[LP_PARAM_DEVICE_ID] = [LPAPIConfig sharedConfig].deviceId;
     
-    if (attributes != nil) {
-        params[LP_PARAM_USER_ATTRIBUTES] =  [LPJSON stringFromJSON:attributes];
-    }
     LPWSManager *wsManager = [[LPWSManager alloc] init];
-    [wsManager sendPOSTWebService:LP_API_METHOD_SET_USER_ATTRIBUTES
+    [wsManager sendPOSTWebService:LP_API_METHOD_REGISTER_FOR_DEVELOPMENT
                        withParams:params
                      successBlock:successResponse
                      failureBlock:failureResponse];
 }
-
 
 @end

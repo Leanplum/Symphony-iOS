@@ -29,12 +29,11 @@
             if ([resultDict objectForKey:@"success"]) {
                 success();
             } else {
-                NSError *error = [LPErrorHelper makeResponseError:@{@"message": @"Invalid Input"}];
+                NSError *error = [LPErrorHelper makeResponseError:resultDict];
                 failure(error);
             }
         }
     };
-    
     void (^failureResponse) (NSError *) = ^(NSError *error ){
         failure(error);
     };
@@ -50,7 +49,6 @@
                        withParams:params
                      successBlock:successResponse
                      failureBlock:failureResponse];
-    
 }
 
 @end
