@@ -91,7 +91,7 @@
 }
 
 - (void)testDeviceApiStub {
-    [LPTestHelper setupStub:200 withFileName:@"simple_success_response.json"];
+    [LPTestHelper setupStub:200 withFileName:@"simple_post_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     [LPDeviceApi setDeviceAttributes:@"1" withDeviceAttributes:nil success:^ {
         [expectation fulfill];
@@ -106,7 +106,7 @@
 }
 
 - (void)testDeviceApiWithDeviceAttributesStub {
-    [LPTestHelper setupStub:200 withFileName:@"simple_success_response.json"];
+    [LPTestHelper setupStub:200 withFileName:@"simple_post_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     NSDictionary *deviceAttributes = @{@"OS" : @"iOS"};
     [LPDeviceApi setDeviceAttributes:DEVICE_ID withDeviceAttributes:deviceAttributes success:^ {
@@ -122,7 +122,7 @@
 }
 
 - (void)testDeviceApiHttpErrorStub {
-    [LPTestHelper setupStub:400 withFileName:@"simple_error_response.json"];
+    [LPTestHelper setupStub:400 withFileName:@"simple_post_error_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     [LPDeviceApi setDeviceAttributes:@"1" withDeviceAttributes:nil success:^ {
     } failure:^(NSError *error) {
@@ -143,7 +143,7 @@
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     [LPDeviceApi setDeviceAttributes:@"1" withDeviceAttributes:nil success:^ {
     } failure:^(NSError *error) {
-        NSString *expectedMessage = @"Invalid Input";
+        NSString *expectedMessage = @"Unknown error, please contact Leanplum.";
         XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);
         [expectation fulfill];
     }];

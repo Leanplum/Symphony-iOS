@@ -163,7 +163,7 @@
                                               // make custom error
                                               NSArray *responseArray = [responseDictionary valueForKey:@"response"];
                                               NSDictionary *resultDict = responseArray[0];
-                                              NSError *responseError = [LPErrorHelper makeHttpError:httpResponse.statusCode  withDict:resultDict];
+                                              NSError *responseError = [LPErrorHelper makeHttpError:httpResponse.statusCode  withResponseDict:resultDict];
                                               failure(responseError);
                                           }
                                       }
