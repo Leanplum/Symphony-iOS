@@ -9,6 +9,10 @@
 #import <XCTest/XCTest.h>
 #import <OCMock/OCMock.h>
 #import <OHHTTPStubs/OHHTTPStubs.h>
+#import "LPAPIConfig.h"
+#import "LPTestHelper.h"
+#import "Leanplum.h"
+
 
 @interface LeanplumTests : XCTestCase
 
@@ -17,23 +21,65 @@
 @implementation LeanplumTests
 
 - (void)setUp {
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    [super setUp];
+    [LPTestHelper setup];
 }
 
 - (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
+    [super tearDown];
+    [OHHTTPStubs removeAllStubs];
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
-}
-
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
+/**
+ * Tests whether setting user attributes and id works correctly.
+ */
+- (void) test_user_attributes
+{
+    [LPTestHelper setupStub:200 withFileName:@"simple_success_response.json"];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    
+    NSString *userId = @"john.smith";
+    NSDictionary *userAttributes = @{@"name": @"John Smith",
+                                     @"age": @42,
+                                     @"address": @"New York"
+                                     };
+    
+    // Try to set user id and attributes.
+    [Leanplum setUserId:userId withUserAttributes:userAttributes withSuccess:^{
+        [expectation fulfill];
+    } withFailure:^(NSError *error) {
+    }];
+    
+    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
     }];
 }
 
+/**
+ * Tests whether setting user attributes and id works correctly with API Call
+ */
+- (void) test_user_attributes_api_call
+{
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    
+    NSString *userId = @"john.smith";
+    NSDictionary *userAttributes = @{@"name": @"John Smith",
+                                     @"age": @42,
+                                     @"address": @"New York"
+                                     };
+    
+    // Try to set user id and attributes.
+    [Leanplum setUserId:userId withUserAttributes:userAttributes withSuccess:^{
+        [expectation fulfill];
+    } withFailure:^(NSError *error) {
+    }];
+    
+    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+    }];
+}
 @end

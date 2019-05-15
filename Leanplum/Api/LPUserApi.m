@@ -37,7 +37,7 @@
         }
     };
     
-    void (^failureResponse) (NSError *) = ^(NSError *error ){
+    void (^failureResponse) (NSError *) = ^(NSError *error ) {
         failure(error);
     };
     
