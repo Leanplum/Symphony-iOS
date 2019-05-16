@@ -33,9 +33,9 @@
 /**
  * Tests whether setting user attributes and id works correctly.
  */
-- (void) test_user_attributes
+- (void) testUserAttributes
 {
-    [LPTestHelper setupStub:200 withFileName:@"simple_success_response.json"];
+    [LPTestHelper setupStub:200 withFileName:@"simple_post_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     
     NSString *userId = @"john.smith";
@@ -58,9 +58,35 @@
 }
 
 /**
+ * Tests whether setting user attributes and id works error correctly.
+ */
+- (void) testUserAttributesError
+{
+    [LPTestHelper setupStub:400 withFileName:@"simple_error_success_response.json"];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    
+    NSDictionary *userAttributes = @{@"name": @"John Smith",
+                                     @"age": @42,
+                                     @"address": @"New York"
+                                     };
+    
+    // Try to set user id and attributes.
+    [Leanplum setUserId:nil withUserAttributes:userAttributes withSuccess:^{
+    } withFailure:^(NSError *error) {
+        [expectation fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+    }];
+}
+
+/**
  * Tests whether setting user attributes and id works correctly with API Call
  */
-- (void) test_user_attributes_api_call
+- (void) testUserAttributesApiCall
 {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     
