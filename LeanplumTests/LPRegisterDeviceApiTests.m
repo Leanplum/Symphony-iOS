@@ -1,23 +1,24 @@
 //
-//  LPDeviceApiTests.m
+//  LPRegisterDeviceApiTests.m
 //  LeanplumTests
 //
-//  Created by Grace on 5/10/19.
+//  Created by Grace on 5/14/19.
 //  Copyright © 2019 Leanplum. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>
 #import <OHHTTPStubs/OHHTTPStubs.h>
 #import <OHHTTPStubs/OHPathHelpers.h>
-#import "LPDeviceApi.h"
+#import "LPRegisterDeviceApi.h"
 #import "LPAPIConfig.h"
+#import "LPConstants.h"
 #import "LPTestHelper.h"
 
-@interface LPDeviceApiTests : XCTestCase
+@interface LPRegisterDeviceApiTests : XCTestCase
 
 @end
 
-@implementation LPDeviceApiTests
+@implementation LPRegisterDeviceApiTests
 
 - (void)setUp {
     [super setUp];
@@ -29,9 +30,9 @@
     [OHHTTPStubs removeAllStubs];
 }
 
-- (void)testDeviceApi {
+- (void)testRegisterDeviceApi {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPDeviceApi setDeviceAttributes:DEVICE_ID withDeviceAttributes:nil success:^ {
+    [LPRegisterDeviceApi registerDevice:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -43,14 +44,14 @@
     }];
 }
 
-- (void)testDeviceApiWithDeviceAttributes {
+- (void)testRegisterDeviceApiWithAttributes {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    NSDictionary *deviceAttributes = @{@"OS" : @"iOS"};
-    [LPDeviceApi setDeviceAttributes:DEVICE_ID withDeviceAttributes:deviceAttributes success:^ {
+    NSDictionary *attributes = @{ LP_PARAM_EMAIL: @"test@leanplum.com" };
+    [LPRegisterDeviceApi registerDevice:attributes success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
-    
+
     [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);
@@ -58,15 +59,15 @@
     }];
 }
 
-- (void)testDeviceApiWithHttpError {
+- (void)testRegisterDeviceApiWithHttpError {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     // change device id to empty string
     [LPTestHelper setup:APPLICATION_ID withAccessKey:DEVELOPMENT_KEY withDeviceId:@""];
-    [LPDeviceApi setDeviceAttributes:nil withDeviceAttributes:nil success:^ {
+    [LPRegisterDeviceApi registerDevice:nil success:^ {
     } failure:^(NSError *error) {
         [expectation fulfill];
     }];
-    
+
     [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);
@@ -74,14 +75,14 @@
     }];
 }
 
-- (void)testDeviceApiWithIosError {
+- (void)testRegisterDeviceApiWithIosError {
     [LPTestHelper runWithApiHost:@"blah.leanplum.com" withBlock:^(void) {
         XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-        [LPDeviceApi setDeviceAttributes:@"1" withDeviceAttributes:nil success:^ {
+        [LPRegisterDeviceApi registerDevice:nil success:^ {
         } failure:^(NSError *error) {
             [expectation fulfill];
         }];
-        
+
         [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
             if (error) {
                 NSLog(@"Error: %@", error);
@@ -90,14 +91,14 @@
     }];
 }
 
-- (void)testDeviceApiStub {
+- (void)testRegisterDeviceApiStub {
     [LPTestHelper setupStub:200 withFileName:@"simple_post_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPDeviceApi setDeviceAttributes:@"1" withDeviceAttributes:nil success:^ {
+    [LPRegisterDeviceApi registerDevice:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
-    
+
     [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);
@@ -105,15 +106,15 @@
     }];
 }
 
-- (void)testDeviceApiWithDeviceAttributesStub {
+- (void)testRegisterDeviceApiWithAttributesStub {
     [LPTestHelper setupStub:200 withFileName:@"simple_post_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    NSDictionary *deviceAttributes = @{@"OS" : @"iOS"};
-    [LPDeviceApi setDeviceAttributes:DEVICE_ID withDeviceAttributes:deviceAttributes success:^ {
+    NSDictionary *attributes = @{ LP_PARAM_EMAIL: @"test@leanplum.com" };
+    [LPRegisterDeviceApi registerDevice:attributes success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
-    
+
     [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);
@@ -121,16 +122,16 @@
     }];
 }
 
-- (void)testDeviceApiHttpErrorStub {
+- (void)testRegisterDeviceApiHttpErrorStub {
     [LPTestHelper setupStub:400 withFileName:@"simple_post_error_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPDeviceApi setDeviceAttributes:@"1" withDeviceAttributes:nil success:^ {
+    [LPRegisterDeviceApi registerDevice:nil success:^ {
     } failure:^(NSError *error) {
         NSString *expectedMessage = @"This is a test error message";
         XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);
         [expectation fulfill];
     }];
-    
+
     [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);
@@ -138,16 +139,16 @@
     }];
 }
 
-- (void)testDeviceApiMalformedResponseStub {
+- (void)testRegisterDeviceApiMalformedResponseStub {
     [LPTestHelper setupStub:200 withFileName:@"malformed_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPDeviceApi setDeviceAttributes:@"1" withDeviceAttributes:nil success:^ {
+    [LPRegisterDeviceApi registerDevice:nil success:^ {
     } failure:^(NSError *error) {
         NSString *expectedMessage = @"Unknown error, please contact Leanplum.";
         XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);
         [expectation fulfill];
     }];
-    
+
     [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);
