@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface LPResumeSessionApi : NSObject
+
++ (void) resumeSession:(NSDictionary *)attributes
+               success:(void (^)(void))success
+               failure:(void (^)(NSError *error))failure;
 
 @end
 
-NS_ASSUME_NONNULL_END

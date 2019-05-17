@@ -49,6 +49,7 @@
 		65C5BDF5228F6937003EE334 /* LPPauseSessionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C5BDF4228F6937003EE334 /* LPPauseSessionTest.m */; };
 		65C5BDF8228F6978003EE334 /* LPResumeSessionApi.h in Headers */ = {isa = PBXBuildFile; fileRef = 65C5BDF6228F6978003EE334 /* LPResumeSessionApi.h */; };
 		65C5BDF9228F6978003EE334 /* LPResumeSessionApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C5BDF7228F6978003EE334 /* LPResumeSessionApi.m */; };
+		65C5BDFB228F69CD003EE334 /* LPResumeSessionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C5BDFA228F69CD003EE334 /* LPResumeSessionTest.m */; };
 		65D4AB44224C2EA1009BA5F3 /* LPTentacledAcceptButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D4AB42224C2EA1009BA5F3 /* LPTentacledAcceptButton.h */; };
 		65D4AB45224C2EA1009BA5F3 /* LPTentacledAcceptButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D4AB43224C2EA1009BA5F3 /* LPTentacledAcceptButton.m */; };
 		65D4AB4C224D6E15009BA5F3 /* LPFlufflyAcceptButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D4AB4A224D6E15009BA5F3 /* LPFlufflyAcceptButton.h */; };
@@ -286,6 +287,7 @@
 		65C5BDF4228F6937003EE334 /* LPPauseSessionTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPPauseSessionTest.m; sourceTree = "<group>"; };
 		65C5BDF6228F6978003EE334 /* LPResumeSessionApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPResumeSessionApi.h; sourceTree = "<group>"; };
 		65C5BDF7228F6978003EE334 /* LPResumeSessionApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPResumeSessionApi.m; sourceTree = "<group>"; };
+		65C5BDFA228F69CD003EE334 /* LPResumeSessionTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPResumeSessionTest.m; sourceTree = "<group>"; };
 		65D4AB42224C2EA1009BA5F3 /* LPTentacledAcceptButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPTentacledAcceptButton.h; sourceTree = "<group>"; };
 		65D4AB43224C2EA1009BA5F3 /* LPTentacledAcceptButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPTentacledAcceptButton.m; sourceTree = "<group>"; };
 		65D4AB4A224D6E15009BA5F3 /* LPFlufflyAcceptButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPFlufflyAcceptButton.h; sourceTree = "<group>"; };
@@ -588,6 +590,7 @@
 				65C5BDD0228E2B78003EE334 /* LPPauseStateTest.m */,
 				65C5BDD6228F5270003EE334 /* LPResumeStateTest.m */,
 				65C5BDF4228F6937003EE334 /* LPPauseSessionTest.m */,
+				65C5BDFA228F69CD003EE334 /* LPResumeSessionTest.m */,
 			);
 			path = LeanplumTests;
 			sourceTree = "<group>";
@@ -1200,6 +1203,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B430A292224C23EC00DC8140 /* LPFluffyAcceptAction.m in Sources */,
+				65C5BDFB228F69CD003EE334 /* LPResumeSessionTest.m in Sources */,
 				B430A283224C239600DC8140 /* LPConfirm.m in Sources */,
 				B430A256224C226900DC8140 /* LPValuesDismissAction.m in Sources */,
 				B430A29C224C242900DC8140 /* LPInterstitial.m in Sources */,
