@@ -7,6 +7,12 @@
 //
 
 #import <XCTest/XCTest.h>
+#import <OHHTTPStubs/OHHTTPStubs.h>
+#import <OHHTTPStubs/OHPathHelpers.h>
+#import "LPPauseSessionApi.h"
+#import "LPAPIConfig.h"
+#import "LPConstants.h"
+#import "LPTestHelper.h"
 
 @interface LPPauseSessionTest : XCTestCase
 
@@ -15,22 +21,142 @@
 @implementation LPPauseSessionTest
 
 - (void)setUp {
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    [super setUp];
+    [LPTestHelper setup];
 }
 
 - (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
+    [super tearDown];
+    [OHHTTPStubs removeAllStubs];
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
+- (void)testPauseSessionApi {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    [LPPauseSessionApi pauseSession:nil success:^ {
+        [expectation fulfill];
+    } failure:^(NSError *error) {
+    }];
+    
+    [self waitForExpectationsWithTimeout:30.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+    }];
 }
 
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
+- (void)testPauseSessionApiWithAttributes {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    NSDictionary *attributes = @{ @"testKey": @"testValue" };
+    [LPPauseSessionApi pauseSession:attributes success:^ {
+        [expectation fulfill];
+    } failure:^(NSError *error) {
+    }];
+    
+    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+    }];
+}
+
+- (void)testPauseSessionApiWithHttpError {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    // change device id to empty string
+    [LPTestHelper setup:APPLICATION_ID withAccessKey:DEVELOPMENT_KEY withDeviceId:@""];
+    [LPPauseSessionApi pauseSession:nil success:^ {
+    } failure:^(NSError *error) {
+        NSString *expected = @"At least one of deviceId or userId is required.";
+        XCTAssertEqualObjects([error userInfo][NSLocalizedDescriptionKey], expected);
+        [expectation fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+    }];
+}
+
+- (void)testPauseSessionApiWithIosError {
+    [LPTestHelper runWithApiHost:@"blah.leanplum.com" withBlock:^(void) {
+        XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+        [LPPauseSessionApi pauseSession:nil success:^ {
+        } failure:^(NSError *error) {
+            NSString *expected = @"A server with the specified hostname could not be found.";
+            XCTAssertEqualObjects([error userInfo][NSLocalizedDescriptionKey], expected);
+            [expectation fulfill];
+        }];
+        
+        [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+            if (error) {
+                NSLog(@"Error: %@", error);
+            }
+        }];
+    }];
+}
+
+- (void)testPauseSessionApiStub {
+    [LPTestHelper setupStub:200 withFileName:@"simple_post_success_response.json"];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    [LPPauseSessionApi pauseSession:nil success:^ {
+        [expectation fulfill];
+    } failure:^(NSError *error) {
+    }];
+    
+    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+    }];
+}
+
+- (void)testPauseSessionApiWithAttributesStub {
+    [LPTestHelper setupStub:200 withFileName:@"simple_post_success_response.json"];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    NSDictionary *attributes = @{@"testKey": @"testValue" };
+    [LPPauseSessionApi pauseSession:attributes success:^ {
+        [expectation fulfill];
+    } failure:^(NSError *error) {
+    }];
+    
+    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+    }];
+}
+
+- (void)testPauseSessionApiHttpErrorStub {
+    [LPTestHelper setupStub:400 withFileName:@"simple_post_error_response.json"];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    [LPPauseSessionApi pauseSession:nil success:^ {
+    } failure:^(NSError *error) {
+        NSString *expectedMessage = @"This is a test error message";
+        XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);
+        [expectation fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+    }];
+}
+
+- (void)testPauseSessionApiMalformedResponseStub {
+    [LPTestHelper setupStub:200 withFileName:@"malformed_success_response.json"];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    [LPPauseSessionApi pauseSession:nil success:^ {
+    } failure:^(NSError *error) {
+        NSString *expectedMessage = @"Unknown error, please contact Leanplum.";
+        XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);
+        [expectation fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
     }];
 }
 

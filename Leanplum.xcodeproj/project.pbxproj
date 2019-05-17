@@ -47,6 +47,8 @@
 		65C5BDF2228F681B003EE334 /* LPPauseSessionApi.h in Headers */ = {isa = PBXBuildFile; fileRef = 65C5BDF0228F681B003EE334 /* LPPauseSessionApi.h */; };
 		65C5BDF3228F681B003EE334 /* LPPauseSessionApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C5BDF1228F681B003EE334 /* LPPauseSessionApi.m */; };
 		65C5BDF5228F6937003EE334 /* LPPauseSessionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C5BDF4228F6937003EE334 /* LPPauseSessionTest.m */; };
+		65C5BDF8228F6978003EE334 /* LPResumeSessionApi.h in Headers */ = {isa = PBXBuildFile; fileRef = 65C5BDF6228F6978003EE334 /* LPResumeSessionApi.h */; };
+		65C5BDF9228F6978003EE334 /* LPResumeSessionApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C5BDF7228F6978003EE334 /* LPResumeSessionApi.m */; };
 		65D4AB44224C2EA1009BA5F3 /* LPTentacledAcceptButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D4AB42224C2EA1009BA5F3 /* LPTentacledAcceptButton.h */; };
 		65D4AB45224C2EA1009BA5F3 /* LPTentacledAcceptButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D4AB43224C2EA1009BA5F3 /* LPTentacledAcceptButton.m */; };
 		65D4AB4C224D6E15009BA5F3 /* LPFlufflyAcceptButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D4AB4A224D6E15009BA5F3 /* LPFlufflyAcceptButton.h */; };
@@ -282,6 +284,8 @@
 		65C5BDF0228F681B003EE334 /* LPPauseSessionApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPPauseSessionApi.h; sourceTree = "<group>"; };
 		65C5BDF1228F681B003EE334 /* LPPauseSessionApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPPauseSessionApi.m; sourceTree = "<group>"; };
 		65C5BDF4228F6937003EE334 /* LPPauseSessionTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPPauseSessionTest.m; sourceTree = "<group>"; };
+		65C5BDF6228F6978003EE334 /* LPResumeSessionApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPResumeSessionApi.h; sourceTree = "<group>"; };
+		65C5BDF7228F6978003EE334 /* LPResumeSessionApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPResumeSessionApi.m; sourceTree = "<group>"; };
 		65D4AB42224C2EA1009BA5F3 /* LPTentacledAcceptButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPTentacledAcceptButton.h; sourceTree = "<group>"; };
 		65D4AB43224C2EA1009BA5F3 /* LPTentacledAcceptButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPTentacledAcceptButton.m; sourceTree = "<group>"; };
 		65D4AB4A224D6E15009BA5F3 /* LPFlufflyAcceptButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPFlufflyAcceptButton.h; sourceTree = "<group>"; };
@@ -766,6 +770,8 @@
 				65C5BDD3228F519F003EE334 /* LPResumeStateApi.m */,
 				65C5BDF0228F681B003EE334 /* LPPauseSessionApi.h */,
 				65C5BDF1228F681B003EE334 /* LPPauseSessionApi.m */,
+				65C5BDF6228F6978003EE334 /* LPResumeSessionApi.h */,
+				65C5BDF7228F6978003EE334 /* LPResumeSessionApi.m */,
 				B4FCB0FC22722AE1004F5D63 /* LPWSManager.h */,
 				B4FCB0FD22722AE1004F5D63 /* LPWSManager.m */,
 				B4591DCC227A4A260076F9E2 /* LPAPIConfig.h */,
@@ -875,6 +881,7 @@
 				65D4ABFC224D80B1009BA5F3 /* LPMagentaChild.h in Headers */,
 				65C5BDD4228F519F003EE334 /* LPResumeStateApi.h in Headers */,
 				65C5BDF2228F681B003EE334 /* LPPauseSessionApi.h in Headers */,
+				65C5BDF8228F6978003EE334 /* LPResumeSessionApi.h in Headers */,
 				B430A26D224C232300DC8140 /* LPPurpleAcceptButton.h in Headers */,
 				65D4AB74224D7345009BA5F3 /* LPFluffyCancelAction.h in Headers */,
 				65D4AB44224C2EA1009BA5F3 /* LPTentacledAcceptButton.h in Headers */,
@@ -1183,6 +1190,7 @@
 				B430A264224C22E900DC8140 /* LPCenterPopupValues.m in Sources */,
 				B4591DCB227A32D30076F9E2 /* LPApiConstants.m in Sources */,
 				B4FCB11322722F48004F5D63 /* LPDeviceApi.m in Sources */,
+				65C5BDF9228F6978003EE334 /* LPResumeSessionApi.m in Sources */,
 				65D4ABB1224D77BF009BA5F3 /* LPNone.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
