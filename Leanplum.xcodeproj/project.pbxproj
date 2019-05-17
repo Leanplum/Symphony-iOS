@@ -41,6 +41,9 @@
 		65C5BDCE228E1C08003EE334 /* LPPauseStateApi.h in Headers */ = {isa = PBXBuildFile; fileRef = 65C5BDCC228E1C08003EE334 /* LPPauseStateApi.h */; };
 		65C5BDCF228E1C08003EE334 /* LPPauseStateApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C5BDCD228E1C08003EE334 /* LPPauseStateApi.m */; };
 		65C5BDD1228E2B78003EE334 /* LPPauseStateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C5BDD0228E2B78003EE334 /* LPPauseStateTest.m */; };
+		65C5BDD4228F519F003EE334 /* LPResumeStateApi.h in Headers */ = {isa = PBXBuildFile; fileRef = 65C5BDD2228F519F003EE334 /* LPResumeStateApi.h */; };
+		65C5BDD5228F519F003EE334 /* LPResumeStateApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C5BDD3228F519F003EE334 /* LPResumeStateApi.m */; };
+		65C5BDD7228F5270003EE334 /* LPResumeStateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C5BDD6228F5270003EE334 /* LPResumeStateTest.m */; };
 		65D4AB44224C2EA1009BA5F3 /* LPTentacledAcceptButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D4AB42224C2EA1009BA5F3 /* LPTentacledAcceptButton.h */; };
 		65D4AB45224C2EA1009BA5F3 /* LPTentacledAcceptButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D4AB43224C2EA1009BA5F3 /* LPTentacledAcceptButton.m */; };
 		65D4AB4C224D6E15009BA5F3 /* LPFlufflyAcceptButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D4AB4A224D6E15009BA5F3 /* LPFlufflyAcceptButton.h */; };
@@ -270,6 +273,9 @@
 		65C5BDCC228E1C08003EE334 /* LPPauseStateApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPPauseStateApi.h; sourceTree = "<group>"; };
 		65C5BDCD228E1C08003EE334 /* LPPauseStateApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPPauseStateApi.m; sourceTree = "<group>"; };
 		65C5BDD0228E2B78003EE334 /* LPPauseStateTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPPauseStateTest.m; sourceTree = "<group>"; };
+		65C5BDD2228F519F003EE334 /* LPResumeStateApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPResumeStateApi.h; sourceTree = "<group>"; };
+		65C5BDD3228F519F003EE334 /* LPResumeStateApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPResumeStateApi.m; sourceTree = "<group>"; };
+		65C5BDD6228F5270003EE334 /* LPResumeStateTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPResumeStateTest.m; sourceTree = "<group>"; };
 		65D4AB42224C2EA1009BA5F3 /* LPTentacledAcceptButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPTentacledAcceptButton.h; sourceTree = "<group>"; };
 		65D4AB43224C2EA1009BA5F3 /* LPTentacledAcceptButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPTentacledAcceptButton.m; sourceTree = "<group>"; };
 		65D4AB4A224D6E15009BA5F3 /* LPFlufflyAcceptButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPFlufflyAcceptButton.h; sourceTree = "<group>"; };
@@ -570,6 +576,7 @@
 				65C5BDB822862568003EE334 /* LPDeviceApiTests.m */,
 				65C5BDC8228B6162003EE334 /* LPRegisterDeviceApiTests.m */,
 				65C5BDD0228E2B78003EE334 /* LPPauseStateTest.m */,
+				65C5BDD6228F5270003EE334 /* LPResumeStateTest.m */,
 			);
 			path = LeanplumTests;
 			sourceTree = "<group>";
@@ -748,6 +755,8 @@
 				65C5BDC5228B60FF003EE334 /* LPRegisterDeviceApi.m */,
 				65C5BDCC228E1C08003EE334 /* LPPauseStateApi.h */,
 				65C5BDCD228E1C08003EE334 /* LPPauseStateApi.m */,
+				65C5BDD2228F519F003EE334 /* LPResumeStateApi.h */,
+				65C5BDD3228F519F003EE334 /* LPResumeStateApi.m */,
 				B4FCB0FC22722AE1004F5D63 /* LPWSManager.h */,
 				B4FCB0FD22722AE1004F5D63 /* LPWSManager.m */,
 				B4591DCC227A4A260076F9E2 /* LPAPIConfig.h */,
@@ -855,6 +864,7 @@
 				6515E1E02270E14900C5A2F0 /* LPAlert.h in Headers */,
 				65D4AC08224D8123009BA5F3 /* LPBraggodociousChild.h in Headers */,
 				65D4ABFC224D80B1009BA5F3 /* LPMagentaChild.h in Headers */,
+				65C5BDD4228F519F003EE334 /* LPResumeStateApi.h in Headers */,
 				B430A26D224C232300DC8140 /* LPPurpleAcceptButton.h in Headers */,
 				65D4AB74224D7345009BA5F3 /* LPFluffyCancelAction.h in Headers */,
 				65D4AB44224C2EA1009BA5F3 /* LPTentacledAcceptButton.h in Headers */,
@@ -1104,6 +1114,7 @@
 				65D4ABF9224D8097009BA5F3 /* LPCunningChild.m in Sources */,
 				65D4AC0D224D825A009BA5F3 /* LPRegion.m in Sources */,
 				65D4AB75224D7345009BA5F3 /* LPFluffyCancelAction.m in Sources */,
+				65C5BDD5228F519F003EE334 /* LPResumeStateApi.m in Sources */,
 				65D4AB4D224D6E15009BA5F3 /* LPFlufflyAcceptButton.m in Sources */,
 				B430A269224C230700DC8140 /* LPPurpleAcceptAction.m in Sources */,
 				65D4AB6D224D72B2009BA5F3 /* LPPushAskToAskKinds.m in Sources */,
@@ -1187,6 +1198,7 @@
 				B430A23D224C212500DC8140 /* LPStartResponse.m in Sources */,
 				6515E1D72270DF2200C5A2F0 /* LPRegionTest.m in Sources */,
 				65C5BDD1228E2B78003EE334 /* LPPauseStateTest.m in Sources */,
+				65C5BDD7228F5270003EE334 /* LPResumeStateTest.m in Sources */,
 				A850466F224C0A7900BACA81 /* LeanplumTests.m in Sources */,
 				6515E1DD2270DFC600C5A2F0 /* LPStartResponseTest.m in Sources */,
 				6515E1DB2270DF7F00C5A2F0 /* LPMessageTest.m in Sources */,
