@@ -46,7 +46,6 @@
         }
     }
     params[LP_PARAM_DEVICE_ID] = [LPAPIConfig sharedConfig].deviceId;
-    
     LPWSManager *wsManager = [[LPWSManager alloc] init];
     [wsManager sendPOSTWebService:LP_API_METHOD_REGISTER_FOR_DEVELOPMENT
                        withParams:params
