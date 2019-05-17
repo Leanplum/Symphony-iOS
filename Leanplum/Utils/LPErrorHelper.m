@@ -17,6 +17,9 @@
     if (responseDict && responseDict[@"message"]) {
         message = responseDict[@"message"];
     }
+    if (responseDict && responseDict[@"error"] && responseDict[@"error"][@"message"]) {
+        message = responseDict[@"error"][@"message"];
+    }
     [userInfo setValue:message forKey:NSLocalizedDescriptionKey];
     return userInfo;
 }
