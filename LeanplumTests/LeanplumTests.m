@@ -35,9 +35,8 @@
  */
 - (void) testUserAttributes
 {
-    [LPTestHelper setupStub:200 withFileName:@"simple_post_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    
+    [LPTestHelper setup:APPLICATION_ID withAccessKey:DEVELOPMENT_KEY withDeviceId:@""];
     NSString *userId = @"john.smith";
     NSDictionary *userAttributes = @{@"name": @"John Smith",
                                      @"age": @42,
@@ -50,7 +49,7 @@
     } withFailure:^(NSError *error) {
     }];
     
-    [self waitForExpectationsWithTimeout:30.0 handler:^(NSError *error) {
+    [self waitForExpectationsWithTimeout:40.0 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);
         }
@@ -76,7 +75,7 @@
         [expectation fulfill];
     }];
     
-    [self waitForExpectationsWithTimeout:30.0 handler:^(NSError *error) {
+    [self waitForExpectationsWithTimeout:40.0 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);
         }
@@ -89,7 +88,7 @@
 - (void) testUserAttributesApiCall
 {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    
+    [LPTestHelper setup:APPLICATION_ID withAccessKey:DEVELOPMENT_KEY withDeviceId:@""];
     NSString *userId = @"john.smith";
     NSDictionary *userAttributes = @{@"name": @"John Smith",
                                      @"age": @42,
@@ -102,7 +101,7 @@
     } withFailure:^(NSError *error) {
     }];
     
-    [self waitForExpectationsWithTimeout:30.0 handler:^(NSError *error) {
+    [self waitForExpectationsWithTimeout:40.0 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);
         }
