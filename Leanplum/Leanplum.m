@@ -34,6 +34,35 @@
     [LPApiConstants sharedState].apiSSL = ssl;
 }
 
++ (void)setNetworkTimeoutSeconds:(int)seconds
+{
+    if (seconds < 0) {
+        [self throwError:@"[Leanplum setNetworkTimeoutSeconds:] Invalid seconds parameter "
+         @"provided."];
+        return;
+    }
+    
+    [LPApiConstants sharedState].networkTimeoutSeconds = seconds;
+    [LPApiConstants sharedState].networkTimeoutSecondsForDownloads = seconds;
+}
+
++ (void)setNetworkTimeoutSeconds:(int)seconds forDownloads:(int)downloadSeconds
+{
+    if (seconds < 0) {
+        [self throwError:@"[Leanplum setNetworkTimeoutSeconds:forDownloads:] Invalid seconds "
+         @"parameter provided."];
+        return;
+    }
+    if (downloadSeconds < 0) {
+        [self throwError:@"[Leanplum setNetworkTimeoutSeconds:forDownloads:] Invalid "
+         @"downloadSeconds parameter provided."];
+        return;
+    }
+    
+    [LPApiConstants sharedState].networkTimeoutSeconds = seconds;
+    [LPApiConstants sharedState].networkTimeoutSecondsForDownloads = downloadSeconds;
+}
+
 + (void)setUserAttributes:(NSDictionary *)attributes
               withSuccess:(void (^)(void))success
               withFailure:(void (^)(NSError *error))failure

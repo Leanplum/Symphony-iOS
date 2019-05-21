@@ -18,6 +18,7 @@ NSString *PRODUCTION_KEY = @"prod_XYpURdwPAaxJyYLclXNfACe9Y8hs084dBx2pB8wOnqU";
 NSString *DEVICE_ID = @"FCF96D6D-FE1C-4FC6-89D4-F862A5FFECE4";
 
 NSString *API_HOST = @"api.leanplum.com";
+NSString *API= @"api";
 
 NSInteger DISPATCH_WAIT_TIME = 4;
 
@@ -28,6 +29,8 @@ NSInteger DISPATCH_WAIT_TIME = 4;
     LPAPIConfig *lpApiConfig = [LPAPIConfig sharedConfig];
     [lpApiConfig setAppId:APPLICATION_ID withAccessKey:DEVELOPMENT_KEY];
     [LPAPIConfig sharedConfig].deviceId = DEVICE_ID;
+    [LPApiConstants sharedState].apiHostName = API_HOST;
+    [LPApiConstants sharedState].apiServlet = API;
 }
 
 + (void)setup:(NSString *)applicationId withAccessKey:(NSString *)accessKey withDeviceId:(NSString *)deviceId {
