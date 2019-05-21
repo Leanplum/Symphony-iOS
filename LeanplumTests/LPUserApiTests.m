@@ -127,7 +127,7 @@
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     [LPUserApi setUserAttributes:@"1" withUserAttributes:nil success:^ {
     } failure:^(NSError *error) {
-        NSString *expectedMessage = @"Unknown error, please contact Leanplum.";
+        NSString *expectedMessage = @"This is a test error message";
         XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);
         [expectation fulfill];
     }];
