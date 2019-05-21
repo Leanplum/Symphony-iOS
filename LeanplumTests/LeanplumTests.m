@@ -33,7 +33,7 @@
 /**
  * Tests whether setting user attributes and id works correctly.
  */
-- (void) testUserAttributes
+- (void) testUserId
 {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     NSString *userId = @"john.smith";
@@ -43,7 +43,7 @@
                                      };
     
     // Try to set user id and attributes.
-    [Leanplum setUserId:DEVICE_ID withUserAttributes:userAttributes withSuccess:^{
+    [Leanplum setUserId:DEVICE_ID withUserAttributes:nil withSuccess:^{
         [expectation fulfill];
     } withFailure:^(NSError *error) {
     }];
@@ -87,7 +87,6 @@
 - (void) testUserAttributesApiCall
 {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPTestHelper setup:APPLICATION_ID withAccessKey:DEVELOPMENT_KEY withDeviceId:@""];
     NSString *userId = @"john.smith";
     NSDictionary *userAttributes = @{@"name": @"John Smith",
                                      @"age": @42,
