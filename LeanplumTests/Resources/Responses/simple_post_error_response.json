@@ -2,7 +2,9 @@
     "response": [
         {
             "success": false,
-            "message": "This is a test error message"
+            "error": {
+                 "message": "This is a test error message"
+            }
         }
     ]
 }

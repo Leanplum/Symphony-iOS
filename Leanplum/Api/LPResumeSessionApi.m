@@ -1,22 +1,23 @@
 //
-//  LPDeviceApi.m
+//  LPResumeSessionApi.m
 //  Leanplum
 //
-//  Created by Hrishikesh Amravatkar on 4/25/19.
+//  Created by Grace on 5/17/19.
 //  Copyright © 2019 Leanplum. All rights reserved.
 //
 
-#import "LPDeviceApi.h"
+#import "LPResumeSessionApi.h"
 #import "LPWSManager.h"
 #import "LPConstants.h"
 #import "LPApiConstants.h"
+#import "LPAPIConfig.h"
 #import "LPErrorHelper.h"
 
-@implementation LPDeviceApi
+@implementation LPResumeSessionApi
 
-+ (void) setDeviceAttributes:(NSString *)deviceId withDeviceAttributes:(NSDictionary *)attributes
-                     success:(void (^)(void))success
-                     failure:(void (^)(NSError *error))failure {
++ (void) resumeSession:(NSDictionary *)attributes
+               success:(void (^)(void))success
+               failure:(void (^)(NSError *error))failure {
     
     void (^successResponse) (NSDictionary *) = ^(NSDictionary *response) {
         NSError *error = nil;
@@ -42,9 +43,9 @@
     if (attributes != nil) {
         params = [attributes mutableCopy];
     }
-    params[LP_PARAM_DEVICE_ID] = deviceId;
+    params[LP_PARAM_DEVICE_ID] = [LPAPIConfig sharedConfig].deviceId;
     LPWSManager *wsManager = [[LPWSManager alloc] init];
-    [wsManager sendPOSTWebService:LP_API_METHOD_SET_DEVICE_ATTRIBUTES
+    [wsManager sendPOSTWebService:LP_API_METHOD_RESUME_SESSION
                        withParams:params
                      successBlock:successResponse
                      failureBlock:failureResponse];

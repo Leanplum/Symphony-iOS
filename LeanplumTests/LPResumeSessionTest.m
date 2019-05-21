@@ -1,23 +1,24 @@
 //
-//  LPDeviceApiTests.m
+//  LPResumeSessionTest.m
 //  LeanplumTests
 //
-//  Created by Grace on 5/10/19.
+//  Created by Grace on 5/17/19.
 //  Copyright © 2019 Leanplum. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>
 #import <OHHTTPStubs/OHHTTPStubs.h>
 #import <OHHTTPStubs/OHPathHelpers.h>
-#import "LPDeviceApi.h"
+#import "LPResumeSessionApi.h"
 #import "LPAPIConfig.h"
+#import "LPConstants.h"
 #import "LPTestHelper.h"
 
-@interface LPDeviceApiTests : XCTestCase
+@interface LPResumeSessionTest : XCTestCase
 
 @end
 
-@implementation LPDeviceApiTests
+@implementation LPResumeSessionTest
 
 - (void)setUp {
     [super setUp];
@@ -29,9 +30,9 @@
     [OHHTTPStubs removeAllStubs];
 }
 
-- (void)testDeviceApi {
+- (void)testResumeSessionApi {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPDeviceApi setDeviceAttributes:DEVICE_ID withDeviceAttributes:nil success:^ {
+    [LPResumeSessionApi resumeSession:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -43,10 +44,10 @@
     }];
 }
 
-- (void)testDeviceApiWithDeviceAttributes {
+- (void)testResumeSessionApiWithAttributes {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    NSDictionary *deviceAttributes = @{@"OS" : @"iOS"};
-    [LPDeviceApi setDeviceAttributes:DEVICE_ID withDeviceAttributes:deviceAttributes success:^ {
+    NSDictionary *attributes = @{ @"testKey": @"testValue" };
+    [LPResumeSessionApi resumeSession:attributes success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -58,11 +59,11 @@
     }];
 }
 
-- (void)testDeviceApiWithHttpError {
+- (void)testResumeSessionApiWithHttpError {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     // change device id to empty string
     [LPTestHelper setup:APPLICATION_ID withAccessKey:DEVELOPMENT_KEY withDeviceId:@""];
-    [LPDeviceApi setDeviceAttributes:nil withDeviceAttributes:nil success:^ {
+    [LPResumeSessionApi resumeSession:nil success:^ {
     } failure:^(NSError *error) {
         NSString *expected = @"At least one of deviceId or userId is required.";
         XCTAssertEqualObjects([error userInfo][NSLocalizedDescriptionKey], expected);
@@ -76,10 +77,10 @@
     }];
 }
 
-- (void)testDeviceApiWithIosError {
+- (void)testResumeSessionApiWithIosError {
     [LPTestHelper runWithApiHost:@"blah.leanplum.com" withBlock:^(void) {
         XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-        [LPDeviceApi setDeviceAttributes:@"1" withDeviceAttributes:nil success:^ {
+        [LPResumeSessionApi resumeSession:nil success:^ {
         } failure:^(NSError *error) {
             NSString *expected = @"A server with the specified hostname could not be found.";
             XCTAssertEqualObjects([error userInfo][NSLocalizedDescriptionKey], expected);
@@ -94,10 +95,10 @@
     }];
 }
 
-- (void)testDeviceApiStub {
+- (void)testResumeSessionApiStub {
     [LPTestHelper setupStub:200 withFileName:@"simple_post_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPDeviceApi setDeviceAttributes:@"1" withDeviceAttributes:nil success:^ {
+    [LPResumeSessionApi resumeSession:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -109,11 +110,11 @@
     }];
 }
 
-- (void)testDeviceApiWithDeviceAttributesStub {
+- (void)testResumeSessionApiWithAttributesStub {
     [LPTestHelper setupStub:200 withFileName:@"simple_post_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    NSDictionary *deviceAttributes = @{@"OS" : @"iOS"};
-    [LPDeviceApi setDeviceAttributes:DEVICE_ID withDeviceAttributes:deviceAttributes success:^ {
+    NSDictionary *attributes = @{@"testKey": @"testValue" };
+    [LPResumeSessionApi resumeSession:attributes success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -125,10 +126,10 @@
     }];
 }
 
-- (void)testDeviceApiHttpErrorStub {
+- (void)testResumeSessionApiHttpErrorStub {
     [LPTestHelper setupStub:400 withFileName:@"simple_post_error_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPDeviceApi setDeviceAttributes:@"1" withDeviceAttributes:nil success:^ {
+    [LPResumeSessionApi resumeSession:nil success:^ {
     } failure:^(NSError *error) {
         NSString *expectedMessage = @"This is a test error message";
         XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);
@@ -142,10 +143,10 @@
     }];
 }
 
-- (void)testDeviceApiMalformedResponseStub {
+- (void)testResumeSessionApiMalformedResponseStub {
     [LPTestHelper setupStub:200 withFileName:@"malformed_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPDeviceApi setDeviceAttributes:@"1" withDeviceAttributes:nil success:^ {
+    [LPResumeSessionApi resumeSession:nil success:^ {
     } failure:^(NSError *error) {
         NSString *expectedMessage = @"Unknown error, please contact Leanplum.";
         XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);

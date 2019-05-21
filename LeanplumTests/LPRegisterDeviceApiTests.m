@@ -65,6 +65,8 @@
     [LPTestHelper setup:APPLICATION_ID withAccessKey:DEVELOPMENT_KEY withDeviceId:@""];
     [LPRegisterDeviceApi registerDevice:nil success:^ {
     } failure:^(NSError *error) {
+        NSString *expected = @"At least one of deviceId or userId is required.";
+        XCTAssertEqualObjects([error userInfo][NSLocalizedDescriptionKey], expected);
         [expectation fulfill];
     }];
 
@@ -80,6 +82,8 @@
         XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
         [LPRegisterDeviceApi registerDevice:nil success:^ {
         } failure:^(NSError *error) {
+            NSString *expected = @"A server with the specified hostname could not be found.";
+            XCTAssertEqualObjects([error userInfo][NSLocalizedDescriptionKey], expected);
             [expectation fulfill];
         }];
 
