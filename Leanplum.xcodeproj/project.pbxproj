@@ -156,6 +156,9 @@
 		A8504671224C0A7900BACA81 /* Leanplum.h in Headers */ = {isa = PBXBuildFile; fileRef = A8504663224C0A7900BACA81 /* Leanplum.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A868DBCE2254161C00E8C4D4 /* LPMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = A868DBCC2254161C00E8C4D4 /* LPMessage.h */; };
 		A868DBCF2254161C00E8C4D4 /* LPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = A868DBCD2254161C00E8C4D4 /* LPMessage.m */; };
+		A8EF578C2293BBE90046473C /* LPTrackApi.m in Sources */ = {isa = PBXBuildFile; fileRef = A8EF578A2293BBE80046473C /* LPTrackApi.m */; };
+		A8EF578D2293BBE90046473C /* LPTrackApi.h in Headers */ = {isa = PBXBuildFile; fileRef = A8EF578B2293BBE80046473C /* LPTrackApi.h */; };
+		A8EF578F2293BDC00046473C /* LPTrackTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A8EF578E2293BDBF0046473C /* LPTrackTest.m */; };
 		B41E7896227FB08500D2AE63 /* LPJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = B41E7894227FB08500D2AE63 /* LPJSON.h */; };
 		B41E7897227FB08500D2AE63 /* LPJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = B41E7895227FB08500D2AE63 /* LPJSON.m */; };
 		B430A23B224C212500DC8140 /* LPStartResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = B430A239224C212500DC8140 /* LPStartResponse.h */; };
@@ -399,6 +402,9 @@
 		A8504670224C0A7900BACA81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A868DBCC2254161C00E8C4D4 /* LPMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPMessage.h; sourceTree = "<group>"; };
 		A868DBCD2254161C00E8C4D4 /* LPMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPMessage.m; sourceTree = "<group>"; };
+		A8EF578A2293BBE80046473C /* LPTrackApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPTrackApi.m; sourceTree = "<group>"; };
+		A8EF578B2293BBE80046473C /* LPTrackApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPTrackApi.h; sourceTree = "<group>"; };
+		A8EF578E2293BDBF0046473C /* LPTrackTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPTrackTest.m; sourceTree = "<group>"; };
 		AADF373E239F11398512D5B6 /* Pods-SymphonyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SymphonyTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SymphonyTests/Pods-SymphonyTests.release.xcconfig"; sourceTree = "<group>"; };
 		B3CDAF5B231D5B4ED4D64D2F /* Pods-Leanplum.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Leanplum.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Leanplum/Pods-Leanplum.debug.xcconfig"; sourceTree = "<group>"; };
 		B41E7894227FB08500D2AE63 /* LPJSON.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPJSON.h; sourceTree = "<group>"; };
@@ -590,6 +596,7 @@
 				65C5BDD0228E2B78003EE334 /* LPPauseStateTest.m */,
 				65C5BDD6228F5270003EE334 /* LPResumeStateTest.m */,
 				65C5BDF4228F6937003EE334 /* LPPauseSessionTest.m */,
+				A8EF578E2293BDBF0046473C /* LPTrackTest.m */,
 				65C5BDFA228F69CD003EE334 /* LPResumeSessionTest.m */,
 			);
 			path = LeanplumTests;
@@ -775,6 +782,8 @@
 				65C5BDF1228F681B003EE334 /* LPPauseSessionApi.m */,
 				65C5BDF6228F6978003EE334 /* LPResumeSessionApi.h */,
 				65C5BDF7228F6978003EE334 /* LPResumeSessionApi.m */,
+				A8EF578B2293BBE80046473C /* LPTrackApi.h */,
+				A8EF578A2293BBE80046473C /* LPTrackApi.m */,
 				B4FCB0FC22722AE1004F5D63 /* LPWSManager.h */,
 				B4FCB0FD22722AE1004F5D63 /* LPWSManager.m */,
 				B4591DCC227A4A260076F9E2 /* LPAPIConfig.h */,
@@ -851,6 +860,7 @@
 				65D4AB64224D7250009BA5F3 /* LPOpenURLValues.h in Headers */,
 				B430A29F224C244400DC8140 /* LPInterstitialKinds.h in Headers */,
 				B4591DD2227BA2B80076F9E2 /* LPUserApi.h in Headers */,
+				A8EF578D2293BBE90046473C /* LPTrackApi.h in Headers */,
 				B430A263224C22E900DC8140 /* LPCenterPopupValues.h in Headers */,
 				65D4ABB0224D77BF009BA5F3 /* LPNone.h in Headers */,
 				B430A2A4224C246100DC8140 /* LPInterstitialValues.h in Headers */,
@@ -1131,6 +1141,7 @@
 				65D4AB7D224D73A1009BA5F3 /* LPFluffyLayout.m in Sources */,
 				B430A27D224C237800DC8140 /* LPPurpleTitle.m in Sources */,
 				65D4AB95224D7507009BA5F3 /* LPWebInterstitialValues.m in Sources */,
+				A8EF578C2293BBE90046473C /* LPTrackApi.m in Sources */,
 				65D4ABF9224D8097009BA5F3 /* LPCunningChild.m in Sources */,
 				65D4AC0D224D825A009BA5F3 /* LPRegion.m in Sources */,
 				65D4AB75224D7345009BA5F3 /* LPFluffyCancelAction.m in Sources */,
@@ -1202,6 +1213,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8EF578F2293BDC00046473C /* LPTrackTest.m in Sources */,
 				B430A292224C23EC00DC8140 /* LPFluffyAcceptAction.m in Sources */,
 				65C5BDFB228F69CD003EE334 /* LPResumeSessionTest.m in Sources */,
 				B430A283224C239600DC8140 /* LPConfirm.m in Sources */,
