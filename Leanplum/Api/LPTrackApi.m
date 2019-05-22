@@ -21,7 +21,7 @@
                    info:(NSString *)info
              parameters:(NSDictionary *)parameters
                 success:(void (^)(void))success
-                failure:(void (^)(NSError *error))failure; {
+                failure:(void (^)(NSError *error))failure {
     void (^successResponse) (NSDictionary *) = ^(NSDictionary *response) {
         NSError *error = nil;
         NSArray *responseArray = [response valueForKey:@"response"];
