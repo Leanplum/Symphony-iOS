@@ -57,6 +57,7 @@
 //        params = [Leanplum validateAttributes:params named:@"params" allowLists:NO];
         params[LP_PARAM_PARAMS] = [LPJSON stringFromJSON:params];
     }
+    params[LP_PARAM_DEVICE_ID] = [LPAPIConfig sharedConfig].deviceId;
     LPWSManager *wsManager = [[LPWSManager alloc] init];
     [wsManager sendPOSTWebService:LP_API_METHOD_TRACK
                        withParams:params
