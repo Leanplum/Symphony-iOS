@@ -12,13 +12,16 @@
 #import "LPApiConstants.h"
 #import "LPAPIConfig.h"
 #import "LPErrorHelper.h"
+#import "LPJSON.h"
 
 @implementation LPTrackApi
 
-+ (void) track:(NSDictionary *)attributes
-             success:(void (^)(void))success
-             failure:(void (^)(NSError *error))failure {
-
++ (void) trackWithEvent:(NSString *)event
+                  value:(double)value
+                   info:(NSString *)info
+             parameters:(NSDictionary *)parameters
+                success:(void (^)(void))success
+                failure:(void (^)(NSError *error))failure; {
     void (^successResponse) (NSDictionary *) = ^(NSDictionary *response) {
         NSError *error = nil;
         NSArray *responseArray = [response valueForKey:@"response"];
@@ -40,10 +43,20 @@
     };
 
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-    if (attributes != nil) {
-        params = [attributes mutableCopy];
+    if (value) {
+        params[LP_PARAM_VALUE] = [NSString stringWithFormat:@"%f", value];;
     }
-    params[LP_PARAM_DEVICE_ID] = [LPAPIConfig sharedConfig].deviceId;
+    if (event) {
+        params[LP_PARAM_EVENT] = event;
+    }
+    if (info) {
+        params[LP_PARAM_INFO] = info;
+    }
+    if (parameters) {
+        // TODO: recreate the below functionality
+//        params = [Leanplum validateAttributes:params named:@"params" allowLists:NO];
+        params[LP_PARAM_PARAMS] = [LPJSON stringFromJSON:params];
+    }
     LPWSManager *wsManager = [[LPWSManager alloc] init];
     [wsManager sendPOSTWebService:LP_API_METHOD_TRACK
                        withParams:params
