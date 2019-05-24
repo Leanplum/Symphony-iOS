@@ -10,9 +10,9 @@
 
 @interface LPPauseStateApi : NSObject
 
-+ (void) pauseState:(NSDictionary *)attributes
-            success:(void (^)(void))success
-            failure:(void (^)(NSError *error))failure;
++ (void) pauseStateWithParameters:(NSDictionary *)parameters
+                          success:(void (^)(void))success
+                          failure:(void (^)(NSError *error))failure;
 
 @end
 

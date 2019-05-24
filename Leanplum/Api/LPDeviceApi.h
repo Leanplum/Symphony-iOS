@@ -10,7 +10,8 @@
 
 @interface LPDeviceApi : NSObject
 
-+ (void) setDeviceAttributes:(NSString *)deviceId withDeviceAttributes:(NSDictionary *)attributes
++ (void) setDeviceAttributes:(NSString *)deviceId
+        withDeviceAttributes:(NSDictionary *)attributes
                      success:(void (^)(void))success
                      failure:(void (^)(NSError *error))failure;
 

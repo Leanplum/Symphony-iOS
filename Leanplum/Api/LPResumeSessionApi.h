@@ -10,9 +10,9 @@
 
 @interface LPResumeSessionApi : NSObject
 
-+ (void) resumeSession:(NSDictionary *)attributes
-               success:(void (^)(void))success
-               failure:(void (^)(NSError *error))failure;
++ (void) resumeSessionWithParameters:(NSDictionary *)parameters
+                             success:(void (^)(void))success
+                             failure:(void (^)(NSError *error))failure;
 
 @end
 

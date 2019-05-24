@@ -10,9 +10,9 @@
 
 @interface LPRegisterDeviceApi : NSObject
 
-+ (void) registerDevice:(NSDictionary *)attributes
-                success:(void (^)(void))success
-                failure:(void (^)(NSError *error))failure;
++ (void) registerDeviceWithParameters:(NSDictionary *)parameters
+                              success:(void (^)(void))success
+                              failure:(void (^)(NSError *error))failure;
 
 @end
 

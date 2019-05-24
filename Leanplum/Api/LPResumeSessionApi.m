@@ -15,9 +15,9 @@
 
 @implementation LPResumeSessionApi
 
-+ (void) resumeSession:(NSDictionary *)attributes
-               success:(void (^)(void))success
-               failure:(void (^)(NSError *error))failure {
++ (void) resumeSessionWithParameters:(NSDictionary *)parameters
+                             success:(void (^)(void))success
+                             failure:(void (^)(NSError *error))failure {
     
     void (^successResponse) (NSDictionary *) = ^(NSDictionary *response) {
         NSError *error = nil;
@@ -40,8 +40,8 @@
     };
     
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-    if (attributes != nil) {
-        params = [attributes mutableCopy];
+    if (parameters != nil) {
+        params = [parameters mutableCopy];
     }
     params[LP_PARAM_DEVICE_ID] = [LPAPIConfig sharedConfig].deviceId;
     LPWSManager *wsManager = [[LPWSManager alloc] init];

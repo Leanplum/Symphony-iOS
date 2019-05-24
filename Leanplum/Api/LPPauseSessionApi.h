@@ -10,9 +10,9 @@
 
 @interface LPPauseSessionApi : NSObject
 
-+ (void) pauseSession:(NSDictionary *)attributes
-              success:(void (^)(void))success
-              failure:(void (^)(NSError *error))failure;
++ (void) pauseSessionWithParameters:(NSDictionary *)parameters
+                            success:(void (^)(void))success
+                            failure:(void (^)(NSError *error))failure;
 
 @end
 

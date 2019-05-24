@@ -15,10 +15,10 @@
 
 @implementation LPPauseSessionApi
 
-+ (void) pauseSession:(NSDictionary *)attributes
-              success:(void (^)(void))success
-              failure:(void (^)(NSError *error))failure {
-    
++ (void) pauseSessionWithParameters:(NSDictionary *)parameters
+                            success:(void (^)(void))success
+                            failure:(void (^)(NSError *error))failure {
+
     void (^successResponse) (NSDictionary *) = ^(NSDictionary *response) {
         NSError *error = nil;
         NSArray *responseArray = [response valueForKey:@"response"];
@@ -40,8 +40,8 @@
     };
     
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-    if (attributes != nil) {
-        params = [attributes mutableCopy];
+    if (parameters != nil) {
+        params = [parameters mutableCopy];
     }
     params[LP_PARAM_DEVICE_ID] = [LPAPIConfig sharedConfig].deviceId;
     LPWSManager *wsManager = [[LPWSManager alloc] init];

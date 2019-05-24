@@ -10,9 +10,10 @@
 
 @interface LPUserApi : NSObject
 
-+ (void) setUserAttributes:(NSString *)userId withUserAttributes:(NSDictionary *)attributes
-                    success:(void (^)(void))success
-                    failure:(void (^)(NSError *error))failure;
++ (void) setUserAttributes:(NSString *)userId
+        withUserAttributes:(NSDictionary *)attributes
+                   success:(void (^)(void))success
+                   failure:(void (^)(NSError *error))failure;
 
 @end
 

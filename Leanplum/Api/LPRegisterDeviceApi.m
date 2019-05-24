@@ -15,10 +15,9 @@
 
 @implementation LPRegisterDeviceApi
 
-+ (void) registerDevice:(NSDictionary *)attributes
-                success:(void (^)(void))success
-                failure:(void (^)(NSError *error))failure {
-    
++ (void) registerDeviceWithParameters:(NSDictionary *)parameters
+                              success:(void (^)(void))success
+                              failure:(void (^)(NSError *error))failure {
     void (^successResponse) (NSDictionary *) = ^(NSDictionary *response) {
         NSError *error = nil;
         NSArray *responseArray = [response valueForKey:@"response"];
@@ -40,9 +39,9 @@
     };
     
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-    if (attributes != nil) {
-        if ([attributes objectForKey:LP_PARAM_EMAIL]) {
-            params[LP_PARAM_EMAIL] = attributes[LP_PARAM_EMAIL];
+    if (parameters != nil) {
+        if ([parameters objectForKey:LP_PARAM_EMAIL]) {
+            params[LP_PARAM_EMAIL] = parameters[LP_PARAM_EMAIL];
         }
     }
     params[LP_PARAM_DEVICE_ID] = [LPAPIConfig sharedConfig].deviceId;

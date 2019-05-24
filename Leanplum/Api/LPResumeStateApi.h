@@ -10,9 +10,9 @@
 
 @interface LPResumeStateApi : NSObject
 
-+ (void) resumeState:(NSDictionary *)attributes
-             success:(void (^)(void))success
-             failure:(void (^)(NSError *error))failure;
++ (void) resumeStateWithParameters:(NSDictionary *)parameters
+                           success:(void (^)(void))success
+                           failure:(void (^)(NSError *error))failure;
 
 @end
 
