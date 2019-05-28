@@ -151,6 +151,9 @@
 		65D4AC14224D8296009BA5F3 /* LPResponseVars.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D4AC12224D8296009BA5F3 /* LPResponseVars.h */; };
 		65D4AC15224D8296009BA5F3 /* LPResponseVars.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D4AC13224D8296009BA5F3 /* LPResponseVars.m */; };
 		99AEB2AB07AAA8F636EB66AF /* Pods_Leanplum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECABFFC13BC4491EEC4088CE /* Pods_Leanplum.framework */; };
+		A82BD0F5229D0CE700FE1DA2 /* LPTrackGeofenceApi.h in Headers */ = {isa = PBXBuildFile; fileRef = A82BD0F3229D0CE600FE1DA2 /* LPTrackGeofenceApi.h */; };
+		A82BD0F6229D0CE700FE1DA2 /* LPTrackGeofenceApi.m in Sources */ = {isa = PBXBuildFile; fileRef = A82BD0F4229D0CE600FE1DA2 /* LPTrackGeofenceApi.m */; };
+		A82BD0F8229D0CFF00FE1DA2 /* LPTrackGeofenceApiTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A82BD0F7229D0CFF00FE1DA2 /* LPTrackGeofenceApiTest.m */; };
 		A850466A224C0A7900BACA81 /* Leanplum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8504660224C0A7900BACA81 /* Leanplum.framework */; };
 		A850466F224C0A7900BACA81 /* LeanplumTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A850466E224C0A7900BACA81 /* LeanplumTests.m */; };
 		A8504671224C0A7900BACA81 /* Leanplum.h in Headers */ = {isa = PBXBuildFile; fileRef = A8504663224C0A7900BACA81 /* Leanplum.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -394,6 +397,9 @@
 		6BF30B8898FFE1F1AB3BCD92 /* Pods_SymphonyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SymphonyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F6768B55036458B16448576 /* Pods-Symphony.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Symphony.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Symphony/Pods-Symphony.debug.xcconfig"; sourceTree = "<group>"; };
 		8526ADCFCAA65F52EEA62532 /* Pods-LeanplumTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeanplumTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LeanplumTests/Pods-LeanplumTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A82BD0F3229D0CE600FE1DA2 /* LPTrackGeofenceApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPTrackGeofenceApi.h; sourceTree = "<group>"; };
+		A82BD0F4229D0CE600FE1DA2 /* LPTrackGeofenceApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPTrackGeofenceApi.m; sourceTree = "<group>"; };
+		A82BD0F7229D0CFF00FE1DA2 /* LPTrackGeofenceApiTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPTrackGeofenceApiTest.m; sourceTree = "<group>"; };
 		A8504660224C0A7900BACA81 /* Leanplum.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Leanplum.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8504663224C0A7900BACA81 /* Leanplum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Leanplum.h; sourceTree = "<group>"; };
 		A8504664224C0A7900BACA81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -584,6 +590,7 @@
 				B4591DD3227BA3B20076F9E2 /* Utilities */,
 				6515E1D12270DE7100C5A2F0 /* Resources */,
 				A850466E224C0A7900BACA81 /* LeanplumTests.m */,
+				A82BD0F7229D0CFF00FE1DA2 /* LPTrackGeofenceApiTest.m */,
 				6515E1D62270DF2200C5A2F0 /* LPRegionTest.m */,
 				6515E1DA2270DF7F00C5A2F0 /* LPMessageTest.m */,
 				A8504670224C0A7900BACA81 /* Info.plist */,
@@ -776,6 +783,8 @@
 				65C5BDC5228B60FF003EE334 /* LPRegisterDeviceApi.m */,
 				65C5BDCC228E1C08003EE334 /* LPPauseStateApi.h */,
 				65C5BDCD228E1C08003EE334 /* LPPauseStateApi.m */,
+				A82BD0F3229D0CE600FE1DA2 /* LPTrackGeofenceApi.h */,
+				A82BD0F4229D0CE600FE1DA2 /* LPTrackGeofenceApi.m */,
 				65C5BDD2228F519F003EE334 /* LPResumeStateApi.h */,
 				65C5BDD3228F519F003EE334 /* LPResumeStateApi.m */,
 				65C5BDF0228F681B003EE334 /* LPPauseSessionApi.h */,
@@ -899,6 +908,7 @@
 				65D4AB74224D7345009BA5F3 /* LPFluffyCancelAction.h in Headers */,
 				65D4AB44224C2EA1009BA5F3 /* LPTentacledAcceptButton.h in Headers */,
 				B46B52062284E3DD00B29663 /* LPExceptionHandler.h in Headers */,
+				A82BD0F5229D0CE700FE1DA2 /* LPTrackGeofenceApi.h in Headers */,
 				65D4AC00224D80CC009BA5F3 /* LPFriskyChild.h in Headers */,
 				B430A23B224C212500DC8140 /* LPStartResponse.h in Headers */,
 				65D4AB94224D7507009BA5F3 /* LPWebInterstitialValues.h in Headers */,
@@ -1125,6 +1135,7 @@
 				65D4AB9D224D76CB009BA5F3 /* LPDownloadJPEGClass.m in Sources */,
 				65D4AC11224D8279009BA5F3 /* LPVariant.m in Sources */,
 				B430A26E224C232300DC8140 /* LPPurpleAcceptButton.m in Sources */,
+				A82BD0F6229D0CE700FE1DA2 /* LPTrackGeofenceApi.m in Sources */,
 				65D4AB81224D73CD009BA5F3 /* LPTentacledMessage.m in Sources */,
 				B4FCB10922722B5E004F5D63 /* NSString+NSString_Extended.m in Sources */,
 				B430A2A0224C244400DC8140 /* LPInterstitialKinds.m in Sources */,
@@ -1231,6 +1242,7 @@
 				B430A2A6224C246100DC8140 /* LPInterstitialValues.m in Sources */,
 				B4591DD1227B9F720076F9E2 /* LPUserApiTests.m in Sources */,
 				B430A23D224C212500DC8140 /* LPStartResponse.m in Sources */,
+				A82BD0F8229D0CFF00FE1DA2 /* LPTrackGeofenceApiTest.m in Sources */,
 				6515E1D72270DF2200C5A2F0 /* LPRegionTest.m in Sources */,
 				65C5BDD1228E2B78003EE334 /* LPPauseStateTest.m in Sources */,
 				65C5BDD7228F5270003EE334 /* LPResumeStateTest.m in Sources */,
