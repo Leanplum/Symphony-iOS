@@ -163,6 +163,9 @@
 		A8504671224C0A7900BACA81 /* Leanplum.h in Headers */ = {isa = PBXBuildFile; fileRef = A8504663224C0A7900BACA81 /* Leanplum.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A868DBCE2254161C00E8C4D4 /* LPMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = A868DBCC2254161C00E8C4D4 /* LPMessage.h */; };
 		A868DBCF2254161C00E8C4D4 /* LPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = A868DBCD2254161C00E8C4D4 /* LPMessage.m */; };
+		A8EF57E622952A990046473C /* LPStopApiTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A8EF57E522952A990046473C /* LPStopApiTest.m */; };
+		A8EF57E922952AA30046473C /* LPStopApi.h in Headers */ = {isa = PBXBuildFile; fileRef = A8EF57E722952AA30046473C /* LPStopApi.h */; };
+		A8EF57EA22952AA30046473C /* LPStopApi.m in Sources */ = {isa = PBXBuildFile; fileRef = A8EF57E822952AA30046473C /* LPStopApi.m */; };
 		A8EF57F022952B630046473C /* LPAdvanceApiTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A8EF57EF22952B630046473C /* LPAdvanceApiTest.m */; };
 		A8EF57F322952B960046473C /* LPAdvanceApi.h in Headers */ = {isa = PBXBuildFile; fileRef = A8EF57F122952B960046473C /* LPAdvanceApi.h */; };
 		A8EF57F422952B960046473C /* LPAdvanceApi.m in Sources */ = {isa = PBXBuildFile; fileRef = A8EF57F222952B960046473C /* LPAdvanceApi.m */; };
@@ -419,6 +422,9 @@
 		A8504670224C0A7900BACA81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A868DBCC2254161C00E8C4D4 /* LPMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPMessage.h; sourceTree = "<group>"; };
 		A868DBCD2254161C00E8C4D4 /* LPMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPMessage.m; sourceTree = "<group>"; };
+		A8EF57E522952A990046473C /* LPStopApiTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPStopApiTest.m; sourceTree = "<group>"; };
+		A8EF57E722952AA30046473C /* LPStopApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPStopApi.h; sourceTree = "<group>"; };
+		A8EF57E822952AA30046473C /* LPStopApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPStopApi.m; sourceTree = "<group>"; };
 		A8EF57EF22952B630046473C /* LPAdvanceApiTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPAdvanceApiTest.m; sourceTree = "<group>"; };
 		A8EF57F122952B960046473C /* LPAdvanceApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPAdvanceApi.h; sourceTree = "<group>"; };
 		A8EF57F222952B960046473C /* LPAdvanceApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPAdvanceApi.m; sourceTree = "<group>"; };
@@ -622,6 +628,7 @@
 				65C5BDF4228F6937003EE334 /* LPPauseSessionTest.m */,
 				A8EF578E2293BDBF0046473C /* LPTrackTest.m */,
 				65C5BDFA228F69CD003EE334 /* LPResumeSessionTest.m */,
+				A8EF57E522952A990046473C /* LPStopApiTest.m */,
 			);
 			path = LeanplumTests;
 			sourceTree = "<group>";
@@ -812,6 +819,8 @@
 				65C5BDF1228F681B003EE334 /* LPPauseSessionApi.m */,
 				65C5BDF6228F6978003EE334 /* LPResumeSessionApi.h */,
 				65C5BDF7228F6978003EE334 /* LPResumeSessionApi.m */,
+				A8EF57E722952AA30046473C /* LPStopApi.h */,
+				A8EF57E822952AA30046473C /* LPStopApi.m */,
 				A8EF578B2293BBE80046473C /* LPTrackApi.h */,
 				A8EF578A2293BBE80046473C /* LPTrackApi.m */,
 				B4FCB0FC22722AE1004F5D63 /* LPWSManager.h */,
@@ -961,6 +970,7 @@
 				65D4AB54224D6EB8009BA5F3 /* LPFluffyTitle.h in Headers */,
 				65D4AB68224D7275009BA5F3 /* LPPushAskToAsk.h in Headers */,
 				65C5BDC6228B60FF003EE334 /* LPRegisterDeviceApi.h in Headers */,
+				A8EF57E922952AA30046473C /* LPStopApi.h in Headers */,
 				65D4AC14224D8296009BA5F3 /* LPResponseVars.h in Headers */,
 				A868DBCE2254161C00E8C4D4 /* LPMessage.h in Headers */,
 				65D4AB4C224D6E15009BA5F3 /* LPFlufflyAcceptButton.h in Headers */,
@@ -1205,6 +1215,7 @@
 				65C5BDF3228F681B003EE334 /* LPPauseSessionApi.m in Sources */,
 				6515E1CF2270DE0300C5A2F0 /* LPActionDefinition.m in Sources */,
 				A868DBCF2254161C00E8C4D4 /* LPMessage.m in Sources */,
+				A8EF57EA22952AA30046473C /* LPStopApi.m in Sources */,
 				65D4AB99224D752B009BA5F3 /* LPFileAttribute.m in Sources */,
 				65D4ABC5224D7F1A009BA5F3 /* LPPurpleChild.m in Sources */,
 				B430A25A224C22A800DC8140 /* LPCenterPopup.m in Sources */,
@@ -1266,6 +1277,7 @@
 				B430A265224C22E900DC8140 /* LPCenterPopupValues.m in Sources */,
 				B430A288224C23B200DC8140 /* LPConfirmKinds.m in Sources */,
 				B430A2A6224C246100DC8140 /* LPInterstitialValues.m in Sources */,
+				A8EF57E622952A990046473C /* LPStopApiTest.m in Sources */,
 				B4591DD1227B9F720076F9E2 /* LPUserApiTests.m in Sources */,
 				B430A23D224C212500DC8140 /* LPStartResponse.m in Sources */,
 				6515E1D72270DF2200C5A2F0 /* LPRegionTest.m in Sources */,
