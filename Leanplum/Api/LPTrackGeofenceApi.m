@@ -16,13 +16,35 @@
 
 @implementation LPTrackGeofenceApi
 
-+ (void) trackWithEvent:(NSString *)event
-                  value:(double)value
-                   info:(NSString *)info
-             parameters:(NSDictionary *)parameters
-                success:(void (^)(void))success
-                failure:(void (^)(NSError *error))failure {
++ (void) trackGeofenceEvent:(LPGeofenceEventType)event
+                       info:(NSString *)info
+                 parameters:(NSDictionary *)parameters
+                    success:(void (^)(void))success
+                    failure:(void (^)(NSError *error))failure {
     void (^successResponse) (NSDictionary *) = ^(NSDictionary *response) {
+        // TrackGeofence should not be called in background.
+        if (![NSThread isMainThread]) {
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                [self trackGeofenceEvent:event info:info parameters:parameters success:success failure:failure];
+            });
+            return;
+        }
+        NSString *eventName = [self getEventNameFromGeofenceType:event];
+
+        NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+        if (event) {
+            params[LP_PARAM_EVENT] = eventName;
+        }
+        if (info) {
+            params[LP_PARAM_INFO] = info;
+        }
+        if (parameters) {
+            // TODO: recreate the below functionality
+            //        params = [Leanplum validateAttributes:params named:@"params" allowLists:NO];
+            params[LP_PARAM_PARAMS] = [LPJSON stringFromJSON:params];
+        }
+        params[LP_PARAM_DEVICE_ID] = [LPAPIConfig sharedConfig].deviceId;
+
         NSError *error = nil;
         NSArray *responseArray = [response valueForKey:@"response"];
         NSDictionary *resultDict = responseArray[0];
@@ -53,4 +75,22 @@
                      failureBlock:failureResponse];
 }
 
++ (NSString *) getEventNameFromGeofenceType:(LPGeofenceEventType)event {
+    NSString *result = nil;
+
+    switch(event) {
+        case LPEnterRegion:
+            result = @"enter_region";
+            break;
+        case LPExitRegion:
+            result = @"exit_region";
+            break;
+        default:
+            [NSException raise:NSGenericException format:@"Unexpected geofenceEventType."];
+    }
+
+    return result;
+}
+
+    
 @end

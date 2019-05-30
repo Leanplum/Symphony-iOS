@@ -32,7 +32,8 @@
 
 - (void)testTrackGeofenceApi {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPTrackGeofenceApi stopWithParameters:nil success:^ {
+    LPGeofenceEventType event = LPEnterRegion;
+    [LPTrackGeofenceApi trackGeofenceEvent:event info:nil parameters:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -47,7 +48,8 @@
 - (void)testTrackGeofenceApiWithParameters {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     NSDictionary *params = @{ @"testKey": @"testValue" };
-    [LPTrackGeofenceApi stopWithParameters:params success:^ {
+    LPGeofenceEventType event = LPEnterRegion;
+    [LPTrackGeofenceApi trackGeofenceEvent:event info:nil parameters:params success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -63,7 +65,8 @@
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     // change device id to empty string
     [LPTestHelper setup:APPLICATION_ID withAccessKey:DEVELOPMENT_KEY withDeviceId:@""];
-    [LPTrackGeofenceApi stopWithParameters:nil success:^ {
+    LPGeofenceEventType event = LPEnterRegion;
+    [LPTrackGeofenceApi trackGeofenceEvent:event info:nil parameters:nil success:^ {
     } failure:^(NSError *error) {
         NSString *expected = @"At least one of deviceId or userId is required.";
         XCTAssertEqualObjects([error userInfo][NSLocalizedDescriptionKey], expected);
@@ -80,7 +83,8 @@
 - (void)testTrackGeofenceApiWithIosError {
     [LPTestHelper runWithApiHost:@"blah.leanplum.com" withBlock:^(void) {
         XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-        [LPTrackGeofenceApi stopWithParameters:nil success:^ {
+        LPGeofenceEventType event = LPEnterRegion;
+        [LPTrackGeofenceApi trackGeofenceEvent:event info:nil parameters:nil success:^ {
         } failure:^(NSError *error) {
             NSString *expected = @"A server with the specified hostname could not be found.";
             XCTAssertEqualObjects([error userInfo][NSLocalizedDescriptionKey], expected);
@@ -98,7 +102,8 @@
 - (void)testTrackGeofenceApiStub {
     [LPTestHelper setupStub:200 withFileName:@"simple_post_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPTrackGeofenceApi stopWithParameters:nil success:^ {
+    LPGeofenceEventType event = LPEnterRegion;
+    [LPTrackGeofenceApi trackGeofenceEvent:event info:nil parameters:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -114,7 +119,8 @@
     [LPTestHelper setupStub:200 withFileName:@"simple_post_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     NSDictionary *params = @{@"testKey": @"testValue" };
-    [LPTrackGeofenceApi stopWithParameters:params success:^ {
+    LPGeofenceEventType event = LPEnterRegion;
+    [LPTrackGeofenceApi trackGeofenceEvent:event info:nil parameters:params success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -129,7 +135,8 @@
 - (void)testTrackGeofenceApiHttpErrorStub {
     [LPTestHelper setupStub:400 withFileName:@"simple_post_error_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPTrackGeofenceApi stopWithParameters:nil success:^ {
+    LPGeofenceEventType event = LPEnterRegion;
+    [LPTrackGeofenceApi trackGeofenceEvent:event info:nil parameters:nil success:^ {
     } failure:^(NSError *error) {
         NSString *expectedMessage = @"This is a test error message";
         XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);
@@ -146,7 +153,8 @@
 - (void)testTrackGeofenceApiMalformedResponseStub {
     [LPTestHelper setupStub:200 withFileName:@"malformed_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPTrackGeofenceApi stopWithParameters:nil success:^ {
+    LPGeofenceEventType event = LPEnterRegion;
+    [LPTrackGeofenceApi trackGeofenceEvent:event info:nil parameters:nil success:^ {
     } failure:^(NSError *error) {
         NSString *expectedMessage = @"Unknown error, please contact Leanplum.";
         XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);

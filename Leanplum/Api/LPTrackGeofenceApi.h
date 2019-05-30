@@ -8,12 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum {
+    LPEnterRegion,
+    LPExitRegion
+} LPGeofenceEventType;
+
 @interface LPTrackGeofenceApi : NSObject
 
-+ (void) trackWithEvent:(NSString *)event
-                  value:(double)value
-                   info:(NSString *)info
-             parameters:(NSDictionary *)parameters
-                success:(void (^)(void))success
-                failure:(void (^)(NSError *error))failure;
++ (void) trackGeofenceEvent:(LPGeofenceEventType)event
+                       info:(NSString *)info
+                 parameters:(NSDictionary *)parameters
+                    success:(void (^)(void))success
+                    failure:(void (^)(NSError *error))failure;
 @end
