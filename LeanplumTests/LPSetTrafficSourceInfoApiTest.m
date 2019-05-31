@@ -47,7 +47,7 @@
 - (void)testSetTrafficSourceInfoApiWithParameters {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     NSDictionary *params = @{ @"testKey": @"testValue" };
-    [LPSetTrafficSourceInfoApi setTrafficSourceInfoWithInfo:@{} withParameters:nil success:^ {
+    [LPSetTrafficSourceInfoApi setTrafficSourceInfoWithInfo:@{} withParameters:params success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -114,7 +114,7 @@
     [LPTestHelper setupStub:200 withFileName:@"simple_post_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     NSDictionary *params = @{@"testKey": @"testValue" };
-    [LPSetTrafficSourceInfoApi setTrafficSourceInfoWithInfo:@{} withParameters:nil success:^ {
+    [LPSetTrafficSourceInfoApi setTrafficSourceInfoWithInfo:@{} withParameters:params success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
