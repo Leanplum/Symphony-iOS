@@ -33,7 +33,8 @@
 - (void)testTrackGeofenceApi {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     LPGeofenceEventType event = LPEnterRegion;
-    [LPTrackGeofenceApi trackGeofenceEvent:event info:nil parameters:nil success:^ {
+    NSString *info = @"SF";
+    [LPTrackGeofenceApi trackGeofenceEvent:event info:info parameters:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];

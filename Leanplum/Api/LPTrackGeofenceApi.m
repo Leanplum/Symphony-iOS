@@ -29,22 +29,6 @@
             });
             return;
         }
-        NSString *eventName = [self getEventNameFromGeofenceType:event];
-
-        NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-        if (event) {
-            params[LP_PARAM_EVENT] = eventName;
-        }
-        if (info) {
-            params[LP_PARAM_INFO] = info;
-        }
-        if (parameters) {
-            // TODO: recreate the below functionality
-            //        params = [Leanplum validateAttributes:params named:@"params" allowLists:NO];
-            params[LP_PARAM_PARAMS] = [LPJSON stringFromJSON:params];
-        }
-        params[LP_PARAM_DEVICE_ID] = [LPAPIConfig sharedConfig].deviceId;
-
         NSError *error = nil;
         NSArray *responseArray = [response valueForKey:@"response"];
         NSDictionary *resultDict = responseArray[0];
@@ -68,6 +52,19 @@
     if (parameters != nil) {
         params = [parameters mutableCopy];
     }
+    if (event) {
+        params[LP_PARAM_EVENT] = [self getEventNameFromGeofenceType:event];
+    }
+    if (info) {
+        params[LP_PARAM_INFO] = info;
+    }
+    if (parameters) {
+        // TODO: recreate the below functionality
+        //        params = [Leanplum validateAttributes:params named:@"params" allowLists:NO];
+        params[LP_PARAM_PARAMS] = [LPJSON stringFromJSON:params];
+    }
+    params[LP_PARAM_DEVICE_ID] = [LPAPIConfig sharedConfig].deviceId;
+
     LPWSManager *wsManager = [[LPWSManager alloc] init];
     [wsManager sendPOSTWebService:LP_API_METHOD_TRACK_GEOFENCE
                        withParams:params
