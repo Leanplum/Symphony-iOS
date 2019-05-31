@@ -31,7 +31,7 @@
 
 - (void)testDeviceApi {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPDeviceApi setDeviceAttributes:DEVICE_ID withDeviceAttributes:nil success:^ {
+    [LPDeviceApi setDeviceId:DEVICE_ID withDeviceAttributes:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -46,7 +46,7 @@
 - (void)testDeviceApiWithDeviceAttributes {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     NSDictionary *deviceAttributes = @{@"OS" : @"iOS"};
-    [LPDeviceApi setDeviceAttributes:DEVICE_ID withDeviceAttributes:deviceAttributes success:^ {
+    [LPDeviceApi setDeviceId:DEVICE_ID withDeviceAttributes:deviceAttributes success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -62,7 +62,7 @@
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     // change device id to empty string
     [LPTestHelper setup:APPLICATION_ID withAccessKey:DEVELOPMENT_KEY withDeviceId:@""];
-    [LPDeviceApi setDeviceAttributes:nil withDeviceAttributes:nil success:^ {
+    [LPDeviceApi setDeviceId:nil withDeviceAttributes:nil success:^ {
     } failure:^(NSError *error) {
         NSString *expected = @"At least one of deviceId or userId is required.";
         XCTAssertEqualObjects([error userInfo][NSLocalizedDescriptionKey], expected);
@@ -79,7 +79,7 @@
 - (void)testDeviceApiWithIosError {
     [LPTestHelper runWithApiHost:@"blah.leanplum.com" withBlock:^(void) {
         XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-        [LPDeviceApi setDeviceAttributes:@"1" withDeviceAttributes:nil success:^ {
+        [LPDeviceApi setDeviceId:@"1" withDeviceAttributes:nil success:^ {
         } failure:^(NSError *error) {
             NSString *expected = @"A server with the specified hostname could not be found.";
             XCTAssertEqualObjects([error userInfo][NSLocalizedDescriptionKey], expected);
@@ -97,7 +97,7 @@
 - (void)testDeviceApiStub {
     [LPTestHelper setupStub:200 withFileName:@"simple_post_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPDeviceApi setDeviceAttributes:@"1" withDeviceAttributes:nil success:^ {
+    [LPDeviceApi setDeviceId:@"1" withDeviceAttributes:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -113,7 +113,7 @@
     [LPTestHelper setupStub:200 withFileName:@"simple_post_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     NSDictionary *deviceAttributes = @{@"OS" : @"iOS"};
-    [LPDeviceApi setDeviceAttributes:DEVICE_ID withDeviceAttributes:deviceAttributes success:^ {
+    [LPDeviceApi setDeviceId:DEVICE_ID withDeviceAttributes:deviceAttributes success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -128,7 +128,7 @@
 - (void)testDeviceApiHttpErrorStub {
     [LPTestHelper setupStub:400 withFileName:@"simple_post_error_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPDeviceApi setDeviceAttributes:@"1" withDeviceAttributes:nil success:^ {
+    [LPDeviceApi setDeviceId:@"1" withDeviceAttributes:nil success:^ {
     } failure:^(NSError *error) {
         NSString *expectedMessage = @"This is a test error message";
         XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);
@@ -145,7 +145,7 @@
 - (void)testDeviceApiMalformedResponseStub {
     [LPTestHelper setupStub:200 withFileName:@"malformed_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPDeviceApi setDeviceAttributes:@"1" withDeviceAttributes:nil success:^ {
+    [LPDeviceApi setDeviceId:@"1" withDeviceAttributes:nil success:^ {
     } failure:^(NSError *error) {
         NSString *expectedMessage = @"Unknown error, please contact Leanplum.";
         XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);

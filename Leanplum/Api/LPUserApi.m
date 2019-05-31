@@ -15,10 +15,10 @@
 
 @implementation LPUserApi
 
-+ (void) setUserAttributes:(NSString *)userId withUserAttributes:(NSDictionary *)attributes
-                    success:(void (^)(void))success
-                    failure:(void (^)(NSError *error))failure {
-    
++ (void) setUserId:(NSString *)userId
+withUserAttributes:(NSDictionary *)attributes
+           success:(void (^)(void))success
+           failure:(void (^)(NSError *error))failure {
     void (^successResponse) (NSDictionary *) = ^(NSDictionary *response) {
         NSError *error = nil;
         NSArray *responseArray = [response valueForKey:@"response"];
