@@ -157,7 +157,6 @@
 		A82BD0EE229D0C5900FE1DA2 /* LPHeartbeatApiTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A82BD0ED229D0C5900FE1DA2 /* LPHeartbeatApiTest.m */; };
 		A82BD0F1229D0C6600FE1DA2 /* LPHeartbeatApi.m in Sources */ = {isa = PBXBuildFile; fileRef = A82BD0EF229D0C6600FE1DA2 /* LPHeartbeatApi.m */; };
 		A82BD0F2229D0C6600FE1DA2 /* LPHeartbeatApi.h in Headers */ = {isa = PBXBuildFile; fileRef = A82BD0F0229D0C6600FE1DA2 /* LPHeartbeatApi.h */; };
-		A82BD102229D0E0C00FE1DA2 /* LPAdvanceApiTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A82BD101229D0E0C00FE1DA2 /* LPAdvanceApiTest.m */; };
 		A82BD10B229D0F6800FE1DA2 /* LPSetTrafficSourceInfoApi.h in Headers */ = {isa = PBXBuildFile; fileRef = A82BD109229D0F6800FE1DA2 /* LPSetTrafficSourceInfoApi.h */; };
 		A82BD10C229D0F6800FE1DA2 /* LPSetTrafficSourceInfoApi.m in Sources */ = {isa = PBXBuildFile; fileRef = A82BD10A229D0F6800FE1DA2 /* LPSetTrafficSourceInfoApi.m */; };
 		A82BD10E229D102E00FE1DA2 /* LPSetTrafficSourceInfoApiTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A82BD10D229D102E00FE1DA2 /* LPSetTrafficSourceInfoApiTest.m */; };
@@ -422,7 +421,6 @@
 		A82BD0ED229D0C5900FE1DA2 /* LPHeartbeatApiTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPHeartbeatApiTest.m; sourceTree = "<group>"; };
 		A82BD0EF229D0C6600FE1DA2 /* LPHeartbeatApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPHeartbeatApi.m; sourceTree = "<group>"; };
 		A82BD0F0229D0C6600FE1DA2 /* LPHeartbeatApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPHeartbeatApi.h; sourceTree = "<group>"; };
-		A82BD101229D0E0C00FE1DA2 /* LPAdvanceApiTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPAdvanceApiTest.m; sourceTree = "<group>"; };
 		A82BD109229D0F6800FE1DA2 /* LPSetTrafficSourceInfoApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPSetTrafficSourceInfoApi.h; sourceTree = "<group>"; };
 		A82BD10A229D0F6800FE1DA2 /* LPSetTrafficSourceInfoApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPSetTrafficSourceInfoApi.m; sourceTree = "<group>"; };
 		A82BD10D229D102E00FE1DA2 /* LPSetTrafficSourceInfoApiTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPSetTrafficSourceInfoApiTest.m; sourceTree = "<group>"; };
@@ -630,7 +628,6 @@
 				A850466E224C0A7900BACA81 /* LeanplumTests.m */,
 				A82BD0ED229D0C5900FE1DA2 /* LPHeartbeatApiTest.m */,
 				A835F36122A174D70040FD14 /* LPMarkNewsfeedMessageAsReadApiTest.m */,
-				A82BD101229D0E0C00FE1DA2 /* LPAdvanceApiTest.m */,
 				6515E1D62270DF2200C5A2F0 /* LPRegionTest.m */,
 				6515E1DA2270DF7F00C5A2F0 /* LPMessageTest.m */,
 				A8504670224C0A7900BACA81 /* Info.plist */,
@@ -1302,7 +1299,6 @@
 				B430A274224C233F00DC8140 /* LPPurpleLayout.m in Sources */,
 				A835F36222A174D70040FD14 /* LPMarkNewsfeedMessageAsReadApiTest.m in Sources */,
 				B430A28D224C23CE00DC8140 /* LPConfirmValues.m in Sources */,
-				A82BD102229D0E0C00FE1DA2 /* LPAdvanceApiTest.m in Sources */,
 				B430A25B224C22A800DC8140 /* LPCenterPopup.m in Sources */,
 				65C5BDC9228B6162003EE334 /* LPRegisterDeviceApiTests.m in Sources */,
 				B430A297224C240900DC8140 /* LPPurpleCancelAction.m in Sources */,
