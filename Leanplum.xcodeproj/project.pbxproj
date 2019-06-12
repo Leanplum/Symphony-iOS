@@ -163,6 +163,7 @@
 		A82BD117229D123700FE1DA2 /* LPDeleteNewsfeedMessageApi.h in Headers */ = {isa = PBXBuildFile; fileRef = A82BD115229D123700FE1DA2 /* LPDeleteNewsfeedMessageApi.h */; };
 		A82BD118229D123700FE1DA2 /* LPDeleteNewsfeedMessageApi.m in Sources */ = {isa = PBXBuildFile; fileRef = A82BD116229D123700FE1DA2 /* LPDeleteNewsfeedMessageApi.m */; };
 		A82BD11A229D124100FE1DA2 /* LPDeleteNewsfeedMessageApiTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A82BD119229D124100FE1DA2 /* LPDeleteNewsfeedMessageApiTest.m */; };
+		A82D32ED22B05E280030FBEA /* LPRequestStoring.h in Headers */ = {isa = PBXBuildFile; fileRef = A82D32EC22B05E280030FBEA /* LPRequestStoring.h */; };
 		A835F36222A174D70040FD14 /* LPMarkNewsfeedMessageAsReadApiTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A835F36122A174D70040FD14 /* LPMarkNewsfeedMessageAsReadApiTest.m */; };
 		A835F36522A174F60040FD14 /* LPMarkNewsfeedMessageAsReadApi.h in Headers */ = {isa = PBXBuildFile; fileRef = A835F36322A174F60040FD14 /* LPMarkNewsfeedMessageAsReadApi.h */; };
 		A835F36622A174F60040FD14 /* LPMarkNewsfeedMessageAsReadApi.m in Sources */ = {isa = PBXBuildFile; fileRef = A835F36422A174F60040FD14 /* LPMarkNewsfeedMessageAsReadApi.m */; };
@@ -427,6 +428,7 @@
 		A82BD115229D123700FE1DA2 /* LPDeleteNewsfeedMessageApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPDeleteNewsfeedMessageApi.h; sourceTree = "<group>"; };
 		A82BD116229D123700FE1DA2 /* LPDeleteNewsfeedMessageApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPDeleteNewsfeedMessageApi.m; sourceTree = "<group>"; };
 		A82BD119229D124100FE1DA2 /* LPDeleteNewsfeedMessageApiTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPDeleteNewsfeedMessageApiTest.m; sourceTree = "<group>"; };
+		A82D32EC22B05E280030FBEA /* LPRequestStoring.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPRequestStoring.h; sourceTree = "<group>"; };
 		A835F36122A174D70040FD14 /* LPMarkNewsfeedMessageAsReadApiTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPMarkNewsfeedMessageAsReadApiTest.m; sourceTree = "<group>"; };
 		A835F36322A174F60040FD14 /* LPMarkNewsfeedMessageAsReadApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPMarkNewsfeedMessageAsReadApi.h; sourceTree = "<group>"; };
 		A835F36422A174F60040FD14 /* LPMarkNewsfeedMessageAsReadApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPMarkNewsfeedMessageAsReadApi.m; sourceTree = "<group>"; };
@@ -616,6 +618,7 @@
 				A8504663224C0A7900BACA81 /* Leanplum.h */,
 				B46B51FD2284D5CA00B29663 /* Leanplum.m */,
 				A8504664224C0A7900BACA81 /* Info.plist */,
+				A82D32EC22B05E280030FBEA /* LPRequestStoring.h */,
 			);
 			path = Leanplum;
 			sourceTree = "<group>";
@@ -929,6 +932,7 @@
 				B430A2A4224C246100DC8140 /* LPInterstitialValues.h in Headers */,
 				65D4ABD4224D7F99009BA5F3 /* LPPurpleDismissAction.h in Headers */,
 				B430A29A224C242900DC8140 /* LPInterstitial.h in Headers */,
+				A82D32ED22B05E280030FBEA /* LPRequestStoring.h in Headers */,
 				65D4ABA8224D777C009BA5F3 /* LPFine2PNGClass.h in Headers */,
 				65D4AC04224D8102009BA5F3 /* LPMischievousChild.h in Headers */,
 				65D4AB84224D73EF009BA5F3 /* LPTentacledTitle.h in Headers */,
