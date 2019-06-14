@@ -7,6 +7,7 @@
 //
 
 #import "LPTrackGeofenceApi.h"
+#import "Leanplum.h"
 #import "LPWSManager.h"
 #import "LPConstants.h"
 #import "LPApiConstants.h"
@@ -59,8 +60,6 @@
         params[LP_PARAM_INFO] = info;
     }
     if (parameters) {
-        // TODO: recreate the below functionality
-        //        params = [Leanplum validateAttributes:params named:@"params" allowLists:NO];
         params[LP_PARAM_PARAMS] = [LPJSON stringFromJSON:params];
     }
     params[LP_PARAM_DEVICE_ID] = [LPAPIConfig sharedConfig].deviceId;
