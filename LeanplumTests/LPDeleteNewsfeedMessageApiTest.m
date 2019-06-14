@@ -1,5 +1,5 @@
 //
-//  LPSetTrafficSourceInfoApi.m
+//  LPDeleteNewsfeedMessageApiTest.m
 //  LeanplumTests
 //
 //  Created by Mayank Sanganeria on 5/22/19.
@@ -9,16 +9,16 @@
 #import <XCTest/XCTest.h>
 #import <OHHTTPStubs/OHHTTPStubs.h>
 #import <OHHTTPStubs/OHPathHelpers.h>
-#import "LPSetTrafficSourceInfoApi.h"
+#import "LPDeleteNewsfeedMessageApi.h"
 #import "LPAPIConfig.h"
 #import "LPConstants.h"
 #import "LPTestHelper.h"
 
-@interface LPSetTrafficSourceInfoApiTest : XCTestCase
+@interface LPDeleteNewsfeedMessageApiTest : XCTestCase
 
 @end
 
-@implementation LPSetTrafficSourceInfoApiTest
+@implementation LPDeleteNewsfeedMessageApiTest
 
 - (void)setUp {
     [super setUp];
@@ -30,9 +30,9 @@
     [OHHTTPStubs removeAllStubs];
 }
 
-- (void)testSetTrafficSourceInfoApi {
+- (void)testDeleteNewsfeedMessageApi {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPSetTrafficSourceInfoApi setTrafficSourceInfoWithInfo:@{} withParameters:nil success:^ {
+    [LPDeleteNewsfeedMessageApi deleteNewsfeedMessageWithMessageId:@"123" parameters:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -44,10 +44,10 @@
     }];
 }
 
-- (void)testSetTrafficSourceInfoApiWithParameters {
+- (void)testDeleteNewsfeedMessageApiWithParameters {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     NSDictionary *params = @{ @"testKey": @"testValue" };
-    [LPSetTrafficSourceInfoApi setTrafficSourceInfoWithInfo:@{} withParameters:params success:^ {
+    [LPDeleteNewsfeedMessageApi deleteNewsfeedMessageWithMessageId:@"123" parameters:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -59,11 +59,11 @@
     }];
 }
 
-- (void)testSetTrafficSourceInfoApiWithHttpError {
+- (void)testDeleteNewsfeedMessageApiWithHttpError {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     // change device id to empty string
     [LPTestHelper setup:APPLICATION_ID withAccessKey:DEVELOPMENT_KEY withDeviceId:@""];
-    [LPSetTrafficSourceInfoApi setTrafficSourceInfoWithInfo:@{} withParameters:nil success:^ {
+    [LPDeleteNewsfeedMessageApi deleteNewsfeedMessageWithMessageId:@"123" parameters:nil success:^ {
     } failure:^(NSError *error) {
         NSString *expected = @"At least one of deviceId or userId is required.";
         XCTAssertEqualObjects([error userInfo][NSLocalizedDescriptionKey], expected);
@@ -77,10 +77,10 @@
     }];
 }
 
-- (void)testSetTrafficSourceInfoApiWithIosError {
+- (void)testDeleteNewsfeedMessageApiWithIosError {
     [LPTestHelper runWithApiHost:@"blah.leanplum.com" withBlock:^(void) {
         XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-        [LPSetTrafficSourceInfoApi setTrafficSourceInfoWithInfo:@{} withParameters:nil success:^ {
+        [LPDeleteNewsfeedMessageApi deleteNewsfeedMessageWithMessageId:@"123" parameters:nil success:^ {
         } failure:^(NSError *error) {
             NSString *expected = @"A server with the specified hostname could not be found.";
             XCTAssertEqualObjects([error userInfo][NSLocalizedDescriptionKey], expected);
@@ -95,10 +95,10 @@
     }];
 }
 
-- (void)testSetTrafficSourceInfoApiStub {
+- (void)testDeleteNewsfeedMessageApiStub {
     [LPTestHelper setupStub:200 withFileName:@"simple_post_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPSetTrafficSourceInfoApi setTrafficSourceInfoWithInfo:@{} withParameters:nil success:^ {
+    [LPDeleteNewsfeedMessageApi deleteNewsfeedMessageWithMessageId:@"123" parameters:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -110,11 +110,11 @@
     }];
 }
 
-- (void)testSetTrafficSourceInfoApiWithParametersStub {
+- (void)testDeleteNewsfeedMessageApiWithParametersStub {
     [LPTestHelper setupStub:200 withFileName:@"simple_post_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     NSDictionary *params = @{@"testKey": @"testValue" };
-    [LPSetTrafficSourceInfoApi setTrafficSourceInfoWithInfo:@{} withParameters:params success:^ {
+    [LPDeleteNewsfeedMessageApi deleteNewsfeedMessageWithMessageId:@"123" parameters:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -126,10 +126,10 @@
     }];
 }
 
-- (void)testSetTrafficSourceInfoApiHttpErrorStub {
+- (void)testDeleteNewsfeedMessageApiHttpErrorStub {
     [LPTestHelper setupStub:400 withFileName:@"simple_post_error_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPSetTrafficSourceInfoApi setTrafficSourceInfoWithInfo:@{} withParameters:nil success:^ {
+    [LPDeleteNewsfeedMessageApi deleteNewsfeedMessageWithMessageId:@"123" parameters:nil success:^ {
     } failure:^(NSError *error) {
         NSString *expectedMessage = @"This is a test error message";
         XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);
@@ -143,10 +143,10 @@
     }];
 }
 
-- (void)testSetTrafficSourceInfoApiMalformedResponseStub {
+- (void)testDeleteNewsfeedMessageApiMalformedResponseStub {
     [LPTestHelper setupStub:200 withFileName:@"malformed_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPSetTrafficSourceInfoApi setTrafficSourceInfoWithInfo:@{} withParameters:nil success:^ {
+    [LPDeleteNewsfeedMessageApi deleteNewsfeedMessageWithMessageId:@"123" parameters:nil success:^ {
     } failure:^(NSError *error) {
         NSString *expectedMessage = @"Unknown error, please contact Leanplum.";
         XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);
