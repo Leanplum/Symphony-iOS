@@ -9,27 +9,25 @@
 #ifndef LPRequestStoring_h
 #define LPRequestStoring_h
 
+@class LPRequest;
+
 @protocol LPRequestStoring <NSObject>
 
-+ (void)addRequestWithId:(NSString *)requestId
-                apiMethod:(NSString *)apiMethod
-                   params:(NSDictionary *)params
-                     sent:(BOOL)sent;
+- (void)addRequest:(LPRequest *)request;
 
-+ (NSDictionary *)requestWithId:(NSString *)requestId;
+- (void)addRequests:(NSArray<LPRequest *> *)requests;
 
-+ (NSArray<NSDictionary *> *)requestsWithLimit:(NSInteger)limit;
+- (LPRequest *)requestWithId:(NSString *)requestId;
 
-+ (void)updateRequestWithId:(NSString *)requestId
-                  apiMethod:(NSString *)apiMethod
-                     params:(NSDictionary *)params
-                       sent:(BOOL)sent;
+- (NSArray<LPRequest *> *)requestsWithLimit:(NSInteger)limit;
 
-+ (void)deleteRequestWithId:(NSString *)requestId;
+- (void)updateRequest:(LPRequest *)request;
 
-+ (void)deleteRequestsWithLimit:(NSInteger)limit;
+- (void)deleteRequestWithId:(NSString *)requestId;
 
-+ (NSInteger)count;
+- (void)deleteRequestsWithLimit:(NSInteger)limit;
+
+- (NSInteger)count;
 
 @end
 
