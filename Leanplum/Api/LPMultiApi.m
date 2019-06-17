@@ -10,6 +10,7 @@
 #import "LPWSManager.h"
 #import "LPConstants.h"
 #import "LPApiConstants.h"
+#import "LPApiMethods.h"
 #import "LPAPIConfig.h"
 #import "LPErrorHelper.h"
 #import "LPJSON.h"
@@ -53,7 +54,7 @@
     params[LP_PARAM_TIME] =  [NSString stringWithFormat:@"%f", [[NSDate date] timeIntervalSince1970]];
 
     LPWSManager *wsManager = [[LPWSManager alloc] init];
-    [wsManager sendPOSTWebService:LP_API_METHOD_MULTI
+    [wsManager sendPOSTWebService:[LPApiMethods getApiMethod:LPApiMethodMulti]
                        withParams:params
                      successBlock:successResponse
                      failureBlock:failureResponse];

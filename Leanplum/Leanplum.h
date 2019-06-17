@@ -58,5 +58,4 @@ FOUNDATION_EXPORT const unsigned char LeanplumVersionString[];
       withSuccess:(void (^)(void))success
       withFailure:(void (^)(NSError *error))failure;
 
-
 @end

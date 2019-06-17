@@ -10,6 +10,7 @@
 #import "LPWSManager.h"
 #import "LPConstants.h"
 #import "LPApiConstants.h"
+#import "LPApiMethods.h"
 #import "LPErrorHelper.h"
 
 @implementation LPDeviceApi
@@ -45,7 +46,7 @@ withDeviceAttributes:(NSDictionary *)attributes
     }
     params[LP_PARAM_DEVICE_ID] = deviceId;
     LPWSManager *wsManager = [[LPWSManager alloc] init];
-    [wsManager sendPOSTWebService:LP_API_METHOD_SET_DEVICE_ATTRIBUTES
+    [wsManager sendPOSTWebService:[LPApiMethods getApiMethod:LPApiMethodSetDeviceAttributes]
                        withParams:params
                      successBlock:successResponse
                      failureBlock:failureResponse];

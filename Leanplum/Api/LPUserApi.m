@@ -9,6 +9,7 @@
 #import "LPWSManager.h"
 #import "LPConstants.h"
 #import "LPApiConstants.h"
+#import "LPApiMethods.h"
 #import "LPErrorHelper.h"
 #import "LPAPIConfig.h"
 #import "LPJSON.h"
@@ -49,7 +50,7 @@ withUserAttributes:(NSDictionary *)attributes
         params[LP_PARAM_USER_ATTRIBUTES] =  [LPJSON stringFromJSON:attributes];
     }
     LPWSManager *wsManager = [[LPWSManager alloc] init];
-    [wsManager sendPOSTWebService:LP_API_METHOD_SET_USER_ATTRIBUTES
+    [wsManager sendPOSTWebService:[LPApiMethods getApiMethod:LPApiMethodSetUserAttributes]
                        withParams:params
                      successBlock:successResponse
                      failureBlock:failureResponse];

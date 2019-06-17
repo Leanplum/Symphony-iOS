@@ -10,6 +10,7 @@
 #import "LPWSManager.h"
 #import "LPConstants.h"
 #import "LPApiConstants.h"
+#import "LPApiMethods.h"
 #import "LPAPIConfig.h"
 #import "LPErrorHelper.h"
 #import "LPJSON.h"
@@ -44,7 +45,7 @@
     params[LP_PARAM_DEVICE_ID] = [LPAPIConfig sharedConfig].deviceId;
     params[LP_PARAM_INBOX_MESSAGE_ID] = messageId;
     LPWSManager *wsManager = [[LPWSManager alloc] init];
-    [wsManager sendPOSTWebService:LP_API_METHOD_MARK_INBOX_MESSAGE_AS_READ
+    [wsManager sendPOSTWebService:[LPApiMethods getApiMethod:LPApiMethodDeleteInboxMessage]
                        withParams:params
                      successBlock:successResponse
                      failureBlock:failureResponse];

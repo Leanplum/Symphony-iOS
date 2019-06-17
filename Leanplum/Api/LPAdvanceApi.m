@@ -10,6 +10,7 @@
 #import "LPWSManager.h"
 #import "LPConstants.h"
 #import "LPApiConstants.h"
+#import "LPApiMethods.h"
 #import "LPAPIConfig.h"
 #import "LPErrorHelper.h"
 #import "LPJSON.h"
@@ -47,7 +48,7 @@
     params[LP_PARAM_STATE] = state ? state : @"";
     params[LP_PARAM_DEVICE_ID] = [LPAPIConfig sharedConfig].deviceId;
     LPWSManager *wsManager = [[LPWSManager alloc] init];
-    [wsManager sendPOSTWebService:LP_API_METHOD_ADVANCE
+    [wsManager sendPOSTWebService:[LPApiMethods getApiMethod:LPApiMethodAdvance]
                        withParams:params
                      successBlock:successResponse
                      failureBlock:failureResponse];
