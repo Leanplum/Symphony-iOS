@@ -30,6 +30,8 @@
     [OHHTTPStubs removeAllStubs];
 }
 
+//ToDo: This will not work with actual api , since we need a correct account and device to register for this app.
+/*
 - (void)testRegisterDeviceApi {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     [LPRegisterDeviceApi registerDeviceWithParameters:nil success:^ {
@@ -58,6 +60,7 @@
         }
     }];
 }
+*/
 
 - (void)testRegisterDeviceApiWithHttpError {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <LPApiMethods.h>
+#import "LPApiMethods.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -25,6 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
                            params:(nullable NSDictionary *)params
                           success:(void (^)(NSDictionary *dictionary))success
                           failure:(void (^)(NSError *error))failure;
+
+- (NSMutableDictionary *)createArgsDictionaryForRequest;
 
 @end
 

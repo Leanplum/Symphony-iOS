@@ -29,7 +29,8 @@
             failure(error);
         }
         else {
-            if ([resultDict objectForKey:@"success"]) {
+            BOOL successBool = [[resultDict objectForKey:@"success"] boolValue];
+            if (successBool) {
                 success();
             } else {
                 NSError *error = [LPErrorHelper makeResponseError:resultDict];

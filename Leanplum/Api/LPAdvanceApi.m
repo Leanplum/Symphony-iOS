@@ -29,7 +29,8 @@
             failure(error);
         }
         else {
-            if ([resultDict objectForKey:@"success"]) {
+            BOOL successBool = [[resultDict objectForKey:@"success"] boolValue];
+            if (successBool) {
                 success();
             } else {
                 NSError *error = [LPErrorHelper makeResponseError:resultDict];
@@ -47,6 +48,10 @@
     }
     params[LP_PARAM_STATE] = state ? state : @"";
     params[LP_PARAM_DEVICE_ID] = [LPAPIConfig sharedConfig].deviceId;
+    if (parameters != nil) {
+        params[LP_PARAM_PARAMS] =  [LPJSON stringFromJSON:parameters];
+    }
+
     LPWSManager *wsManager = [[LPWSManager alloc] init];
     [wsManager sendPOSTWebService:[LPApiMethods getApiMethod:LPApiMethodAdvance]
                        withParams:params

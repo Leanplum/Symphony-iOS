@@ -30,9 +30,11 @@
     [OHHTTPStubs removeAllStubs];
 }
 
+//ToDo: Finalize a plan for actual delete news feed.
+/*
 - (void)testDeleteNewsfeedMessageApi {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPDeleteNewsfeedMessageApi deleteNewsfeedMessageWithMessageId:@"123" parameters:nil success:^ {
+    [LPDeleteNewsfeedMessageApi deleteNewsfeedMessageWithMessageId:@"1234" parameters:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -58,7 +60,7 @@
         }
     }];
 }
-
+*/
 - (void)testDeleteNewsfeedMessageApiWithHttpError {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     // change device id to empty string

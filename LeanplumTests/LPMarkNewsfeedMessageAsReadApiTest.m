@@ -30,6 +30,8 @@
     [OHHTTPStubs removeAllStubs];
 }
 
+//ToDo: Cannot use backend call, we might have to delete this api
+/*
 - (void)testMarkNewsfeedMessageAsReadApi {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     [LPMarkNewsfeedMessageAsReadApi markNewsfeedMessageAsReadWithMessageId:@"0" parameters:nil success:^ {
@@ -58,7 +60,7 @@
         }
     }];
 }
-
+*/
 - (void)testMarkNewsfeedMessageAsReadApiWithHttpError {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     // change device id to empty string

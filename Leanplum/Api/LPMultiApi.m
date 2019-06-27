@@ -14,11 +14,11 @@
 #import "LPAPIConfig.h"
 #import "LPErrorHelper.h"
 #import "LPJSON.h"
+#import "NSString+NSString_Extended.h"
 
 @implementation LPMultiApi
 
 + (void) multiWithData:(NSArray *)data
-            parameters:(NSDictionary *)parameters
                success:(void (^)(void))success
                failure:(void (^)(NSError *error))failure {
     void (^successResponse) (NSDictionary *) = ^(NSDictionary *response) {
@@ -29,7 +29,8 @@
             failure(error);
         }
         else {
-            if ([resultDict objectForKey:@"success"]) {
+            BOOL successBool = [[resultDict objectForKey:@"success"] boolValue];
+            if (successBool) {
                 success();
             } else {
                 NSError *error = [LPErrorHelper makeResponseError:resultDict];
@@ -42,17 +43,9 @@
     };
 
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-    if (parameters != nil) {
-        params = [parameters mutableCopy];
-    }
-    // TODO: check why double dictionary here
     if (data) {
-        params[LP_PARAM_DATA] = [LPJSON stringFromJSON:@{LP_PARAM_DATA:data}];
+        params[LP_PARAM_DATA] = [[LPJSON stringFromJSON:@{LP_PARAM_DATA:data}] urlencode];
     }
-    params[LP_PARAM_SDK_VERSION] = [LPApiConstants sharedState].sdkVersion;
-    params[LP_PARAM_CLIENT] =  [LPApiConstants sharedState].client;
-    params[LP_PARAM_TIME] =  [NSString stringWithFormat:@"%f", [[NSDate date] timeIntervalSince1970]];
-
     LPWSManager *wsManager = [[LPWSManager alloc] init];
     [wsManager sendPOSTWebService:[LPApiMethods getApiMethod:LPApiMethodMulti]
                        withParams:params
