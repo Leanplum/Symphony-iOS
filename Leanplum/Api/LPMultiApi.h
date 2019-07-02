@@ -11,6 +11,6 @@
 @interface LPMultiApi : NSObject
 
 + (void) multiWithData:(NSArray *)data
-               success:(void (^)(void))success
+               success:(void (^)(NSArray *))success
                failure:(void (^)(NSError *error))failure;
 @end

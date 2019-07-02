@@ -21,18 +21,23 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * Add multiple events to database.
  */
-+ (void)addRequests:(NSArray *)requests;
++ (void)addRequests:(NSArray<LPRequest *> *)requests;
 
 /**
  * Fetch events with limit.
  * Usually you pass the maximum events server can handle.
  */
-+ (NSArray *)requestsWithLimit:(NSInteger)limit;
++ (NSArray<NSDictionary *> *)requestsWithLimit:(NSInteger)limit;
 
 /**
  * Delete first X events using limit.
  */
 + (void)deleteRequestsWithLimit:(NSInteger)limit;
+
+/**
+ * Delete request by requestId.
+ */
++ (void)deleteRequestsWithRequestId:(NSString *)requestId;
 
 /**
  * Returns the number of total events stored.

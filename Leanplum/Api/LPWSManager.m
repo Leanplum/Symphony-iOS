@@ -148,8 +148,8 @@
                                           NSError *parseError = nil;
                                           NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
                                           if (httpResponse.statusCode == 200) {
-                                              //NSString *myString = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-                                              //NSLog(@"String data %@", myString);
+                                              NSString *myString = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+                                              NSLog(@"String data %@", myString);
                                               NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
                                               NSLog(@"The response is - %@",responseDictionary);
                                               success(responseDictionary);

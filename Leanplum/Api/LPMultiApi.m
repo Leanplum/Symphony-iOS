@@ -19,23 +19,16 @@
 @implementation LPMultiApi
 
 + (void) multiWithData:(NSArray *)data
-               success:(void (^)(void))success
+               success:(void (^)(NSArray *))success
                failure:(void (^)(NSError *error))failure {
     void (^successResponse) (NSDictionary *) = ^(NSDictionary *response) {
         NSError *error = nil;
         NSArray *responseArray = [response valueForKey:@"response"];
-        NSDictionary *resultDict = responseArray[0];
         if (error != nil) {
             failure(error);
         }
         else {
-            BOOL successBool = [[resultDict objectForKey:@"success"] boolValue];
-            if (successBool) {
-                success();
-            } else {
-                NSError *error = [LPErrorHelper makeResponseError:resultDict];
-                failure(error);
-            }
+            success(responseArray);
         }
     };
     void (^failureResponse) (NSError *) = ^(NSError *error ){

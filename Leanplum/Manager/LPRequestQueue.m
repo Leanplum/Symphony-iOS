@@ -37,7 +37,15 @@
     NSInteger maxCount = [LPRequestManager count];
     //Todo: currently send all requests.
     NSArray *requests = [LPRequestManager requestsWithLimit:maxCount];
-    [LPMultiApi multiWithData:requests success:^{
+    [LPMultiApi multiWithData:requests success:^(NSArray *results) {
+        for (NSDictionary *result in results) {
+            if ([result[@"success"] boolValue]
+                && !result[@"error"]) {
+                NSString *reqId = result[LP_PARAM_REQUEST_ID];
+                [LPRequestManager deleteRequestsWithRequestId:reqId];
+                // TODO: invoke callbacks for reqId
+            }
+        }
         [LPRequestManager deleteRequestsWithLimit:maxCount];
         success();
     } failure:^(NSError *error) {

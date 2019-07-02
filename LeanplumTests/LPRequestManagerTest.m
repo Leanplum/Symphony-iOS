@@ -76,4 +76,27 @@
     XCTAssertTrue([LPRequestManager count] == 0);
 }
 
+- (void)testRequestsWithLimit {
+    // Add Event.
+    NSArray *inputRequests = @[[self sampleData], [self sampleData], [self sampleData], [self sampleData]];
+    [LPRequestManager addRequests:inputRequests];
+    XCTAssertTrue(inputRequests.count == 4);
+    NSArray *requests = [LPRequestManager requestsWithLimit:1000];
+    XCTAssertTrue([requests count] == 4);
+    [LPRequestManager deleteRequestsWithLimit:1000];
+    XCTAssertTrue([LPRequestManager count] == 0);
+}
+
+- (void)testDeleteRequestsWithRequestId {
+    NSArray *inputRequests = @[[self sampleData], [self sampleData], [self sampleData], [self sampleData]];
+    [LPRequestManager addRequests:inputRequests];
+    XCTAssertTrue(inputRequests.count == 4);
+    NSArray *requests = [LPRequestManager requestsWithLimit:1000];
+    XCTAssertTrue([requests count] == 4);
+    NSString *reqId = [requests[0] objectForKey:@"reqId"];
+    [LPRequestManager deleteRequestsWithRequestId:reqId];
+    NSArray *requests2 = [LPRequestManager requestsWithLimit:1000];
+    XCTAssertTrue([requests2 count] == 3);
+}
+
 @end

@@ -24,7 +24,7 @@
     [[LPStorageSQLite sharedDatabase] runQuery:query bindObjects:objectsToBind];
 }
 
-+ (void)addRequests:(NSArray *)requests
++ (void)addRequests:(NSArray<LPRequest *> *)requests
 {
     if (!requests.count) {
         return;
@@ -45,7 +45,7 @@
 
 }
 
-+ (NSArray *)requestsWithLimit:(NSInteger)limit
++ (NSArray<NSDictionary *> *)requestsWithLimit:(NSInteger)limit
 {
     NSString *query = [NSString stringWithFormat:@"SELECT data FROM requests ORDER BY rowid "
                        "LIMIT %ld", (long)limit];
@@ -73,7 +73,11 @@
                        "(SELECT rowid FROM requests ORDER BY rowid "
                        "LIMIT %ld);", (long)limit];
     [[LPStorageSQLite sharedDatabase] runQuery:query];
-    
+}
+
++ (void)deleteRequestsWithRequestId:(NSString *)requestId {
+    NSString *query = [NSString stringWithFormat:@"DELETE FROM requests WHERE requestId = \"%@\";", requestId];
+    [[LPStorageSQLite sharedDatabase] runQuery:query];
 }
 
 + (NSInteger)count

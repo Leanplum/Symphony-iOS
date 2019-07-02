@@ -1,0 +1,10 @@
+{
+    "response": [
+        {
+            "success": true,
+            "error": {
+                "message": "Error message provided here."
+            }
+        }
+    ]
+}

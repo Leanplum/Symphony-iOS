@@ -32,7 +32,7 @@
 
 - (void)testMultiApi {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPMultiApi multiWithData:[self sampleData] success:^ {
+    [LPMultiApi multiWithData:[self sampleData] success:^ (NSArray *results){
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -48,7 +48,7 @@
     // TODO: check on possible rate limit for just multi
     sleep(1);
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPMultiApi multiWithData:[self sampleData] success:^ {
+    [LPMultiApi multiWithData:[self sampleData] success:^ (NSArray *results) {
         [expectation fulfill];
     } failure:^(NSError *error) {
         NSLog(@"Error: %@", error);
@@ -65,7 +65,7 @@
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     // send empty data
     [LPTestHelper setup:APPLICATION_ID withAccessKey:DEVELOPMENT_KEY withDeviceId:@""];
-    [LPMultiApi multiWithData:nil success:^ {
+    [LPMultiApi multiWithData:nil success:^ (NSArray *results) {
         NSLog(@"here");
     } failure:^(NSError *error) {
         NSString *expected = @"No data argument supplied";
@@ -83,7 +83,7 @@
 - (void)testMultiApiWithIosError {
     [LPTestHelper runWithApiHost:@"blah.leanplum.com" withBlock:^(void) {
         XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-        [LPMultiApi multiWithData:[self sampleData] success:^ {
+        [LPMultiApi multiWithData:[self sampleData] success:^ (NSArray *results) {
         } failure:^(NSError *error) {
             NSString *expected = @"A server with the specified hostname could not be found.";
             XCTAssertEqualObjects([error userInfo][NSLocalizedDescriptionKey], expected);
@@ -101,7 +101,7 @@
 - (void)testMultiApiStub {
     [LPTestHelper setupStub:200 withFileName:@"simple_post_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPMultiApi multiWithData:[self sampleData] success:^ {
+    [LPMultiApi multiWithData:[self sampleData] success:^ (NSArray *results) {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -117,7 +117,7 @@
 - (void)testMultiApiWithParametersStub {
     [LPTestHelper setupStub:200 withFileName:@"simple_post_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPMultiApi multiWithData:[self sampleData] success:^ {
+    [LPMultiApi multiWithData:[self sampleData] success:^ (NSArray *results) {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -132,7 +132,7 @@
 - (void)testMultiApiHttpErrorStub {
     [LPTestHelper setupStub:400 withFileName:@"simple_post_error_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPMultiApi multiWithData:[self sampleData] success:^ {
+    [LPMultiApi multiWithData:[self sampleData] success:^ (NSArray *results) {
     } failure:^(NSError *error) {
         NSString *expectedMessage = @"This is a test error message";
         XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);
@@ -147,13 +147,15 @@
 }
 
 - (void)testMultiApiMalformedResponseStub {
-    [LPTestHelper setupStub:200 withFileName:@"malformed_success_response.json"];
+    [LPTestHelper setupStub:200 withFileName:@"malformed_multi_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPMultiApi multiWithData:[self sampleData] success:^ {
+    [LPMultiApi multiWithData:[self sampleData] success:^ (NSArray *results) {
+        NSLog(@"%@", results);
+        XCTAssertEqualObjects(results[0][@"error"][@"message"], @"Error message provided here.");
+        [expectation fulfill];
     } failure:^(NSError *error) {
         NSString *expectedMessage = @"Unknown error, please contact Leanplum.";
         XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);
-        [expectation fulfill];
     }];
     
     [self waitForExpectationsWithTimeout:20.0 handler:^(NSError *error) {
