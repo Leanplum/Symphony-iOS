@@ -18,8 +18,8 @@
 
 @implementation LPMultiApi
 
-+ (void) multiWithData:(NSArray *)data
-               success:(void (^)(NSArray *))success
++ (void) multiWithData:(NSArray<NSDictionary *> *)data
+               success:(void (^)(NSArray<NSDictionary *> *))success
                failure:(void (^)(NSError *error))failure {
     void (^successResponse) (NSDictionary *) = ^(NSDictionary *response) {
         NSError *error = nil;

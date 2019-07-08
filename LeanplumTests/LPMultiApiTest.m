@@ -33,6 +33,7 @@
 - (void)testMultiApi {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     [LPMultiApi multiWithData:[self sampleData] success:^ (NSArray *results){
+        XCTAssertTrue([[results firstObject][@"success"] boolValue]);
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -49,6 +50,25 @@
     sleep(1);
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     [LPMultiApi multiWithData:[self sampleData] success:^ (NSArray *results) {
+        XCTAssertTrue([[results firstObject][@"success"] boolValue]);
+        [expectation fulfill];
+    } failure:^(NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+
+    [self waitForExpectationsWithTimeout:20.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+    }];
+}
+
+- (void)testMultiApiWithIncorrectParameters {
+    // TODO: check on possible rate limit for just multi
+    sleep(1);
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    [LPMultiApi multiWithData:[self incompleteSampleData] success:^ (NSArray *results) {
+        XCTAssertFalse([[results firstObject][@"success"] boolValue]);
         [expectation fulfill];
     } failure:^(NSError *error) {
         NSLog(@"Error: %@", error);
@@ -66,7 +86,6 @@
     // send empty data
     [LPTestHelper setup:APPLICATION_ID withAccessKey:DEVELOPMENT_KEY withDeviceId:@""];
     [LPMultiApi multiWithData:nil success:^ (NSArray *results) {
-        NSLog(@"here");
     } failure:^(NSError *error) {
         NSString *expected = @"No data argument supplied";
         XCTAssertEqualObjects([error userInfo][NSLocalizedDescriptionKey], expected);
@@ -176,7 +195,21 @@
                           @"time": @"1559307918.899670",
                           @"event": @"testEvent",
                           @"value": @"0.000000",
-                          @"uuid": @"D5967389-5457-4DAA-8378-3C47F63817FF"
+                          @"reqId": @"D5967389-5457-4DAA-8378-3C47F63817FF"
+                          }];
+    return data;
+}
+
+- (NSArray *)incompleteSampleData {
+    NSArray *data = @[@{
+                          @"action": @"track",
+                          @"deviceId": @"5C8824DD-7F71-4587-AE56-0F62763296F7",
+                          @"userId": @"5C8824DD-7F71-4587-AE56-0F62763296F7",
+                          @"client": @"ios",
+                          @"sdkVersion": @"2.4.2",
+                          @"devMode": @(YES),
+                          @"time": @"1559307918.899670",
+                          @"reqId": @"D5967389-5457-4DAA-8378-3C47F63817FF"
                           }];
     return data;
 }
