@@ -103,4 +103,65 @@
     XCTAssertTrue([LPRequestManager count] == 0);
 }
 
+- (void)testSendRequestQueueSuccessCallback {
+    sleep(1);
+    [LPRequestManager deleteRequestsWithLimit:1000];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Success callback not called."];
+    LPRequest *request = [[LPRequest alloc] initWithApiMethod:LPApiMethodSetUserAttributes
+                                                       params:nil
+                                                      success:^(NSDictionary * _Nonnull dictionary) {
+                                                          [expectation fulfill];
+                                                       } failure:nil];
+    [[LPRequestQueue sharedInstance] enqueue:[self sampleData]];
+    [[LPRequestQueue sharedInstance] enqueue:[self sampleData]];
+    [[LPRequestQueue sharedInstance] enqueue:request];
+
+    NSArray *requests = [LPRequestManager requestsWithLimit:10000];
+    XCTAssertTrue(requests.count == 3);
+
+    [[LPRequestQueue sharedInstance] sendRequests:^{
+    } failure:^(NSError * _Nonnull error) {
+        [LPRequestManager deleteRequestsWithLimit:1000];
+    }];
+    [self waitForExpectationsWithTimeout:20.0 handler:^(NSError *error) {
+        if (error) {
+            [LPRequestManager deleteRequestsWithLimit:1000];
+            NSLog(@"Error: %@", error);
+        }
+    }];
+    [LPRequestManager deleteRequestsWithLimit:1000];
+    XCTAssertTrue([LPRequestManager count] == 0);
+}
+
+- (void)testSendRequestQueueFailureCallback {
+    sleep(1);
+    [LPRequestManager deleteRequestsWithLimit:1000];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Success callback not called."];
+    LPRequest *request = [[LPRequest alloc] initWithApiMethod:LPApiMethodTrack
+                                                       params:nil
+                                                      success:nil
+                                                      failure:^(NSError * _Nonnull error) {
+                                                          [expectation fulfill];
+                                                      }];
+    [[LPRequestQueue sharedInstance] enqueue:[self sampleData]];
+    [[LPRequestQueue sharedInstance] enqueue:[self sampleData]];
+    [[LPRequestQueue sharedInstance] enqueue:request];
+
+    NSArray *requests = [LPRequestManager requestsWithLimit:10000];
+    XCTAssertTrue(requests.count == 3);
+
+    [[LPRequestQueue sharedInstance] sendRequests:^{
+    } failure:^(NSError * _Nonnull error) {
+        [LPRequestManager deleteRequestsWithLimit:1000];
+    }];
+    [self waitForExpectationsWithTimeout:30.0 handler:^(NSError *error) {
+        if (error) {
+            [LPRequestManager deleteRequestsWithLimit:1000];
+            NSLog(@"Error: %@", error);
+        }
+    }];
+    [LPRequestManager deleteRequestsWithLimit:1000];
+    XCTAssertTrue([LPRequestManager count] == 0);
+}
+
 @end
