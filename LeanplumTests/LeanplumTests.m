@@ -150,4 +150,135 @@
         }
     }];
 }
+
+
+/**
+ * Tests whether setting user attributes and id works error correctly.
+ */
+- (void) testSetUserAttributesError
+{
+    [LPTestHelper setup];
+    [LPTestHelper setupStub:400 withFileName:@"simple_error_success_response.json"];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    NSDictionary *userAttributes = @{@"name": @"John Smith",
+                                     @"age": @42,
+                                     @"address": @"New York"
+                                     };
+    
+    // Try to set user id and attributes.
+    [Leanplum setUserAttributes:userAttributes withSuccess:^{
+    } withFailure:^(NSError *error) {
+        NSString *expectedMessage = @"Unknown error, please contact Leanplum.";
+        XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);
+        [expectation fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:40.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+    }];
+}
+
+
+/**
+ * Tests whether setting user attributes and id works error correctly.
+ */
+- (void) testSetUserAttributesValidationScalarError
+{
+    [LPTestHelper setup];
+    [LPTestHelper setupStub:400 withFileName:@"simple_error_success_response.json"];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    NSDictionary *userAttributes = @{@"name": @"John Smith",
+                                     @"age": [NSNull class],
+                                     @"address": @"New York"
+                                     };
+    
+    // Try to set user id and attributes.
+    [Leanplum setUserAttributes:userAttributes withSuccess:^{
+    } withFailure:^(NSError *error) {
+        NSString *expectedMessage = @"Unknown error, please contact Leanplum.";
+        XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);
+        [expectation fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:40.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+    }];
+}
+
+/**
+ * Tests whether setting user attributes and id works correctly with API Call
+ */
+- (void) testSetUserAttributesApiCall
+{
+    [LPTestHelper setup];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    NSString *userId = @"john.smith";
+    NSDictionary *userAttributes = @{@"name": @"John Smith",
+                                     @"age": @42,
+                                     @"address": @"New York"
+                                     };
+    
+    // Try to set user id and attributes.
+    [Leanplum setUserAttributes:userAttributes withSuccess:^{
+        [expectation fulfill];
+    } withFailure:^(NSError *error) {
+    }];
+    
+    [self waitForExpectationsWithTimeout:40.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+    }];
+}
+
+/**
+ * Tests whether setting user attributes and id works error correctly.
+ */
+- (void) testSetUserError
+{
+    [LPTestHelper setup];
+    [LPTestHelper setupStub:400 withFileName:@"simple_error_success_response.json"];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+
+    // Try to set user id and attributes.
+    [Leanplum setUserId:nil withSuccess:^{
+    } withFailure:^(NSError *error) {
+        NSString *expectedMessage = @"Unknown error, please contact Leanplum.";
+        XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);
+        [expectation fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:40.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+    }];
+}
+
+/**
+ * Tests whether setting user attributes and id works correctly with API Call
+ */
+- (void) testSetUserApiCall
+{
+    [LPTestHelper setup];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    NSString *userId = @"john.smith";
+    
+    // Try to set user id and attributes.
+    [Leanplum setUserId:userId withSuccess:^{
+        [expectation fulfill];
+    } withFailure:^(NSError *error) {
+    }];
+    
+    [self waitForExpectationsWithTimeout:40.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+    }];
+}
+
 @end

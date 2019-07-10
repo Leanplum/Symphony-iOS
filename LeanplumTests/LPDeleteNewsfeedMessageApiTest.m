@@ -30,37 +30,6 @@
     [OHHTTPStubs removeAllStubs];
 }
 
-//ToDo: Finalize a plan for actual delete news feed.
-/*
-- (void)testDeleteNewsfeedMessageApi {
-    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPDeleteNewsfeedMessageApi deleteNewsfeedMessageWithMessageId:@"1234" parameters:nil success:^ {
-        [expectation fulfill];
-    } failure:^(NSError *error) {
-    }];
-    
-    [self waitForExpectationsWithTimeout:30.0 handler:^(NSError *error) {
-        if (error) {
-            NSLog(@"Error: %@", error);
-        }
-    }];
-}
-
-- (void)testDeleteNewsfeedMessageApiWithParameters {
-    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    NSDictionary *params = @{ @"testKey": @"testValue" };
-    [LPDeleteNewsfeedMessageApi deleteNewsfeedMessageWithMessageId:@"123" parameters:nil success:^ {
-        [expectation fulfill];
-    } failure:^(NSError *error) {
-    }];
-    
-    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
-        if (error) {
-            NSLog(@"Error: %@", error);
-        }
-    }];
-}
-*/
 - (void)testDeleteNewsfeedMessageApiWithHttpError {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     // change device id to empty string
@@ -72,7 +41,7 @@
         [expectation fulfill];
     }];
     
-    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+    [self waitForExpectationsWithTimeout:20.0 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);
         }
@@ -89,7 +58,7 @@
             [expectation fulfill];
         }];
         
-        [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+        [self waitForExpectationsWithTimeout:20.0 handler:^(NSError *error) {
             if (error) {
                 NSLog(@"Error: %@", error);
             }
@@ -105,7 +74,7 @@
     } failure:^(NSError *error) {
     }];
     
-    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+    [self waitForExpectationsWithTimeout:20.0 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);
         }
@@ -121,7 +90,7 @@
     } failure:^(NSError *error) {
     }];
     
-    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+    [self waitForExpectationsWithTimeout:20.0 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);
         }
@@ -138,29 +107,11 @@
         [expectation fulfill];
     }];
     
-    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+    [self waitForExpectationsWithTimeout:20.0 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);
         }
     }];
 }
-
-// TODO: fix this test
-//- (void)testDeleteNewsfeedMessageApiMalformedResponseStub {
-//    [LPTestHelper setupStub:200 withFileName:@"malformed_success_response.json"];
-//    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-//    [LPDeleteNewsfeedMessageApi deleteNewsfeedMessageWithMessageId:@"123" parameters:nil success:^ {
-//    } failure:^(NSError *error) {
-//        NSString *expectedMessage = @"Unknown error, please contact Leanplum.";
-//        XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);
-//        [expectation fulfill];
-//    }];
-//    
-//    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
-//        if (error) {
-//            NSLog(@"Error: %@", error);
-//        }
-//    }];
-//}
 
 @end

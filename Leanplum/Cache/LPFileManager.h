@@ -41,10 +41,5 @@
 
 + (NSString *__nullable)appBundlePath;
 + (NSString *__nullable)documentsDirectory;
-+ (NSString *__nullable)cachesDirectory;
-+ (NSString *__nullable)documentsPathRelativeToFolder:(NSString *__nonnull)folder;
-+ (NSString *__nullable)documentsPath;
-+ (NSString *__nullable)bundlePathRelativeToFolder:(NSString *__nonnull)folder;
-+ (NSString *__nullable)bundlePath;
 
 @end

@@ -263,8 +263,10 @@
 		B46B51FF2284DDE000B29663 /* Leanplum.m in Headers */ = {isa = PBXBuildFile; fileRef = B46B51FD2284D5CA00B29663 /* Leanplum.m */; };
 		B46B52022284E2FF00B29663 /* LPUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = B46B52002284E2FE00B29663 /* LPUtils.h */; };
 		B46B52032284E2FF00B29663 /* LPUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = B46B52012284E2FF00B29663 /* LPUtils.m */; };
-		B46B52062284E3DD00B29663 /* LPExceptionHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = B46B52042284E3DD00B29663 /* LPExceptionHandler.h */; };
-		B46B52072284E3DD00B29663 /* LPExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B46B52052284E3DD00B29663 /* LPExceptionHandler.m */; };
+		B4E251B422D54E8D00CEECAF /* LPFileManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E251B322D54E8D00CEECAF /* LPFileManagerTest.m */; };
+		B4E251B622D65A1000CEECAF /* LPUtilsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E251B522D65A1000CEECAF /* LPUtilsTest.m */; };
+		B4E251BD22D65AE900CEECAF /* NSString+MD5Addition.h in Headers */ = {isa = PBXBuildFile; fileRef = B4E251B922D65AE900CEECAF /* NSString+MD5Addition.h */; };
+		B4E251C022D65AE900CEECAF /* NSString+MD5Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E251BC22D65AE900CEECAF /* NSString+MD5Addition.m */; };
 		B4F077E122B8512100F2743F /* LPStorageSQLite.h in Headers */ = {isa = PBXBuildFile; fileRef = B4F077DF22B8512100F2743F /* LPStorageSQLite.h */; };
 		B4F077E222B8512100F2743F /* LPStorageSQLite.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F077E022B8512100F2743F /* LPStorageSQLite.m */; };
 		B4F077E622B8531A00F2743F /* LPFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F077E422B8531A00F2743F /* LPFileManager.m */; };
@@ -539,8 +541,10 @@
 		B46B51FD2284D5CA00B29663 /* Leanplum.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Leanplum.m; sourceTree = "<group>"; };
 		B46B52002284E2FE00B29663 /* LPUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPUtils.h; sourceTree = "<group>"; };
 		B46B52012284E2FF00B29663 /* LPUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPUtils.m; sourceTree = "<group>"; };
-		B46B52042284E3DD00B29663 /* LPExceptionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPExceptionHandler.h; sourceTree = "<group>"; };
-		B46B52052284E3DD00B29663 /* LPExceptionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPExceptionHandler.m; sourceTree = "<group>"; };
+		B4E251B322D54E8D00CEECAF /* LPFileManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPFileManagerTest.m; sourceTree = "<group>"; };
+		B4E251B522D65A1000CEECAF /* LPUtilsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPUtilsTest.m; sourceTree = "<group>"; };
+		B4E251B922D65AE900CEECAF /* NSString+MD5Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5Addition.h"; sourceTree = "<group>"; };
+		B4E251BC22D65AE900CEECAF /* NSString+MD5Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5Addition.m"; sourceTree = "<group>"; };
 		B4F077DF22B8512100F2743F /* LPStorageSQLite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPStorageSQLite.h; sourceTree = "<group>"; };
 		B4F077E022B8512100F2743F /* LPStorageSQLite.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPStorageSQLite.m; sourceTree = "<group>"; };
 		B4F077E422B8531A00F2743F /* LPFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPFileManager.m; sourceTree = "<group>"; };
@@ -658,6 +662,7 @@
 		A8504662224C0A7900BACA81 /* Leanplum */ = {
 			isa = PBXGroup;
 			children = (
+				B4E251B722D65ABC00CEECAF /* Vendor */,
 				B4F077E822B97E3D00F2743F /* Manager */,
 				B4F077DB22B850AA00F2743F /* Cache */,
 				B4FCB10B22722B8F004F5D63 /* Common */,
@@ -687,6 +692,7 @@
 				6515E1DA2270DF7F00C5A2F0 /* LPMessageTest.m */,
 				A8504670224C0A7900BACA81 /* Info.plist */,
 				6515E1D82270DF5600C5A2F0 /* LPFileAttributeTest.m */,
+				B4E251B322D54E8D00CEECAF /* LPFileManagerTest.m */,
 				6515E1DC2270DFC600C5A2F0 /* LPStartResponseTest.m */,
 				6515E1EE2270E1F100C5A2F0 /* LPActionDefinitionTest.m */,
 				A82BD107229D0E8700FE1DA2 /* LPSetVarsApiTest.m */,
@@ -706,6 +712,7 @@
 				65298EF722BAFE9500B8CEE9 /* LPRequestCallbackManagerTest.m */,
 				B4F077F122BAF0C200F2743F /* LPRequestManagerTest.m */,
 				B422E4F822BC478000E1D88D /* LPRequestQueueTests.m */,
+				B4E251B522D65A1000CEECAF /* LPUtilsTest.m */,
 			);
 			path = LeanplumTests;
 			sourceTree = "<group>";
@@ -923,8 +930,6 @@
 		B430A22A224C1CA600DC8140 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				B46B52042284E3DD00B29663 /* LPExceptionHandler.h */,
-				B46B52052284E3DD00B29663 /* LPExceptionHandler.m */,
 				B46B52002284E2FE00B29663 /* LPUtils.h */,
 				B46B52012284E2FF00B29663 /* LPUtils.m */,
 				B41E7894227FB08500D2AE63 /* LPJSON.h */,
@@ -950,6 +955,23 @@
 				B4591DDA227BA41F0076F9E2 /* LPTestHelper.m */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		B4E251B722D65ABC00CEECAF /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				B4E251B822D65AC800CEECAF /* UniqueIdentifier */,
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		B4E251B822D65AC800CEECAF /* UniqueIdentifier */ = {
+			isa = PBXGroup;
+			children = (
+				B4E251B922D65AE900CEECAF /* NSString+MD5Addition.h */,
+				B4E251BC22D65AE900CEECAF /* NSString+MD5Addition.m */,
+			);
+			path = UniqueIdentifier;
 			sourceTree = "<group>";
 		};
 		B4F077DB22B850AA00F2743F /* Cache */ = {
@@ -1029,6 +1051,7 @@
 				65D4AB84224D73EF009BA5F3 /* LPTentacledTitle.h in Headers */,
 				6515E1CE2270DE0300C5A2F0 /* LPActionDefinition.h in Headers */,
 				65D4ABE8224D8028009BA5F3 /* LPIndecentChild.h in Headers */,
+				B4E251BD22D65AE900CEECAF /* NSString+MD5Addition.h in Headers */,
 				B41E7896227FB08500D2AE63 /* LPJSON.h in Headers */,
 				65D4ABD0224D7F7B009BA5F3 /* LPTentacledChild.h in Headers */,
 				A835F36522A174F60040FD14 /* LPMarkNewsfeedMessageAsReadApi.h in Headers */,
@@ -1062,7 +1085,6 @@
 				A82BD106229D0E4900FE1DA2 /* LPSetVarsApi.h in Headers */,
 				65D4AB74224D7345009BA5F3 /* LPFluffyCancelAction.h in Headers */,
 				65D4AB44224C2EA1009BA5F3 /* LPTentacledAcceptButton.h in Headers */,
-				B46B52062284E3DD00B29663 /* LPExceptionHandler.h in Headers */,
 				65D4AC00224D80CC009BA5F3 /* LPFriskyChild.h in Headers */,
 				B4F077EB22B97E4D00F2743F /* LPRequestManager.h in Headers */,
 				B430A23B224C212500DC8140 /* LPStartResponse.h in Headers */,
@@ -1308,6 +1330,7 @@
 				B430A25F224C22CA00DC8140 /* LPCenterPopupKinds.m in Sources */,
 				B4FCB10322722AE1004F5D63 /* LPUserApi.m in Sources */,
 				65D4AB91224D74E5009BA5F3 /* LPWebInterstitialKinds.m in Sources */,
+				B4E251C022D65AE900CEECAF /* NSString+MD5Addition.m in Sources */,
 				B4F077F022B9864000F2743F /* LPRequestQueue.m in Sources */,
 				65D4ABDD224D7FD6009BA5F3 /* LPIndigoChild.m in Sources */,
 				B4F077E222B8512100F2743F /* LPStorageSQLite.m in Sources */,
@@ -1333,7 +1356,6 @@
 				65D4AB65224D7250009BA5F3 /* LPOpenURLValues.m in Sources */,
 				65D4AB61224D71E4009BA5F3 /* LPOpenURLKinds.m in Sources */,
 				65D4AC01224D80CC009BA5F3 /* LPFriskyChild.m in Sources */,
-				B46B52072284E3DD00B29663 /* LPExceptionHandler.m in Sources */,
 				B4FCB10122722AE1004F5D63 /* LPWSManager.m in Sources */,
 				A82BD0EA229D0B5100FE1DA2 /* LPLogApi.m in Sources */,
 				B430A255224C226900DC8140 /* LPValuesDismissAction.m in Sources */,
@@ -1414,6 +1436,7 @@
 				B430A25B224C22A800DC8140 /* LPCenterPopup.m in Sources */,
 				65C5BDC9228B6162003EE334 /* LPRegisterDeviceApiTests.m in Sources */,
 				B430A297224C240900DC8140 /* LPPurpleCancelAction.m in Sources */,
+				B4E251B422D54E8D00CEECAF /* LPFileManagerTest.m in Sources */,
 				B430A26F224C232300DC8140 /* LPPurpleAcceptButton.m in Sources */,
 				B422E4F922BC478000E1D88D /* LPRequestQueueTests.m in Sources */,
 				A82BD0EE229D0C5900FE1DA2 /* LPHeartbeatApiTest.m in Sources */,
@@ -1436,6 +1459,7 @@
 				6515E1DD2270DFC600C5A2F0 /* LPStartResponseTest.m in Sources */,
 				6515E1DB2270DF7F00C5A2F0 /* LPMessageTest.m in Sources */,
 				6515E1D92270DF5600C5A2F0 /* LPFileAttributeTest.m in Sources */,
+				B4E251B622D65A1000CEECAF /* LPUtilsTest.m in Sources */,
 				B430A2A1224C244400DC8140 /* LPInterstitialKinds.m in Sources */,
 				B430A279224C235900DC8140 /* LPPurpleMessage.m in Sources */,
 				B430A260224C22CA00DC8140 /* LPCenterPopupKinds.m in Sources */,
