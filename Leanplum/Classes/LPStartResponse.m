@@ -26,16 +26,17 @@
 
 - (id) initWithDictionary:(NSDictionary *)responseDict {
     NSDictionary *mapping = [self classMapping];
-    for (id key in (responseDict[@"response"] ? responseDict[@"response"] : responseDict)) {
+    for (id key in responseDict) {
         if (mapping[key]) {
             if ([key isEqualToString: @"regions"]) {
-                NSMutableArray *regionArr = [[NSMutableArray alloc] init];
-                for (id regionDict in responseDict[mapping[key]]) {
-                    LPRegion *region = [[LPRegion alloc] initWithDictionary:regionDict];
-                    [regionArr addObject: region];
+                NSMutableArray *regions = [[NSMutableArray alloc] init];
+                for (id regionKey in responseDict[key]) {
+                    NSDictionary *regionDict = responseDict[key];
+                    LPRegion *region = [[LPRegion alloc] initWithDictionary:regionDict[regionKey]];
+                    [regions addObject: region];
                 }
-                [self setValue:regionArr forKey:mapping[key]];
-            } else if ([key isEqualToString: @"messages"]) {
+                [self setValue:regions forKey:mapping[key]];
+            } /*else if ([key isEqualToString: @"messages"]) {
                 NSMutableArray *messageArr = [[NSMutableArray alloc] init];
                 for (id messageDict in responseDict[mapping[key]]) {
                     LPMessage *message = [[LPMessage alloc] initWithDictionary:messageDict];
@@ -49,7 +50,7 @@
                     [fileAttributeArr addObject: fileAttribute];
                 }
                 [self setValue:fileAttributeArr forKey:mapping[key]];
-            } else {
+            } */else {
                 [self setValue:[responseDict objectForKey:key] forKey:mapping[key]];
             }
         }
