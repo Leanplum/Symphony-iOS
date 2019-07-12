@@ -36,23 +36,24 @@
                     [regions addObject: region];
                 }
                 [self setValue:regions forKey:mapping[key]];
-            } /*else if ([key isEqualToString: @"messages"]) {
-                NSMutableArray *messageArr = [[NSMutableArray alloc] init];
-                for (id messageDict in responseDict[mapping[key]]) {
-                    LPMessage *message = [[LPMessage alloc] initWithDictionary:messageDict];
-                    [messageArr addObject: message];
-                }
-                [self setValue:messageArr forKey:mapping[key]];
-            } else if ([key isEqualToString: @"fileAttributes"]) {
+            } /*else if ([key isEqualToString: @"fileAttributes"]) {
                 NSMutableArray *fileAttributeArr = [[NSMutableArray alloc] init];
                 for (id fileAttributeDict in responseDict[mapping[key]]) {
                     LPFileAttribute *fileAttribute = [[LPFileAttribute alloc] initWithDictionary:fileAttributeDict];
                     [fileAttributeArr addObject: fileAttribute];
                 }
                 [self setValue:fileAttributeArr forKey:mapping[key]];
-            } */else {
-                [self setValue:[responseDict objectForKey:key] forKey:mapping[key]];
             }
+            else if ([key isEqualToString: @"messages"]) {
+             NSMutableArray *messageArr = [[NSMutableArray alloc] init];
+             for (id messageDict in responseDict[mapping[key]]) {
+             LPMessage *message = [[LPMessage alloc] initWithDictionary:messageDict];
+             [messageArr addObject: message];
+             }
+             [self setValue:messageArr forKey:mapping[key]];
+             }else {
+                [self setValue:[responseDict objectForKey:key] forKey:mapping[key]];
+            }*/
         }
     }
     return self;

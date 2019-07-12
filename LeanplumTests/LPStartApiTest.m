@@ -31,11 +31,12 @@
     [OHHTTPStubs removeAllStubs];
 }
 
-- (void)testStartApiWithParameters {
+- (void)testStartApiWithRegionsWithParameters {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     NSDictionary *params = @{ @"testKey": @"testValue" };
     [LPStartApi startWithParameters:params success:^(LPStartResponse *response) {
         XCTAssertNotNil(response);
+        XCTAssertNotNil(response.regions);
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -47,7 +48,7 @@
     }];
 }
 
-- (void)testStartApiWithHttpError {
+- (void)testStartApiWithRegionsWithHttpError {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     // change device id to empty string
     [LPTestHelper setup:APPLICATION_ID withAccessKey:DEVELOPMENT_KEY withDeviceId:@""];
