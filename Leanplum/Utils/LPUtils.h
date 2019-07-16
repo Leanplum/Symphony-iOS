@@ -47,14 +47,4 @@
  */
 + (NSString *)base64EncodedStringFromData:(NSData *)data;
 
-/**
- * Initialize exception handling
- */
-+ (void)initExceptionHandling;
-
-/**
- * Report an exception
- */
-+ (void)handleException:(NSException *)exception;
-
 @end
