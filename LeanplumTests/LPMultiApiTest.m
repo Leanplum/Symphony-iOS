@@ -48,6 +48,7 @@
 - (void)testMultiApiWithParameters {
     // TODO: check on possible rate limit for just multi
     sleep(1);
+    
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     [LPMultiApi multiWithData:[self sampleData] success:^ (NSArray *results) {
         XCTAssertTrue([[results firstObject][@"success"] boolValue]);
