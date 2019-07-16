@@ -263,6 +263,11 @@
 		B46B51FF2284DDE000B29663 /* Leanplum.m in Headers */ = {isa = PBXBuildFile; fileRef = B46B51FD2284D5CA00B29663 /* Leanplum.m */; };
 		B46B52022284E2FF00B29663 /* LPUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = B46B52002284E2FE00B29663 /* LPUtils.h */; };
 		B46B52032284E2FF00B29663 /* LPUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = B46B52012284E2FF00B29663 /* LPUtils.m */; };
+		B46B52062284E3DD00B29663 /* LPExceptionHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = B46B52042284E3DD00B29663 /* LPExceptionHandler.h */; };
+		B46B52072284E3DD00B29663 /* LPExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B46B52052284E3DD00B29663 /* LPExceptionHandler.m */; };
+		B4A32C9222D70FCB0088CCDF /* LPStartApi.h in Headers */ = {isa = PBXBuildFile; fileRef = B4A32C9022D70FCB0088CCDF /* LPStartApi.h */; };
+		B4A32C9322D70FCB0088CCDF /* LPStartApi.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A32C9122D70FCB0088CCDF /* LPStartApi.m */; };
+		B4A32C9822D7E73E0088CCDF /* LPStartApiTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A32C9722D7E73E0088CCDF /* LPStartApiTest.m */; };
 		B4E251B422D54E8D00CEECAF /* LPFileManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E251B322D54E8D00CEECAF /* LPFileManagerTest.m */; };
 		B4E251B622D65A1000CEECAF /* LPUtilsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E251B522D65A1000CEECAF /* LPUtilsTest.m */; };
 		B4E251BD22D65AE900CEECAF /* NSString+MD5Addition.h in Headers */ = {isa = PBXBuildFile; fileRef = B4E251B922D65AE900CEECAF /* NSString+MD5Addition.h */; };
@@ -541,6 +546,11 @@
 		B46B51FD2284D5CA00B29663 /* Leanplum.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Leanplum.m; sourceTree = "<group>"; };
 		B46B52002284E2FE00B29663 /* LPUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPUtils.h; sourceTree = "<group>"; };
 		B46B52012284E2FF00B29663 /* LPUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPUtils.m; sourceTree = "<group>"; };
+		B46B52042284E3DD00B29663 /* LPExceptionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPExceptionHandler.h; sourceTree = "<group>"; };
+		B46B52052284E3DD00B29663 /* LPExceptionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPExceptionHandler.m; sourceTree = "<group>"; };
+		B4A32C9022D70FCB0088CCDF /* LPStartApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPStartApi.h; sourceTree = "<group>"; };
+		B4A32C9122D70FCB0088CCDF /* LPStartApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPStartApi.m; sourceTree = "<group>"; };
+		B4A32C9722D7E73E0088CCDF /* LPStartApiTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPStartApiTest.m; sourceTree = "<group>"; };
 		B4E251B322D54E8D00CEECAF /* LPFileManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPFileManagerTest.m; sourceTree = "<group>"; };
 		B4E251B522D65A1000CEECAF /* LPUtilsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPUtilsTest.m; sourceTree = "<group>"; };
 		B4E251B922D65AE900CEECAF /* NSString+MD5Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5Addition.h"; sourceTree = "<group>"; };
@@ -708,6 +718,7 @@
 				65C5BDF4228F6937003EE334 /* LPPauseSessionTest.m */,
 				A8EF578E2293BDBF0046473C /* LPTrackTest.m */,
 				65C5BDFA228F69CD003EE334 /* LPResumeSessionTest.m */,
+				B4A32C9722D7E73E0088CCDF /* LPStartApiTest.m */,
 				A8EF57E522952A990046473C /* LPStopApiTest.m */,
 				65298EF722BAFE9500B8CEE9 /* LPRequestCallbackManagerTest.m */,
 				B4F077F122BAF0C200F2743F /* LPRequestManagerTest.m */,
@@ -923,6 +934,8 @@
 				B4591DCD227A4A260076F9E2 /* LPAPIConfig.m */,
 				65E1909E22AEF20800E7BB7D /* LPRequest.h */,
 				65E1909F22AEF20800E7BB7D /* LPRequest.m */,
+				B4A32C9022D70FCB0088CCDF /* LPStartApi.h */,
+				B4A32C9122D70FCB0088CCDF /* LPStartApi.m */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -1129,6 +1142,7 @@
 				65D4AB50224D6E73009BA5F3 /* LPFluffyMessage.h in Headers */,
 				A8EF57F322952B960046473C /* LPAdvanceApi.h in Headers */,
 				65D4AB70224D72D7009BA5F3 /* LPPushAskToAskValues.h in Headers */,
+				B4A32C9222D70FCB0088CCDF /* LPStartApi.h in Headers */,
 				65D4ABEC224D8043009BA5F3 /* LPHilariousChild.h in Headers */,
 				6597698322B2FF23003B50D4 /* LPApiMethods.h in Headers */,
 				65D4ABF4224D807C009BA5F3 /* LPFluffyDismissAction.h in Headers */,
@@ -1270,7 +1284,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-LeanplumTests/Pods-LeanplumTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-LeanplumTests/Pods-LeanplumTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/OCMock/OCMock.framework",
 				"${BUILT_PRODUCTS_DIR}/OHHTTPStubs/OHHTTPStubs.framework",
 			);
@@ -1281,7 +1295,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LeanplumTests/Pods-LeanplumTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LeanplumTests/Pods-LeanplumTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9B23B6202DDF6ADA43A219C0 /* [CP] Check Pods Manifest.lock */ = {
@@ -1360,6 +1374,7 @@
 				A82BD0EA229D0B5100FE1DA2 /* LPLogApi.m in Sources */,
 				B430A255224C226900DC8140 /* LPValuesDismissAction.m in Sources */,
 				A82BD118229D123700FE1DA2 /* LPDeleteNewsfeedMessageApi.m in Sources */,
+				B4A32C9322D70FCB0088CCDF /* LPStartApi.m in Sources */,
 				B430A282224C239600DC8140 /* LPConfirm.m in Sources */,
 				A82BD105229D0E4900FE1DA2 /* LPSetVarsApi.m in Sources */,
 				65D4ABFD224D80B1009BA5F3 /* LPMagentaChild.m in Sources */,
@@ -1443,6 +1458,7 @@
 				6517687C2284D8B300B2C17E /* LPTestHelper.m in Sources */,
 				B430A265224C22E900DC8140 /* LPCenterPopupValues.m in Sources */,
 				A82BD100229D0DC700FE1DA2 /* LPMultiApiTest.m in Sources */,
+				B4A32C9822D7E73E0088CCDF /* LPStartApiTest.m in Sources */,
 				B4F077F222BAF0C200F2743F /* LPRequestManagerTest.m in Sources */,
 				B430A288224C23B200DC8140 /* LPConfirmKinds.m in Sources */,
 				A82BD108229D0E8700FE1DA2 /* LPSetVarsApiTest.m in Sources */,

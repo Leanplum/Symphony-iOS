@@ -33,11 +33,11 @@
     id response = jsonObj[@"response"][0];
     LPStartResponse *startResponse0 = [[LPStartResponse alloc] initWithDictionary:response];
     LPRegion *region = [startResponse0 regions][0];
-    NSDictionary *regionDict = @{ @"name" : @"Apple Office",
-                                  @"lon" : [NSNumber numberWithDouble:-122.02973470209167],
-                                  @"radius" : [NSNumber numberWithFloat:460],
-                                  @"version" : [NSNumber numberWithFloat:0],
-                                  @"lat" : [NSNumber numberWithDouble:37.3315925570794]
+    NSDictionary *regionDict = @{ @"name" : @"BCN",
+                                  @"lon" : [NSNumber numberWithDouble:2.2280975548806055],
+                                  @"radius" : [NSNumber numberWithFloat:78826],
+                                  @"version" : [NSNumber numberWithFloat:2],
+                                  @"lat" : [NSNumber numberWithDouble:41.561152379414359]
                                   };
     LPRegion *regionTest = [[LPRegion alloc] initWithDictionary:regionDict];
     XCTAssertEqualObjects([region name], [regionTest name]);
