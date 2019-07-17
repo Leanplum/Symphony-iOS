@@ -42,13 +42,17 @@
 
 - (void (^)(NSDictionary *dictionary))retrieveSuccessByRequestId:(NSString *)requestId {
     void (^successCallback) (NSDictionary *) = self.successBlocks[requestId];
-    [self removeCallbackByRequestId:requestId];
+    if (successCallback) {
+        [self removeCallbackByRequestId:requestId];
+    }
     return successCallback;
 }
 
 - (void (^)(NSError *error))retrieveFailureByRequestId:(NSString *)requestId {
     void (^failureCallback) (NSError *) = self.failureBlocks[requestId];
-    [self removeCallbackByRequestId:requestId];
+    if (failureCallback) {
+        [self removeCallbackByRequestId:requestId];
+    }
     return failureCallback;
 }
 

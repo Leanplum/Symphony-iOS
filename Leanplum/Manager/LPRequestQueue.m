@@ -76,10 +76,14 @@
             }
         }
         [LPRequestManager deleteRequestsWithLimit:maxCount];
-        success();
+        if (success) {
+            success();
+        }
     } failure:^(NSError *error) {
         NSLog(@"Todo multi failure %@", error);
-        failure(error);
+        if (failure) {
+            failure(error);
+        }
     }];
 }
 

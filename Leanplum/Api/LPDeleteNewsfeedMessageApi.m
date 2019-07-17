@@ -14,6 +14,8 @@
 #import "LPAPIConfig.h"
 #import "LPErrorHelper.h"
 #import "LPJSON.h"
+#import "LPRequestQueue.h"
+#import "LPApiUtils.h"
 
 @implementation LPDeleteNewsfeedMessageApi
 
@@ -23,8 +25,7 @@
                                     failure:(void (^)(NSError *error))failure {
     void (^successResponse) (NSDictionary *) = ^(NSDictionary *response) {
         NSError *error = nil;
-        NSArray *responseArray = [response valueForKey:@"response"];
-        NSDictionary *resultDict = responseArray[0];
+        NSDictionary *resultDict = [LPApiUtils responseDictionaryFromResponse:response];
         if (error != nil) {
             failure(error);
         }
@@ -45,11 +46,20 @@
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     params[LP_PARAM_DEVICE_ID] = [LPAPIConfig sharedConfig].deviceId;
     params[LP_PARAM_INBOX_MESSAGE_ID] = messageId;
-    LPWSManager *wsManager = [[LPWSManager alloc] init];
-    [wsManager sendPOSTWebService:[LPApiMethods getApiMethod:LPApiMethodDeleteInboxMessage]
-                       withParams:params
-                     successBlock:successResponse
-                     failureBlock:failureResponse];
+
+    if ([LPApiConstants sharedState].isMulti) {
+        LPRequest *request = [[LPRequest alloc] initWithApiMethod:LPApiMethodDeleteInboxMessage
+                                                           params:params
+                                                          success:successResponse
+                                                          failure:failureResponse];
+        [[LPRequestQueue sharedInstance] enqueue:request];
+    } else {
+        LPWSManager *wsManager = [[LPWSManager alloc] init];
+        [wsManager sendPOSTWebService:[LPApiMethods getApiMethod:LPApiMethodDeleteInboxMessage]
+                           withParams:params
+                         successBlock:successResponse
+                         failureBlock:failureResponse];
+    }
 }
 
 @end

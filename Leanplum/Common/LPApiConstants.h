@@ -26,6 +26,7 @@
 @property(assign, nonatomic) BOOL loggingEnabled;
 @property(assign, nonatomic) BOOL canDownloadContentMidSessionInProduction;
 @property(assign, nonatomic) BOOL isTestMode;
+@property(assign, nonatomic) BOOL isMulti;
 @property(assign, nonatomic) BOOL isInPermanentFailureState;
 @property(assign, nonatomic) BOOL verboseLoggingInDevelopmentMode;
 @property(strong, nonatomic) NSString *client;

@@ -15,7 +15,7 @@
 #import "LPErrorHelper.h"
 #import "LPJSON.h"
 #import "LPStartResponse.h"
-
+#import "LPApiUtils.h"
 
 @implementation LPStartApi
 
@@ -25,8 +25,7 @@
     
     void (^successResponse) (NSDictionary *) = ^(NSDictionary *response) {
         NSError *error = nil;
-        NSArray *responseArray = [response valueForKey:@"response"];
-        NSDictionary *resultDict = responseArray[0];
+        NSDictionary *resultDict = [LPApiUtils responseDictionaryFromResponse:response];
         LPStartResponse *startResponse = [[LPStartResponse alloc] initWithDictionary:resultDict];
         if (error != nil) {
             failure(error);

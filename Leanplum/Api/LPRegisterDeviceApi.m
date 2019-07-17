@@ -13,6 +13,8 @@
 #import "LPApiMethods.h"
 #import "LPAPIConfig.h"
 #import "LPErrorHelper.h"
+#import "LPRequestQueue.h"
+#import "LPApiUtils.h"
 
 @implementation LPRegisterDeviceApi
 
@@ -21,8 +23,7 @@
                               failure:(void (^)(NSError *error))failure {
     void (^successResponse) (NSDictionary *) = ^(NSDictionary *response) {
         NSError *error = nil;
-        NSArray *responseArray = [response valueForKey:@"response"];
-        NSDictionary *resultDict = responseArray[0];
+        NSDictionary *resultDict = [LPApiUtils responseDictionaryFromResponse:response];
         if (error != nil) {
             failure(error);
         }
@@ -47,11 +48,20 @@
         }
     }
     params[LP_PARAM_DEVICE_ID] = [LPAPIConfig sharedConfig].deviceId;
-    LPWSManager *wsManager = [[LPWSManager alloc] init];
-    [wsManager sendPOSTWebService:[LPApiMethods getApiMethod:LPApiMethodRegisterForDevelopment]
-                       withParams:params
-                     successBlock:successResponse
-                     failureBlock:failureResponse];
+
+    if ([LPApiConstants sharedState].isMulti) {
+        LPRequest *request = [[LPRequest alloc] initWithApiMethod:LPApiMethodRegisterForDevelopment
+                                                           params:params
+                                                          success:successResponse
+                                                          failure:failureResponse];
+        [[LPRequestQueue sharedInstance] enqueue:request];
+    } else {
+        LPWSManager *wsManager = [[LPWSManager alloc] init];
+        [wsManager sendPOSTWebService:[LPApiMethods getApiMethod:LPApiMethodRegisterForDevelopment]
+                           withParams:params
+                         successBlock:successResponse
+                         failureBlock:failureResponse];
+    }
 }
 
 @end

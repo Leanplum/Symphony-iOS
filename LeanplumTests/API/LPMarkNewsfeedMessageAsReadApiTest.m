@@ -1,5 +1,5 @@
 //
-//  LPAdvanceApiTest.m
+//  LPMarkNewsfeedMessageAsReadApiTest.m
 //  LeanplumTests
 //
 //  Created by Mayank Sanganeria on 5/22/19.
@@ -9,32 +9,36 @@
 #import <XCTest/XCTest.h>
 #import <OHHTTPStubs/OHHTTPStubs.h>
 #import <OHHTTPStubs/OHPathHelpers.h>
-#import "LPAdvanceApi.h"
+#import "LPMarkNewsfeedMessageAsReadApi.h"
 #import "LPAPIConfig.h"
 #import "LPConstants.h"
 #import "LPTestHelper.h"
+#import "LPApiConstants.h"
+#import "LPRequestQueue.h"
 
-@interface LPAdvanceApiTest : XCTestCase
+@interface LPMarkNewsfeedMessageAsReadApiTest : XCTestCase
 
 @end
 
-@implementation LPAdvanceApiTest
+@implementation LPMarkNewsfeedMessageAsReadApiTest
 
 - (void)setUp {
     [super setUp];
     [LPTestHelper setup];
+    [LPApiConstants sharedState].isMulti = NO;
 }
 
 - (void)tearDown {
     [super tearDown];
+    [LPApiConstants sharedState].isMulti = YES;
     [OHHTTPStubs removeAllStubs];
 }
 
-//Todo: wait for start api implementation. And make sure it works.
+//ToDo: Cannot use backend call, we might have to delete this api
 /*
-- (void)testAdvanceApi {
+- (void)testMarkNewsfeedMessageAsReadApi {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPAdvanceApi advanceToState:@"" withParameters:nil success:^ {
+    [LPMarkNewsfeedMessageAsReadApi markNewsfeedMessageAsReadWithMessageId:@"0" parameters:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -46,10 +50,10 @@
     }];
 }
 
-- (void)testAdvanceApiWithParameters {
+- (void)testMarkNewsfeedMessageAsReadApiWithParameters {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     NSDictionary *params = @{ @"testKey": @"testValue" };
-    [LPAdvanceApi advanceToState:@"state" withParameters:params success:^ {
+    [LPMarkNewsfeedMessageAsReadApi markNewsfeedMessageAsReadWithMessageId:@"0" parameters:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -59,13 +63,13 @@
             NSLog(@"Error: %@", error);
         }
     }];
-}*/
-
-- (void)testAdvanceApiWithHttpError {
+}
+*/
+- (void)testMarkNewsfeedMessageAsReadApiWithHttpError {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     // change device id to empty string
     [LPTestHelper setup:APPLICATION_ID withAccessKey:DEVELOPMENT_KEY withDeviceId:@""];
-    [LPAdvanceApi advanceToState:@"state" withParameters:nil success:^ {
+    [LPMarkNewsfeedMessageAsReadApi markNewsfeedMessageAsReadWithMessageId:@"0" parameters:nil success:^ {
     } failure:^(NSError *error) {
         NSString *expected = @"At least one of deviceId or userId is required.";
         XCTAssertEqualObjects([error userInfo][NSLocalizedDescriptionKey], expected);
@@ -79,10 +83,10 @@
     }];
 }
 
-- (void)testAdvanceApiWithIosError {
+- (void)testMarkNewsfeedMessageAsReadApiWithIosError {
     [LPTestHelper runWithApiHost:@"blah.leanplum.com" withBlock:^(void) {
         XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-        [LPAdvanceApi advanceToState:@"state" withParameters:nil success:^ {
+        [LPMarkNewsfeedMessageAsReadApi markNewsfeedMessageAsReadWithMessageId:@"0" parameters:nil success:^ {
         } failure:^(NSError *error) {
             NSString *expected = @"A server with the specified hostname could not be found.";
             XCTAssertEqualObjects([error userInfo][NSLocalizedDescriptionKey], expected);
@@ -97,10 +101,10 @@
     }];
 }
 
-- (void)testAdvanceApiStub {
+- (void)testMarkNewsfeedMessageAsReadApiStub {
     [LPTestHelper setupStub:200 withFileName:@"simple_post_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPAdvanceApi advanceToState:@"state" withParameters:nil success:^ {
+    [LPMarkNewsfeedMessageAsReadApi markNewsfeedMessageAsReadWithMessageId:@"0" parameters:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -112,11 +116,11 @@
     }];
 }
 
-- (void)testAdvanceApiWithParametersStub {
+- (void)testMarkNewsfeedMessageAsReadApiWithParametersStub {
     [LPTestHelper setupStub:200 withFileName:@"simple_post_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     NSDictionary *params = @{@"testKey": @"testValue" };
-    [LPAdvanceApi advanceToState:@"state" withParameters:params success:^ {
+    [LPMarkNewsfeedMessageAsReadApi markNewsfeedMessageAsReadWithMessageId:@"0" parameters:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -128,10 +132,10 @@
     }];
 }
 
-- (void)testAdvanceApiHttpErrorStub {
+- (void)testMarkNewsfeedMessageAsReadApiHttpErrorStub {
     [LPTestHelper setupStub:400 withFileName:@"simple_post_error_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPAdvanceApi advanceToState:@"state" withParameters:nil success:^ {
+    [LPMarkNewsfeedMessageAsReadApi markNewsfeedMessageAsReadWithMessageId:@"0" parameters:nil success:^ {
     } failure:^(NSError *error) {
         NSString *expectedMessage = @"This is a test error message";
         XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);
@@ -145,22 +149,21 @@
     }];
 }
 
-// TODO: fix this test
-//- (void)testAdvanceApiMalformedResponseStub {
-//    [LPTestHelper setupStub:200 withFileName:@"malformed_success_response.json"];
-//    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-//    [LPAdvanceApi advanceToState:@"state" withParameters:nil success:^ {
-//    } failure:^(NSError *error) {
-//        NSString *expectedMessage = @"Unknown error, please contact Leanplum.";
-//        XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);
-//        [expectation fulfill];
-//    }];
-//
-//    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
-//        if (error) {
-//            NSLog(@"Error: %@", error);
-//        }
-//    }];
-//}
+- (void)testMarkNewsfeedMessageAsReadApiMalformedResponseStub {
+    [LPTestHelper setupStub:200 withFileName:@"malformed_success_response.json"];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    [LPMarkNewsfeedMessageAsReadApi markNewsfeedMessageAsReadWithMessageId:@"0" parameters:nil success:^ {
+    } failure:^(NSError *error) {
+        NSString *expectedMessage = @"Unknown error, please contact Leanplum.";
+        XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);
+        [expectation fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+    }];
+}
 
 @end

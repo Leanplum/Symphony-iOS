@@ -1,42 +1,46 @@
 //
-//  LPResumeSessionTest.m
+//  LPSetTrafficSourceInfoApi.m
 //  LeanplumTests
 //
-//  Created by Grace on 5/17/19.
+//  Created by Mayank Sanganeria on 5/22/19.
 //  Copyright © 2019 Leanplum. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>
 #import <OHHTTPStubs/OHHTTPStubs.h>
 #import <OHHTTPStubs/OHPathHelpers.h>
-#import "LPResumeSessionApi.h"
+#import "LPSetTrafficSourceInfoApi.h"
 #import "LPAPIConfig.h"
 #import "LPConstants.h"
 #import "LPTestHelper.h"
+#import "LPApiConstants.h"
+#import "LPRequestQueue.h"
 
-@interface LPResumeSessionTest : XCTestCase
+@interface LPSetTrafficSourceInfoApiTest : XCTestCase
 
 @end
 
-@implementation LPResumeSessionTest
+@implementation LPSetTrafficSourceInfoApiTest
 
 - (void)setUp {
     [super setUp];
     [LPTestHelper setup];
+    [LPApiConstants sharedState].isMulti = NO;
 }
 
 - (void)tearDown {
     [super tearDown];
+    [LPApiConstants sharedState].isMulti = YES;
     [OHHTTPStubs removeAllStubs];
 }
 
-- (void)testResumeSessionApi {
+- (void)testSetTrafficSourceInfoApi {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPResumeSessionApi resumeSessionWithParameters:nil success:^ {
+    [LPSetTrafficSourceInfoApi setTrafficSourceInfoWithInfo:@{} withParameters:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
-    
+
     [self waitForExpectationsWithTimeout:30.0 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);
@@ -44,10 +48,31 @@
     }];
 }
 
-- (void)testResumeSessionApiWithAttributes {
+- (void)testSetTrafficSourceInfoApiWithMulti {
+    sleep(1);
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    NSDictionary *attributes = @{ @"testKey": @"testValue" };
-    [LPResumeSessionApi resumeSessionWithParameters:attributes success:^ {
+    [LPApiConstants sharedState].isMulti = YES;
+    [LPSetTrafficSourceInfoApi setTrafficSourceInfoWithInfo:@{} withParameters:nil success:^ {
+        [expectation fulfill];
+    } failure:^(NSError *error) {
+    }];
+    [[LPRequestQueue sharedInstance] sendRequests:^{
+        NSLog(@"success");
+    } failure:^(NSError * _Nonnull error) {
+        NSLog(@"failure");
+    }];
+
+    [self waitForExpectationsWithTimeout:30.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+    }];
+}
+
+- (void)testSetTrafficSourceInfoApiWithParameters {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    NSDictionary *params = @{ @"testKey": @"testValue" };
+    [LPSetTrafficSourceInfoApi setTrafficSourceInfoWithInfo:@{} withParameters:params success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -59,11 +84,11 @@
     }];
 }
 
-- (void)testResumeSessionApiWithHttpError {
+- (void)testSetTrafficSourceInfoApiWithHttpError {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     // change device id to empty string
     [LPTestHelper setup:APPLICATION_ID withAccessKey:DEVELOPMENT_KEY withDeviceId:@""];
-    [LPResumeSessionApi resumeSessionWithParameters:nil success:^ {
+    [LPSetTrafficSourceInfoApi setTrafficSourceInfoWithInfo:@{} withParameters:nil success:^ {
     } failure:^(NSError *error) {
         NSString *expected = @"At least one of deviceId or userId is required.";
         XCTAssertEqualObjects([error userInfo][NSLocalizedDescriptionKey], expected);
@@ -77,10 +102,10 @@
     }];
 }
 
-- (void)testResumeSessionApiWithIosError {
+- (void)testSetTrafficSourceInfoApiWithIosError {
     [LPTestHelper runWithApiHost:@"blah.leanplum.com" withBlock:^(void) {
         XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-        [LPResumeSessionApi resumeSessionWithParameters:nil success:^ {
+        [LPSetTrafficSourceInfoApi setTrafficSourceInfoWithInfo:@{} withParameters:nil success:^ {
         } failure:^(NSError *error) {
             NSString *expected = @"A server with the specified hostname could not be found.";
             XCTAssertEqualObjects([error userInfo][NSLocalizedDescriptionKey], expected);
@@ -95,10 +120,10 @@
     }];
 }
 
-- (void)testResumeSessionApiStub {
+- (void)testSetTrafficSourceInfoApiStub {
     [LPTestHelper setupStub:200 withFileName:@"simple_post_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPResumeSessionApi resumeSessionWithParameters:nil success:^ {
+    [LPSetTrafficSourceInfoApi setTrafficSourceInfoWithInfo:@{} withParameters:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -110,11 +135,11 @@
     }];
 }
 
-- (void)testResumeSessionApiWithAttributesStub {
+- (void)testSetTrafficSourceInfoApiWithParametersStub {
     [LPTestHelper setupStub:200 withFileName:@"simple_post_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    NSDictionary *attributes = @{@"testKey": @"testValue" };
-    [LPResumeSessionApi resumeSessionWithParameters:attributes success:^ {
+    NSDictionary *params = @{@"testKey": @"testValue" };
+    [LPSetTrafficSourceInfoApi setTrafficSourceInfoWithInfo:@{} withParameters:params success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -126,10 +151,10 @@
     }];
 }
 
-- (void)testResumeSessionApiHttpErrorStub {
+- (void)testSetTrafficSourceInfoApiHttpErrorStub {
     [LPTestHelper setupStub:400 withFileName:@"simple_post_error_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPResumeSessionApi resumeSessionWithParameters:nil success:^ {
+    [LPSetTrafficSourceInfoApi setTrafficSourceInfoWithInfo:@{} withParameters:nil success:^ {
     } failure:^(NSError *error) {
         NSString *expectedMessage = @"This is a test error message";
         XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);
@@ -143,10 +168,10 @@
     }];
 }
 
-- (void)testResumeSessionApiMalformedResponseStub {
+- (void)testSetTrafficSourceInfoApiMalformedResponseStub {
     [LPTestHelper setupStub:200 withFileName:@"malformed_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPResumeSessionApi resumeSessionWithParameters:nil success:^ {
+    [LPSetTrafficSourceInfoApi setTrafficSourceInfoWithInfo:@{} withParameters:nil success:^ {
     } failure:^(NSError *error) {
         NSString *expectedMessage = @"Unknown error, please contact Leanplum.";
         XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);

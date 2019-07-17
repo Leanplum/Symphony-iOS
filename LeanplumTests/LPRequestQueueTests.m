@@ -58,6 +58,7 @@
 }
 
 - (void)testSendRequestQueue {
+    sleep(1);
     [LPRequestManager deleteRequestsWithLimit:1000];
     [[LPRequestQueue sharedInstance] enqueue:[self sampleData]];
     [[LPRequestQueue sharedInstance] enqueue:[self sampleData]];
@@ -81,6 +82,7 @@
 
 //ToDo: Multi call failure experience needs to be discussed and finalized.
 - (void)testSendRequestQueueError {
+    sleep(1);
     [LPRequestManager deleteRequestsWithLimit:1000];
     [[LPRequestQueue sharedInstance] enqueue:[self sampleDataError]];
     NSArray *requests = [LPRequestManager requestsWithLimit:10000];

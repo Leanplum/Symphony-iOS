@@ -9,11 +9,13 @@
 #import <XCTest/XCTest.h>
 #import "LPStartApi.h"
 #import "LPAPIConfig.h"
+#import "LPApiConstants.h"
 #import "LPConstants.h"
 #import "LPTestHelper.h"
 #import <OHHTTPStubs/OHHTTPStubs.h>
 #import <OHHTTPStubs/OHPathHelpers.h>
 #import "LPStartResponse.h"
+#import "LPRequestQueue.h"
 
 @interface LPStartApiTest : XCTestCase
 
@@ -40,7 +42,31 @@
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
-    
+
+    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+    }];
+}
+
+- (void)testStartApiWithRegionsWithParametersWithMulti {
+    sleep(1);
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    NSDictionary *params = @{ @"testKey": @"testValue" };
+    [LPApiConstants sharedState].isMulti = YES;
+    [LPStartApi startWithParameters:params success:^(LPStartResponse *response) {
+        XCTAssertNotNil(response);
+        XCTAssertNotNil(response.regions);
+        [expectation fulfill];
+    } failure:^(NSError *error) {
+    }];
+    [[LPRequestQueue sharedInstance] sendRequests:^{
+        NSLog(@"success");
+    } failure:^(NSError * _Nonnull error) {
+        NSLog(@"failure");
+    }];
+
     [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);

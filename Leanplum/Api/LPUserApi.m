@@ -13,6 +13,8 @@
 #import "LPErrorHelper.h"
 #import "LPAPIConfig.h"
 #import "LPJSON.h"
+#import "LPRequestQueue.h"
+#import "LPApiUtils.h"
 
 @implementation LPUserApi
 
@@ -22,8 +24,7 @@ withUserAttributes:(NSDictionary *)attributes
            failure:(void (^)(NSError *error))failure {
     void (^successResponse) (NSDictionary *) = ^(NSDictionary *response) {
         NSError *error = nil;
-        NSArray *responseArray = [response valueForKey:@"response"];
-        NSDictionary *resultDict = responseArray[0];
+        NSDictionary *resultDict = [LPApiUtils responseDictionaryFromResponse:response];
         if (error != nil) {
             failure(error);
         }
@@ -49,11 +50,20 @@ withUserAttributes:(NSDictionary *)attributes
     if (attributes != nil) {
         params[LP_PARAM_USER_ATTRIBUTES] =  [LPJSON stringFromJSON:attributes];
     }
-    LPWSManager *wsManager = [[LPWSManager alloc] init];
-    [wsManager sendPOSTWebService:[LPApiMethods getApiMethod:LPApiMethodSetUserAttributes]
-                       withParams:params
-                     successBlock:successResponse
-                     failureBlock:failureResponse];
+
+    if ([LPApiConstants sharedState].isMulti) {
+        LPRequest *request = [[LPRequest alloc] initWithApiMethod:LPApiMethodSetUserAttributes
+                                                           params:params
+                                                          success:successResponse
+                                                          failure:failureResponse];
+        [[LPRequestQueue sharedInstance] enqueue:request];
+    } else {
+        LPWSManager *wsManager = [[LPWSManager alloc] init];
+        [wsManager sendPOSTWebService:[LPApiMethods getApiMethod:LPApiMethodSetUserAttributes]
+                           withParams:params
+                         successBlock:successResponse
+                         failureBlock:failureResponse];
+    }
 }
 
 
