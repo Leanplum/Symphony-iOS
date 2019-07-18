@@ -185,6 +185,7 @@
 		A850466A224C0A7900BACA81 /* Leanplum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8504660224C0A7900BACA81 /* Leanplum.framework */; };
 		A850466F224C0A7900BACA81 /* LeanplumTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A850466E224C0A7900BACA81 /* LeanplumTests.m */; };
 		A8504671224C0A7900BACA81 /* Leanplum.h in Headers */ = {isa = PBXBuildFile; fileRef = A8504663224C0A7900BACA81 /* Leanplum.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A86724DB22DFB9A800FF494D /* LPApiUtilsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A86724DA22DFB9A800FF494D /* LPApiUtilsTest.m */; };
 		A868DBCE2254161C00E8C4D4 /* LPMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = A868DBCC2254161C00E8C4D4 /* LPMessage.h */; };
 		A868DBCF2254161C00E8C4D4 /* LPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = A868DBCD2254161C00E8C4D4 /* LPMessage.m */; };
 		A8EF578C2293BBE90046473C /* LPTrackApi.m in Sources */ = {isa = PBXBuildFile; fileRef = A8EF578A2293BBE80046473C /* LPTrackApi.m */; };
@@ -484,6 +485,7 @@
 		A8504669224C0A7900BACA81 /* LeanplumTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LeanplumTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A850466E224C0A7900BACA81 /* LeanplumTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LeanplumTests.m; sourceTree = "<group>"; };
 		A8504670224C0A7900BACA81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A86724DA22DFB9A800FF494D /* LPApiUtilsTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPApiUtilsTest.m; sourceTree = "<group>"; };
 		A868DBCC2254161C00E8C4D4 /* LPMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPMessage.h; sourceTree = "<group>"; };
 		A868DBCD2254161C00E8C4D4 /* LPMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPMessage.m; sourceTree = "<group>"; };
 		A8EF578A2293BBE80046473C /* LPTrackApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPTrackApi.m; sourceTree = "<group>"; };
@@ -670,6 +672,7 @@
 				65C5BDFA228F69CD003EE334 /* LPResumeSessionTest.m */,
 				B4A32C9722D7E73E0088CCDF /* LPStartApiTest.m */,
 				A8EF57E522952A990046473C /* LPStopApiTest.m */,
+				A86724DA22DFB9A800FF494D /* LPApiUtilsTest.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1483,6 +1486,7 @@
 				65C5BDD1228E2B78003EE334 /* LPPauseStateTest.m in Sources */,
 				A82BD10E229D102E00FE1DA2 /* LPSetTrafficSourceInfoApiTest.m in Sources */,
 				65C5BDD7228F5270003EE334 /* LPResumeStateTest.m in Sources */,
+				A86724DB22DFB9A800FF494D /* LPApiUtilsTest.m in Sources */,
 				A850466F224C0A7900BACA81 /* LeanplumTests.m in Sources */,
 				6515E1DD2270DFC600C5A2F0 /* LPStartResponseTest.m in Sources */,
 				6515E1DB2270DF7F00C5A2F0 /* LPMessageTest.m in Sources */,

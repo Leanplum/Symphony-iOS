@@ -11,12 +11,14 @@
 @implementation LPApiUtils
 
 +(NSDictionary *)responseDictionaryFromResponse:(NSDictionary *)response {
-    NSDictionary *parsedResponseDictionary = response;
-    NSArray *responseArray = [response valueForKey:@"response"];
-    if (responseArray) {
-        parsedResponseDictionary = [responseArray firstObject];
+    if ([self containsArrayOfResponses:response]) {
+        return [[response valueForKey:@"response"] firstObject];
     }
-    return parsedResponseDictionary;
+    return response;
+}
+
++(BOOL)containsArrayOfResponses:(NSDictionary *)response {
+    return [response valueForKey:@"response"];
 }
 
 @end
