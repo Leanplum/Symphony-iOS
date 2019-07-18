@@ -1,41 +1,46 @@
 //
-//  LPDeviceApiTests.m
+//  LPSetVarsApiTest.m
 //  LeanplumTests
 //
-//  Created by Grace on 5/10/19.
+//  Created by Mayank Sanganeria on 5/22/19.
 //  Copyright © 2019 Leanplum. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>
 #import <OHHTTPStubs/OHHTTPStubs.h>
 #import <OHHTTPStubs/OHPathHelpers.h>
-#import "LPDeviceApi.h"
+#import "LPSetVarsApi.h"
 #import "LPAPIConfig.h"
+#import "LPConstants.h"
 #import "LPTestHelper.h"
+#import "LPApiConstants.h"
+#import "LPRequestQueue.h"
 
-@interface LPDeviceApiTests : XCTestCase
+@interface LPSetVarsApiTest : XCTestCase
 
 @end
 
-@implementation LPDeviceApiTests
+@implementation LPSetVarsApiTest
 
 - (void)setUp {
     [super setUp];
     [LPTestHelper setup];
+    [LPApiConstants sharedState].isMulti = NO;
 }
 
 - (void)tearDown {
     [super tearDown];
+    [LPApiConstants sharedState].isMulti = YES;
     [OHHTTPStubs removeAllStubs];
 }
 
-- (void)testDeviceApi {
+- (void)testSetVarsApi {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPDeviceApi setDeviceAttributes:DEVICE_ID withDeviceAttributes:nil success:^ {
+    [LPSetVarsApi setVarsWithVars:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
-    
+
     [self waitForExpectationsWithTimeout:30.0 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);
@@ -43,10 +48,31 @@
     }];
 }
 
-- (void)testDeviceApiWithDeviceAttributes {
+- (void)testSetVarsApiWithMulti {
+    sleep(1);
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    NSDictionary *deviceAttributes = @{@"OS" : @"iOS"};
-    [LPDeviceApi setDeviceAttributes:DEVICE_ID withDeviceAttributes:deviceAttributes success:^ {
+    [LPApiConstants sharedState].isMulti = YES;
+    [LPSetVarsApi setVarsWithVars:nil success:^ {
+        [expectation fulfill];
+    } failure:^(NSError *error) {
+    }];
+    [[LPRequestQueue sharedInstance] sendRequests:^{
+        NSLog(@"success");
+    } failure:^(NSError * _Nonnull error) {
+        NSLog(@"failure");
+    }];
+
+    [self waitForExpectationsWithTimeout:30.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+    }];
+}
+
+- (void)testSetVarsApiWithParameters {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    NSDictionary *vars = @{ @"testKey": @"testValue" };
+    [LPSetVarsApi setVarsWithVars:vars success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -58,28 +84,30 @@
     }];
 }
 
-- (void)testDeviceApiWithHttpError {
-    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    // change device id to empty string
-    [LPTestHelper setup:APPLICATION_ID withAccessKey:DEVELOPMENT_KEY withDeviceId:@""];
-    [LPDeviceApi setDeviceAttributes:nil withDeviceAttributes:nil success:^ {
-    } failure:^(NSError *error) {
-        NSString *expected = @"At least one of deviceId or userId is required.";
-        XCTAssertEqualObjects([error userInfo][NSLocalizedDescriptionKey], expected);
-        [expectation fulfill];
-    }];
-    
-    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
-        if (error) {
-            NSLog(@"Error: %@", error);
-        }
-    }];
-}
+// TODO: make this fail
+//- (void)testSetVarsApiWithHttpError {
+//    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+//    // change device id to empty string
+////    [LPTestHelper setup:@"" withAccessKey:@"" withDeviceId:@""];
+//    [LPSetVarsApi setVarsWithVars:@{@"vars":@""} success:^ {
+//        NSLog(@"success");
+//    } failure:^(NSError *error) {
+//        NSString *expected = @"At least one of deviceId or userId is required.";
+//        XCTAssertEqualObjects([error userInfo][NSLocalizedDescriptionKey], expected);
+//        [expectation fulfill];
+//    }];
+//
+//    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+//        if (error) {
+//            NSLog(@"Error: %@", error);
+//        }
+//    }];
+//}
 
-- (void)testDeviceApiWithIosError {
+- (void)testSetVarsApiWithIosError {
     [LPTestHelper runWithApiHost:@"blah.leanplum.com" withBlock:^(void) {
         XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-        [LPDeviceApi setDeviceAttributes:@"1" withDeviceAttributes:nil success:^ {
+        [LPSetVarsApi setVarsWithVars:nil success:^ {
         } failure:^(NSError *error) {
             NSString *expected = @"A server with the specified hostname could not be found.";
             XCTAssertEqualObjects([error userInfo][NSLocalizedDescriptionKey], expected);
@@ -94,10 +122,10 @@
     }];
 }
 
-- (void)testDeviceApiStub {
+- (void)testSetVarsApiStub {
     [LPTestHelper setupStub:200 withFileName:@"simple_post_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPDeviceApi setDeviceAttributes:@"1" withDeviceAttributes:nil success:^ {
+    [LPSetVarsApi setVarsWithVars:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -109,11 +137,11 @@
     }];
 }
 
-- (void)testDeviceApiWithDeviceAttributesStub {
+- (void)testSetVarsApiWithParametersStub {
     [LPTestHelper setupStub:200 withFileName:@"simple_post_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    NSDictionary *deviceAttributes = @{@"OS" : @"iOS"};
-    [LPDeviceApi setDeviceAttributes:DEVICE_ID withDeviceAttributes:deviceAttributes success:^ {
+    NSDictionary *params = @{@"testKey": @"testValue" };
+    [LPSetVarsApi setVarsWithVars:params success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -125,10 +153,10 @@
     }];
 }
 
-- (void)testDeviceApiHttpErrorStub {
+- (void)testSetVarsApiHttpErrorStub {
     [LPTestHelper setupStub:400 withFileName:@"simple_post_error_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPDeviceApi setDeviceAttributes:@"1" withDeviceAttributes:nil success:^ {
+    [LPSetVarsApi setVarsWithVars:nil success:^ {
     } failure:^(NSError *error) {
         NSString *expectedMessage = @"This is a test error message";
         XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);
@@ -142,10 +170,10 @@
     }];
 }
 
-- (void)testDeviceApiMalformedResponseStub {
+- (void)testSetVarsApiMalformedResponseStub {
     [LPTestHelper setupStub:200 withFileName:@"malformed_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPDeviceApi setDeviceAttributes:@"1" withDeviceAttributes:nil success:^ {
+    [LPSetVarsApi setVarsWithVars:nil success:^ {
     } failure:^(NSError *error) {
         NSString *expectedMessage = @"Unknown error, please contact Leanplum.";
         XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);

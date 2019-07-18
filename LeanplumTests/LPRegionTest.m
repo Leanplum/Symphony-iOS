@@ -33,20 +33,14 @@
     
     id response = jsonObj[@"response"][0];
     id regions = response[@"regions"];
-    LPRegion *region0 = [[LPRegion alloc] initWithDictionary:regions[0]];
-    LPRegion *region1 = [[LPRegion alloc] initWithDictionary:regions[1]];
+    LPRegion *region0 = [[LPRegion alloc] initWithDictionary:regions[@"Alipore Panchsheel"]];
     
-    XCTAssertEqualObjects([region0 name], @"Apple Office");
-    XCTAssertEqual([region0 lon], -122.02973470209167);
-    XCTAssertEqual([region0 radius], 460);
+    XCTAssertEqualObjects(region0.name, @"Alipore Panchsheel");
+    XCTAssertEqual([region0 lon], 88.32607819865063);
+    XCTAssertEqual([region0 radius], 122);
     XCTAssertEqual([region0 version], 0);
-    XCTAssertEqual([region0 lat], 37.3315925570794);
-    
-    XCTAssertEqualObjects([region1 name], @"NYC");
-    XCTAssertEqual([region1 lon], -74.00598724660182);
-    XCTAssertEqual([region1 radius], 10000);
-    XCTAssertEqual([region1 version], 0);
-    XCTAssertEqual([region1 lat], 40.71550836434393);
+    XCTAssertEqual([region0 lat], 22.52443304257146);
+
 }
 
 @end

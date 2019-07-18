@@ -62,15 +62,8 @@
              LP_PARAM_TIME : timestamp};
 }
 
-- (NSString *)generateEncodedQueryString:(NSDictionary *)params withAction:(NSString *)action{
+- (NSString *)generateEncodedQueryString:(NSDictionary *)params withAction:(NSString *)action {
     NSMutableString *queryString = [NSMutableString string];
-    if (params != nil) {
-        for (id key in params) {
-            id value = params[key];
-            NSString *paramString = [NSString stringWithFormat:@"%@=%@&", key, value];
-            [queryString appendString:paramString];
-        }
-    }
     NSString *appIdParamString = [NSString stringWithFormat:@"%@=%@&", LP_PARAM_APP_ID, [LPAPIConfig sharedConfig].appId];
     [queryString appendString:appIdParamString];
     NSString *clientKeyParamString = [NSString stringWithFormat:@"%@=%@&", LP_PARAM_CLIENT_KEY, [LPAPIConfig sharedConfig].accessKey];
@@ -79,17 +72,20 @@
     [queryString appendString:actionKeyParamString];
     NSString *apiVersionKeyParamString = [NSString stringWithFormat:@"%@=%@&", LP_PARAM_API_VERSION,LEANPLUM_API_VERSION];
     [queryString appendString:apiVersionKeyParamString];
-    if ([action isEqualToString:LP_METHOD_MULTI]) {
-        NSString *dataKeyParamString = [NSString stringWithFormat:@"%@=%@", LP_PARAM_DATA,[[self generateEncodedDataString: action] urlencode]];
-        [queryString appendString:dataKeyParamString];
+    NSString *sdkVersionKeyParamString = [NSString stringWithFormat:@"%@=%@&", LP_PARAM_SDK_VERSION,[LPApiConstants sharedState].sdkVersion];
+    [queryString appendString:sdkVersionKeyParamString];
+    NSString *clientParamString = [NSString stringWithFormat:@"%@=%@&", LP_PARAM_CLIENT,[LPApiConstants sharedState].client];
+    [queryString appendString:clientParamString];
+    NSString *timeKeyParamString = [NSString stringWithFormat:@"%@=%@&", LP_PARAM_TIME,[NSString stringWithFormat:@"%f", [[NSDate date] timeIntervalSince1970]]];
+    [queryString appendString:timeKeyParamString];
+    if (params) {
+        for (id key in params) {
+            id value = params[key];
+            NSString *paramString = [NSString stringWithFormat:@"%@=%@&", key, value];
+            [queryString appendString:paramString];
+        }
     }
     return queryString;
-}
-
-- (NSString *)generateEncodedDataString:(NSString *)action {
-    NSDictionary *requestsToSend = @{LP_PARAM_DEVICE_ID : [LPAPIConfig sharedConfig].deviceId, LP_PARAM_DEV_MODE : [NSString stringWithFormat:@"%d",[[LPApiConstants sharedState] isDevelopmentModeEnabled]], LP_PARAM_USER_ID : [LPAPIConfig sharedConfig].deviceId, LP_KIND_ACTION : action};
-    NSString *requestData = [LPJSON stringFromJSON:@{LP_PARAM_DATA:requestsToSend}];
-    return requestData;
 }
 
 #pragma mark - Web Service Requests
@@ -112,14 +108,14 @@
 }
 
 #pragma mark - pointsofinterest Web service
-- (void)setupWebService:(NSString *)service {
+- (void)setupWebService {
     LPApiConstants *lpApiConstants = LPApiConstants.sharedState;
     webService = [NSString stringWithFormat:@"https://%@/api?", lpApiConstants.apiHostName];
 }
 
 - (void)sendGETWebService:(NSString*)service withParams:(NSMutableDictionary *)params successBlock:(void (^)(NSDictionary *))success failureBlock:(void (^)(NSError *))failure {
     NSLog(@"sendAsynchronousGETWebService");
-    [self setupWebService:service];
+    [self setupWebService];
     NSMutableURLRequest *request = [self createGETRequest:webService withParams:params];
     [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
     [request setTimeoutInterval:[LPApiConstants sharedState].networkTimeoutSeconds];
@@ -129,7 +125,7 @@
 
 - (void)sendPOSTWebService:(NSString*)service withParams:(NSMutableDictionary *)params successBlock:(void (^)(NSDictionary *))success failureBlock:(void (^)(NSError *))failure {
     NSLog(@"sendAsynchronousPOSTWebService");
-    [self setupWebService:service];
+    [self setupWebService];
     NSLog(@"Api Call %@ with params %@", service, params);
     NSMutableURLRequest *request = [self createPOSTRequest:webService withParams:params withAction:service];
     [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
@@ -139,7 +135,7 @@
 }
 
 - (void)executeWebServiceRequest:(NSURLRequest *)request successBlock:(void (^)(NSDictionary *))success failureBlock:(void (^)(NSError *))failure {
-    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfiguration];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request
                                             completionHandler:
                                   ^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -152,8 +148,8 @@
                                           NSError *parseError = nil;
                                           NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
                                           if (httpResponse.statusCode == 200) {
-                                              //NSString *myString = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-                                              //NSLog(@"String data %@", myString);
+                                              NSString *myString = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+                                              NSLog(@"String data %@", myString);
                                               NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
                                               NSLog(@"The response is - %@",responseDictionary);
                                               success(responseDictionary);

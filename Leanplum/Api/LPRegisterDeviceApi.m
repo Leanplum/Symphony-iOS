@@ -10,8 +10,11 @@
 #import "LPWSManager.h"
 #import "LPConstants.h"
 #import "LPApiConstants.h"
+#import "LPApiMethods.h"
 #import "LPAPIConfig.h"
 #import "LPErrorHelper.h"
+#import "LPRequestQueue.h"
+#import "LPApiUtils.h"
 
 @implementation LPRegisterDeviceApi
 
@@ -20,13 +23,13 @@
                               failure:(void (^)(NSError *error))failure {
     void (^successResponse) (NSDictionary *) = ^(NSDictionary *response) {
         NSError *error = nil;
-        NSArray *responseArray = [response valueForKey:@"response"];
-        NSDictionary *resultDict = responseArray[0];
+        NSDictionary *resultDict = [LPApiUtils responseDictionaryFromResponse:response];
         if (error != nil) {
             failure(error);
         }
         else {
-            if ([resultDict objectForKey:@"success"]) {
+            BOOL successBool = [[resultDict objectForKey:@"success"] boolValue];
+            if (successBool) {
                 success();
             } else {
                 NSError *error = [LPErrorHelper makeResponseError:resultDict];
@@ -45,11 +48,20 @@
         }
     }
     params[LP_PARAM_DEVICE_ID] = [LPAPIConfig sharedConfig].deviceId;
-    LPWSManager *wsManager = [[LPWSManager alloc] init];
-    [wsManager sendPOSTWebService:LP_API_METHOD_REGISTER_FOR_DEVELOPMENT
-                       withParams:params
-                     successBlock:successResponse
-                     failureBlock:failureResponse];
+
+    if ([LPApiConstants sharedState].isMulti) {
+        LPRequest *request = [[LPRequest alloc] initWithApiMethod:LPApiMethodRegisterForDevelopment
+                                                           params:params
+                                                          success:successResponse
+                                                          failure:failureResponse];
+        [[LPRequestQueue sharedInstance] enqueue:request];
+    } else {
+        LPWSManager *wsManager = [[LPWSManager alloc] init];
+        [wsManager sendPOSTWebService:[LPApiMethods getApiMethod:LPApiMethodRegisterForDevelopment]
+                           withParams:params
+                         successBlock:successResponse
+                         failureBlock:failureResponse];
+    }
 }
 
 @end

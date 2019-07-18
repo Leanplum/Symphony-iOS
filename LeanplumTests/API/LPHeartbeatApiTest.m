@@ -1,42 +1,46 @@
 //
-//  LPPauseStateTest.m
+//  LPHeartbeatApiTest.m
 //  LeanplumTests
 //
-//  Created by Grace on 5/16/19.
+//  Created by Mayank Sanganeria on 5/22/19.
 //  Copyright © 2019 Leanplum. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>
 #import <OHHTTPStubs/OHHTTPStubs.h>
 #import <OHHTTPStubs/OHPathHelpers.h>
-#import "LPPauseStateApi.h"
+#import "LPHeartbeatApi.h"
 #import "LPAPIConfig.h"
 #import "LPConstants.h"
 #import "LPTestHelper.h"
+#import "LPApiConstants.h"
+#import "LPRequestQueue.h"
 
-@interface LPPauseStateTest : XCTestCase
+@interface LPHeartbeatApiTest : XCTestCase
 
 @end
 
-@implementation LPPauseStateTest
+@implementation LPHeartbeatApiTest
 
 - (void)setUp {
     [super setUp];
     [LPTestHelper setup];
+    [LPApiConstants sharedState].isMulti = NO;
 }
 
 - (void)tearDown {
     [super tearDown];
+    [LPApiConstants sharedState].isMulti = YES;
     [OHHTTPStubs removeAllStubs];
 }
 
-- (void)testPauseStateApi {
+- (void)testHeartbeatApi {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPPauseStateApi pauseStateWithParameters:nil success:^ {
+    [LPHeartbeatApi heartbeatWithParameters:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
-
+    
     [self waitForExpectationsWithTimeout:30.0 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);
@@ -44,14 +48,35 @@
     }];
 }
 
-- (void)testPauseStateApiWithAttributes {
+- (void)testHeartbeatApiWithMulti {
+    sleep(1);
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    NSDictionary *attributes = @{ @"testKey": @"testValue" };
-    [LPPauseStateApi pauseStateWithParameters:attributes success:^ {
+    [LPApiConstants sharedState].isMulti = YES;
+    [LPHeartbeatApi heartbeatWithParameters:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
+    [[LPRequestQueue sharedInstance] sendRequests:^{
+        NSLog(@"success");
+    } failure:^(NSError * _Nonnull error) {
+        NSLog(@"failure");
+    }];
+    [LPApiConstants sharedState].isMulti = NO;
+    [self waitForExpectationsWithTimeout:30.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+    }];
+}
 
+- (void)testHeartbeatApiWithParameters {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    NSDictionary *params = @{ @"testKey": @"testValue" };
+    [LPHeartbeatApi heartbeatWithParameters:params success:^ {
+        [expectation fulfill];
+    } failure:^(NSError *error) {
+    }];
+    
     [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);
@@ -59,11 +84,11 @@
     }];
 }
 
-- (void)testPauseStateApiWithHttpError {
+- (void)testHeartbeatApiWithHttpError {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     // change device id to empty string
     [LPTestHelper setup:APPLICATION_ID withAccessKey:DEVELOPMENT_KEY withDeviceId:@""];
-    [LPPauseStateApi pauseStateWithParameters:nil success:^ {
+    [LPHeartbeatApi heartbeatWithParameters:nil success:^ {
     } failure:^(NSError *error) {
         NSString *expected = @"At least one of deviceId or userId is required.";
         XCTAssertEqualObjects([error userInfo][NSLocalizedDescriptionKey], expected);
@@ -77,10 +102,10 @@
     }];
 }
 
-- (void)testPauseStateApiWithIosError {
+- (void)testHeartbeatApiWithIosError {
     [LPTestHelper runWithApiHost:@"blah.leanplum.com" withBlock:^(void) {
         XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-        [LPPauseStateApi pauseStateWithParameters:nil success:^ {
+        [LPHeartbeatApi heartbeatWithParameters:nil success:^ {
         } failure:^(NSError *error) {
             NSString *expected = @"A server with the specified hostname could not be found.";
             XCTAssertEqualObjects([error userInfo][NSLocalizedDescriptionKey], expected);
@@ -95,10 +120,10 @@
     }];
 }
 
-- (void)testPauseStateApiStub {
+- (void)testHeartbeatApiStub {
     [LPTestHelper setupStub:200 withFileName:@"simple_post_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPPauseStateApi pauseStateWithParameters:nil success:^ {
+    [LPHeartbeatApi heartbeatWithParameters:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -110,11 +135,11 @@
     }];
 }
 
-- (void)testPauseStateApiWithAttributesStub {
+- (void)testHeartbeatApiWithParametersStub {
     [LPTestHelper setupStub:200 withFileName:@"simple_post_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    NSDictionary *attributes = @{@"testKey": @"testValue" };
-    [LPPauseStateApi pauseStateWithParameters:attributes success:^ {
+    NSDictionary *params = @{@"testKey": @"testValue" };
+    [LPHeartbeatApi heartbeatWithParameters:params success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -126,10 +151,10 @@
     }];
 }
 
-- (void)testPauseStateApiHttpErrorStub {
+- (void)testHeartbeatApiHttpErrorStub {
     [LPTestHelper setupStub:400 withFileName:@"simple_post_error_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPPauseStateApi pauseStateWithParameters:nil success:^ {
+    [LPHeartbeatApi heartbeatWithParameters:nil success:^ {
     } failure:^(NSError *error) {
         NSString *expectedMessage = @"This is a test error message";
         XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);
@@ -143,10 +168,10 @@
     }];
 }
 
-- (void)testPauseStateApiMalformedResponseStub {
+- (void)testHeartbeatApiMalformedResponseStub {
     [LPTestHelper setupStub:200 withFileName:@"malformed_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPPauseStateApi pauseStateWithParameters:nil success:^ {
+    [LPHeartbeatApi heartbeatWithParameters:nil success:^ {
     } failure:^(NSError *error) {
         NSString *expectedMessage = @"Unknown error, please contact Leanplum.";
         XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);

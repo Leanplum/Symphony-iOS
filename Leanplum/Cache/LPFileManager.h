@@ -1,8 +1,9 @@
 //
-//  LPExceptionHandler.h
-//  Leanplum iOS SDK Version 2.0.6
+//  LPFileManager.h
+//  Leanplum
 //
-//  Copyright (c) 2018 Leanplum, Inc. All rights reserved.
+//  Created by Andrew First on 1/9/13.
+//  Copyright (c) 2013 Leanplum, Inc. All rights reserved.
 //
 //  Licensed to the Apache Software Foundation (ASF) under one
 //  or more contributor license agreements.  See the NOTICE file
@@ -21,15 +22,24 @@
 //  specific language governing permissions and limitations
 //  under the License.
 
+#import "Leanplum.h"
 #import <Foundation/Foundation.h>
 
-@protocol LPExceptionReporting
--(void)reportException:(NSException *)exception;
+@interface NSBundle (LeanplumExtension)
+
++ (NSBundle *__nullable)leanplum_mainBundle;
+
 @end
 
-@interface LPExceptionHandler : NSObject
+@interface LPBundle : NSBundle
 
-+(instancetype)sharedExceptionHandler;
--(void)reportException:(NSException *)exception;
+- (__nullable instancetype)initWithPath:(NSString *__nonnull)path NS_DESIGNATED_INITIALIZER;
+
+@end
+
+@interface LPFileManager : NSObject
+
++ (NSString *__nullable)appBundlePath;
++ (NSString *__nullable)documentsDirectory;
 
 @end

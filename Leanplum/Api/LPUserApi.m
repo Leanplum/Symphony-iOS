@@ -9,20 +9,22 @@
 #import "LPWSManager.h"
 #import "LPConstants.h"
 #import "LPApiConstants.h"
+#import "LPApiMethods.h"
 #import "LPErrorHelper.h"
 #import "LPAPIConfig.h"
 #import "LPJSON.h"
+#import "LPRequestQueue.h"
+#import "LPApiUtils.h"
 
 @implementation LPUserApi
 
-+ (void) setUserAttributes:(NSString *)userId withUserAttributes:(NSDictionary *)attributes
-                    success:(void (^)(void))success
-                    failure:(void (^)(NSError *error))failure {
-    
++ (void) setUserId:(NSString *)userId
+withUserAttributes:(NSDictionary *)attributes
+           success:(void (^)(void))success
+           failure:(void (^)(NSError *error))failure {
     void (^successResponse) (NSDictionary *) = ^(NSDictionary *response) {
         NSError *error = nil;
-        NSArray *responseArray = [response valueForKey:@"response"];
-        NSDictionary *resultDict = responseArray[0];
+        NSDictionary *resultDict = [LPApiUtils responseDictionaryFromResponse:response];
         if (error != nil) {
             failure(error);
         }
@@ -48,11 +50,20 @@
     if (attributes != nil) {
         params[LP_PARAM_USER_ATTRIBUTES] =  [LPJSON stringFromJSON:attributes];
     }
-    LPWSManager *wsManager = [[LPWSManager alloc] init];
-    [wsManager sendPOSTWebService:LP_API_METHOD_SET_USER_ATTRIBUTES
-                       withParams:params
-                     successBlock:successResponse
-                     failureBlock:failureResponse];
+
+    if ([LPApiConstants sharedState].isMulti) {
+        LPRequest *request = [[LPRequest alloc] initWithApiMethod:LPApiMethodSetUserAttributes
+                                                           params:params
+                                                          success:successResponse
+                                                          failure:failureResponse];
+        [[LPRequestQueue sharedInstance] enqueue:request];
+    } else {
+        LPWSManager *wsManager = [[LPWSManager alloc] init];
+        [wsManager sendPOSTWebService:[LPApiMethods getApiMethod:LPApiMethodSetUserAttributes]
+                           withParams:params
+                         successBlock:successResponse
+                         failureBlock:failureResponse];
+    }
 }
 
 

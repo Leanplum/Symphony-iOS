@@ -1,22 +1,50 @@
 {
     "response": [
         {
-            "regions": [
-                {
-                    "name": "Apple Office",
-                    "lon": -122.02973470209167,
-                    "radius": 460,
-                    "version": 0,
-                    "lat": 37.3315925570794
+                "regions": {
+                    "Apple Office": {
+                        "name": "Apple Office",
+                        "lon": -122.02973470209167,
+                        "radius": 460,
+                        "version": 0,
+                        "lat": 37.3315925570794
+                    },
+                    "NYC": {
+                        "name": "NYC",
+                        "lon": -74.00598724660182,
+                        "radius": 10000,
+                        "version": 0,
+                        "lat": 40.71550836434393
+                    },
+                    "Piedmont": {
+                        "name": "Piedmont",
+                        "lon": -122.23608151901368,
+                        "radius": 2973,
+                        "version": 0,
+                        "lat": 37.82430186827449
+                    },
+                    "Alipore Panchsheel": {
+                        "name": "Alipore Panchsheel",
+                        "lon": 88.32607819865063,
+                        "radius": 122,
+                        "version": 0,
+                        "lat": 22.52443304257146
+                    },
+                    "BCN": {
+                        "name": "BCN",
+                        "lon": 2.2280975548806055,
+                        "radius": 78826,
+                        "version": 2,
+                        "lat": 41.56115237941436
+                    },
+                    "Leanplum": {
+                        "name": "Leanplum",
+                        "lon": -122.41108967662177,
+                        "radius": 90,
+                        "version": 0,
+                        "lat": 37.7675420678258
+                    }
                 },
-                {
-                    "name": "NYC",
-                    "lon": -74.00598724660182,
-                    "radius": 10000,
-                    "version": 0,
-                    "lat": 40.71550836434393
-                }
-            ],
             "fileAttributes": [
                 {
                     "name": "mozart.jpg",
