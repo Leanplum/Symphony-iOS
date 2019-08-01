@@ -34,10 +34,15 @@
 		65298EF522BAE8C800B8CEE9 /* LPRequestCallbackManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 65298EF322BAE8C800B8CEE9 /* LPRequestCallbackManager.h */; };
 		65298EF622BAE8C800B8CEE9 /* LPRequestCallbackManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65298EF422BAE8C800B8CEE9 /* LPRequestCallbackManager.m */; };
 		65298EF822BAFE9500B8CEE9 /* LPRequestCallbackManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 65298EF722BAFE9500B8CEE9 /* LPRequestCallbackManagerTest.m */; };
+		6579CDCF22E7AB280028683A /* LPCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 6579CDCD22E7AB280028683A /* LPCache.h */; };
+		6579CDD022E7AB280028683A /* LPCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6579CDCE22E7AB280028683A /* LPCache.m */; };
+		6579CDD322E8F95B0028683A /* LPAES.h in Headers */ = {isa = PBXBuildFile; fileRef = 6579CDD122E8F95B0028683A /* LPAES.h */; };
+		6579CDD422E8F95B0028683A /* LPAES.m in Sources */ = {isa = PBXBuildFile; fileRef = 6579CDD222E8F95B0028683A /* LPAES.m */; };
 		657AE9AC22823E32008F6BB0 /* LPErrorHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 657AE9AA22823E32008F6BB0 /* LPErrorHelper.h */; };
 		657AE9AD22823E32008F6BB0 /* LPErrorHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 657AE9AB22823E32008F6BB0 /* LPErrorHelper.m */; };
 		6597698322B2FF23003B50D4 /* LPApiMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = 6597698122B2FF23003B50D4 /* LPApiMethods.h */; };
 		6597698422B2FF23003B50D4 /* LPApiMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 6597698222B2FF23003B50D4 /* LPApiMethods.m */; };
+		659DAAE122EED3670063BC0C /* LPCaching.h in Headers */ = {isa = PBXBuildFile; fileRef = 659DAAE022EED2CA0063BC0C /* LPCaching.h */; };
 		65C5BDB922862568003EE334 /* LPDeviceApiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C5BDB822862568003EE334 /* LPDeviceApiTests.m */; };
 		65C5BDC3228A21A5003EE334 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65C5BDC2228A21A5003EE334 /* UIKit.framework */; };
 		65C5BDC6228B60FF003EE334 /* LPRegisterDeviceApi.h in Headers */ = {isa = PBXBuildFile; fileRef = 65C5BDC4228B60FF003EE334 /* LPRegisterDeviceApi.h */; };
@@ -329,10 +334,15 @@
 		65298EF322BAE8C800B8CEE9 /* LPRequestCallbackManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPRequestCallbackManager.h; sourceTree = "<group>"; };
 		65298EF422BAE8C800B8CEE9 /* LPRequestCallbackManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPRequestCallbackManager.m; sourceTree = "<group>"; };
 		65298EF722BAFE9500B8CEE9 /* LPRequestCallbackManagerTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPRequestCallbackManagerTest.m; sourceTree = "<group>"; };
+		6579CDCD22E7AB280028683A /* LPCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPCache.h; sourceTree = "<group>"; };
+		6579CDCE22E7AB280028683A /* LPCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPCache.m; sourceTree = "<group>"; };
+		6579CDD122E8F95B0028683A /* LPAES.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPAES.h; sourceTree = "<group>"; };
+		6579CDD222E8F95B0028683A /* LPAES.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPAES.m; sourceTree = "<group>"; };
 		657AE9AA22823E32008F6BB0 /* LPErrorHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPErrorHelper.h; sourceTree = "<group>"; };
 		657AE9AB22823E32008F6BB0 /* LPErrorHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPErrorHelper.m; sourceTree = "<group>"; };
 		6597698122B2FF23003B50D4 /* LPApiMethods.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPApiMethods.h; sourceTree = "<group>"; };
 		6597698222B2FF23003B50D4 /* LPApiMethods.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPApiMethods.m; sourceTree = "<group>"; };
+		659DAAE022EED2CA0063BC0C /* LPCaching.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPCaching.h; sourceTree = "<group>"; };
 		65C5BDB822862568003EE334 /* LPDeviceApiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPDeviceApiTests.m; sourceTree = "<group>"; };
 		65C5BDC2228A21A5003EE334 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		65C5BDC4228B60FF003EE334 /* LPRegisterDeviceApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPRegisterDeviceApi.h; sourceTree = "<group>"; };
@@ -970,6 +980,7 @@
 			isa = PBXGroup;
 			children = (
 				B4583DEE2257F2F0006A6A61 /* LPModelProtocol.h */,
+				659DAAE022EED2CA0063BC0C /* LPCaching.h */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -1007,6 +1018,8 @@
 				B4F077E422B8531A00F2743F /* LPFileManager.m */,
 				B4F077DF22B8512100F2743F /* LPStorageSQLite.h */,
 				B4F077E022B8512100F2743F /* LPStorageSQLite.m */,
+				6579CDCD22E7AB280028683A /* LPCache.h */,
+				6579CDCE22E7AB280028683A /* LPCache.m */,
 			);
 			path = Cache;
 			sourceTree = "<group>";
@@ -1042,6 +1055,8 @@
 				B4591DC9227A32D30076F9E2 /* LPApiConstants.m */,
 				6597698122B2FF23003B50D4 /* LPApiMethods.h */,
 				6597698222B2FF23003B50D4 /* LPApiMethods.m */,
+				6579CDD122E8F95B0028683A /* LPAES.h */,
+				6579CDD222E8F95B0028683A /* LPAES.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1110,6 +1125,7 @@
 				65C5BDF8228F6978003EE334 /* LPResumeSessionApi.h in Headers */,
 				B430A26D224C232300DC8140 /* LPPurpleAcceptButton.h in Headers */,
 				A82BD106229D0E4900FE1DA2 /* LPSetVarsApi.h in Headers */,
+				659DAAE122EED3670063BC0C /* LPCaching.h in Headers */,
 				65D4AB74224D7345009BA5F3 /* LPFluffyCancelAction.h in Headers */,
 				65D4AB44224C2EA1009BA5F3 /* LPTentacledAcceptButton.h in Headers */,
 				65D4AC00224D80CC009BA5F3 /* LPFriskyChild.h in Headers */,
@@ -1122,6 +1138,7 @@
 				65D4AB7C224D73A1009BA5F3 /* LPFluffyLayout.h in Headers */,
 				65298EF522BAE8C800B8CEE9 /* LPRequestCallbackManager.h in Headers */,
 				B430A290224C23EC00DC8140 /* LPFluffyAcceptAction.h in Headers */,
+				6579CDCF22E7AB280028683A /* LPCache.h in Headers */,
 				B46B52022284E2FF00B29663 /* LPUtils.h in Headers */,
 				B430A272224C233F00DC8140 /* LPPurpleLayout.h in Headers */,
 				65D4AB80224D73CD009BA5F3 /* LPTentacledMessage.h in Headers */,
@@ -1143,6 +1160,7 @@
 				65D4ABD8224D7FB7009BA5F3 /* LPStickyChild.h in Headers */,
 				65D4AB54224D6EB8009BA5F3 /* LPFluffyTitle.h in Headers */,
 				65D4AB68224D7275009BA5F3 /* LPPushAskToAsk.h in Headers */,
+				6579CDD322E8F95B0028683A /* LPAES.h in Headers */,
 				A82BD0F2229D0C6600FE1DA2 /* LPHeartbeatApi.h in Headers */,
 				65C5BDC6228B60FF003EE334 /* LPRegisterDeviceApi.h in Headers */,
 				B4F077E122B8512100F2743F /* LPStorageSQLite.h in Headers */,
@@ -1222,6 +1240,7 @@
 				TargetAttributes = {
 					A850465F224C0A7900BACA81 = {
 						CreatedOnToolsVersion = 10.2;
+						LastSwiftMigration = 1020;
 					};
 					A8504668224C0A7900BACA81 = {
 						CreatedOnToolsVersion = 10.2;
@@ -1367,6 +1386,7 @@
 				65D4AB7D224D73A1009BA5F3 /* LPFluffyLayout.m in Sources */,
 				B430A27D224C237800DC8140 /* LPPurpleTitle.m in Sources */,
 				65D4AB95224D7507009BA5F3 /* LPWebInterstitialValues.m in Sources */,
+				6579CDD022E7AB280028683A /* LPCache.m in Sources */,
 				A8EF578C2293BBE90046473C /* LPTrackApi.m in Sources */,
 				65D4ABF9224D8097009BA5F3 /* LPCunningChild.m in Sources */,
 				65D4AC0D224D825A009BA5F3 /* LPRegion.m in Sources */,
@@ -1405,6 +1425,7 @@
 				A868DBCF2254161C00E8C4D4 /* LPMessage.m in Sources */,
 				A8EF57EA22952AA30046473C /* LPStopApi.m in Sources */,
 				65D4AB99224D752B009BA5F3 /* LPFileAttribute.m in Sources */,
+				6579CDD422E8F95B0028683A /* LPAES.m in Sources */,
 				65D4ABC5224D7F1A009BA5F3 /* LPPurpleChild.m in Sources */,
 				B430A25A224C22A800DC8140 /* LPCenterPopup.m in Sources */,
 				65D4ABC1224D7EF0009BA5F3 /* LPStickyTitle.m in Sources */,
@@ -1638,6 +1659,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3CDAF5B231D5B4ED4D64D2F /* Pods-Leanplum.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -1655,6 +1677,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.leanplum.Leanplum;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1663,6 +1687,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D703248AB0F3504849240082 /* Pods-Leanplum.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -1680,6 +1705,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.leanplum.Leanplum;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

@@ -13,6 +13,7 @@
 #define LEANPLUM_API_VERSION @"1.0.6"
 #define LEANPLUM_CLIENT @"ios"
 #define LEANPLUM_SUPPORTED_ENCODING @"gzip"
+#define LP_IV @"__l3anplum_iv__"
 #pragma mark - The rest of the Leanplum constants
 
 OBJC_EXPORT NSString *LEANPLUM_PACKAGE_IDENTIFIER;
