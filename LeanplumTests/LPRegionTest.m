@@ -10,6 +10,8 @@
 #import <OHHTTPStubs/OHHTTPStubs.h>
 #import <OHHTTPStubs/OHPathHelpers.h>
 #import "LPRegion.h"
+#import "NSObject+Keychain.h"
+#import "NSString+NSString_Extended.h"
 
 @interface LPRegionTest : XCTestCase
 
@@ -34,6 +36,17 @@
     id response = jsonObj[@"response"][0];
     id regions = response[@"regions"];
     LPRegion *region0 = [[LPRegion alloc] initWithDictionary:regions[@"Alipore Panchsheel"]];
+    [region0 storeToKeychainWithKey:@"regionTest"];
+    LPRegion *unarchivedR  = (LPRegion *) [LPRegion dictionaryFromKeychainWithKey:@"regionTest"];
+    
+    /*NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:data forKey:@"regisionTest"];
+    [[NSUserDefaults standardUserDefaults] synchronize];*/
+    
+    
+    /*NSData *regionData = [[NSUserDefaults standardUserDefaults] dataForKey:@"regisionTest"];
+    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:regionData];
+    LPRegion *unarchivedR = (LPRegion *) [unarchiver decodeObjectForKey:@"regisionTest"];*/
     
     XCTAssertEqualObjects(region0.name, @"Alipore Panchsheel");
     XCTAssertEqual([region0 lon], 88.32607819865063);

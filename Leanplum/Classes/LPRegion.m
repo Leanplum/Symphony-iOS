@@ -17,6 +17,7 @@
                               @"radius": @"radius",
                               @"version": @"version",
                               };
+    [super initWithMapping:mapping];
     return mapping;
 }
 

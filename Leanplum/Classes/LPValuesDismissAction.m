@@ -13,6 +13,7 @@
 - (NSDictionary *) classMapping {
     NSDictionary *mapping = @{@"name": @"name",
                               };
+    [super initWithMapping:mapping];
     return mapping;
 }
 

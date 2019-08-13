@@ -16,6 +16,7 @@
                               @"message": @"message",
                               @"title": @"title",
                               };
+    [super initWithMapping:mapping];
     return mapping;
 }
 

@@ -21,6 +21,7 @@
                               @"messages": @"messages",
                               @"fileAttributes": @"fileAttributes",
                               };
+    [super initWithMapping:mapping];
     return mapping;
 }
 

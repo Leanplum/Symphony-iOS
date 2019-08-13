@@ -14,6 +14,7 @@
 - (NSDictionary *) classMapping {
     NSDictionary *mapping = @{@"alert": @"alert",
                               };
+    [super initWithMapping:mapping];
     return mapping;
 }
 

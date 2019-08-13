@@ -16,6 +16,7 @@
                               @"hash": @"fileAttributeHash",
                               @"servingUrl": @"servingUrl",
                               };
+    [super initWithMapping:mapping];
     return mapping;
 }
 

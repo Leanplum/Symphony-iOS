@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "LPModelProtocol.h"
+#import "LPModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LPRegion : NSObject<LPModelProtocol>
+@interface LPRegion : LPModel<LPModelProtocol>
 
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, assign) double lon;

@@ -7,14 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "LPCaching.h"
+#import "LPRegion.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
-@interface LPCache : NSObject<LPCaching>
+@interface LPCache : NSObject
 
 + (instancetype)sharedCache;
 
+- (void)setRegions:(NSArray<LPRegion *> *)regions;
+- (NSArray<LPRegion *> *)regions;
+
 @end
 
-NS_ASSUME_NONNULL_END

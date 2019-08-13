@@ -22,6 +22,7 @@
                               @"whenLimits": @"whenLimits",
                               @"whenTriggers": @"whenTriggers",
                               };
+    [super initWithMapping:mapping];
     return mapping;
 }
 

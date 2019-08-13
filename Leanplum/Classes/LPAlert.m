@@ -18,6 +18,7 @@
                               @"options": @"options",
                               @"values": @"values",
                               };
+    [super initWithMapping:mapping];
     return mapping;
 }
 

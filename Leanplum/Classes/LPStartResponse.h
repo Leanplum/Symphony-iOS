@@ -9,12 +9,13 @@
 
 #import <Foundation/Foundation.h>
 #import "LPModelProtocol.h"
+#import "LPModel.h"
 
 @class LPRegion;
 @class LPMessage;
 @class LPFileAttribute;
 
-@interface LPStartResponse : NSObject<LPModelProtocol>
+@interface LPStartResponse : LPModel<LPModelProtocol>
 
 @property (nonatomic, assign) BOOL success;
 @property (nonatomic, assign) BOOL syncNewsfeed;
