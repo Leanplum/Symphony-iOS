@@ -36,8 +36,6 @@
 		65298EF822BAFE9500B8CEE9 /* LPRequestCallbackManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 65298EF722BAFE9500B8CEE9 /* LPRequestCallbackManagerTest.m */; };
 		6579CDCF22E7AB280028683A /* LPCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 6579CDCD22E7AB280028683A /* LPCache.h */; };
 		6579CDD022E7AB280028683A /* LPCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6579CDCE22E7AB280028683A /* LPCache.m */; };
-		6579CDD322E8F95B0028683A /* LPAES.h in Headers */ = {isa = PBXBuildFile; fileRef = 6579CDD122E8F95B0028683A /* LPAES.h */; };
-		6579CDD422E8F95B0028683A /* LPAES.m in Sources */ = {isa = PBXBuildFile; fileRef = 6579CDD222E8F95B0028683A /* LPAES.m */; };
 		657AE9AC22823E32008F6BB0 /* LPErrorHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 657AE9AA22823E32008F6BB0 /* LPErrorHelper.h */; };
 		657AE9AD22823E32008F6BB0 /* LPErrorHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 657AE9AB22823E32008F6BB0 /* LPErrorHelper.m */; };
 		6597698322B2FF23003B50D4 /* LPApiMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = 6597698122B2FF23003B50D4 /* LPApiMethods.h */; };
@@ -383,8 +381,6 @@
 		65298EF722BAFE9500B8CEE9 /* LPRequestCallbackManagerTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPRequestCallbackManagerTest.m; sourceTree = "<group>"; };
 		6579CDCD22E7AB280028683A /* LPCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPCache.h; sourceTree = "<group>"; };
 		6579CDCE22E7AB280028683A /* LPCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPCache.m; sourceTree = "<group>"; };
-		6579CDD122E8F95B0028683A /* LPAES.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPAES.h; sourceTree = "<group>"; };
-		6579CDD222E8F95B0028683A /* LPAES.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPAES.m; sourceTree = "<group>"; };
 		657AE9AA22823E32008F6BB0 /* LPErrorHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPErrorHelper.h; sourceTree = "<group>"; };
 		657AE9AB22823E32008F6BB0 /* LPErrorHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPErrorHelper.m; sourceTree = "<group>"; };
 		6597698122B2FF23003B50D4 /* LPApiMethods.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPApiMethods.h; sourceTree = "<group>"; };
@@ -1197,8 +1193,6 @@
 				B4591DC9227A32D30076F9E2 /* LPApiConstants.m */,
 				6597698122B2FF23003B50D4 /* LPApiMethods.h */,
 				6597698222B2FF23003B50D4 /* LPApiMethods.m */,
-				6579CDD122E8F95B0028683A /* LPAES.h */,
-				6579CDD222E8F95B0028683A /* LPAES.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1304,7 +1298,6 @@
 				65D4AB54224D6EB8009BA5F3 /* LPFluffyTitle.h in Headers */,
 				65D4AB68224D7275009BA5F3 /* LPPushAskToAsk.h in Headers */,
 				B4B5C70B2303E0E600C76FCF /* LPVarsApi.h in Headers */,
-				6579CDD322E8F95B0028683A /* LPAES.h in Headers */,
 				A82BD0F2229D0C6600FE1DA2 /* LPHeartbeatApi.h in Headers */,
 				65C5BDC6228B60FF003EE334 /* LPRegisterDeviceApi.h in Headers */,
 				B4F077E122B8512100F2743F /* LPStorageSQLite.h in Headers */,
@@ -1665,7 +1658,6 @@
 				A868DBCF2254161C00E8C4D4 /* LPMessage.m in Sources */,
 				A8EF57EA22952AA30046473C /* LPStopApi.m in Sources */,
 				65D4AB99224D752B009BA5F3 /* LPFileAttribute.m in Sources */,
-				6579CDD422E8F95B0028683A /* LPAES.m in Sources */,
 				65D4ABC5224D7F1A009BA5F3 /* LPPurpleChild.m in Sources */,
 				B430A25A224C22A800DC8140 /* LPCenterPopup.m in Sources */,
 				65D4ABC1224D7EF0009BA5F3 /* LPStickyTitle.m in Sources */,
