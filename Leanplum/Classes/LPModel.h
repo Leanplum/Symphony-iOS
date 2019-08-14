@@ -10,6 +10,8 @@
 
 @interface LPModel : NSObject <NSCoding> 
 
+@property (nonatomic, retain) NSDictionary *classLevelMapping;
+
 - (void) initWithMapping:(NSDictionary *)classMapping;
 
 @end

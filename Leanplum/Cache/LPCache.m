@@ -10,6 +10,7 @@
 #import "NSObject+Keychain.h"
 #import "LPConstants.h"
 #import "LPRegion.h"
+#import "LPFileAttribute.h"
 
 @implementation LPCache
 
@@ -30,5 +31,15 @@
     NSArray<LPRegion *> *regions  = (NSArray<LPRegion *> *) [NSObject dictionaryFromKeychainWithKey:LP_KEY_REGIONS];
     return regions;
 }
+
+- (void)setFileAttributes:(NSArray<LPFileAttribute *> *)regions {
+    [regions storeToKeychainWithKey:LP_KEY_FILE_ATTRIBUTES];
+}
+
+- (NSArray<LPFileAttribute *> *)fileAttributes {
+    NSArray<LPFileAttribute *> *regions  = (NSArray<LPFileAttribute *> *) [NSObject dictionaryFromKeychainWithKey:LP_KEY_FILE_ATTRIBUTES];
+    return regions;
+}
+
 
 @end

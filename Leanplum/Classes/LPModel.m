@@ -8,21 +8,15 @@
 
 #import "LPModel.h"
 
-@interface LPModel (private)
-
-@property (nonatomic, retain) NSDictionary *classMapping;
-
-@end
-
 @implementation LPModel
 
 - (void) initWithMapping:(NSDictionary *)classMapping {
-    self.classMapping = classMapping;
+    self.classLevelMapping = classMapping;
 }
 
 - (id)initWithCoder:(NSCoder *)decoder {
     if (self = [super init]) {
-        NSDictionary *mapping = self.classMapping;
+        NSDictionary *mapping = self.classLevelMapping;
         for (id key in mapping) {
             [self setValue:[decoder decodeObjectForKey:key] forKey:mapping[key]];
         }
@@ -31,7 +25,7 @@
 }
 
 - (void)encodeWithCoder:(NSCoder *)encoder {
-    NSDictionary *mapping = self.classMapping;
+    NSDictionary *mapping = self.classLevelMapping;
     for (id key in mapping) {
         [encoder encodeObject:[self valueForKey:key] forKey:mapping[key]];
     }

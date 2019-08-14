@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "LPRegion.h"
+#import "LPFileAttribute.h"
 
 @interface LPCache : NSObject
 
@@ -15,6 +16,8 @@
 
 - (void)setRegions:(NSArray<LPRegion *> *)regions;
 - (NSArray<LPRegion *> *)regions;
+- (void)setFileAttributes:(NSArray<LPFileAttribute *> *)regions;
+- (NSArray<LPFileAttribute *> *)fileAttributes;
 
 @end
 

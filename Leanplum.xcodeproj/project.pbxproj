@@ -174,8 +174,6 @@
 		A82BD0FB229D0DA000FE1DA2 /* LPMultiApi.m in Sources */ = {isa = PBXBuildFile; fileRef = A82BD0F9229D0DA000FE1DA2 /* LPMultiApi.m */; };
 		A82BD0FC229D0DA000FE1DA2 /* LPMultiApi.h in Headers */ = {isa = PBXBuildFile; fileRef = A82BD0FA229D0DA000FE1DA2 /* LPMultiApi.h */; };
 		A82BD100229D0DC700FE1DA2 /* LPMultiApiTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A82BD0FF229D0DC700FE1DA2 /* LPMultiApiTest.m */; };
-		A82BD105229D0E4900FE1DA2 /* LPSetVarsApi.m in Sources */ = {isa = PBXBuildFile; fileRef = A82BD103229D0E4900FE1DA2 /* LPSetVarsApi.m */; };
-		A82BD106229D0E4900FE1DA2 /* LPSetVarsApi.h in Headers */ = {isa = PBXBuildFile; fileRef = A82BD104229D0E4900FE1DA2 /* LPSetVarsApi.h */; };
 		A82BD108229D0E8700FE1DA2 /* LPSetVarsApiTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A82BD107229D0E8700FE1DA2 /* LPSetVarsApiTest.m */; };
 		A82BD10B229D0F6800FE1DA2 /* LPSetTrafficSourceInfoApi.h in Headers */ = {isa = PBXBuildFile; fileRef = A82BD109229D0F6800FE1DA2 /* LPSetTrafficSourceInfoApi.h */; };
 		A82BD10C229D0F6800FE1DA2 /* LPSetTrafficSourceInfoApi.m in Sources */ = {isa = PBXBuildFile; fileRef = A82BD10A229D0F6800FE1DA2 /* LPSetTrafficSourceInfoApi.m */; };
@@ -276,6 +274,9 @@
 		B4A32C9222D70FCB0088CCDF /* LPStartApi.h in Headers */ = {isa = PBXBuildFile; fileRef = B4A32C9022D70FCB0088CCDF /* LPStartApi.h */; };
 		B4A32C9322D70FCB0088CCDF /* LPStartApi.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A32C9122D70FCB0088CCDF /* LPStartApi.m */; };
 		B4A32C9822D7E73E0088CCDF /* LPStartApiTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A32C9722D7E73E0088CCDF /* LPStartApiTest.m */; };
+		B4B5C70B2303E0E600C76FCF /* LPVarsApi.h in Headers */ = {isa = PBXBuildFile; fileRef = B4B5C7092303E0E600C76FCF /* LPVarsApi.h */; };
+		B4B5C70C2303E0E600C76FCF /* LPVarsApi.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C70A2303E0E600C76FCF /* LPVarsApi.m */; };
+		B4B5C70F2303E2B800C76FCF /* LPCacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C70E2303E2B800C76FCF /* LPCacheTests.m */; };
 		B4CAC0452301E9EE001757F0 /* LPModel.h in Headers */ = {isa = PBXBuildFile; fileRef = B4CAC0432301E9EE001757F0 /* LPModel.h */; };
 		B4CAC0462301E9EE001757F0 /* LPModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CAC0442301E9EE001757F0 /* LPModel.m */; };
 		B4E251B422D54E8D00CEECAF /* LPFileManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E251B322D54E8D00CEECAF /* LPFileManagerTest.m */; };
@@ -522,8 +523,6 @@
 		A82BD0F9229D0DA000FE1DA2 /* LPMultiApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPMultiApi.m; sourceTree = "<group>"; };
 		A82BD0FA229D0DA000FE1DA2 /* LPMultiApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPMultiApi.h; sourceTree = "<group>"; };
 		A82BD0FF229D0DC700FE1DA2 /* LPMultiApiTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPMultiApiTest.m; sourceTree = "<group>"; };
-		A82BD103229D0E4900FE1DA2 /* LPSetVarsApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPSetVarsApi.m; sourceTree = "<group>"; };
-		A82BD104229D0E4900FE1DA2 /* LPSetVarsApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPSetVarsApi.h; sourceTree = "<group>"; };
 		A82BD107229D0E8700FE1DA2 /* LPSetVarsApiTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPSetVarsApiTest.m; sourceTree = "<group>"; };
 		A82BD109229D0F6800FE1DA2 /* LPSetTrafficSourceInfoApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPSetTrafficSourceInfoApi.h; sourceTree = "<group>"; };
 		A82BD10A229D0F6800FE1DA2 /* LPSetTrafficSourceInfoApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPSetTrafficSourceInfoApi.m; sourceTree = "<group>"; };
@@ -611,6 +610,9 @@
 		B4A32C9022D70FCB0088CCDF /* LPStartApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPStartApi.h; sourceTree = "<group>"; };
 		B4A32C9122D70FCB0088CCDF /* LPStartApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPStartApi.m; sourceTree = "<group>"; };
 		B4A32C9722D7E73E0088CCDF /* LPStartApiTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPStartApiTest.m; sourceTree = "<group>"; };
+		B4B5C7092303E0E600C76FCF /* LPVarsApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPVarsApi.h; sourceTree = "<group>"; };
+		B4B5C70A2303E0E600C76FCF /* LPVarsApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPVarsApi.m; sourceTree = "<group>"; };
+		B4B5C70E2303E2B800C76FCF /* LPCacheTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPCacheTests.m; sourceTree = "<group>"; };
 		B4CAC0432301E9EE001757F0 /* LPModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPModel.h; sourceTree = "<group>"; };
 		B4CAC0442301E9EE001757F0 /* LPModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPModel.m; sourceTree = "<group>"; };
 		B4E251B322D54E8D00CEECAF /* LPFileManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPFileManagerTest.m; sourceTree = "<group>"; };
@@ -823,6 +825,7 @@
 		A850466D224C0A7900BACA81 /* LeanplumTests */ = {
 			isa = PBXGroup;
 			children = (
+				B4B5C70D2303E26C00C76FCF /* Cache */,
 				B4591DD3227BA3B20076F9E2 /* Utilities */,
 				6515E1D12270DE7100C5A2F0 /* Resources */,
 				A850466E224C0A7900BACA81 /* LeanplumTests.m */,
@@ -1018,8 +1021,6 @@
 				A82BD0E8229D0B5100FE1DA2 /* LPLogApi.m */,
 				B4FCB0FE22722AE1004F5D63 /* LPUserApi.h */,
 				B4FCB0FF22722AE1004F5D63 /* LPUserApi.m */,
-				A82BD104229D0E4900FE1DA2 /* LPSetVarsApi.h */,
-				A82BD103229D0E4900FE1DA2 /* LPSetVarsApi.m */,
 				B4FCB11022722F48004F5D63 /* LPDeviceApi.h */,
 				B4FCB11122722F48004F5D63 /* LPDeviceApi.m */,
 				A82BD0FA229D0DA000FE1DA2 /* LPMultiApi.h */,
@@ -1054,6 +1055,8 @@
 				65E1909F22AEF20800E7BB7D /* LPRequest.m */,
 				B4A32C9022D70FCB0088CCDF /* LPStartApi.h */,
 				B4A32C9122D70FCB0088CCDF /* LPStartApi.m */,
+				B4B5C7092303E0E600C76FCF /* LPVarsApi.h */,
+				B4B5C70A2303E0E600C76FCF /* LPVarsApi.m */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -1087,6 +1090,14 @@
 				B4591DDA227BA41F0076F9E2 /* LPTestHelper.m */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		B4B5C70D2303E26C00C76FCF /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				B4B5C70E2303E2B800C76FCF /* LPCacheTests.m */,
+			);
+			path = Cache;
 			sourceTree = "<group>";
 		};
 		B4E251B722D65ABC00CEECAF /* Vendor */ = {
@@ -1256,7 +1267,6 @@
 				65C5BDF2228F681B003EE334 /* LPPauseSessionApi.h in Headers */,
 				65C5BDF8228F6978003EE334 /* LPResumeSessionApi.h in Headers */,
 				B430A26D224C232300DC8140 /* LPPurpleAcceptButton.h in Headers */,
-				A82BD106229D0E4900FE1DA2 /* LPSetVarsApi.h in Headers */,
 				659DAAE122EED3670063BC0C /* LPCaching.h in Headers */,
 				65D4AB74224D7345009BA5F3 /* LPFluffyCancelAction.h in Headers */,
 				65D4AB44224C2EA1009BA5F3 /* LPTentacledAcceptButton.h in Headers */,
@@ -1293,6 +1303,7 @@
 				65D4ABD8224D7FB7009BA5F3 /* LPStickyChild.h in Headers */,
 				65D4AB54224D6EB8009BA5F3 /* LPFluffyTitle.h in Headers */,
 				65D4AB68224D7275009BA5F3 /* LPPushAskToAsk.h in Headers */,
+				B4B5C70B2303E0E600C76FCF /* LPVarsApi.h in Headers */,
 				6579CDD322E8F95B0028683A /* LPAES.h in Headers */,
 				A82BD0F2229D0C6600FE1DA2 /* LPHeartbeatApi.h in Headers */,
 				65C5BDC6228B60FF003EE334 /* LPRegisterDeviceApi.h in Headers */,
@@ -1611,6 +1622,7 @@
 				B4F077E222B8512100F2743F /* LPStorageSQLite.m in Sources */,
 				65D4ABB9224D7864009BA5F3 /* LPVarsAcceptButton.m in Sources */,
 				65298EF622BAE8C800B8CEE9 /* LPRequestCallbackManager.m in Sources */,
+				B4B5C70C2303E0E600C76FCF /* LPVarsApi.m in Sources */,
 				65D4AB7D224D73A1009BA5F3 /* LPFluffyLayout.m in Sources */,
 				B430A27D224C237800DC8140 /* LPPurpleTitle.m in Sources */,
 				65D4AB95224D7507009BA5F3 /* LPWebInterstitialValues.m in Sources */,
@@ -1639,7 +1651,6 @@
 				A82BD118229D123700FE1DA2 /* LPDeleteNewsfeedMessageApi.m in Sources */,
 				B4A32C9322D70FCB0088CCDF /* LPStartApi.m in Sources */,
 				B430A282224C239600DC8140 /* LPConfirm.m in Sources */,
-				A82BD105229D0E4900FE1DA2 /* LPSetVarsApi.m in Sources */,
 				65D4ABFD224D80B1009BA5F3 /* LPMagentaChild.m in Sources */,
 				65D4AC15224D8296009BA5F3 /* LPResponseVars.m in Sources */,
 				B4F077EC22B97E4D00F2743F /* LPRequestManager.m in Sources */,
@@ -1703,6 +1714,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4B5C70F2303E2B800C76FCF /* LPCacheTests.m in Sources */,
 				A8EF578F2293BDC00046473C /* LPTrackTest.m in Sources */,
 				B430A292224C23EC00DC8140 /* LPFluffyAcceptAction.m in Sources */,
 				65C5BDFB228F69CD003EE334 /* LPResumeSessionTest.m in Sources */,
