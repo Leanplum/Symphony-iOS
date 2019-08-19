@@ -8,11 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "LPModelProtocol.h"
-#import "LPModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LPFileAttribute : LPModel<LPModelProtocol>
+@interface LPFileAttribute : NSObject<LPModelProtocol, NSCoding>
 
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, assign) double size;

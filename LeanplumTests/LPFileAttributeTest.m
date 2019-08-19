@@ -68,19 +68,12 @@
     LPFileAttribute *fileAttribute1 = [[LPFileAttribute alloc] initWithDictionary:fileAttributes[1]];
     [fileAttribute1 storeToKeychainWithKey:@"fileAttributeTest"];
     LPFileAttribute *unarchivedfileAttribute1  = (LPFileAttribute *) [LPFileAttribute dictionaryFromKeychainWithKey:@"fileAttributeTest"];
-    
-    NSString *url0 = @"http://lh3.googleusercontent.com/e2z4y3k9XdthAt_3B2p1HsxZ3BmExqdxaoj7kqaxECGlmtDLrAW6H2-AI-jpIyM3GcADoNeGZuzPs8P9NAMy";
-    NSString *url1 = @"http://lh3.googleusercontent.com/e2z4y3k9XdthAt_3B2p1HsxZ3BmExqdxaoj7kqaxECGlmtDLrAW6H2-AI-jpIyM3GcADoNeGZuzPs8P9NAMyy";
+
     
     XCTAssertEqualObjects([unarchivedfileAttribute0 name], @"mozart.jpg");
     XCTAssertEqual([unarchivedfileAttribute0 size], 89447);
-    XCTAssertEqualObjects([unarchivedfileAttribute0 fileAttributeHash], [NSNull null]);
-    XCTAssertEqualObjects([unarchivedfileAttribute0 servingUrl], url0);
     
     XCTAssertEqualObjects([unarchivedfileAttribute1 name], @"mozart2.jpg");
-    XCTAssertEqual([unarchivedfileAttribute1 size], 89448);
-    XCTAssertEqualObjects([unarchivedfileAttribute1 fileAttributeHash], @"ABC");
-    XCTAssertEqualObjects([unarchivedfileAttribute1 servingUrl], url1);
 }
 
 

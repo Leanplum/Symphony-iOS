@@ -8,11 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "LPModelProtocol.h"
-#import "LPModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LPValuesDismissAction : LPModel<LPModelProtocol>
+@interface LPValuesDismissAction : NSObject<LPModelProtocol, NSCoding>
 
 @property (nonatomic, copy) NSString *name;
 

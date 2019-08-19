@@ -10,11 +10,10 @@
 #import "LPModelProtocol.h"
 #import "LPAlertKinds.h"
 #import "LPAlertValues.h"
-#import "LPModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LPAlert : LPModel<LPModelProtocol>
+@interface LPAlert : NSObject<LPModelProtocol, NSCoding>
 
 @property (nonatomic, assign) NSInteger kind;
 @property (nonatomic, strong) LPAlertKinds *kinds;

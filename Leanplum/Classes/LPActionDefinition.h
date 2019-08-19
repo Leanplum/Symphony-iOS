@@ -9,11 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "LPModelProtocol.h"
 #import "LPAlert.h"
-#import "LPModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LPActionDefinition : LPModel<LPModelProtocol>
+@interface LPActionDefinition : NSObject<LPModelProtocol, NSCoding>
 
 @property (nonatomic, strong) LPAlert *alert;
 //@property (nonatomic, strong) LPCenterPopup *centerPopup;

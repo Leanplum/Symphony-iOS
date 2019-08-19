@@ -9,11 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "LPModelProtocol.h"
 #import "LPValuesDismissAction.h"
-#import "LPModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LPAlertValues : LPModel<LPModelProtocol>
+@interface LPAlertValues : NSObject<LPModelProtocol, NSCoding>
 
 @property (nonatomic, strong) LPValuesDismissAction *dismissAction;
 @property (nonatomic, copy)   NSString *dismissText;
