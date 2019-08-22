@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "LPRegion.h"
 #import "LPFileAttribute.h"
+#import "LPCaching.h"
 
-@interface LPCache : NSObject
+@interface LPCache : NSObject<LPCaching>
 
 + (instancetype)sharedCache;
 

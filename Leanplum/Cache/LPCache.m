@@ -32,8 +32,8 @@
     return regions;
 }
 
-- (void)setFileAttributes:(NSArray<LPFileAttribute *> *)regions {
-    [regions storeToKeychainWithKey:LP_KEY_FILE_ATTRIBUTES];
+- (void)setFileAttributes:(NSArray<LPFileAttribute *> *)fileAttributes {
+    [fileAttributes storeToKeychainWithKey:LP_KEY_FILE_ATTRIBUTES];
 }
 
 - (NSArray<LPFileAttribute *> *)fileAttributes {

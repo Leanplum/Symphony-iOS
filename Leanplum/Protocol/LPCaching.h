@@ -19,18 +19,21 @@
 @protocol LPCaching <NSObject>
 
 - (NSArray<LPVariable *> *)loadVariables;
-- (void)saveVariables:(NSArray<LPVariable *> *)variables;
+- (void)setVariables:(NSArray<LPVariable *> *)variables;
 - (NSArray<LPRegion *> *)loadRegions;
-- (void)saveRegions:(NSArray<LPRegion *> *)regions;
+- (void)setRegions:(NSArray<LPRegion *> *)regions;
+- (NSArray<LPRegion *> *)regions;
 - (NSArray<LPMessage *> *)loadMessages;
-- (void)saveMessages:(NSArray<LPMessage *> *)messages;
+- (void)setMessages:(NSArray<LPMessage *> *)messages;
 - (NSArray<LPVariant *> *)loadVariants;
-- (void)saveVariants:(NSArray<LPVariant *> *)variants;
+- (void)setVariants:(NSArray<LPVariant *> *)variants;
 - (NSArray<LPUpdateRule *> *)loadUpdateRules;
-- (void)saveUpdateRules:(NSArray<LPUpdateRule *> *)updateRules;
+- (void)setUpdateRules:(NSArray<LPUpdateRule *> *)updateRules;
 - (NSArray<LPEventRule *> *)loadEventRules;
-- (void)saveEventRules:(NSArray<LPEventRule *> *)eventRules;
+- (void)setEventRules:(NSArray<LPEventRule *> *)eventRules;
 - (NSArray<LPVariantDebugInfo *> *)loadVariantDebugInfo;
-- (void)saveVariantDebugInfo:(NSArray<LPVariantDebugInfo *> *)variantDebugInfo;
+- (void)setVariantDebugInfo:(NSArray<LPVariantDebugInfo *> *)variantDebugInfo;
+- (void)setFileAttributes:(NSArray<LPFileAttribute *> *)fileAttributes;
+- (NSArray<LPFileAttribute *> *)fileAttributes;
 
 @end
