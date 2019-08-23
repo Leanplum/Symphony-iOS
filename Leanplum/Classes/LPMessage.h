@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LPMessage : NSObject<LPModelProtocol>
+@interface LPMessage : NSObject<LPModelProtocol, NSCoding>
 
 @property (nonatomic, strong) NSString *id;
 @property (nonatomic, strong) NSString *action;

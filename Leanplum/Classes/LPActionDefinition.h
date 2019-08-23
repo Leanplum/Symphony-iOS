@@ -12,7 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LPActionDefinition : NSObject<LPModelProtocol>
+@interface LPActionDefinition : NSObject<LPModelProtocol, NSCoding>
 
 @property (nonatomic, strong) LPAlert *alert;
 //@property (nonatomic, strong) LPCenterPopup *centerPopup;

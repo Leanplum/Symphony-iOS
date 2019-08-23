@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LPRegion : NSObject<LPModelProtocol>
+@interface LPRegion : NSObject<LPModelProtocol, NSCoding>
 
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, assign) double lon;

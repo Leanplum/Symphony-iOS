@@ -133,6 +133,7 @@ NSString *LP_KEY_PUSH_NO_ACTION_MUTE = @"_lpv";
 NSString *LP_KEY_PUSH_ACTION = @"_lpx";
 NSString *LP_KEY_PUSH_CUSTOM_ACTIONS = @"_lpc";
 NSString *LP_KEY_REGIONS = @"regions";
+NSString *LP_KEY_FILE_ATTRIBUTES = @"fileAttributes";
 NSString *LP_KEY_UPLOAD_URL = @"uploadUrl";
 NSString *LP_KEY_VARIANTS = @"variants";
 NSString *LP_KEY_VARIANT_DEBUG_INFO = @"variantDebugInfo";

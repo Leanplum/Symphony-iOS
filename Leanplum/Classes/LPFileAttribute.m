@@ -29,4 +29,22 @@
     return self;
 }
 
+
+- (id)initWithCoder:(NSCoder *)decoder {
+    if (self = [super init]) {
+        NSDictionary *mapping = [self classMapping];
+        for (id key in mapping) {
+            [self setValue:[decoder decodeObjectForKey:key] forKey:mapping[key]];
+        }
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
+    NSDictionary *mapping = [self classMapping];
+    for (id key in mapping) {
+        [encoder encodeObject:[self valueForKey:key] forKey:mapping[key]];
+    }
+}
+
 @end

@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LPValuesDismissAction : NSObject<LPModelProtocol>
+@interface LPValuesDismissAction : NSObject<LPModelProtocol, NSCoding>
 
 @property (nonatomic, copy) NSString *name;
 

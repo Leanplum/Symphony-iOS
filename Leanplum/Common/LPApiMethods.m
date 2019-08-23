@@ -7,6 +7,7 @@
 //
 
 #import "LPApiMethods.h"
+#import "LPCache.h"
 
 @implementation LPApiMethods
 

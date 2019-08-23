@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LPFileAttribute : NSObject<LPModelProtocol>
+@interface LPFileAttribute : NSObject<LPModelProtocol, NSCoding>
 
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, assign) double size;

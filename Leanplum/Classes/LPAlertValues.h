@@ -12,7 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LPAlertValues : NSObject<LPModelProtocol>
+@interface LPAlertValues : NSObject<LPModelProtocol, NSCoding>
 
 @property (nonatomic, strong) LPValuesDismissAction *dismissAction;
 @property (nonatomic, copy)   NSString *dismissText;

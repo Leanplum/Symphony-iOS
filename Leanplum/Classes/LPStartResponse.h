@@ -14,7 +14,7 @@
 @class LPMessage;
 @class LPFileAttribute;
 
-@interface LPStartResponse : NSObject<LPModelProtocol>
+@interface LPStartResponse : NSObject<LPModelProtocol, NSCoding>
 
 @property (nonatomic, assign) BOOL success;
 @property (nonatomic, assign) BOOL syncNewsfeed;

@@ -13,7 +13,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LPAlert : NSObject<LPModelProtocol>
+@interface LPAlert : NSObject<LPModelProtocol, NSCoding>
 
 @property (nonatomic, assign) NSInteger kind;
 @property (nonatomic, strong) LPAlertKinds *kinds;

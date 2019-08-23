@@ -9,7 +9,7 @@
 #import <XCTest/XCTest.h>
 #import <OHHTTPStubs/OHHTTPStubs.h>
 #import <OHHTTPStubs/OHPathHelpers.h>
-#import "LPSetVarsApi.h"
+#import "LPVarsApi.h"
 #import "LPAPIConfig.h"
 #import "LPConstants.h"
 #import "LPTestHelper.h"
@@ -36,7 +36,7 @@
 
 - (void)testSetVarsApi {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPSetVarsApi setVarsWithVars:nil success:^ {
+    [LPVarsApi setVarsWithVars:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -52,7 +52,7 @@
     sleep(1);
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     [LPApiConstants sharedState].isMulti = YES;
-    [LPSetVarsApi setVarsWithVars:nil success:^ {
+    [LPVarsApi setVarsWithVars:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -72,7 +72,7 @@
 - (void)testSetVarsApiWithParameters {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     NSDictionary *vars = @{ @"testKey": @"testValue" };
-    [LPSetVarsApi setVarsWithVars:vars success:^ {
+    [LPVarsApi setVarsWithVars:vars success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -107,7 +107,7 @@
 - (void)testSetVarsApiWithIosError {
     [LPTestHelper runWithApiHost:@"blah.leanplum.com" withBlock:^(void) {
         XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-        [LPSetVarsApi setVarsWithVars:nil success:^ {
+        [LPVarsApi setVarsWithVars:nil success:^ {
         } failure:^(NSError *error) {
             NSString *expected = @"A server with the specified hostname could not be found.";
             XCTAssertEqualObjects([error userInfo][NSLocalizedDescriptionKey], expected);
@@ -125,7 +125,7 @@
 - (void)testSetVarsApiStub {
     [LPTestHelper setupStub:200 withFileName:@"simple_post_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPSetVarsApi setVarsWithVars:nil success:^ {
+    [LPVarsApi setVarsWithVars:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -141,7 +141,7 @@
     [LPTestHelper setupStub:200 withFileName:@"simple_post_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     NSDictionary *params = @{@"testKey": @"testValue" };
-    [LPSetVarsApi setVarsWithVars:params success:^ {
+    [LPVarsApi setVarsWithVars:params success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -156,7 +156,7 @@
 - (void)testSetVarsApiHttpErrorStub {
     [LPTestHelper setupStub:400 withFileName:@"simple_post_error_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPSetVarsApi setVarsWithVars:nil success:^ {
+    [LPVarsApi setVarsWithVars:nil success:^ {
     } failure:^(NSError *error) {
         NSString *expectedMessage = @"This is a test error message";
         XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);
@@ -173,7 +173,7 @@
 - (void)testSetVarsApiMalformedResponseStub {
     [LPTestHelper setupStub:200 withFileName:@"malformed_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPSetVarsApi setVarsWithVars:nil success:^ {
+    [LPVarsApi setVarsWithVars:nil success:^ {
     } failure:^(NSError *error) {
         NSString *expectedMessage = @"Unknown error, please contact Leanplum.";
         XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);
