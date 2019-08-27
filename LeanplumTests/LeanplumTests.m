@@ -14,8 +14,11 @@
 #import "LPTestHelper.h"
 #import "Leanplum.h"
 #import "LPRequestQueue.h"
+#import "LPInternalState.h"
+#import "LeanplumInternal.h"
 
 @interface LeanplumTests : XCTestCase
+
 
 @end
 
@@ -23,6 +26,8 @@
 
 - (void)setUp {
     [super setUp];
+    [LPInternalState sharedState].calledStart = true;
+    [LPInternalState sharedState].issuedStart = true;
     [LPTestHelper setup];
 }
 
@@ -30,6 +35,7 @@
     [super tearDown];
     [OHHTTPStubs removeAllStubs];
 }
+
 
 - (void)testConfiguration
 {

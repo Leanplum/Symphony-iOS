@@ -269,10 +269,9 @@
 		B46B51FF2284DDE000B29663 /* Leanplum.m in Headers */ = {isa = PBXBuildFile; fileRef = B46B51FD2284D5CA00B29663 /* Leanplum.m */; };
 		B46B52022284E2FF00B29663 /* LPUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = B46B52002284E2FE00B29663 /* LPUtils.h */; };
 		B46B52032284E2FF00B29663 /* LPUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = B46B52012284E2FF00B29663 /* LPUtils.m */; };
-		B486913E23147A6200B6BC98 /* LPInternalState.h in Headers */ = {isa = PBXBuildFile; fileRef = B486913C23147A6200B6BC98 /* LPInternalState.h */; };
 		B486913F23147A6200B6BC98 /* LPInternalState.m in Sources */ = {isa = PBXBuildFile; fileRef = B486913D23147A6200B6BC98 /* LPInternalState.m */; };
-		B486914023147A6200B6BC98 /* LPInternalState.m in Sources */ = {isa = PBXBuildFile; fileRef = B486913D23147A6200B6BC98 /* LPInternalState.m */; };
 		B48692012315D60000B6BC98 /* LeanplumInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = B48692002315D60000B6BC98 /* LeanplumInternal.h */; };
+		B48692022315DE5D00B6BC98 /* LPInternalState.h in Headers */ = {isa = PBXBuildFile; fileRef = B486913C23147A6200B6BC98 /* LPInternalState.h */; };
 		B4A32C9222D70FCB0088CCDF /* LPStartApi.h in Headers */ = {isa = PBXBuildFile; fileRef = B4A32C9022D70FCB0088CCDF /* LPStartApi.h */; };
 		B4A32C9322D70FCB0088CCDF /* LPStartApi.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A32C9122D70FCB0088CCDF /* LPStartApi.m */; };
 		B4A32C9822D7E73E0088CCDF /* LPStartApiTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A32C9722D7E73E0088CCDF /* LPStartApiTest.m */; };
@@ -1226,7 +1225,6 @@
 				65D4ABB0224D77BF009BA5F3 /* LPNone.h in Headers */,
 				B430A2A4224C246100DC8140 /* LPInterstitialValues.h in Headers */,
 				65D4ABD4224D7F99009BA5F3 /* LPPurpleDismissAction.h in Headers */,
-				B486913E23147A6200B6BC98 /* LPInternalState.h in Headers */,
 				B430A29A224C242900DC8140 /* LPInterstitial.h in Headers */,
 				A82D32ED22B05E280030FBEA /* LPRequestStoring.h in Headers */,
 				65D4ABA8224D777C009BA5F3 /* LPFine2PNGClass.h in Headers */,
@@ -1290,6 +1288,7 @@
 				65D4ABDC224D7FD6009BA5F3 /* LPIndigoChild.h in Headers */,
 				65C5BDCE228E1C08003EE334 /* LPPauseStateApi.h in Headers */,
 				65D4AB90224D74E5009BA5F3 /* LPWebInterstitialKinds.h in Headers */,
+				B48692022315DE5D00B6BC98 /* LPInternalState.h in Headers */,
 				6515E1E42270E17100C5A2F0 /* LPAlertKinds.h in Headers */,
 				65D4ABCC224D7F5F009BA5F3 /* LPPurpleFont.h in Headers */,
 				B4591DCA227A32D30076F9E2 /* LPApiConstants.h in Headers */,
@@ -1753,7 +1752,6 @@
 				B4E251B622D65A1000CEECAF /* LPUtilsTest.m in Sources */,
 				B430A2A1224C244400DC8140 /* LPInterstitialKinds.m in Sources */,
 				B430A279224C235900DC8140 /* LPPurpleMessage.m in Sources */,
-				B486914023147A6200B6BC98 /* LPInternalState.m in Sources */,
 				B430A260224C22CA00DC8140 /* LPCenterPopupKinds.m in Sources */,
 				A82BD0EC229D0B6D00FE1DA2 /* LPLogApiTest.m in Sources */,
 				65C5BDF5228F6937003EE334 /* LPPauseSessionTest.m in Sources */,
