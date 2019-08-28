@@ -33,6 +33,8 @@
 
 - (void)tearDown {
     [super tearDown];
+    [LPInternalState sharedState].calledStart = false;
+    [LPInternalState sharedState].issuedStart = false;
     [OHHTTPStubs removeAllStubs];
 }
 
