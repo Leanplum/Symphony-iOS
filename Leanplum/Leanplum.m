@@ -13,6 +13,7 @@
 #import "LPApiConstants.h"
 #import "LPUtils.h"
 #import "LPInternalState.h"
+#import "LPConstants.h"
 
 @implementation Leanplum
 
@@ -34,6 +35,93 @@
     [LPApiConstants sharedState].apiHostName = hostName;
     [LPApiConstants sharedState].apiServlet = servletName;
     [LPApiConstants sharedState].apiSSL = ssl;
+}
+
++ (void)setDeviceId:(NSString *)deviceId
+{
+    if ([LPUtils isBlank:deviceId]) {
+        [self throwError:@"[Leanplum setDeviceId:] Empty deviceId parameter provided."];
+        return;
+    }
+    if ([deviceId isEqualToString:LP_INVALID_IDFA]) {
+        [self throwError:[NSString stringWithFormat:@"[Leanplum setDeviceId:] Failed to set '%@' "
+                          "as deviceId. You are most likely attempting to use the IDFA as deviceId "
+                          "when the user has limited ad tracking on iOS10 or above.",
+                          LP_INVALID_IDFA]];
+        return;
+    }
+    [LPInternalState sharedState].deviceId = deviceId;
+}
+
++ (NSString *)deviceId
+{
+    LP_TRY
+    if (![LPInternalState sharedState].calledStart) {
+        [self throwError:@"[Leanplum start] must be called before calling deviceId"];
+        return nil;
+    }
+    return [LPAPIConfig sharedConfig].deviceId;
+    LP_END_TRY
+    return nil;
+}
+
++ (void)onHasStartedAndRegisteredAsDeveloper
+{
+    if ([LPFileManager initializing]) {
+        [LPFileManager setResourceSyncingReady:^{
+            [self onHasStartedAndRegisteredAsDeveloperAndFinishedSyncing];
+        }];
+    } else {
+        [self onHasStartedAndRegisteredAsDeveloperAndFinishedSyncing];
+    }
+}
+
++ (void)setDeviceLocationWithLatitude:(double)latitude
+                            longitude:(double)longitude
+{
+    [[LPCountAggregator sharedAggregator] incrementCount:@"setDeviceLocationWithLatitude_longitude"];
+    [Leanplum setDeviceLocationWithLatitude:latitude
+                                  longitude:longitude
+                                       type:LPLocationAccuracyCELL];
+}
+
++ (void)setDeviceLocationWithLatitude:(double)latitude
+                            longitude:(double)longitude
+                                 type:(LPLocationAccuracyType)type
+{
+    [[LPCountAggregator sharedAggregator] incrementCount:@"setDeviceLocationWithLatitude_longitude_type"];
+    [Leanplum setDeviceLocationWithLatitude:latitude longitude:longitude
+                                       city:nil region:nil country:nil
+                                       type:type];
+}
+
++ (void)setDeviceLocationWithLatitude:(double)latitude
+                            longitude:(double)longitude
+                                 city:(NSString *)city
+                               region:(NSString *)region
+                              country:(NSString *)country
+                                 type:(LPLocationAccuracyType)type
+{
+    [[LPCountAggregator sharedAggregator] incrementCount:@"setDeviceLocationWithLatitude_longitude_city_region_country_type"];
+    LP_TRY
+    if ([LPConstantsState sharedState].isLocationCollectionEnabled &&
+        NSClassFromString(@"LPLocationManager")) {
+        LPLog(LPWarning, @"Leanplum is automatically collecting device location, "
+              "so there is no need to call setDeviceLocation. If you prefer to "
+              "always set location manually, then call disableLocationCollection:.");
+    }
+    
+    [self setUserLocationAttributeWithLatitude:latitude longitude:longitude
+                                          city:city region:region country:country
+                                          type:type responseHandler:nil];
+    LP_END_TRY
+}
+
++ (void)onHasStartedAndRegisteredAsDeveloperAndFinishedSyncing
+{
+    if (![LPInternalState sharedState].hasStartedAndRegisteredAsDeveloper) {
+        [LPInternalState sharedState].hasStartedAndRegisteredAsDeveloper = YES;
+    }
 }
 
 + (void)setNetworkTimeoutSeconds:(int)seconds

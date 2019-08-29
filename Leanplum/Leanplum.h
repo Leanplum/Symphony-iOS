@@ -25,6 +25,63 @@ FOUNDATION_EXPORT const unsigned char LeanplumVersionString[];
  */
 + (void)setApiHostName:(NSString *)hostName withServletName:(NSString *)servletName usingSsl:(BOOL)ssl;
 
+/** Devices **/
+/**
+ * Sets a custom device ID. For example, you may want to pass the advertising ID to do attribution.
+ * By default, the device ID is the identifier for vendor.
+ */
++ (void)setDeviceId:(NSString *)deviceId;
+
+/**
+ * Returns the deviceId in the current Leanplum session. This should only be called after
+ * [Leanplum start].
+ */
++ (NSString *)deviceId;
+
+/**
+ * Returns whether or not Leanplum has finished starting and the device is registered
+ * as a developer.
+ */
++ (BOOL)hasStartedAndRegisteredAsDeveloper;
+/**@}*/
+
+/**
+ * Types of location accuracy. Higher value implies better accuracy.
+ */
+typedef enum {
+    LPLocationAccuracyIP = 0,
+    LPLocationAccuracyCELL = 1,
+    LPLocationAccuracyGPS = 2
+} LPLocationAccuracyType;
+
+/**
+ * Set location manually. Calls setDeviceLocationWithLatitude:longitude:type: with cell type.
+ * Best if used in after calling setDeviceLocationWithLatitude:.
+ */
++ (void)setDeviceLocationWithLatitude:(double)latitude
+                            longitude:(double)longitude;
+
+/**
+ * Set location manually. Best if used in after calling setDeviceLocationWithLatitude:.
+ * Useful if you want to apply additional logic before sending in the location.
+ */
++ (void)setDeviceLocationWithLatitude:(double)latitude
+                            longitude:(double)longitude
+                                 type:(LPLocationAccuracyType)type;
+
+/**
+ * Set location manually. Best if used in after calling setDeviceLocationWithLatitude:.
+ * If you have the CLPlacemark info: city is locality, region is administrativeArea,
+ * and country is ISOcountryCode.
+ */
++ (void)setDeviceLocationWithLatitude:(double)latitude
+                            longitude:(double)longitude
+                                 city:(NSString *)city
+                               region:(NSString *)region
+                              country:(NSString *)country
+                                 type:(LPLocationAccuracyType)type;
+
+
 /**
  * Optional. Adjusts the network timeouts.
  * The default timeout is 10 seconds for requests, and 15 seconds for file downloads.

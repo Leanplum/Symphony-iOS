@@ -198,3 +198,16 @@ OBJC_EXPORT NSString *LP_APP_ICON_PRIMARY_NAME;
 OBJC_EXPORT NSString *LP_INVALID_IDFA;
 
 OBJC_EXPORT NSString *LP_NOTIFICATION_LOCATION_UPDATE;
+
+// Exception handling.
+
+#define LP_TRY @try {
+#define LP_END_TRY }\
+@catch (NSException *e) {\
+leanplumInternalError(e); }
+
+#define LP_BEGIN_USER_CODE leanplumIncrementUserCodeBlock(1);
+#define LP_END_USER_CODE leanplumIncrementUserCodeBlock(-1);
+
+void leanplumIncrementUserCodeBlock(int delta);
+void leanplumInternalError(NSException *e);
