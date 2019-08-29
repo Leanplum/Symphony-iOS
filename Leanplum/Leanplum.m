@@ -6,11 +6,13 @@
 //  Copyright © 2019 Leanplum. All rights reserved.
 //
 
+#import "LeanplumInternal.h"
 #import <Foundation/Foundation.h>
 #import "Leanplum.h"
 #import "LPUserApi.h"
 #import "LPApiConstants.h"
 #import "LPUtils.h"
+#import "LPInternalState.h"
 
 @implementation Leanplum
 
@@ -80,10 +82,16 @@
       withSuccess:(void (^)(void))success
       withFailure:(void (^)(NSError *error))failure
 {
+    if (![LPInternalState sharedState].calledStart) {
+        //ToDo: Once start with user attributes is implemented , call this.
+    }
+    
     attributes = [self validateAttributes:attributes named:@"userAttributes" allowLists:YES];
-    [self setUserIdInternal:userId withAttributes:attributes
-                withSuccess:(void (^)(void))success
-                withFailure:(void (^)(NSError *error))failure];
+    [self onStartIssued:^{
+        [self setUserIdInternal:userId withAttributes:attributes
+                    withSuccess:(void (^)(void))success
+                    withFailure:(void (^)(NSError *error))failure];
+    }];
 }
 
 + (void)setUserIdInternal:(NSString *)userId
@@ -177,5 +185,27 @@
         NSLog(@"Leanplum: Error: %@", reason);
     }
 }
+
++ (void)onStartIssued:(LeanplumStartIssuedBlock)block
+{
+    if ([LPInternalState sharedState].issuedStart) {
+        block();
+    } else {
+        if (![LPInternalState sharedState].startIssuedBlocks) {
+            [LPInternalState sharedState].startIssuedBlocks = [NSMutableArray array];
+        }
+        [[LPInternalState sharedState].startIssuedBlocks addObject:[block copy]];
+    }
+}
+
++ (void)triggerStartIssued
+{
+    [LPInternalState sharedState].issuedStart = YES;
+    for (LeanplumStartIssuedBlock block in [LPInternalState sharedState].startIssuedBlocks.copy) {
+        block();
+    }
+    [[LPInternalState sharedState].startIssuedBlocks removeAllObjects];
+}
+
 
 @end
