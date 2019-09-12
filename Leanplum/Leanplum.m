@@ -14,6 +14,7 @@
 #import "LPUtils.h"
 #import "LPInternalState.h"
 #import "LPConstants.h"
+#import "LPAPIConfig.h"
 
 @implementation Leanplum
 
@@ -50,74 +51,29 @@
                           LP_INVALID_IDFA]];
         return;
     }
-    [LPInternalState sharedState].deviceId = deviceId;
+    [LPAPIConfig sharedConfig].deviceId = deviceId;
 }
 
 + (NSString *)deviceId
 {
-    LP_TRY
     if (![LPInternalState sharedState].calledStart) {
         [self throwError:@"[Leanplum start] must be called before calling deviceId"];
         return nil;
     }
     return [LPAPIConfig sharedConfig].deviceId;
-    LP_END_TRY
     return nil;
 }
 
-/**
- <#Description#>
- */
 + (void)onHasStartedAndRegisteredAsDeveloper
 {
-    if ([LPFileManager initializing]) {
+    //ToDo: Uncomment, once FileManager is implemented.
+    /*if ([LPFileManager initializing]) {
         [LPFileManager setResourceSyncingReady:^{
             [self onHasStartedAndRegisteredAsDeveloperAndFinishedSyncing];
         }];
-    } else {
+    } else {*/
         [self onHasStartedAndRegisteredAsDeveloperAndFinishedSyncing];
-    }
-}
-
-+ (void)setDeviceLocationWithLatitude:(double)latitude
-                            longitude:(double)longitude
-{
-    [[LPCountAggregator sharedAggregator] incrementCount:@"setDeviceLocationWithLatitude_longitude"];
-    [Leanplum setDeviceLocationWithLatitude:latitude
-                                  longitude:longitude
-                                       type:LPLocationAccuracyCELL];
-}
-
-+ (void)setDeviceLocationWithLatitude:(double)latitude
-                            longitude:(double)longitude
-                                 type:(LPLocationAccuracyType)type
-{
-    [[LPCountAggregator sharedAggregator] incrementCount:@"setDeviceLocationWithLatitude_longitude_type"];
-    [Leanplum setDeviceLocationWithLatitude:latitude longitude:longitude
-                                       city:nil region:nil country:nil
-                                       type:type];
-}
-
-+ (void)setDeviceLocationWithLatitude:(double)latitude
-                            longitude:(double)longitude
-                                 city:(NSString *)city
-                               region:(NSString *)region
-                              country:(NSString *)country
-                                 type:(LPLocationAccuracyType)type
-{
-    [[LPCountAggregator sharedAggregator] incrementCount:@"setDeviceLocationWithLatitude_longitude_city_region_country_type"];
-    LP_TRY
-    if ([LPConstantsState sharedState].isLocationCollectionEnabled &&
-        NSClassFromString(@"LPLocationManager")) {
-        LPLog(LPWarning, @"Leanplum is automatically collecting device location, "
-              "so there is no need to call setDeviceLocation. If you prefer to "
-              "always set location manually, then call disableLocationCollection:.");
-    }
-    
-    [self setUserLocationAttributeWithLatitude:latitude longitude:longitude
-                                          city:city region:region country:country
-                                          type:type responseHandler:nil];
-    LP_END_TRY
+    //}
 }
 
 + (void)onHasStartedAndRegisteredAsDeveloperAndFinishedSyncing
@@ -289,6 +245,18 @@
     }
 }
 
++ (BOOL)hasStarted
+{
+    return [LPInternalState sharedState].hasStarted;
+    return NO;
+}
+
++ (BOOL)hasStartedAndRegisteredAsDeveloper
+{
+    return [LPInternalState sharedState].hasStartedAndRegisteredAsDeveloper;
+    return NO;
+}
+
 + (void)triggerStartIssued
 {
     [LPInternalState sharedState].issuedStart = YES;
@@ -298,5 +266,14 @@
     [[LPInternalState sharedState].startIssuedBlocks removeAllObjects];
 }
 
++ (void)pause
+{
+    //ToDo: Implement the pause state management.
+}
+
++ (void)resume
+{
+    //ToDo: Implement the resume state management
+}
 
 @end

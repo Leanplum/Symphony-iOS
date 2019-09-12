@@ -257,6 +257,8 @@
 		B430A2A4224C246100DC8140 /* LPInterstitialValues.h in Headers */ = {isa = PBXBuildFile; fileRef = B430A2A2224C246100DC8140 /* LPInterstitialValues.h */; };
 		B430A2A5224C246100DC8140 /* LPInterstitialValues.m in Sources */ = {isa = PBXBuildFile; fileRef = B430A2A3224C246100DC8140 /* LPInterstitialValues.m */; };
 		B430A2A6224C246100DC8140 /* LPInterstitialValues.m in Sources */ = {isa = PBXBuildFile; fileRef = B430A2A3224C246100DC8140 /* LPInterstitialValues.m */; };
+		B43E213F232A2F9D00C6FA27 /* LPFileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = B43E213D232A2F9C00C6FA27 /* LPFileManager.h */; };
+		B43E2140232A2F9D00C6FA27 /* LPFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B43E213E232A2F9D00C6FA27 /* LPFileManager.m */; };
 		B4583DEF2257F2F0006A6A61 /* LPModelProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = B4583DEE2257F2F0006A6A61 /* LPModelProtocol.h */; };
 		B4591DCA227A32D30076F9E2 /* LPApiConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = B4591DC8227A32D30076F9E2 /* LPApiConstants.h */; };
 		B4591DCB227A32D30076F9E2 /* LPApiConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = B4591DC9227A32D30076F9E2 /* LPApiConstants.m */; };
@@ -284,8 +286,6 @@
 		B4E251C022D65AE900CEECAF /* NSString+MD5Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E251BC22D65AE900CEECAF /* NSString+MD5Addition.m */; };
 		B4F077E122B8512100F2743F /* LPStorageSQLite.h in Headers */ = {isa = PBXBuildFile; fileRef = B4F077DF22B8512100F2743F /* LPStorageSQLite.h */; };
 		B4F077E222B8512100F2743F /* LPStorageSQLite.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F077E022B8512100F2743F /* LPStorageSQLite.m */; };
-		B4F077E622B8531A00F2743F /* LPFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F077E422B8531A00F2743F /* LPFileManager.m */; };
-		B4F077E722B8531A00F2743F /* LPFileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = B4F077E522B8531A00F2743F /* LPFileManager.h */; };
 		B4F077EB22B97E4D00F2743F /* LPRequestManager.h in Headers */ = {isa = PBXBuildFile; fileRef = B4F077E922B97E4D00F2743F /* LPRequestManager.h */; };
 		B4F077EC22B97E4D00F2743F /* LPRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F077EA22B97E4D00F2743F /* LPRequestManager.m */; };
 		B4F077EF22B9864000F2743F /* LPRequestQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B4F077ED22B9864000F2743F /* LPRequestQueue.h */; };
@@ -593,6 +593,8 @@
 		B430A29E224C244400DC8140 /* LPInterstitialKinds.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPInterstitialKinds.m; sourceTree = "<group>"; };
 		B430A2A2224C246100DC8140 /* LPInterstitialValues.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPInterstitialValues.h; sourceTree = "<group>"; };
 		B430A2A3224C246100DC8140 /* LPInterstitialValues.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPInterstitialValues.m; sourceTree = "<group>"; };
+		B43E213D232A2F9C00C6FA27 /* LPFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPFileManager.h; sourceTree = "<group>"; };
+		B43E213E232A2F9D00C6FA27 /* LPFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPFileManager.m; sourceTree = "<group>"; };
 		B4583DEE2257F2F0006A6A61 /* LPModelProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPModelProtocol.h; sourceTree = "<group>"; };
 		B4591DC8227A32D30076F9E2 /* LPApiConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPApiConstants.h; sourceTree = "<group>"; };
 		B4591DC9227A32D30076F9E2 /* LPApiConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPApiConstants.m; sourceTree = "<group>"; };
@@ -619,8 +621,6 @@
 		B4E251BC22D65AE900CEECAF /* NSString+MD5Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5Addition.m"; sourceTree = "<group>"; };
 		B4F077DF22B8512100F2743F /* LPStorageSQLite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPStorageSQLite.h; sourceTree = "<group>"; };
 		B4F077E022B8512100F2743F /* LPStorageSQLite.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPStorageSQLite.m; sourceTree = "<group>"; };
-		B4F077E422B8531A00F2743F /* LPFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPFileManager.m; sourceTree = "<group>"; };
-		B4F077E522B8531A00F2743F /* LPFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPFileManager.h; sourceTree = "<group>"; };
 		B4F077E922B97E4D00F2743F /* LPRequestManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPRequestManager.h; sourceTree = "<group>"; };
 		B4F077EA22B97E4D00F2743F /* LPRequestManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPRequestManager.m; sourceTree = "<group>"; };
 		B4F077ED22B9864000F2743F /* LPRequestQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPRequestQueue.h; sourceTree = "<group>"; };
@@ -823,6 +823,7 @@
 		A850466D224C0A7900BACA81 /* LeanplumTests */ = {
 			isa = PBXGroup;
 			children = (
+				B43E213A232A2CEF00C6FA27 /* Manager */,
 				B4B5C70D2303E26C00C76FCF /* Cache */,
 				B4591DD3227BA3B20076F9E2 /* Utilities */,
 				6515E1D12270DE7100C5A2F0 /* Resources */,
@@ -1070,6 +1071,13 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		B43E213A232A2CEF00C6FA27 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 		B4583DE92257F2A4006A6A61 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
@@ -1116,8 +1124,6 @@
 		B4F077DB22B850AA00F2743F /* Cache */ = {
 			isa = PBXGroup;
 			children = (
-				B4F077E522B8531A00F2743F /* LPFileManager.h */,
-				B4F077E422B8531A00F2743F /* LPFileManager.m */,
 				B4F077DF22B8512100F2743F /* LPStorageSQLite.h */,
 				B4F077E022B8512100F2743F /* LPStorageSQLite.m */,
 				6579CDCD22E7AB280028683A /* LPCache.h */,
@@ -1131,6 +1137,8 @@
 		B4F077E822B97E3D00F2743F /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				B43E213D232A2F9C00C6FA27 /* LPFileManager.h */,
+				B43E213E232A2F9D00C6FA27 /* LPFileManager.m */,
 				B4F077E922B97E4D00F2743F /* LPRequestManager.h */,
 				B4F077EA22B97E4D00F2743F /* LPRequestManager.m */,
 				B4F077ED22B9864000F2743F /* LPRequestQueue.h */,
@@ -1251,7 +1259,6 @@
 				65D4ABF0224D805D009BA5F3 /* LPAmbitiousChild.h in Headers */,
 				A8504671224C0A7900BACA81 /* Leanplum.h in Headers */,
 				B4591DCE227A4A260076F9E2 /* LPAPIConfig.h in Headers */,
-				B4F077E722B8531A00F2743F /* LPFileManager.h in Headers */,
 				A82BD0E9229D0B5100FE1DA2 /* LPLogApi.h in Headers */,
 				B4FCB11222722F48004F5D63 /* LPDeviceApi.h in Headers */,
 				65D4AB88224D741C009BA5F3 /* LPRegisterForPush.h in Headers */,
@@ -1262,6 +1269,7 @@
 				65D4ABFC224D80B1009BA5F3 /* LPMagentaChild.h in Headers */,
 				65C5BDD4228F519F003EE334 /* LPResumeStateApi.h in Headers */,
 				65C5BDF2228F681B003EE334 /* LPPauseSessionApi.h in Headers */,
+				B43E213F232A2F9D00C6FA27 /* LPFileManager.h in Headers */,
 				65C5BDF8228F6978003EE334 /* LPResumeSessionApi.h in Headers */,
 				B430A26D224C232300DC8140 /* LPPurpleAcceptButton.h in Headers */,
 				659DAAE122EED3670063BC0C /* LPCaching.h in Headers */,
@@ -1592,6 +1600,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4229C5F22FB9CBC00261973 /* NSObject+Keychain.m in Sources */,
+				B43E2140232A2F9D00C6FA27 /* LPFileManager.m in Sources */,
 				6515E1E12270E14900C5A2F0 /* LPAlert.m in Sources */,
 				65D4AC09224D8123009BA5F3 /* LPBraggodociousChild.m in Sources */,
 				B430A278224C235900DC8140 /* LPPurpleMessage.m in Sources */,
@@ -1688,7 +1697,6 @@
 				B4591DCF227A4A260076F9E2 /* LPAPIConfig.m in Sources */,
 				65D4AB55224D6EB8009BA5F3 /* LPFluffyTitle.m in Sources */,
 				65D4AB79224D7379009BA5F3 /* LPCencelButton.m in Sources */,
-				B4F077E622B8531A00F2743F /* LPFileManager.m in Sources */,
 				B430A287224C23B200DC8140 /* LPConfirmKinds.m in Sources */,
 				65D4ABD5224D7F99009BA5F3 /* LPPurpleDismissAction.m in Sources */,
 				65D4ABD1224D7F7B009BA5F3 /* LPTentacledChild.m in Sources */,

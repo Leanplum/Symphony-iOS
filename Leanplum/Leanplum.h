@@ -54,33 +54,6 @@ typedef enum {
     LPLocationAccuracyGPS = 2
 } LPLocationAccuracyType;
 
-/**
- * Set location manually. Calls setDeviceLocationWithLatitude:longitude:type: with cell type.
- * Best if used in after calling setDeviceLocationWithLatitude:.
- */
-+ (void)setDeviceLocationWithLatitude:(double)latitude
-                            longitude:(double)longitude;
-
-/**
- * Set location manually. Best if used in after calling setDeviceLocationWithLatitude:.
- * Useful if you want to apply additional logic before sending in the location.
- */
-+ (void)setDeviceLocationWithLatitude:(double)latitude
-                            longitude:(double)longitude
-                                 type:(LPLocationAccuracyType)type;
-
-/**
- * Set location manually. Best if used in after calling setDeviceLocationWithLatitude:.
- * If you have the CLPlacemark info: city is locality, region is administrativeArea,
- * and country is ISOcountryCode.
- */
-+ (void)setDeviceLocationWithLatitude:(double)latitude
-                            longitude:(double)longitude
-                                 city:(NSString *)city
-                               region:(NSString *)region
-                              country:(NSString *)country
-                                 type:(LPLocationAccuracyType)type;
-
 
 /**
  * Optional. Adjusts the network timeouts.
