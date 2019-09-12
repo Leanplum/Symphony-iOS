@@ -65,6 +65,9 @@
     return nil;
 }
 
+/**
+ <#Description#>
+ */
 + (void)onHasStartedAndRegisteredAsDeveloper
 {
     if ([LPFileManager initializing]) {
