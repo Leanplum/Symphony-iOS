@@ -247,13 +247,11 @@
 + (BOOL)hasStarted
 {
     return [LPInternalState sharedState].hasStarted;
-    return NO;
 }
 
 + (BOOL)hasStartedAndRegisteredAsDeveloper
 {
     return [LPInternalState sharedState].hasStartedAndRegisteredAsDeveloper;
-    return NO;
 }
 
 + (void)triggerStartIssued
