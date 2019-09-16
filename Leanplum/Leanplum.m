@@ -61,7 +61,6 @@
         return nil;
     }
     return [LPAPIConfig sharedConfig].deviceId;
-    return nil;
 }
 
 + (void)onHasStartedAndRegisteredAsDeveloper
