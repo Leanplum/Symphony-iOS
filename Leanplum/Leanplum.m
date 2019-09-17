@@ -13,6 +13,8 @@
 #import "LPApiConstants.h"
 #import "LPUtils.h"
 #import "LPInternalState.h"
+#import "LPConstants.h"
+#import "LPAPIConfig.h"
 
 @implementation Leanplum
 
@@ -34,6 +36,50 @@
     [LPApiConstants sharedState].apiHostName = hostName;
     [LPApiConstants sharedState].apiServlet = servletName;
     [LPApiConstants sharedState].apiSSL = ssl;
+}
+
++ (void)setDeviceId:(NSString *)deviceId
+{
+    if ([LPUtils isBlank:deviceId]) {
+        [self throwError:@"[Leanplum setDeviceId:] Empty deviceId parameter provided."];
+        return;
+    }
+    if ([deviceId isEqualToString:LP_INVALID_IDFA]) {
+        [self throwError:[NSString stringWithFormat:@"[Leanplum setDeviceId:] Failed to set '%@' "
+                          "as deviceId. You are most likely attempting to use the IDFA as deviceId "
+                          "when the user has limited ad tracking on iOS10 or above.",
+                          LP_INVALID_IDFA]];
+        return;
+    }
+    [LPAPIConfig sharedConfig].deviceId = deviceId;
+}
+
++ (NSString *)deviceId
+{
+    if (![LPInternalState sharedState].calledStart) {
+        [self throwError:@"[Leanplum start] must be called before calling deviceId"];
+        return nil;
+    }
+    return [LPAPIConfig sharedConfig].deviceId;
+}
+
++ (void)onHasStartedAndRegisteredAsDeveloper
+{
+    //ToDo: Uncomment, once FileManager is implemented.
+    /*if ([LPFileManager initializing]) {
+        [LPFileManager setResourceSyncingReady:^{
+            [self onHasStartedAndRegisteredAsDeveloperAndFinishedSyncing];
+        }];
+    } else {*/
+        [self onHasStartedAndRegisteredAsDeveloperAndFinishedSyncing];
+    //}
+}
+
++ (void)onHasStartedAndRegisteredAsDeveloperAndFinishedSyncing
+{
+    if (![LPInternalState sharedState].hasStartedAndRegisteredAsDeveloper) {
+        [LPInternalState sharedState].hasStartedAndRegisteredAsDeveloper = YES;
+    }
 }
 
 + (void)setNetworkTimeoutSeconds:(int)seconds
@@ -198,6 +244,16 @@
     }
 }
 
++ (BOOL)hasStarted
+{
+    return [LPInternalState sharedState].hasStarted;
+}
+
++ (BOOL)hasStartedAndRegisteredAsDeveloper
+{
+    return [LPInternalState sharedState].hasStartedAndRegisteredAsDeveloper;
+}
+
 + (void)triggerStartIssued
 {
     [LPInternalState sharedState].issuedStart = YES;
@@ -207,5 +263,14 @@
     [[LPInternalState sharedState].startIssuedBlocks removeAllObjects];
 }
 
++ (void)pause
+{
+    //ToDo: Implement the pause state management.
+}
+
++ (void)resume
+{
+    //ToDo: Implement the resume state management
+}
 
 @end
