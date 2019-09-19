@@ -10,6 +10,7 @@
 #import "LPWSManager.h"
 #import "LPConstants.h"
 #import "LPApiConstants.h"
+#import "LPApiMethods.h"
 #import "LPAPIConfig.h"
 #import "LPErrorHelper.h"
 #import "LPJSON.h"
@@ -44,7 +45,7 @@
         params = [parameters mutableCopy];
     }
     LPWSManager *wsManager = [[LPWSManager alloc] init];
-    [wsManager sendPOSTWebService:LP_API_METHOD_RESTART
+    [wsManager sendPOSTWebService:[LPApiMethods getApiMethod:LPApiMethodRestart]
                        withParams:params
                      successBlock:successResponse
                      failureBlock:failureResponse];

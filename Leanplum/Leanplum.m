@@ -10,6 +10,7 @@
 #import <Foundation/Foundation.h>
 #import "Leanplum.h"
 #import "LPUserApi.h"
+#import "LPStartApi.h"
 #import "LPApiConstants.h"
 #import "LPUtils.h"
 #import "LPInternalState.h"
@@ -247,6 +248,58 @@
 + (BOOL)hasStarted
 {
     return [LPInternalState sharedState].hasStarted;
+}
+
++ (void)start
+{
+    [self startWithUserId:nil userAttributes:nil withSuccess:nil withFailure:nil];
+}
+
++ (void)startWithResponseHandler:(LeanplumStartBlock)response
+{
+    [self startWithUserId:nil userAttributes:nil withSuccess:^{
+        response(true);
+    } withFailure:^(NSError *error){
+        response(false);
+    }];
+}
+
++ (void)startWithUserAttributes:(NSDictionary *)attributes
+{
+    [self startWithUserId:nil userAttributes:attributes withSuccess:nil withFailure:nil];
+}
+
++ (void)startWithUserId:(NSString *)userId
+{
+    [self startWithUserId:userId userAttributes:nil withSuccess:nil withFailure:nil];
+}
+
++ (void)startWithUserId:(NSString *)userId responseHandler:(LeanplumStartBlock)response
+{
+    [self startWithUserId:userId userAttributes:nil withSuccess:^{
+        response(true);
+    } withFailure:^(NSError *error){
+        response(false);
+    }];
+}
+
++ (void)startWithUserId:(NSString *)userId userAttributes:(NSDictionary *)attributes
+{
+    [self startWithUserId:userId userAttributes:attributes withSuccess:nil withFailure:nil];
+}
+
++ (void)startWithUserId:(NSString *)userId
+            userAttributes:(NSDictionary *)attributes
+            withSuccess:(void (^)(void))success
+            withFailure:(void (^)(NSError *error))failure {
+   
+    attributes = [self validateAttributes:attributes named:@"userAttributes" allowLists:YES];
+    
+    [LPStartApi startWithParameters:attributes success:^(LPStartResponse *response) {
+        success();
+    } failure:^(NSError *error) {
+        failure(error);
+    }];
 }
 
 + (BOOL)hasStartedAndRegisteredAsDeveloper

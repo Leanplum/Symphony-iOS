@@ -198,6 +198,8 @@
 		A8EF57F022952B630046473C /* LPAdvanceApiTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A8EF57EF22952B630046473C /* LPAdvanceApiTest.m */; };
 		A8EF57F322952B960046473C /* LPAdvanceApi.h in Headers */ = {isa = PBXBuildFile; fileRef = A8EF57F122952B960046473C /* LPAdvanceApi.h */; };
 		A8EF57F422952B960046473C /* LPAdvanceApi.m in Sources */ = {isa = PBXBuildFile; fileRef = A8EF57F222952B960046473C /* LPAdvanceApi.m */; };
+		B40775E12333E19200B1F64D /* LPRestartApi.h in Headers */ = {isa = PBXBuildFile; fileRef = B40775DD2333E19100B1F64D /* LPRestartApi.h */; };
+		B40775E42333E19200B1F64D /* LPRestartApi.m in Sources */ = {isa = PBXBuildFile; fileRef = B40775E02333E19200B1F64D /* LPRestartApi.m */; };
 		B41703BC22CBFF2D0032492D /* malformed_multi_success_response.json in Resources */ = {isa = PBXBuildFile; fileRef = B41703BB22CBFF2D0032492D /* malformed_multi_success_response.json */; };
 		B41E7896227FB08500D2AE63 /* LPJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = B41E7894227FB08500D2AE63 /* LPJSON.h */; };
 		B41E7897227FB08500D2AE63 /* LPJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = B41E7895227FB08500D2AE63 /* LPJSON.m */; };
@@ -551,6 +553,8 @@
 		A8EF57F222952B960046473C /* LPAdvanceApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPAdvanceApi.m; sourceTree = "<group>"; };
 		AADF373E239F11398512D5B6 /* Pods-SymphonyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SymphonyTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SymphonyTests/Pods-SymphonyTests.release.xcconfig"; sourceTree = "<group>"; };
 		B3CDAF5B231D5B4ED4D64D2F /* Pods-Leanplum.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Leanplum.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Leanplum/Pods-Leanplum.debug.xcconfig"; sourceTree = "<group>"; };
+		B40775DD2333E19100B1F64D /* LPRestartApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPRestartApi.h; sourceTree = "<group>"; };
+		B40775E02333E19200B1F64D /* LPRestartApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPRestartApi.m; sourceTree = "<group>"; };
 		B41703BB22CBFF2D0032492D /* malformed_multi_success_response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = malformed_multi_success_response.json; sourceTree = "<group>"; };
 		B41E7894227FB08500D2AE63 /* LPJSON.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPJSON.h; sourceTree = "<group>"; };
 		B41E7895227FB08500D2AE63 /* LPJSON.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPJSON.m; sourceTree = "<group>"; };
@@ -1010,6 +1014,8 @@
 		B430A229224C1C8D00DC8140 /* Api */ = {
 			isa = PBXGroup;
 			children = (
+				B40775DD2333E19100B1F64D /* LPRestartApi.h */,
+				B40775E02333E19200B1F64D /* LPRestartApi.m */,
 				A801AFF822DE8ADB007019F3 /* LPApiUtils.h */,
 				A801AFF922DE8ADB007019F3 /* LPApiUtils.m */,
 				A8EF57F122952B960046473C /* LPAdvanceApi.h */,
@@ -1023,8 +1029,8 @@
 				A82BD0FA229D0DA000FE1DA2 /* LPMultiApi.h */,
 				A82BD0F9229D0DA000FE1DA2 /* LPMultiApi.m */,
 				A82BD0F0229D0C6600FE1DA2 /* LPHeartbeatApi.h */,
-				65C5BDC4228B60FF003EE334 /* LPRegisterDeviceApi.h */,
 				A82BD0EF229D0C6600FE1DA2 /* LPHeartbeatApi.m */,
+				65C5BDC4228B60FF003EE334 /* LPRegisterDeviceApi.h */,
 				65C5BDC5228B60FF003EE334 /* LPRegisterDeviceApi.m */,
 				A82BD109229D0F6800FE1DA2 /* LPSetTrafficSourceInfoApi.h */,
 				A82BD10A229D0F6800FE1DA2 /* LPSetTrafficSourceInfoApi.m */,
@@ -1216,6 +1222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B430A277224C235900DC8140 /* LPPurpleMessage.h in Headers */,
+				B40775E12333E19200B1F64D /* LPRestartApi.h in Headers */,
 				B46B51FF2284DDE000B29663 /* Leanplum.m in Headers */,
 				65D4AB6C224D72B2009BA5F3 /* LPPushAskToAskKinds.h in Headers */,
 				65D4ABE0224D7FF5009BA5F3 /* LPIndigoMessage.h in Headers */,
@@ -1648,6 +1655,7 @@
 				65D4ABF1224D805D009BA5F3 /* LPAmbitiousChild.m in Sources */,
 				65D4ABED224D8043009BA5F3 /* LPHilariousChild.m in Sources */,
 				65D4AB65224D7250009BA5F3 /* LPOpenURLValues.m in Sources */,
+				B40775E42333E19200B1F64D /* LPRestartApi.m in Sources */,
 				65D4AB61224D71E4009BA5F3 /* LPOpenURLKinds.m in Sources */,
 				65D4AC01224D80CC009BA5F3 /* LPFriskyChild.m in Sources */,
 				B4FCB10122722AE1004F5D63 /* LPWSManager.m in Sources */,

@@ -7,7 +7,6 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "LPStartApi.h"
 #import "LPAPIConfig.h"
 #import "LPApiConstants.h"
 #import "LPConstants.h"
@@ -16,6 +15,7 @@
 #import <OHHTTPStubs/OHPathHelpers.h>
 #import "LPStartResponse.h"
 #import "LPRequestQueue.h"
+#import "LPStartApi.h"
 
 @interface LPStartApiTest : XCTestCase
 
@@ -43,7 +43,7 @@
     } failure:^(NSError *error) {
     }];
 
-    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+    [self waitForExpectationsWithTimeout:20.0 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);
         }

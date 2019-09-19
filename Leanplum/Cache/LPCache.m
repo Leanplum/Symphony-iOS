@@ -41,5 +41,64 @@
     return regions;
 }
 
+- (NSArray<LPEventRule *> *)loadEventRules {
+    return nil;
+}
+
+
+- (NSArray<LPMessage *> *)loadMessages {
+     return nil;
+}
+
+
+- (NSArray<LPRegion *> *)loadRegions {
+     return nil;
+}
+
+
+- (NSArray<LPUpdateRule *> *)loadUpdateRules {
+     return nil;
+}
+
+
+- (NSArray<LPVariable *> *)loadVariables {
+     return nil;
+}
+
+
+- (NSArray<LPVariantDebugInfo *> *)loadVariantDebugInfo {
+     return nil;
+}
+
+
+- (NSArray<LPVariant *> *)loadVariants {
+     return nil;
+}
+
+
+- (void)setEventRules:(NSArray<LPEventRule *> *)eventRules {
+}
+
+
+- (void)setMessages:(NSArray<LPMessage *> *)messages {
+}
+
+
+- (void)setUpdateRules:(NSArray<LPUpdateRule *> *)updateRules {
+}
+
+
+- (void)setVariables:(NSArray<LPVariable *> *)variables {
+}
+
+
+- (void)setVariantDebugInfo:(NSArray<LPVariantDebugInfo *> *)variantDebugInfo {
+}
+
+
+- (void)setVariants:(NSArray<LPVariant *> *)variants {
+}
+
+
 
 @end

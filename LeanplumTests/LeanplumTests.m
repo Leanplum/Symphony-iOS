@@ -7,7 +7,6 @@
 //
 
 #import <XCTest/XCTest.h>
-#import <OCMock/OCMock.h>
 #import <OHHTTPStubs/OHHTTPStubs.h>
 #import "LPAPIConfig.h"
 #import "LPApiConstants.h"
@@ -101,7 +100,7 @@
     [[LPRequestQueue sharedInstance] sendRequests:^{
         NSLog(@"test");
     } failure:^(NSError * _Nonnull error) {
-        NSLog(@"failrure");
+        NSLog(@"failure");
     }];
 
     [self waitForExpectationsWithTimeout:20.0 handler:^(NSError *error) {
@@ -136,7 +135,7 @@
     [[LPRequestQueue sharedInstance] sendRequests:^{
         NSLog(@"test");
     } failure:^(NSError * _Nonnull error) {
-        NSLog(@"failrure");
+        NSLog(@"failure");
     }];
     [self waitForExpectationsWithTimeout:40.0 handler:^(NSError *error) {
         if (error) {
@@ -168,7 +167,7 @@
     [[LPRequestQueue sharedInstance] sendRequests:^{
         NSLog(@"test");
     } failure:^(NSError * _Nonnull error) {
-        NSLog(@"failrure");
+        NSLog(@"failure");
     }];
     [self waitForExpectationsWithTimeout:40.0 handler:^(NSError *error) {
         if (error) {
@@ -203,7 +202,7 @@
     [[LPRequestQueue sharedInstance] sendRequests:^{
         NSLog(@"test");
     } failure:^(NSError * _Nonnull error) {
-        NSLog(@"failrure");
+        NSLog(@"failure");
     }];
     [self waitForExpectationsWithTimeout:40.0 handler:^(NSError *error) {
         if (error) {
@@ -239,7 +238,7 @@
     [[LPRequestQueue sharedInstance] sendRequests:^{
         NSLog(@"test");
     } failure:^(NSError * _Nonnull error) {
-        NSLog(@"failrure");
+        NSLog(@"failure");
     }];
     [self waitForExpectationsWithTimeout:20.0 handler:^(NSError *error) {
         if (error) {
@@ -271,7 +270,7 @@
     [[LPRequestQueue sharedInstance] sendRequests:^{
         NSLog(@"test");
     } failure:^(NSError * _Nonnull error) {
-        NSLog(@"failrure");
+        NSLog(@"failure");
     }];
     [self waitForExpectationsWithTimeout:20.0 handler:^(NSError *error) {
         if (error) {
@@ -301,7 +300,7 @@
     [[LPRequestQueue sharedInstance] sendRequests:^{
         NSLog(@"test");
     } failure:^(NSError * _Nonnull error) {
-        NSLog(@"failrure");
+        NSLog(@"failure");
     }];
     [self waitForExpectationsWithTimeout:40.0 handler:^(NSError *error) {
         if (error) {
@@ -329,7 +328,7 @@
     [[LPRequestQueue sharedInstance] sendRequests:^{
         NSLog(@"test");
     } failure:^(NSError * _Nonnull error) {
-        NSLog(@"failrure");
+        NSLog(@"failure");
     }];
     [self waitForExpectationsWithTimeout:40.0 handler:^(NSError *error) {
         if (error) {
@@ -337,5 +336,35 @@
         }
     }];
 }
+
+/**
+ * Tests start API Call
+ */
+- (void) testStartApiCall
+{
+    sleep(1);
+    [LPTestHelper setup];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    NSString *userId = @"john.smith";
+    
+    // Try to set user id and attributes.
+    [Leanplum startWithUserId:nil userAttributes:nil withSuccess:^{
+        [expectation fulfill];
+    } withFailure:^(NSError *error) {
+        NSLog(@"failure");
+    }];
+    
+    [[LPRequestQueue sharedInstance] sendRequests:^{
+        NSLog(@"test");
+    } failure:^(NSError * _Nonnull error) {
+        NSLog(@"failure");
+    }];
+    [self waitForExpectationsWithTimeout:40.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+    }];
+}
+
 
 @end

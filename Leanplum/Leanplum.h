@@ -18,6 +18,15 @@ FOUNDATION_EXPORT const unsigned char LeanplumVersionString[];
 @interface Leanplum : NSObject
 
 /**
+ * @defgroup _ Callback Blocks
+ * Those blocks are used when you define callbacks.
+ * @{
+ */
+typedef void (^LeanplumStartBlock)(BOOL success);
+/**@}*/
+
+
+/**
  * Optional. Sets the API server. The API path is of the form http[s]://hostname/servletName
  * @param hostName The name of the API host, such as api.leanplum.com
  * @param servletName The name of the API servlet, such as api
@@ -37,6 +46,24 @@ FOUNDATION_EXPORT const unsigned char LeanplumVersionString[];
  * [Leanplum start].
  */
 + (NSString *)deviceId;
+
+/**
+ * @{
+ * Call this when your application starts.
+ * This will initiate a call to Leanplum's servers to get the values
+ * of the variables used in your app.
+ */
+
++ (void)start;
++ (void)startWithResponseHandler:(LeanplumStartBlock)response;
++ (void)startWithUserAttributes:(NSDictionary *)attributes;
++ (void)startWithUserId:(NSString *)userId;
++ (void)startWithUserId:(NSString *)userId responseHandler:(LeanplumStartBlock)response;
++ (void)startWithUserId:(NSString *)userId userAttributes:(NSDictionary *)attributes;
++ (void)startWithUserId:(NSString *)userId
+         userAttributes:(NSDictionary *)attributes
+            withSuccess:(void (^)(void))success
+            withFailure:(void (^)(NSError *error))failure;
 
 /**
  * Returns whether or not Leanplum has finished starting and the device is registered
