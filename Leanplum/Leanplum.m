@@ -16,6 +16,7 @@
 #import "LPInternalState.h"
 #import "LPConstants.h"
 #import "LPAPIConfig.h"
+#import "UIDevice+IdentifierAddition.h"
 
 @implementation Leanplum
 
@@ -294,6 +295,37 @@
             withFailure:(void (^)(NSError *error))failure {
    
     attributes = [self validateAttributes:attributes named:@"userAttributes" allowLists:YES];
+    
+    // Set device ID.
+    NSString *deviceId = [LPAPIConfig sharedConfig].deviceId;
+    
+    //LPInternalState *state = [LPInternalState sharedState];
+    
+    // This is the device ID set when the MAC address is used on iOS 7.
+    // This is to allow apps who upgrade to the new ID to forget the old one.
+    if ([deviceId isEqualToString:@"0f607264fc6318a92b9e13c65db7cd3c"]) {
+        deviceId = nil;
+    }
+    if (!deviceId) {
+        if ([LPAPIConfig sharedConfig].deviceId) {
+            deviceId = [LPAPIConfig sharedConfig].deviceId;
+        } else {
+            deviceId = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+        }
+        if (!deviceId) {
+            deviceId = [[UIDevice currentDevice] leanplum_uniqueGlobalDeviceIdentifier];
+        }
+        [[LPAPIConfig sharedConfig] setDeviceId:deviceId];
+    }
+    
+    // Set user ID.
+    if (!userId) {
+        userId = [LPAPIConfig sharedConfig].userId;
+        if (!userId) {
+            userId = [LPAPIConfig sharedConfig].deviceId;
+        }
+    }
+    [[LPAPIConfig sharedConfig] setUserId:userId];
     
     [LPStartApi startWithParameters:attributes success:^(LPStartResponse *response) {
         success();

@@ -259,6 +259,8 @@
 		B430A2A4224C246100DC8140 /* LPInterstitialValues.h in Headers */ = {isa = PBXBuildFile; fileRef = B430A2A2224C246100DC8140 /* LPInterstitialValues.h */; };
 		B430A2A5224C246100DC8140 /* LPInterstitialValues.m in Sources */ = {isa = PBXBuildFile; fileRef = B430A2A3224C246100DC8140 /* LPInterstitialValues.m */; };
 		B430A2A6224C246100DC8140 /* LPInterstitialValues.m in Sources */ = {isa = PBXBuildFile; fileRef = B430A2A3224C246100DC8140 /* LPInterstitialValues.m */; };
+		B43838C223340538009642BE /* UIDevice+IdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = B43838C023340537009642BE /* UIDevice+IdentifierAddition.m */; };
+		B43838C323340538009642BE /* UIDevice+IdentifierAddition.h in Headers */ = {isa = PBXBuildFile; fileRef = B43838C123340537009642BE /* UIDevice+IdentifierAddition.h */; };
 		B43E213F232A2F9D00C6FA27 /* LPFileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = B43E213D232A2F9C00C6FA27 /* LPFileManager.h */; };
 		B43E2140232A2F9D00C6FA27 /* LPFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B43E213E232A2F9D00C6FA27 /* LPFileManager.m */; };
 		B4583DEF2257F2F0006A6A61 /* LPModelProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = B4583DEE2257F2F0006A6A61 /* LPModelProtocol.h */; };
@@ -597,6 +599,8 @@
 		B430A29E224C244400DC8140 /* LPInterstitialKinds.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPInterstitialKinds.m; sourceTree = "<group>"; };
 		B430A2A2224C246100DC8140 /* LPInterstitialValues.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPInterstitialValues.h; sourceTree = "<group>"; };
 		B430A2A3224C246100DC8140 /* LPInterstitialValues.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPInterstitialValues.m; sourceTree = "<group>"; };
+		B43838C023340537009642BE /* UIDevice+IdentifierAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+IdentifierAddition.m"; sourceTree = "<group>"; };
+		B43838C123340537009642BE /* UIDevice+IdentifierAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+IdentifierAddition.h"; sourceTree = "<group>"; };
 		B43E213D232A2F9C00C6FA27 /* LPFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPFileManager.h; sourceTree = "<group>"; };
 		B43E213E232A2F9D00C6FA27 /* LPFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPFileManager.m; sourceTree = "<group>"; };
 		B4583DEE2257F2F0006A6A61 /* LPModelProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPModelProtocol.h; sourceTree = "<group>"; };
@@ -1121,6 +1125,8 @@
 		B4E251B822D65AC800CEECAF /* UniqueIdentifier */ = {
 			isa = PBXGroup;
 			children = (
+				B43838C123340537009642BE /* UIDevice+IdentifierAddition.h */,
+				B43838C023340537009642BE /* UIDevice+IdentifierAddition.m */,
 				B4E251B922D65AE900CEECAF /* NSString+MD5Addition.h */,
 				B4E251BC22D65AE900CEECAF /* NSString+MD5Addition.m */,
 			);
@@ -1280,6 +1286,7 @@
 				65C5BDF8228F6978003EE334 /* LPResumeSessionApi.h in Headers */,
 				B430A26D224C232300DC8140 /* LPPurpleAcceptButton.h in Headers */,
 				659DAAE122EED3670063BC0C /* LPCaching.h in Headers */,
+				B43838C323340538009642BE /* UIDevice+IdentifierAddition.h in Headers */,
 				65D4AB74224D7345009BA5F3 /* LPFluffyCancelAction.h in Headers */,
 				65D4AB44224C2EA1009BA5F3 /* LPTentacledAcceptButton.h in Headers */,
 				65D4AC00224D80CC009BA5F3 /* LPFriskyChild.h in Headers */,
@@ -1662,6 +1669,7 @@
 				A82BD0EA229D0B5100FE1DA2 /* LPLogApi.m in Sources */,
 				B430A255224C226900DC8140 /* LPValuesDismissAction.m in Sources */,
 				A82BD118229D123700FE1DA2 /* LPDeleteNewsfeedMessageApi.m in Sources */,
+				B43838C223340538009642BE /* UIDevice+IdentifierAddition.m in Sources */,
 				B486913F23147A6200B6BC98 /* LPInternalState.m in Sources */,
 				B4A32C9322D70FCB0088CCDF /* LPStartApi.m in Sources */,
 				B430A282224C239600DC8140 /* LPConfirm.m in Sources */,
