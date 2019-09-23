@@ -297,6 +297,12 @@ __weak static NSExtensionContext *_extensionContext = nil;
     return [LPInternalState sharedState].hasStarted;
 }
 
++ (NSString *)pushTokenKey
+{
+    return [NSString stringWithFormat: LEANPLUM_DEFAULTS_PUSH_TOKEN_KEY,
+            [LPAPIConfig sharedConfig].appId, [LPAPIConfig sharedConfig].userId, [LPAPIConfig sharedConfig].deviceId];
+}
+
 + (void)start
 {
     [self startWithUserId:nil userAttributes:nil withSuccess:nil withFailure:nil];
@@ -446,6 +452,14 @@ __weak static NSExtensionContext *_extensionContext = nil;
     NSDictionary *timeParams = [self initializePreLeanplumInstall];
     if (timeParams) {
         [params addEntriesFromDictionary:timeParams];
+    }
+    //ToDo, Inbox messageIds
+    
+    // Push token.
+    NSString *pushTokenKey = [Leanplum pushTokenKey];
+    NSString *pushToken = [[NSUserDefaults standardUserDefaults] stringForKey:pushTokenKey];
+    if (pushToken) {
+        params[LP_PARAM_DEVICE_PUSH_TOKEN] = pushToken;
     }
     
     [LPStartApi startWithParameters:params success:^(LPStartResponse *response) {
