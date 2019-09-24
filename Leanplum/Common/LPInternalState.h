@@ -13,7 +13,7 @@
 @property(strong, nonatomic) NSMutableArray *startIssuedBlocks;
 @property(assign, nonatomic) BOOL calledStart, hasStarted, hasStartedAndRegisteredAsDeveloper,
 startSuccessful, issuedStart;
-
+@property(strong, nonatomic) NSString *appVersion;
 + (LPInternalState *)sharedState;
 
 @end
