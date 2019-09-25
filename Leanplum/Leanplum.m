@@ -18,6 +18,41 @@
 
 @implementation Leanplum
 
++ (void)setAppId:(NSString *)appId withDevelopmentKey:(NSString *)accessKey
+{
+    if ([LPUtils isNullOrEmpty:appId]) {
+        [self throwError:@"[Leanplum setAppId:withDevelopmentKey:] Empty appId parameter "
+         @"provided."];
+        return;
+    }
+    if ([LPUtils isNullOrEmpty:accessKey]) {
+        [self throwError:@"[Leanplum setAppId:withDevelopmentKey:] Empty accessKey parameter "
+         @"provided."];
+        return;
+    }
+    
+    [LPApiConstants sharedState].isDevelopmentModeEnabled = YES;
+    [[LPAPIConfig sharedConfig] setAppId:appId withAccessKey:accessKey];
+    //ToDo: Initialize Static Variables
+}
+
++ (void)setAppId:(NSString *)appId withProductionKey:(NSString *)accessKey
+{
+    if ([LPUtils isNullOrEmpty:appId]) {
+        [self throwError:@"[Leanplum setAppId:withProductionKey:] Empty appId parameter provided."];
+        return;
+    }
+    if ([LPUtils isNullOrEmpty:accessKey]) {
+        [self throwError:@"[Leanplum setAppId:withProductionKey:] Empty accessKey parameter "
+         @"provided."];
+        return;
+    }
+    
+    [LPApiConstants sharedState].isDevelopmentModeEnabled = NO;
+    [[LPAPIConfig sharedConfig] setAppId:appId withAccessKey:accessKey];
+    //ToDo: Initialize Static Variables
+}
+
 + (void)setApiHostName:(NSString *)hostName
        withServletName:(NSString *)servletName
               usingSsl:(BOOL)ssl
@@ -52,6 +87,11 @@
         return;
     }
     [LPAPIConfig sharedConfig].deviceId = deviceId;
+}
+
++ (void)setAppVersion:(NSString *)appVersion
+{
+    [LPInternalState sharedState].appVersion = appVersion;
 }
 
 + (NSString *)deviceId

@@ -11,6 +11,7 @@
 #import "LPTestHelper.h"
 #import "LPApiConstants.h"
 #import "LPAPIConfig.h"
+#import "Leanplum.h"
 
 NSString *APPLICATION_ID = @"app_ve9UCNlqI8dy6Omzfu1rEh6hkWonNHVZJIWtLLt6aLs";
 NSString *DEVELOPMENT_KEY = @"dev_cKF5HMpLGqhbovlEGMKjgTuf8AHfr2Jar6rrnNhtzQ0";
@@ -26,8 +27,7 @@ NSInteger DISPATCH_WAIT_TIME = 4;
 @implementation LPTestHelper
 
 + (void)setup {
-    LPAPIConfig *lpApiConfig = [LPAPIConfig sharedConfig];
-    [lpApiConfig setAppId:APPLICATION_ID withAccessKey:DEVELOPMENT_KEY];
+    [Leanplum setAppId:APPLICATION_ID withProductionKey:DEVELOPMENT_KEY];
     [LPAPIConfig sharedConfig].deviceId = DEVICE_ID;
     [LPApiConstants sharedState].apiHostName = API_HOST;
     [LPApiConstants sharedState].apiServlet = API;

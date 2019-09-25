@@ -88,7 +88,6 @@
 - (void)testDeleteNewsfeedMessageApiWithParametersStub {
     [LPTestHelper setupStub:200 withFileName:@"simple_post_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    NSDictionary *params = @{@"testKey": @"testValue" };
     [LPDeleteNewsfeedMessageApi deleteNewsfeedMessageWithMessageId:@"123" parameters:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
