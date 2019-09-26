@@ -15,6 +15,7 @@
 #import "LPRequestQueue.h"
 #import "LPInternalState.h"
 #import "LeanplumInternal.h"
+#import "LPCache.h"
 
 @interface LeanplumTests : XCTestCase
 
@@ -421,6 +422,37 @@
     }];
 }
 
+
+/**
+ * Tests start API Call with Caching Regisions
+ */
+- (void) testStartApiCallWithRegionsCaching
+{
+    sleep(1);
+    [LPTestHelper setup];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    
+    [[LPCache sharedCache] clearCache];
+    // Try to set user id and attributes.
+    [Leanplum startWithUserId:DEVICE_ID userAttributes:nil withSuccess:^{
+        NSArray<LPRegion *> *regions = [[LPCache sharedCache] regions];
+        XCTAssertNotNil(regions);
+        [expectation fulfill];
+    } withFailure:^(NSError *error) {
+        NSLog(@"failure");
+    }];
+    
+    [[LPRequestQueue sharedInstance] sendRequests:^{
+        NSLog(@"test");
+    } failure:^(NSError * _Nonnull error) {
+        NSLog(@"failure");
+    }];
+    [self waitForExpectationsWithTimeout:40.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+    }];
+}
 
 
 @end

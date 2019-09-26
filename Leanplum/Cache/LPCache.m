@@ -99,6 +99,10 @@
 - (void)setVariants:(NSArray<LPVariant *> *)variants {
 }
 
+- (void)clearCache {
+    [self deleteFromKeychainWithKey:LP_KEY_REGIONS];
+}
+
 
 
 @end
