@@ -23,6 +23,23 @@ FOUNDATION_EXPORT const unsigned char LeanplumVersionString[];
  * @{
  */
 typedef void (^LeanplumStartBlock)(BOOL success);
+
+ * @{
+ * Must call either this or {@link setAppId:withProductionKey:}
+ * before issuing any calls to the API, including start.
+ * @param appId Your app ID.
+ * @param accessKey Your development key.
+ */
++ (void)setAppId:(NSString *)appId withDevelopmentKey:(NSString *)accessKey;
+
+/**
+ * Must call either this or {@link Leanplum::setAppId:withDevelopmentKey:}
+ * before issuing any calls to the API, including start.
+ * @param appId Your app ID.
+ * @param accessKey Your production key.
+ */
++ (void)setAppId:(NSString *)appId withProductionKey:(NSString *)accessKey;
+
 /**@}*/
 
 
@@ -40,6 +57,14 @@ typedef void (^LeanplumStartBlock)(BOOL success);
  * By default, the device ID is the identifier for vendor.
  */
 + (void)setDeviceId:(NSString *)deviceId;
+
+/**
+ * By default, Leanplum reports the version of your app using CFBundleVersion, which
+ * can be used for reporting and targeting on the Leanplum dashboard.
+ * If you wish to use CFBundleShortVersionString or any other string as the version,
+ * you can call this before your call to [Leanplum start]
+ */
++ (void)setAppVersion:(NSString *)appVersion;
 
 /**
  * Returns the deviceId in the current Leanplum session. This should only be called after

@@ -119,7 +119,6 @@
 - (void)testMarkNewsfeedMessageAsReadApiWithParametersStub {
     [LPTestHelper setupStub:200 withFileName:@"simple_post_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    NSDictionary *params = @{@"testKey": @"testValue" };
     [LPMarkNewsfeedMessageAsReadApi markNewsfeedMessageAsReadWithMessageId:@"0" parameters:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {

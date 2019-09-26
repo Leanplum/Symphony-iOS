@@ -256,7 +256,6 @@
     sleep(1);
     [LPTestHelper setup];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    NSString *userId = @"john.smith";
     NSDictionary *userAttributes = @{@"name": @"John Smith",
                                      @"age": @42,
                                      @"address": @"New York"
