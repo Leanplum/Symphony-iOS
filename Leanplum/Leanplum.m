@@ -18,6 +18,7 @@
 #import "LPAPIConfig.h"
 #import "UIDevice+IdentifierAddition.h"
 #include <sys/sysctl.h>
+#import "LPCache.h"
 
 __weak static NSExtensionContext *_extensionContext = nil;
 
@@ -503,6 +504,7 @@ __weak static NSExtensionContext *_extensionContext = nil;
     }
     
     [LPStartApi startWithParameters:params success:^(LPStartResponse *response) {
+        [[LPCache sharedCache] setRegions:response.regions];
         success();
     } failure:^(NSError *error) {
         failure(error);
