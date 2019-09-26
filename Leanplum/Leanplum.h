@@ -24,7 +24,7 @@ FOUNDATION_EXPORT const unsigned char LeanplumVersionString[];
  */
 typedef void (^LeanplumStartBlock)(BOOL success);
 
- * @{
+ /*
  * Must call either this or {@link setAppId:withProductionKey:}
  * before issuing any calls to the API, including start.
  * @param appId Your app ID.
