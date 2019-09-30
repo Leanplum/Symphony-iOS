@@ -17,8 +17,8 @@
 #import "LPConstants.h"
 #import "LPAPIConfig.h"
 #import "UIDevice+IdentifierAddition.h"
-#include <sys/sysctl.h>
 #import "LPCache.h"
+#import "LPPushUtils.h"
 
 __weak static NSExtensionContext *_extensionContext = nil;
 
@@ -156,49 +156,6 @@ __weak static NSExtensionContext *_extensionContext = nil;
     [LPApiConstants sharedState].networkTimeoutSeconds = seconds;
     [LPApiConstants sharedState].networkTimeoutSecondsForDownloads = downloadSeconds;
 }
-
-+ (BOOL)isRichPushEnabled
-{
-    NSString *plugInsPath = [NSBundle mainBundle].builtInPlugInsPath;
-    NSDirectoryEnumerator *enumerator = [[NSFileManager defaultManager]
-                                         enumeratorAtPath:plugInsPath];
-    NSString *filePath;
-    while (filePath = [enumerator nextObject]) {
-        if([filePath hasSuffix:@".appex/Info.plist"]) {
-            NSString *newPath = [[plugInsPath stringByAppendingPathComponent:filePath]
-                                 stringByDeletingLastPathComponent];
-            NSBundle *currentBundle = [NSBundle bundleWithPath:newPath];
-            NSDictionary *extensionKey =
-            [currentBundle objectForInfoDictionaryKey:@"NSExtension"];
-            if ([[extensionKey objectForKey:@"NSExtensionPrincipalClass"]
-                 isEqualToString:@"NotificationService"]) {
-                return YES;
-            }
-        }
-    }
-    return NO;
-}
-
-+ (NSString *)platform
-{
-    size_t size;
-    sysctlbyname("hw.machine", NULL, &size, NULL, 0);
-    
-    char *answer = malloc(size);
-    sysctlbyname("hw.machine", answer, &size, NULL, 0);
-    
-    NSString *results = [NSString stringWithCString:answer encoding: NSUTF8StringEncoding];
-    
-    free(answer);
-    
-    if ([results isEqualToString:@"i386"] ||
-        [results isEqualToString:@"x86_64"]) {
-        results = [[UIDevice currentDevice] model];
-    }
-    
-    return results;
-}
-
 
 + (void)setUserAttributes:(NSDictionary *)attributes
               withSuccess:(void (^)(void))success
@@ -413,22 +370,14 @@ __weak static NSExtensionContext *_extensionContext = nil;
         [self throwError:@"Already called start."];
     }
     state.calledStart = YES;
-    // This is the device ID set when the MAC address is used on iOS 7.
-    // This is to allow apps who upgrade to the new ID to forget the old one.
-    if ([deviceId isEqualToString:@"0f607264fc6318a92b9e13c65db7cd3c"]) {
-        deviceId = nil;
+    if (!deviceId) {
+            deviceId = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
     }
     if (!deviceId) {
-        if ([LPAPIConfig sharedConfig].deviceId) {
-            deviceId = [LPAPIConfig sharedConfig].deviceId;
-        } else {
-            deviceId = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
-        }
-        if (!deviceId) {
-            deviceId = [[UIDevice currentDevice] leanplum_uniqueGlobalDeviceIdentifier];
-        }
-        [[LPAPIConfig sharedConfig] setDeviceId:deviceId];
+        deviceId = [[UIDevice currentDevice] leanplum_uniqueGlobalDeviceIdentifier];
     }
+    
+    [[LPAPIConfig sharedConfig] setDeviceId:deviceId];
     
     // Set user ID.
     if (!userId) {
@@ -462,7 +411,7 @@ __weak static NSExtensionContext *_extensionContext = nil;
                                      LP_PARAM_INCLUDE_DEFAULTS: @(NO),
                                      LP_PARAM_VERSION_NAME: versionName,
                                      LP_PARAM_DEVICE_NAME: deviceName,
-                                     LP_PARAM_DEVICE_MODEL: [self platform],
+                                     LP_PARAM_DEVICE_MODEL: device.platform,
                                      LP_PARAM_DEVICE_SYSTEM_NAME: device.systemName,
                                      LP_PARAM_DEVICE_SYSTEM_VERSION: device.systemVersion,
                                      LP_KEY_LOCALE: currentLocaleString,
@@ -472,7 +421,7 @@ __weak static NSExtensionContext *_extensionContext = nil;
                                      LP_KEY_REGION: LP_VALUE_DETECT,
                                      LP_KEY_CITY: LP_VALUE_DETECT,
                                      LP_KEY_LOCATION: LP_VALUE_DETECT,
-                                     LP_PARAM_RICH_PUSH_ENABLED: @([self isRichPushEnabled])
+                                     LP_PARAM_RICH_PUSH_ENABLED: @([LPPushUtils isRichPushEnabled])
                                      } mutableCopy];
     //Todo: Variant debug. Please check old sdk.
     BOOL startedInBackground = NO;

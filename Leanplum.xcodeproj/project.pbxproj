@@ -284,6 +284,8 @@
 		B4B5C70B2303E0E600C76FCF /* LPVarsApi.h in Headers */ = {isa = PBXBuildFile; fileRef = B4B5C7092303E0E600C76FCF /* LPVarsApi.h */; };
 		B4B5C70C2303E0E600C76FCF /* LPVarsApi.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C70A2303E0E600C76FCF /* LPVarsApi.m */; };
 		B4B5C70F2303E2B800C76FCF /* LPCacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C70E2303E2B800C76FCF /* LPCacheTests.m */; };
+		B4DE3C362342759C00D7166B /* LPPushUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = B4DE3C342342759C00D7166B /* LPPushUtils.h */; };
+		B4DE3C372342759C00D7166B /* LPPushUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DE3C352342759C00D7166B /* LPPushUtils.m */; };
 		B4E251B422D54E8D00CEECAF /* LPFileManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E251B322D54E8D00CEECAF /* LPFileManagerTest.m */; };
 		B4E251B622D65A1000CEECAF /* LPUtilsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E251B522D65A1000CEECAF /* LPUtilsTest.m */; };
 		B4E251BD22D65AE900CEECAF /* NSString+MD5Addition.h in Headers */ = {isa = PBXBuildFile; fileRef = B4E251B922D65AE900CEECAF /* NSString+MD5Addition.h */; };
@@ -319,6 +321,8 @@
 			isa = PBXBuildRule;
 			compilerSpec = com.apple.compilers.proxy.script;
 			fileType = pattern.proxy;
+			inputFiles = (
+			);
 			isEditable = 1;
 			outputFiles = (
 			);
@@ -623,6 +627,8 @@
 		B4B5C7092303E0E600C76FCF /* LPVarsApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPVarsApi.h; sourceTree = "<group>"; };
 		B4B5C70A2303E0E600C76FCF /* LPVarsApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPVarsApi.m; sourceTree = "<group>"; };
 		B4B5C70E2303E2B800C76FCF /* LPCacheTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPCacheTests.m; sourceTree = "<group>"; };
+		B4DE3C342342759C00D7166B /* LPPushUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPPushUtils.h; sourceTree = "<group>"; };
+		B4DE3C352342759C00D7166B /* LPPushUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPPushUtils.m; sourceTree = "<group>"; };
 		B4E251B322D54E8D00CEECAF /* LPFileManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPFileManagerTest.m; sourceTree = "<group>"; };
 		B4E251B522D65A1000CEECAF /* LPUtilsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPUtilsTest.m; sourceTree = "<group>"; };
 		B4E251B922D65AE900CEECAF /* NSString+MD5Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5Addition.h"; sourceTree = "<group>"; };
@@ -1077,6 +1083,8 @@
 				B41E7895227FB08500D2AE63 /* LPJSON.m */,
 				657AE9AA22823E32008F6BB0 /* LPErrorHelper.h */,
 				657AE9AB22823E32008F6BB0 /* LPErrorHelper.m */,
+				B4DE3C342342759C00D7166B /* LPPushUtils.h */,
+				B4DE3C352342759C00D7166B /* LPPushUtils.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1321,6 +1329,7 @@
 				B430A281224C239600DC8140 /* LPConfirm.h in Headers */,
 				65D4ABD8224D7FB7009BA5F3 /* LPStickyChild.h in Headers */,
 				65D4AB54224D6EB8009BA5F3 /* LPFluffyTitle.h in Headers */,
+				B4DE3C362342759C00D7166B /* LPPushUtils.h in Headers */,
 				65D4AB68224D7275009BA5F3 /* LPPushAskToAsk.h in Headers */,
 				B4B5C70B2303E0E600C76FCF /* LPVarsApi.h in Headers */,
 				A82BD0F2229D0C6600FE1DA2 /* LPHeartbeatApi.h in Headers */,
@@ -1615,6 +1624,7 @@
 			files = (
 				B4229C5F22FB9CBC00261973 /* NSObject+Keychain.m in Sources */,
 				B43E2140232A2F9D00C6FA27 /* LPFileManager.m in Sources */,
+				B4DE3C372342759C00D7166B /* LPPushUtils.m in Sources */,
 				6515E1E12270E14900C5A2F0 /* LPAlert.m in Sources */,
 				65D4AC09224D8123009BA5F3 /* LPBraggodociousChild.m in Sources */,
 				B430A278224C235900DC8140 /* LPPurpleMessage.m in Sources */,

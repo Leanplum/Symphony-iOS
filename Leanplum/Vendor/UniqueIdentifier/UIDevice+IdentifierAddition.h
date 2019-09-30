@@ -48,4 +48,9 @@
 
 - (NSString *) leanplum_uniqueGlobalDeviceIdentifier;
 
+/*
+ * returns platform information.
+ */
+- (NSString *)platform;
+
 @end

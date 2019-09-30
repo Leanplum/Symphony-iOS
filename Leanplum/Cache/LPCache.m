@@ -41,61 +41,62 @@
     return regions;
 }
 
+//ToDo: Implement feature based
 - (NSArray<LPEventRule *> *)loadEventRules {
     return nil;
 }
 
-
+//ToDo: Implement feature based
 - (NSArray<LPMessage *> *)loadMessages {
      return nil;
 }
 
-
+//ToDo: Implement feature based
 - (NSArray<LPRegion *> *)loadRegions {
      return nil;
 }
 
-
+//ToDo: Implement feature based
 - (NSArray<LPUpdateRule *> *)loadUpdateRules {
      return nil;
 }
 
-
+//ToDo: Implement feature based
 - (NSArray<LPVariable *> *)loadVariables {
      return nil;
 }
 
-
+//ToDo: Implement feature based
 - (NSArray<LPVariantDebugInfo *> *)loadVariantDebugInfo {
      return nil;
 }
 
-
+//ToDo: Implement feature based
 - (NSArray<LPVariant *> *)loadVariants {
      return nil;
 }
 
-
+//ToDo: Implement feature based
 - (void)setEventRules:(NSArray<LPEventRule *> *)eventRules {
 }
 
-
+//ToDo: Implement feature based
 - (void)setMessages:(NSArray<LPMessage *> *)messages {
 }
 
-
+//ToDo: Implement feature based
 - (void)setUpdateRules:(NSArray<LPUpdateRule *> *)updateRules {
 }
 
-
+//ToDo: Implement feature based
 - (void)setVariables:(NSArray<LPVariable *> *)variables {
 }
 
-
+//ToDo: Implement feature based
 - (void)setVariantDebugInfo:(NSArray<LPVariantDebugInfo *> *)variantDebugInfo {
 }
 
-
+//ToDo: Implement feature based
 - (void)setVariants:(NSArray<LPVariant *> *)variants {
 }
 
