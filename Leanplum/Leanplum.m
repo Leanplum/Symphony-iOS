@@ -371,7 +371,7 @@ __weak static NSExtensionContext *_extensionContext = nil;
     }
     state.calledStart = YES;
     if (!deviceId) {
-            deviceId = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+        deviceId = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
     }
     if (!deviceId) {
         deviceId = [[UIDevice currentDevice] leanplum_uniqueGlobalDeviceIdentifier];
