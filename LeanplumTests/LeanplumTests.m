@@ -7,7 +7,6 @@
 //
 
 #import <XCTest/XCTest.h>
-#import <OCMock/OCMock.h>
 #import <OHHTTPStubs/OHHTTPStubs.h>
 #import "LPAPIConfig.h"
 #import "LPApiConstants.h"
@@ -16,6 +15,7 @@
 #import "LPRequestQueue.h"
 #import "LPInternalState.h"
 #import "LeanplumInternal.h"
+#import "LPCache.h"
 
 @interface LeanplumTests : XCTestCase
 
@@ -101,7 +101,7 @@
     [[LPRequestQueue sharedInstance] sendRequests:^{
         NSLog(@"test");
     } failure:^(NSError * _Nonnull error) {
-        NSLog(@"failrure");
+        NSLog(@"failure");
     }];
 
     [self waitForExpectationsWithTimeout:20.0 handler:^(NSError *error) {
@@ -136,7 +136,7 @@
     [[LPRequestQueue sharedInstance] sendRequests:^{
         NSLog(@"test");
     } failure:^(NSError * _Nonnull error) {
-        NSLog(@"failrure");
+        NSLog(@"failure");
     }];
     [self waitForExpectationsWithTimeout:40.0 handler:^(NSError *error) {
         if (error) {
@@ -168,7 +168,7 @@
     [[LPRequestQueue sharedInstance] sendRequests:^{
         NSLog(@"test");
     } failure:^(NSError * _Nonnull error) {
-        NSLog(@"failrure");
+        NSLog(@"failure");
     }];
     [self waitForExpectationsWithTimeout:40.0 handler:^(NSError *error) {
         if (error) {
@@ -203,7 +203,7 @@
     [[LPRequestQueue sharedInstance] sendRequests:^{
         NSLog(@"test");
     } failure:^(NSError * _Nonnull error) {
-        NSLog(@"failrure");
+        NSLog(@"failure");
     }];
     [self waitForExpectationsWithTimeout:40.0 handler:^(NSError *error) {
         if (error) {
@@ -239,7 +239,7 @@
     [[LPRequestQueue sharedInstance] sendRequests:^{
         NSLog(@"test");
     } failure:^(NSError * _Nonnull error) {
-        NSLog(@"failrure");
+        NSLog(@"failure");
     }];
     [self waitForExpectationsWithTimeout:20.0 handler:^(NSError *error) {
         if (error) {
@@ -270,7 +270,7 @@
     [[LPRequestQueue sharedInstance] sendRequests:^{
         NSLog(@"test");
     } failure:^(NSError * _Nonnull error) {
-        NSLog(@"failrure");
+        NSLog(@"failure");
     }];
     [self waitForExpectationsWithTimeout:20.0 handler:^(NSError *error) {
         if (error) {
@@ -300,7 +300,7 @@
     [[LPRequestQueue sharedInstance] sendRequests:^{
         NSLog(@"test");
     } failure:^(NSError * _Nonnull error) {
-        NSLog(@"failrure");
+        NSLog(@"failure");
     }];
     [self waitForExpectationsWithTimeout:40.0 handler:^(NSError *error) {
         if (error) {
@@ -328,7 +328,7 @@
     [[LPRequestQueue sharedInstance] sendRequests:^{
         NSLog(@"test");
     } failure:^(NSError * _Nonnull error) {
-        NSLog(@"failrure");
+        NSLog(@"failure");
     }];
     [self waitForExpectationsWithTimeout:40.0 handler:^(NSError *error) {
         if (error) {
@@ -336,5 +336,123 @@
         }
     }];
 }
+
+/**
+ * Tests start API Call
+ */
+- (void) testStartApiCall
+{
+    sleep(1);
+    [LPTestHelper setup];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    NSString *userId = @"john.smith";
+    
+    // Try to set user id and attributes.
+    [Leanplum startWithUserId:nil userAttributes:nil withSuccess:^{
+        [expectation fulfill];
+    } withFailure:^(NSError *error) {
+        NSLog(@"failure");
+    }];
+    
+    [[LPRequestQueue sharedInstance] sendRequests:^{
+        NSLog(@"test");
+    } failure:^(NSError * _Nonnull error) {
+        NSLog(@"failure");
+    }];
+    [self waitForExpectationsWithTimeout:40.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+    }];
+}
+
+/**
+ * Tests start API Call with UserId
+ */
+- (void) testStartApiCallWithUserId
+{
+    sleep(1);
+    [LPTestHelper setup];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    
+    // Try to set user id and attributes.
+    [Leanplum startWithUserId:DEVICE_ID userAttributes:nil withSuccess:^{
+        [expectation fulfill];
+    } withFailure:^(NSError *error) {
+        NSLog(@"failure");
+    }];
+    
+    [[LPRequestQueue sharedInstance] sendRequests:^{
+        NSLog(@"test");
+    } failure:^(NSError * _Nonnull error) {
+        NSLog(@"failure");
+    }];
+    [self waitForExpectationsWithTimeout:40.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+    }];
+}
+
+/**
+ * Tests start API Call with UserId
+ */
+- (void) testStartApiCallWithInvalidUserId
+{
+    sleep(1);
+    [LPTestHelper setup];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    
+    // Try to set user id and attributes.
+    [Leanplum startWithUserId:@"abc" userAttributes:nil withSuccess:^{
+        [expectation fulfill];
+    } withFailure:^(NSError *error) {
+        NSLog(@"failure");
+    }];
+    
+    [[LPRequestQueue sharedInstance] sendRequests:^{
+        NSLog(@"test");
+    } failure:^(NSError * _Nonnull error) {
+        NSLog(@"failure");
+    }];
+    [self waitForExpectationsWithTimeout:40.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+    }];
+}
+
+
+/**
+ * Tests start API Call with Caching Regisions
+ */
+- (void) testStartApiCallWithRegionsCaching
+{
+    sleep(1);
+    [LPTestHelper setup];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    
+    [[LPCache sharedCache] clearCache];
+    // Try to set user id and attributes.
+    [Leanplum startWithUserId:DEVICE_ID userAttributes:nil withSuccess:^{
+        NSArray<LPRegion *> *regions = [[LPCache sharedCache] regions];
+        XCTAssertNotNil(regions);
+        [expectation fulfill];
+    } withFailure:^(NSError *error) {
+        NSLog(@"failure");
+    }];
+    
+    [[LPRequestQueue sharedInstance] sendRequests:^{
+        NSLog(@"test");
+    } failure:^(NSError * _Nonnull error) {
+        NSLog(@"failure");
+    }];
+    [self waitForExpectationsWithTimeout:40.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+    }];
+}
+
 
 @end

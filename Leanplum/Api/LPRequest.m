@@ -38,7 +38,7 @@
     NSMutableDictionary *args = [@{
                                    LP_PARAM_ACTION: [LPApiMethods getApiMethod:self.apiMethod],
                                    LP_PARAM_DEVICE_ID: constants.deviceId ?: @"",
-                                   LP_PARAM_USER_ID: [LPAPIConfig sharedConfig].deviceId,
+                                   LP_PARAM_USER_ID: [LPAPIConfig sharedConfig].userId ?: @"",
                                    LP_PARAM_SDK_VERSION: [LPApiConstants sharedState].sdkVersion,
                                    LP_PARAM_CLIENT: [LPApiConstants sharedState].client,
                                    LP_PARAM_DEV_MODE: @(YES),

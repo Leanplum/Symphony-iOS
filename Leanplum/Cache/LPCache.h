@@ -19,6 +19,7 @@
 - (NSArray<LPRegion *> *)regions;
 - (void)setFileAttributes:(NSArray<LPFileAttribute *> *)regions;
 - (NSArray<LPFileAttribute *> *)fileAttributes;
+- (void)clearCache;
 
 @end
 

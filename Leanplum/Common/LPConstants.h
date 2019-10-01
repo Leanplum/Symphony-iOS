@@ -7,16 +7,35 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LPApiConstants.h"
 
 
 #define LEANPLUM_SDK_VERSION @"2.4.1"
 #define LEANPLUM_API_VERSION @"1.0.6"
 #define LEANPLUM_CLIENT @"ios"
 #define LEANPLUM_SUPPORTED_ENCODING @"gzip"
+
+// Can upload up to 100 files or 50 MB per request.
+#define MAX_UPLOAD_BATCH_SIZES (50 * (1 << 20))
+#define MAX_UPLOAD_BATCH_FILES 100
+#define MAX_FILES_SUPPORTED 1000
+
+#define HEARTBEAT_INTERVAL 15 * 60 // 15 minutes
+
+#define MAX_STORED_OCCURRENCES_PER_MESSAGE 100
+#define MAX_EVENTS_PER_API_CALL 10000
+
+#define DEFAULT_PRIORITY 1000
+
+#define IOS_GEOFENCE_LIMIT 20 // As of 07/07/2016.
+
 #define LP_IV @"__l3anplum_iv__"
 #pragma mark - The rest of the Leanplum constants
 
 OBJC_EXPORT NSString *LEANPLUM_PACKAGE_IDENTIFIER;
+
+#define MACRO_NAME(x) #x
+#define MACRO_VALUE(x) MACRO_NAME(x)
 
 @interface LPConstants : NSObject
 
@@ -208,6 +227,12 @@ leanplumInternalError(e); }
 
 #define LP_BEGIN_USER_CODE leanplumIncrementUserCodeBlock(1);
 #define LP_END_USER_CODE leanplumIncrementUserCodeBlock(-1);
+
+#define RETURN_IF_TEST_MODE if ([LPApiConstants sharedState].isTestMode) return
+
+#define IS_JAILBROKEN ([[[NSBundle mainBundle] infoDictionary] objectForKey: @"SignerIdentity"] != nil)
+
+#define IS_NOOP ((!IS_SUPPORTED_IOS_VERSION) || IS_JAILBROKEN || [LPApiConstants sharedState].isTestMode || [LPApiConstants sharedState].isInPermanentFailureState)
 
 void leanplumIncrementUserCodeBlock(int delta);
 void leanplumInternalError(NSException *e);

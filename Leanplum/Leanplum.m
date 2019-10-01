@@ -10,11 +10,17 @@
 #import <Foundation/Foundation.h>
 #import "Leanplum.h"
 #import "LPUserApi.h"
+#import "LPStartApi.h"
 #import "LPApiConstants.h"
 #import "LPUtils.h"
 #import "LPInternalState.h"
 #import "LPConstants.h"
 #import "LPAPIConfig.h"
+#import "UIDevice+IdentifierAddition.h"
+#import "LPCache.h"
+#import "LPPushUtils.h"
+
+__weak static NSExtensionContext *_extensionContext = nil;
 
 @implementation Leanplum
 
@@ -289,6 +295,171 @@
     return [LPInternalState sharedState].hasStarted;
 }
 
++ (NSString *)pushTokenKey
+{
+    return [NSString stringWithFormat: LEANPLUM_DEFAULTS_PUSH_TOKEN_KEY,
+            [LPAPIConfig sharedConfig].appId, [LPAPIConfig sharedConfig].userId, [LPAPIConfig sharedConfig].deviceId];
+}
+
++ (void)start
+{
+    [self startWithUserId:nil userAttributes:nil withSuccess:nil withFailure:nil];
+}
+
++ (void)startWithResponseHandler:(LeanplumStartBlock)response
+{
+    [self startWithUserId:nil userAttributes:nil withSuccess:^{
+        response(true);
+    } withFailure:^(NSError *error){
+        response(false);
+    }];
+}
+
++ (void)startWithUserAttributes:(NSDictionary *)attributes
+{
+    [self startWithUserId:nil userAttributes:attributes withSuccess:nil withFailure:nil];
+}
+
++ (void)startWithUserId:(NSString *)userId
+{
+    [self startWithUserId:userId userAttributes:nil withSuccess:nil withFailure:nil];
+}
+
++ (void)startWithUserId:(NSString *)userId responseHandler:(LeanplumStartBlock)response
+{
+    [self startWithUserId:userId userAttributes:nil withSuccess:^{
+        response(true);
+    } withFailure:^(NSError *error){
+        response(false);
+    }];
+}
+
++ (void)startWithUserId:(NSString *)userId userAttributes:(NSDictionary *)attributes
+{
+    [self startWithUserId:userId userAttributes:attributes withSuccess:nil withFailure:nil];
+}
+
++ (void)startWithUserId:(NSString *)userId
+            userAttributes:(NSDictionary *)attributes
+            withSuccess:(void (^)(void))success
+            withFailure:(void (^)(NSError *error))failure {
+   
+    if ([LPAPIConfig sharedConfig].appId == nil) {
+        [self throwError:@"Please provide your app ID using one of the [Leanplum setAppId:] "
+         @"methods."];
+        return;
+    }
+    
+    // Leanplum should not be started in background.
+    if (![NSThread isMainThread]) {
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [self startWithUserId:userId userAttributes:attributes withSuccess:success withFailure:failure];
+        });
+        return;
+    }
+    
+    attributes = [self validateAttributes:attributes named:@"userAttributes" allowLists:YES];
+    
+    // Set device ID.
+    NSString *deviceId = [LPAPIConfig sharedConfig].deviceId;
+    
+    LPInternalState *state = [LPInternalState sharedState];
+    //ToDo: IS_NOOP logic, need to decide the reason for this logic and if needed
+    
+    if (state.calledStart) {
+        [self throwError:@"Already called start."];
+    }
+    state.calledStart = YES;
+    if (!deviceId) {
+        deviceId = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+    }
+    if (!deviceId) {
+        deviceId = [[UIDevice currentDevice] leanplum_uniqueGlobalDeviceIdentifier];
+    }
+    
+    [[LPAPIConfig sharedConfig] setDeviceId:deviceId];
+    
+    // Set user ID.
+    if (!userId) {
+        userId = [LPAPIConfig sharedConfig].userId;
+        if (!userId) {
+            userId = [LPAPIConfig sharedConfig].deviceId;
+        }
+    }
+    [[LPAPIConfig sharedConfig] setUserId:userId];
+    
+    // Setup parameters.
+    NSString *versionName = [LPApiConstants sharedState].sdkVersion;
+    if (!versionName) {
+        versionName = [[[NSBundle mainBundle] infoDictionary]
+                       objectForKey:@"CFBundleVersion"];
+    }
+    UIDevice *device = [UIDevice currentDevice];
+    NSLocale *currentLocale = [NSLocale currentLocale];
+    NSString *currentLocaleString = [NSString stringWithFormat:@"%@_%@",
+                                     [[NSLocale preferredLanguages] objectAtIndex:0],
+                                     [currentLocale objectForKey:NSLocaleCountryCode]];
+    // Set the device name. But only if running in development mode.
+    NSString *deviceName = @"";
+    if ([LPApiConstants sharedState].isDevelopmentModeEnabled) {
+        deviceName = device.name ?: @"";
+    }
+    NSTimeZone *localTimeZone = [NSTimeZone localTimeZone];
+    NSNumber *timezoneOffsetSeconds =
+    [NSNumber numberWithInteger:[localTimeZone secondsFromGMTForDate:[NSDate date]]];
+    NSMutableDictionary *params = [@{
+                                     LP_PARAM_INCLUDE_DEFAULTS: @(NO),
+                                     LP_PARAM_VERSION_NAME: versionName,
+                                     LP_PARAM_DEVICE_NAME: deviceName,
+                                     LP_PARAM_DEVICE_MODEL: device.platform,
+                                     LP_PARAM_DEVICE_SYSTEM_NAME: device.systemName,
+                                     LP_PARAM_DEVICE_SYSTEM_VERSION: device.systemVersion,
+                                     LP_KEY_LOCALE: currentLocaleString,
+                                     LP_KEY_TIMEZONE: [localTimeZone name],
+                                     LP_KEY_TIMEZONE_OFFSET_SECONDS: timezoneOffsetSeconds,
+                                     LP_KEY_COUNTRY: LP_VALUE_DETECT,
+                                     LP_KEY_REGION: LP_VALUE_DETECT,
+                                     LP_KEY_CITY: LP_VALUE_DETECT,
+                                     LP_KEY_LOCATION: LP_VALUE_DETECT,
+                                     LP_PARAM_RICH_PUSH_ENABLED: @([LPPushUtils isRichPushEnabled])
+                                     } mutableCopy];
+    //Todo: Variant debug. Please check old sdk.
+    BOOL startedInBackground = NO;
+    if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateBackground &&
+        !_extensionContext) {
+        params[LP_PARAM_BACKGROUND] = @(YES);
+        startedInBackground = YES;
+    }
+    
+    if (attributes != nil) {
+        params[LP_PARAM_USER_ATTRIBUTES] = attributes ?
+        [LPJSON stringFromJSON:attributes] : @"";
+    }
+    if ([LPApiConstants sharedState].isDevelopmentModeEnabled) {
+        params[LP_PARAM_DEV_MODE] = @(YES);
+    }
+    
+    NSDictionary *timeParams = [self initializePreLeanplumInstall];
+    if (timeParams) {
+        [params addEntriesFromDictionary:timeParams];
+    }
+    //ToDo, Inbox messageIds
+    
+    // Push token.
+    NSString *pushTokenKey = [Leanplum pushTokenKey];
+    NSString *pushToken = [[NSUserDefaults standardUserDefaults] stringForKey:pushTokenKey];
+    if (pushToken) {
+        params[LP_PARAM_DEVICE_PUSH_TOKEN] = pushToken;
+    }
+    
+    [LPStartApi startWithParameters:params success:^(LPStartResponse *response) {
+        [[LPCache sharedCache] setRegions:response.regions];
+        success();
+    } failure:^(NSError *error) {
+        failure(error);
+    }];
+}
+
 + (BOOL)hasStartedAndRegisteredAsDeveloper
 {
     return [LPInternalState sharedState].hasStartedAndRegisteredAsDeveloper;
@@ -312,5 +483,41 @@
 {
     //ToDo: Implement the resume state management
 }
+
+// On first run with Leanplum, determine if this app was previously installed without Leanplum.
+// This is useful for detecting if the user may have already rejected notifications.
++ (NSDictionary *)initializePreLeanplumInstall
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([[[defaults dictionaryRepresentation] allKeys]
+         containsObject:LEANPLUM_DEFAULTS_PRE_LEANPLUM_INSTALL_KEY]) {
+        return nil;
+    } else {
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSURL *urlToDocumentsFolder = [[fileManager URLsForDirectory:NSDocumentDirectory
+                                                           inDomains:NSUserDomainMask] lastObject];
+        __autoreleasing NSError *error;
+        NSDate *installDate =
+        [[fileManager attributesOfItemAtPath:urlToDocumentsFolder.path error:&error]
+         objectForKey:NSFileCreationDate];
+        NSString *pathToInfoPlist = [[NSBundle mainBundle] pathForResource:@"Info" ofType:@"plist"];
+        NSString *pathToAppBundle = [pathToInfoPlist stringByDeletingLastPathComponent];
+        NSDate *updateDate = [[fileManager attributesOfItemAtPath:pathToAppBundle error:&error]
+                              objectForKey:NSFileModificationDate];
+        
+        // Considered pre-Leanplum install if its been more than a day (86400 seconds) since
+        // install.
+        NSTimeInterval secondsBetween = [updateDate timeIntervalSinceDate:installDate];
+        [[NSUserDefaults standardUserDefaults] setBool:(secondsBetween > 86400)
+                                                forKey:LEANPLUM_DEFAULTS_PRE_LEANPLUM_INSTALL_KEY];
+        return @{
+                 LP_PARAM_INSTALL_DATE:
+                     [NSString stringWithFormat:@"%f", [installDate timeIntervalSince1970]],
+                 LP_PARAM_UPDATE_DATE:
+                     [NSString stringWithFormat:@"%f", [updateDate timeIntervalSince1970]]
+                 };
+    }
+}
+
 
 @end

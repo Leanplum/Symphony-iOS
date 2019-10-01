@@ -18,7 +18,13 @@ FOUNDATION_EXPORT const unsigned char LeanplumVersionString[];
 @interface Leanplum : NSObject
 
 /**
+ * @defgroup _ Callback Blocks
+ * Those blocks are used when you define callbacks.
  * @{
+ */
+typedef void (^LeanplumStartBlock)(BOOL success);
+
+ /*
  * Must call either this or {@link setAppId:withProductionKey:}
  * before issuing any calls to the API, including start.
  * @param appId Your app ID.
@@ -33,6 +39,7 @@ FOUNDATION_EXPORT const unsigned char LeanplumVersionString[];
  * @param accessKey Your production key.
  */
 + (void)setAppId:(NSString *)appId withProductionKey:(NSString *)accessKey;
+
 /**@}*/
 
 
@@ -64,6 +71,24 @@ FOUNDATION_EXPORT const unsigned char LeanplumVersionString[];
  * [Leanplum start].
  */
 + (NSString *)deviceId;
+
+/**
+ * @{
+ * Call this when your application starts.
+ * This will initiate a call to Leanplum's servers to get the values
+ * of the variables used in your app.
+ */
+
++ (void)start;
++ (void)startWithResponseHandler:(LeanplumStartBlock)response;
++ (void)startWithUserAttributes:(NSDictionary *)attributes;
++ (void)startWithUserId:(NSString *)userId;
++ (void)startWithUserId:(NSString *)userId responseHandler:(LeanplumStartBlock)response;
++ (void)startWithUserId:(NSString *)userId userAttributes:(NSDictionary *)attributes;
++ (void)startWithUserId:(NSString *)userId
+         userAttributes:(NSDictionary *)attributes
+            withSuccess:(void (^)(void))success
+            withFailure:(void (^)(NSError *error))failure;
 
 /**
  * Returns whether or not Leanplum has finished starting and the device is registered
