@@ -30,6 +30,7 @@
 #define IOS_GEOFENCE_LIMIT 20 // As of 07/07/2016.
 
 #define LP_IV @"__l3anplum_iv__"
+#define LP_IS_LOGGING @"leanplum_isLogging"
 #pragma mark - The rest of the Leanplum constants
 
 OBJC_EXPORT NSString *LEANPLUM_PACKAGE_IDENTIFIER;

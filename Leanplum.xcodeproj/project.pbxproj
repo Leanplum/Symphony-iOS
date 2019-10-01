@@ -284,6 +284,8 @@
 		B4B5C70B2303E0E600C76FCF /* LPVarsApi.h in Headers */ = {isa = PBXBuildFile; fileRef = B4B5C7092303E0E600C76FCF /* LPVarsApi.h */; };
 		B4B5C70C2303E0E600C76FCF /* LPVarsApi.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C70A2303E0E600C76FCF /* LPVarsApi.m */; };
 		B4B5C70F2303E2B800C76FCF /* LPCacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C70E2303E2B800C76FCF /* LPCacheTests.m */; };
+		B4C4FFE82343CADC00F00DBF /* LPLogging.h in Headers */ = {isa = PBXBuildFile; fileRef = B4C4FFE62343CADC00F00DBF /* LPLogging.h */; };
+		B4C4FFE92343CADC00F00DBF /* LPLogging.m in Sources */ = {isa = PBXBuildFile; fileRef = B4C4FFE72343CADC00F00DBF /* LPLogging.m */; };
 		B4DE3C362342759C00D7166B /* LPPushUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = B4DE3C342342759C00D7166B /* LPPushUtils.h */; };
 		B4DE3C372342759C00D7166B /* LPPushUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DE3C352342759C00D7166B /* LPPushUtils.m */; };
 		B4E251B422D54E8D00CEECAF /* LPFileManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E251B322D54E8D00CEECAF /* LPFileManagerTest.m */; };
@@ -627,6 +629,8 @@
 		B4B5C7092303E0E600C76FCF /* LPVarsApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPVarsApi.h; sourceTree = "<group>"; };
 		B4B5C70A2303E0E600C76FCF /* LPVarsApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPVarsApi.m; sourceTree = "<group>"; };
 		B4B5C70E2303E2B800C76FCF /* LPCacheTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPCacheTests.m; sourceTree = "<group>"; };
+		B4C4FFE62343CADC00F00DBF /* LPLogging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPLogging.h; sourceTree = "<group>"; };
+		B4C4FFE72343CADC00F00DBF /* LPLogging.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPLogging.m; sourceTree = "<group>"; };
 		B4DE3C342342759C00D7166B /* LPPushUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPPushUtils.h; sourceTree = "<group>"; };
 		B4DE3C352342759C00D7166B /* LPPushUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPPushUtils.m; sourceTree = "<group>"; };
 		B4E251B322D54E8D00CEECAF /* LPFileManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPFileManagerTest.m; sourceTree = "<group>"; };
@@ -1224,6 +1228,8 @@
 				B486913C23147A6200B6BC98 /* LPInternalState.h */,
 				B486913D23147A6200B6BC98 /* LPInternalState.m */,
 				B48692002315D60000B6BC98 /* LeanplumInternal.h */,
+				B4C4FFE62343CADC00F00DBF /* LPLogging.h */,
+				B4C4FFE72343CADC00F00DBF /* LPLogging.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1238,6 +1244,7 @@
 				B430A277224C235900DC8140 /* LPPurpleMessage.h in Headers */,
 				B40775E12333E19200B1F64D /* LPRestartApi.h in Headers */,
 				B46B51FF2284DDE000B29663 /* Leanplum.m in Headers */,
+				B4C4FFE82343CADC00F00DBF /* LPLogging.h in Headers */,
 				65D4AB6C224D72B2009BA5F3 /* LPPushAskToAskKinds.h in Headers */,
 				65D4ABE0224D7FF5009BA5F3 /* LPIndigoMessage.h in Headers */,
 				B4229C5E22FB9CBC00261973 /* NSObject+Keychain.h in Headers */,
@@ -1690,6 +1697,7 @@
 				65D4ABA1224D76EE009BA5F3 /* LPDownloadJPEG.m in Sources */,
 				65D4AB8D224D744F009BA5F3 /* LPWebInterstitial.m in Sources */,
 				A82BD0FB229D0DA000FE1DA2 /* LPMultiApi.m in Sources */,
+				B4C4FFE92343CADC00F00DBF /* LPLogging.m in Sources */,
 				A801AFFB22DE8ADB007019F3 /* LPApiUtils.m in Sources */,
 				65D4ABE9224D8028009BA5F3 /* LPIndecentChild.m in Sources */,
 				65C5BDF3228F681B003EE334 /* LPPauseSessionApi.m in Sources */,
