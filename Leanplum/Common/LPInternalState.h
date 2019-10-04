@@ -14,6 +14,8 @@
 @property(assign, nonatomic) BOOL calledStart, hasStarted, hasStartedAndRegisteredAsDeveloper,
 startSuccessful, issuedStart;
 @property(strong, nonatomic) NSString *appVersion;
+@property(assign, nonatomic) BOOL calledHandleNotification;
+
 + (LPInternalState *)sharedState;
 
 @end

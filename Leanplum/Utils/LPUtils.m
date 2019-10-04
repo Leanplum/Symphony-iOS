@@ -23,6 +23,7 @@
 //  under the License.
 
 #import "LPUtils.h"
+#import "LPConstants.h"
 #import <CommonCrypto/CommonDigest.h>
 
 @implementation LPUtils
@@ -69,6 +70,18 @@
     return [data base64Encoding];
 #pragma clang diagnostic pop
 
+}
+
++(BOOL)isSwizzlingEnabled
+{
+    BOOL swizzlingEnabled = YES;
+    
+    id plistValue = [[[NSBundle mainBundle] infoDictionary] valueForKey:LP_SWIZZLING_ENABLED];
+    if (plistValue && ![plistValue boolValue]) {
+        swizzlingEnabled = NO;
+    }
+
+    return swizzlingEnabled;
 }
 
 @end

@@ -47,4 +47,8 @@
  */
 + (NSString *)base64EncodedStringFromData:(NSData *)data;
 
+/**
+ * Whether swizzling flag is setup in plist file
+ */
++ (BOOL)isSwizzlingEnabled;
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "LPPlatform.h"
+#import <UIKit/UIKit.h>
 #include <sys/sysctl.h>
 
 @implementation LPPlatform

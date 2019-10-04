@@ -201,6 +201,14 @@
 		B40775E12333E19200B1F64D /* LPRestartApi.h in Headers */ = {isa = PBXBuildFile; fileRef = B40775DD2333E19100B1F64D /* LPRestartApi.h */; };
 		B40775E42333E19200B1F64D /* LPRestartApi.m in Sources */ = {isa = PBXBuildFile; fileRef = B40775E02333E19200B1F64D /* LPRestartApi.m */; };
 		B41703BC22CBFF2D0032492D /* malformed_multi_success_response.json in Resources */ = {isa = PBXBuildFile; fileRef = B41703BB22CBFF2D0032492D /* malformed_multi_success_response.json */; };
+		B417860823465B2F0065CF9F /* LPPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = B417860623465B2F0065CF9F /* LPPlatform.m */; };
+		B417860923465B2F0065CF9F /* LPPlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = B417860723465B2F0065CF9F /* LPPlatform.h */; };
+		B417860C23465B450065CF9F /* LPSwizzle.h in Headers */ = {isa = PBXBuildFile; fileRef = B417860A23465B450065CF9F /* LPSwizzle.h */; };
+		B417860D23465B450065CF9F /* LPSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = B417860B23465B450065CF9F /* LPSwizzle.m */; };
+		B4178610234662630065CF9F /* LPActionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = B417860E234662630065CF9F /* LPActionManager.h */; };
+		B4178611234662630065CF9F /* LPActionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B417860F234662630065CF9F /* LPActionManager.m */; };
+		B417861C234664760065CF9F /* NSObject+LeanplumExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = B417861A234664760065CF9F /* NSObject+LeanplumExtension.h */; };
+		B417861D234664760065CF9F /* NSObject+LeanplumExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = B417861B234664760065CF9F /* NSObject+LeanplumExtension.m */; };
 		B41E7896227FB08500D2AE63 /* LPJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = B41E7894227FB08500D2AE63 /* LPJSON.h */; };
 		B41E7897227FB08500D2AE63 /* LPJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = B41E7895227FB08500D2AE63 /* LPJSON.m */; };
 		B4229C5E22FB9CBC00261973 /* NSObject+Keychain.h in Headers */ = {isa = PBXBuildFile; fileRef = B4229C5C22FB9CBC00261973 /* NSObject+Keychain.h */; };
@@ -562,6 +570,14 @@
 		B40775DD2333E19100B1F64D /* LPRestartApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPRestartApi.h; sourceTree = "<group>"; };
 		B40775E02333E19200B1F64D /* LPRestartApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPRestartApi.m; sourceTree = "<group>"; };
 		B41703BB22CBFF2D0032492D /* malformed_multi_success_response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = malformed_multi_success_response.json; sourceTree = "<group>"; };
+		B417860623465B2F0065CF9F /* LPPlatform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPPlatform.m; sourceTree = "<group>"; };
+		B417860723465B2F0065CF9F /* LPPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPPlatform.h; sourceTree = "<group>"; };
+		B417860A23465B450065CF9F /* LPSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPSwizzle.h; sourceTree = "<group>"; };
+		B417860B23465B450065CF9F /* LPSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPSwizzle.m; sourceTree = "<group>"; };
+		B417860E234662630065CF9F /* LPActionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPActionManager.h; sourceTree = "<group>"; };
+		B417860F234662630065CF9F /* LPActionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPActionManager.m; sourceTree = "<group>"; };
+		B417861A234664760065CF9F /* NSObject+LeanplumExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+LeanplumExtension.h"; sourceTree = "<group>"; };
+		B417861B234664760065CF9F /* NSObject+LeanplumExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LeanplumExtension.m"; sourceTree = "<group>"; };
 		B41E7894227FB08500D2AE63 /* LPJSON.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPJSON.h; sourceTree = "<group>"; };
 		B41E7895227FB08500D2AE63 /* LPJSON.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPJSON.m; sourceTree = "<group>"; };
 		B4229C5C22FB9CBC00261973 /* NSObject+Keychain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Keychain.h"; sourceTree = "<group>"; };
@@ -1077,6 +1093,10 @@
 		B430A22A224C1CA600DC8140 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				B417860A23465B450065CF9F /* LPSwizzle.h */,
+				B417860B23465B450065CF9F /* LPSwizzle.m */,
+				B417860723465B2F0065CF9F /* LPPlatform.h */,
+				B417860623465B2F0065CF9F /* LPPlatform.m */,
 				B46B52002284E2FE00B29663 /* LPUtils.h */,
 				B46B52012284E2FF00B29663 /* LPUtils.m */,
 				B41E7894227FB08500D2AE63 /* LPJSON.h */,
@@ -1165,6 +1185,8 @@
 				B4F077EE22B9864000F2743F /* LPRequestQueue.m */,
 				65298EF322BAE8C800B8CEE9 /* LPRequestCallbackManager.h */,
 				65298EF422BAE8C800B8CEE9 /* LPRequestCallbackManager.m */,
+				B417860E234662630065CF9F /* LPActionManager.h */,
+				B417860F234662630065CF9F /* LPActionManager.m */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -1208,6 +1230,8 @@
 			children = (
 				B4FCB10822722B5E004F5D63 /* NSString+NSString_Extended.h */,
 				B4FCB10722722B5E004F5D63 /* NSString+NSString_Extended.m */,
+				B417861A234664760065CF9F /* NSObject+LeanplumExtension.h */,
+				B417861B234664760065CF9F /* NSObject+LeanplumExtension.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1244,6 +1268,7 @@
 				A82BD0FC229D0DA000FE1DA2 /* LPMultiApi.h in Headers */,
 				B430A28B224C23CE00DC8140 /* LPConfirmValues.h in Headers */,
 				6515E1EC2270E1C500C5A2F0 /* LPValuesDismissAction.h in Headers */,
+				B417860C23465B450065CF9F /* LPSwizzle.h in Headers */,
 				65D4AB64224D7250009BA5F3 /* LPOpenURLValues.h in Headers */,
 				B4F077EF22B9864000F2743F /* LPRequestQueue.h in Headers */,
 				B430A29F224C244400DC8140 /* LPInterstitialKinds.h in Headers */,
@@ -1262,6 +1287,7 @@
 				6515E1CE2270DE0300C5A2F0 /* LPActionDefinition.h in Headers */,
 				65D4ABE8224D8028009BA5F3 /* LPIndecentChild.h in Headers */,
 				A801AFFA22DE8ADB007019F3 /* LPApiUtils.h in Headers */,
+				B417861C234664760065CF9F /* NSObject+LeanplumExtension.h in Headers */,
 				B4E251BD22D65AE900CEECAF /* NSString+MD5Addition.h in Headers */,
 				B41E7896227FB08500D2AE63 /* LPJSON.h in Headers */,
 				65D4ABD0224D7F7B009BA5F3 /* LPTentacledChild.h in Headers */,
@@ -1346,6 +1372,7 @@
 				65D4AB50224D6E73009BA5F3 /* LPFluffyMessage.h in Headers */,
 				A8EF57F322952B960046473C /* LPAdvanceApi.h in Headers */,
 				65D4AB70224D72D7009BA5F3 /* LPPushAskToAskValues.h in Headers */,
+				B4178610234662630065CF9F /* LPActionManager.h in Headers */,
 				B4A32C9222D70FCB0088CCDF /* LPStartApi.h in Headers */,
 				65D4ABEC224D8043009BA5F3 /* LPHilariousChild.h in Headers */,
 				6597698322B2FF23003B50D4 /* LPApiMethods.h in Headers */,
@@ -1354,6 +1381,7 @@
 				65D4AB9C224D76CB009BA5F3 /* LPDownloadJPEGClass.h in Headers */,
 				B430A286224C23B200DC8140 /* LPConfirmKinds.h in Headers */,
 				65D4AB98224D752B009BA5F3 /* LPFileAttribute.h in Headers */,
+				B417860923465B2F0065CF9F /* LPPlatform.h in Headers */,
 				65D4AB78224D7379009BA5F3 /* LPCencelButton.h in Headers */,
 				65D4AB8C224D744F009BA5F3 /* LPWebInterstitial.h in Headers */,
 			);
@@ -1637,11 +1665,13 @@
 				B430A26E224C232300DC8140 /* LPPurpleAcceptButton.m in Sources */,
 				65D4AB81224D73CD009BA5F3 /* LPTentacledMessage.m in Sources */,
 				B4FCB10922722B5E004F5D63 /* NSString+NSString_Extended.m in Sources */,
+				B4178611234662630065CF9F /* LPActionManager.m in Sources */,
 				B430A2A0224C244400DC8140 /* LPInterstitialKinds.m in Sources */,
 				B430A2A5224C246100DC8140 /* LPInterstitialValues.m in Sources */,
 				B46B51FE2284D5CA00B29663 /* Leanplum.m in Sources */,
 				65D4ABAD224D77A5009BA5F3 /* LPNoneClass.m in Sources */,
 				65D4AB5D224D71C3009BA5F3 /* LPOpenURL.m in Sources */,
+				B417860823465B2F0065CF9F /* LPPlatform.m in Sources */,
 				65D4AB45224C2EA1009BA5F3 /* LPTentacledAcceptButton.m in Sources */,
 				B430A25F224C22CA00DC8140 /* LPCenterPopupKinds.m in Sources */,
 				B4FCB10322722AE1004F5D63 /* LPUserApi.m in Sources */,
@@ -1672,6 +1702,7 @@
 				65D4ABF1224D805D009BA5F3 /* LPAmbitiousChild.m in Sources */,
 				65D4ABED224D8043009BA5F3 /* LPHilariousChild.m in Sources */,
 				65D4AB65224D7250009BA5F3 /* LPOpenURLValues.m in Sources */,
+				B417861D234664760065CF9F /* NSObject+LeanplumExtension.m in Sources */,
 				B40775E42333E19200B1F64D /* LPRestartApi.m in Sources */,
 				65D4AB61224D71E4009BA5F3 /* LPOpenURLKinds.m in Sources */,
 				65D4AC01224D80CC009BA5F3 /* LPFriskyChild.m in Sources */,
@@ -1735,6 +1766,7 @@
 				B4FCB11322722F48004F5D63 /* LPDeviceApi.m in Sources */,
 				A8EF57F422952B960046473C /* LPAdvanceApi.m in Sources */,
 				65C5BDF9228F6978003EE334 /* LPResumeSessionApi.m in Sources */,
+				B417860D23465B450065CF9F /* LPSwizzle.m in Sources */,
 				6597698422B2FF23003B50D4 /* LPApiMethods.m in Sources */,
 				65D4ABB1224D77BF009BA5F3 /* LPNone.m in Sources */,
 			);
