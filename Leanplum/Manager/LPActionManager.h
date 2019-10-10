@@ -6,6 +6,8 @@
 //  Copyright © 2019 Leanplum. All rights reserved.
 //
 
+#import "Leanplum.h"
+
 #import <Foundation/Foundation.h>
 #import <UserNotifications/UserNotifications.h>
 
@@ -37,12 +39,8 @@ static BOOL swizzledUserNotificationCenterDidReceiveNotificationResponseWithComp
 - (void)didReceiveLocalNotification:(UILocalNotification *)localNotification;
 
 - (void)didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings;
-- (void)sendUserNotificationSettingsIfChanged:(UIUserNotificationSettings *)notificationSettings;
 
 #pragma clang diagnostic pop
-
-+ (void)getForegroundRegionNames:(NSMutableSet **)foregroundRegionNames
-        andBackgroundRegionNames:(NSMutableSet **)backgroundRegionNames;
 
 - (void)setShouldHandleNotification:(LeanplumShouldHandleNotificationBlock)block;
 

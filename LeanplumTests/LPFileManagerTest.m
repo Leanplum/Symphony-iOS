@@ -1,6 +1,4 @@
 #import <XCTest/XCTest.h>
-#import <OHHTTPStubs/OHHTTPStubs.h>
-#import <OHHTTPStubs/OHPathHelpers.h>
 #import "LPFileManager.h"
 #import "LPConstants.h"
 
@@ -20,7 +18,6 @@
 
 - (void)tearDown {
     [super tearDown];
-    [OHHTTPStubs removeAllStubs];
 }
 
 - (void)test_documentsDirectory

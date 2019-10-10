@@ -24,6 +24,11 @@ typedef void (^LeanplumHandledBlock)(BOOL success);
 + (void)pause;
 + (void)resume;
 
+/**
+ * Returns a push token using app ID, device ID, and user ID.
+ */
++ (NSString *)pushTokenKey;
+
 @end
 
 
