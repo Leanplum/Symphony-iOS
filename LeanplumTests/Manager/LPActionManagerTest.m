@@ -25,6 +25,7 @@
 {
     [super setUp];
     // Called only once to setup method swizzling.
+    isSwizzlingEnabled = true;
     [LPDeviceApi swizzle_methods];
 }
 

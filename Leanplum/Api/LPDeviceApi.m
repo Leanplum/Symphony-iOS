@@ -53,6 +53,7 @@ withDeviceAttributes:(NSDictionary *)attributes
                                                            params:params
                                                           success:successResponse
                                                           failure:failureResponse];
+    
         [[LPRequestQueue sharedInstance] enqueue:request];
     } else {
         LPWSManager *wsManager = [[LPWSManager alloc] init];

@@ -10,10 +10,12 @@
 #import <OHHTTPStubs/OHHTTPStubs.h>
 #import <OHHTTPStubs/OHPathHelpers.h>
 #import "LPDeviceApi.h"
+#import "LPDeviceApi+Categories.h"
 #import "LPAPIConfig.h"
 #import "LPTestHelper.h"
 #import "LPApiConstants.h"
 #import "LPRequestQueue.h"
+#import "LPRequestManager.h"
 
 @interface LPDeviceApiTests : XCTestCase
 
@@ -34,6 +36,9 @@
 }
 
 - (void)testDeviceApi {
+    if(isSwizzlingEnabled) {
+        [LPDeviceApi swizzle_methods];
+    }
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     [LPDeviceApi setDeviceId:DEVICE_ID withDeviceAttributes:nil success:^ {
         [expectation fulfill];
@@ -49,8 +54,12 @@
 
 - (void)testDeviceApiWithMulti {
     sleep(1);
+    if(isSwizzlingEnabled) {
+        [LPDeviceApi swizzle_methods];
+    }
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     [LPApiConstants sharedState].isMulti = YES;
+    [LPRequestManager deleteRequestsWithLimit:100];
     [LPDeviceApi setDeviceId:DEVICE_ID withDeviceAttributes:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
@@ -60,8 +69,8 @@
     } failure:^(NSError * _Nonnull error) {
         NSLog(@"failure");
     }];
-
-    [self waitForExpectationsWithTimeout:30.0 handler:^(NSError *error) {
+   [LPApiConstants sharedState].isMulti = NO;
+    [self waitForExpectationsWithTimeout:20.0 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);
         }
@@ -69,6 +78,9 @@
 }
 
 - (void)testDeviceApiWithDeviceAttributes {
+    if(isSwizzlingEnabled) {
+        [LPDeviceApi swizzle_methods];
+    }
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     NSDictionary *deviceAttributes = @{@"OS" : @"iOS"};
     [LPDeviceApi setDeviceId:DEVICE_ID withDeviceAttributes:deviceAttributes success:^ {
@@ -84,6 +96,9 @@
 }
 
 - (void)testDeviceApiWithHttpError {
+    if(isSwizzlingEnabled) {
+        [LPDeviceApi swizzle_methods];
+    }
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     // change device id to empty string
     [LPTestHelper setup:APPLICATION_ID withAccessKey:DEVELOPMENT_KEY withDeviceId:@""];
@@ -102,6 +117,9 @@
 }
 
 - (void)testDeviceApiWithIosError {
+    if(isSwizzlingEnabled) {
+        [LPDeviceApi swizzle_methods];
+    }
     [LPTestHelper runWithApiHost:@"blah.leanplum.com" withBlock:^(void) {
         XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
         [LPDeviceApi setDeviceId:@"1" withDeviceAttributes:nil success:^ {
@@ -120,6 +138,9 @@
 }
 
 - (void)testDeviceApiStub {
+    if(isSwizzlingEnabled) {
+        [LPDeviceApi swizzle_methods];
+    }
     [LPTestHelper setupStub:200 withFileName:@"simple_post_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     [LPDeviceApi setDeviceId:@"1" withDeviceAttributes:nil success:^ {
@@ -135,6 +156,9 @@
 }
 
 - (void)testDeviceApiWithDeviceAttributesStub {
+    if(isSwizzlingEnabled) {
+        [LPDeviceApi swizzle_methods];
+    }
     [LPTestHelper setupStub:200 withFileName:@"simple_post_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     NSDictionary *deviceAttributes = @{@"OS" : @"iOS"};
@@ -151,6 +175,9 @@
 }
 
 - (void)testDeviceApiHttpErrorStub {
+    if(isSwizzlingEnabled) {
+        [LPDeviceApi swizzle_methods];
+    }
     [LPTestHelper setupStub:400 withFileName:@"simple_post_error_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     [LPDeviceApi setDeviceId:@"1" withDeviceAttributes:nil success:^ {
@@ -168,6 +195,9 @@
 }
 
 - (void)testDeviceApiMalformedResponseStub {
+    if(isSwizzlingEnabled) {
+        [LPDeviceApi swizzle_methods];
+    }
     [LPTestHelper setupStub:200 withFileName:@"malformed_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     [LPDeviceApi setDeviceId:@"1" withDeviceAttributes:nil success:^ {
