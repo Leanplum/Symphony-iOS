@@ -15,7 +15,6 @@ extern NSString *APPLICATION_ID;
 extern NSString *DEVELOPMENT_KEY;
 extern NSString *PRODUCTION_KEY;
 extern NSString *DEVICE_ID;
-extern BOOL isSwizzlingEnabled;
 
 /// host of the api
 extern NSString *API_HOST;

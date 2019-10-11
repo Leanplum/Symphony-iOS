@@ -17,7 +17,6 @@ NSString *APPLICATION_ID = @"app_ve9UCNlqI8dy6Omzfu1rEh6hkWonNHVZJIWtLLt6aLs";
 NSString *DEVELOPMENT_KEY = @"dev_cKF5HMpLGqhbovlEGMKjgTuf8AHfr2Jar6rrnNhtzQ0";
 NSString *PRODUCTION_KEY = @"prod_XYpURdwPAaxJyYLclXNfACe9Y8hs084dBx2pB8wOnqU";
 NSString *DEVICE_ID = @"FCF96D6D-FE1C-4FC6-89D4-F862A5FFECE4";
-BOOL isSwizzlingEnabled = false;
 
 NSString *API_HOST = @"api.leanplum.com";
 NSString *API= @"api";

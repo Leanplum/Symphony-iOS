@@ -12,5 +12,6 @@
 
 + (void)validate_onResponse:(void (^)(NSDictionary *))response;
 + (void)swizzle_methods;
++ (void)swizzle_methods_undo;
 
 @end
