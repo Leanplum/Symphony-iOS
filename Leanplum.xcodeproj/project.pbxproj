@@ -271,7 +271,6 @@
 		B43838C323340538009642BE /* UIDevice+IdentifierAddition.h in Headers */ = {isa = PBXBuildFile; fileRef = B43838C123340537009642BE /* UIDevice+IdentifierAddition.h */; };
 		B43E213F232A2F9D00C6FA27 /* LPFileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = B43E213D232A2F9C00C6FA27 /* LPFileManager.h */; };
 		B43E2140232A2F9D00C6FA27 /* LPFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B43E213E232A2F9D00C6FA27 /* LPFileManager.m */; };
-		B44A8CAC234E9CC3007240E0 /* LPWSManager+Categories1.m in Sources */ = {isa = PBXBuildFile; fileRef = B44A8CAB234E9CC3007240E0 /* LPWSManager+Categories1.m */; };
 		B44A8CAF234F12FB007240E0 /* LPWSManager+Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = B44A8CAE234F12FB007240E0 /* LPWSManager+Categories.m */; };
 		B4583DEF2257F2F0006A6A61 /* LPModelProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = B4583DEE2257F2F0006A6A61 /* LPModelProtocol.h */; };
 		B4591DCA227A32D30076F9E2 /* LPApiConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = B4591DC8227A32D30076F9E2 /* LPApiConstants.h */; };
@@ -295,6 +294,7 @@
 		B4B5C70B2303E0E600C76FCF /* LPVarsApi.h in Headers */ = {isa = PBXBuildFile; fileRef = B4B5C7092303E0E600C76FCF /* LPVarsApi.h */; };
 		B4B5C70C2303E0E600C76FCF /* LPVarsApi.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C70A2303E0E600C76FCF /* LPVarsApi.m */; };
 		B4B5C70F2303E2B800C76FCF /* LPCacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B5C70E2303E2B800C76FCF /* LPCacheTests.m */; };
+		B4CFEF3D2350F3C00014161C /* LPDeviceApi+Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CFEF3C2350F3C00014161C /* LPDeviceApi+Categories.m */; };
 		B4DE3C362342759C00D7166B /* LPPushUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = B4DE3C342342759C00D7166B /* LPPushUtils.h */; };
 		B4DE3C372342759C00D7166B /* LPPushUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DE3C352342759C00D7166B /* LPPushUtils.m */; };
 		B4E251B422D54E8D00CEECAF /* LPFileManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E251B322D54E8D00CEECAF /* LPFileManagerTest.m */; };
@@ -626,8 +626,6 @@
 		B43838C123340537009642BE /* UIDevice+IdentifierAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+IdentifierAddition.h"; sourceTree = "<group>"; };
 		B43E213D232A2F9C00C6FA27 /* LPFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPFileManager.h; sourceTree = "<group>"; };
 		B43E213E232A2F9D00C6FA27 /* LPFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPFileManager.m; sourceTree = "<group>"; };
-		B44A8CAA234E9CC3007240E0 /* LPWSManager+Categories1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LPWSManager+Categories1.h"; sourceTree = "<group>"; };
-		B44A8CAB234E9CC3007240E0 /* LPWSManager+Categories1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LPWSManager+Categories1.m"; sourceTree = "<group>"; };
 		B44A8CAD234F12FB007240E0 /* LPWSManager+Categories.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LPWSManager+Categories.h"; sourceTree = "<group>"; };
 		B44A8CAE234F12FB007240E0 /* LPWSManager+Categories.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LPWSManager+Categories.m"; sourceTree = "<group>"; };
 		B4583DEE2257F2F0006A6A61 /* LPModelProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPModelProtocol.h; sourceTree = "<group>"; };
@@ -652,6 +650,8 @@
 		B4B5C7092303E0E600C76FCF /* LPVarsApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPVarsApi.h; sourceTree = "<group>"; };
 		B4B5C70A2303E0E600C76FCF /* LPVarsApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPVarsApi.m; sourceTree = "<group>"; };
 		B4B5C70E2303E2B800C76FCF /* LPCacheTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPCacheTests.m; sourceTree = "<group>"; };
+		B4CFEF3B2350F3C00014161C /* LPDeviceApi+Categories.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LPDeviceApi+Categories.h"; sourceTree = "<group>"; };
+		B4CFEF3C2350F3C00014161C /* LPDeviceApi+Categories.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LPDeviceApi+Categories.m"; sourceTree = "<group>"; };
 		B4DE3C342342759C00D7166B /* LPPushUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPPushUtils.h; sourceTree = "<group>"; };
 		B4DE3C352342759C00D7166B /* LPPushUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPPushUtils.m; sourceTree = "<group>"; };
 		B4E251B322D54E8D00CEECAF /* LPFileManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPFileManagerTest.m; sourceTree = "<group>"; };
@@ -1149,10 +1149,10 @@
 			isa = PBXGroup;
 			children = (
 				B48F6F6D234D05230008771B /* Leanplum+Extensions.h */,
-				B44A8CAA234E9CC3007240E0 /* LPWSManager+Categories1.h */,
-				B44A8CAB234E9CC3007240E0 /* LPWSManager+Categories1.m */,
 				B44A8CAD234F12FB007240E0 /* LPWSManager+Categories.h */,
 				B44A8CAE234F12FB007240E0 /* LPWSManager+Categories.m */,
+				B4CFEF3B2350F3C00014161C /* LPDeviceApi+Categories.h */,
+				B4CFEF3C2350F3C00014161C /* LPDeviceApi+Categories.m */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1820,12 +1820,12 @@
 				6517687C2284D8B300B2C17E /* LPTestHelper.m in Sources */,
 				B430A265224C22E900DC8140 /* LPCenterPopupValues.m in Sources */,
 				A82BD100229D0DC700FE1DA2 /* LPMultiApiTest.m in Sources */,
+				B4CFEF3D2350F3C00014161C /* LPDeviceApi+Categories.m in Sources */,
 				B4A32C9822D7E73E0088CCDF /* LPStartApiTest.m in Sources */,
 				B44A8CAF234F12FB007240E0 /* LPWSManager+Categories.m in Sources */,
 				B4F077F222BAF0C200F2743F /* LPRequestManagerTest.m in Sources */,
 				B430A288224C23B200DC8140 /* LPConfirmKinds.m in Sources */,
 				A82BD108229D0E8700FE1DA2 /* LPSetVarsApiTest.m in Sources */,
-				B44A8CAC234E9CC3007240E0 /* LPWSManager+Categories1.m in Sources */,
 				B430A2A6224C246100DC8140 /* LPInterstitialValues.m in Sources */,
 				A82BD11A229D124100FE1DA2 /* LPDeleteNewsfeedMessageApiTest.m in Sources */,
 				A8EF57E622952A990046473C /* LPStopApiTest.m in Sources */,

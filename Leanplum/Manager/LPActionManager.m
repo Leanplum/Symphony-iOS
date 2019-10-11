@@ -11,6 +11,8 @@
 #import "LPSwizzle.h"
 #import "LeanplumInternal.h"
 #import "LPUtils.h"
+#import "LPDeviceApi.h"
+#import "LPAPIConfig.h"
 #import <objc/runtime.h>
 #import <objc/message.h>
 
@@ -293,7 +295,21 @@ static dispatch_once_t leanplum_onceToken;
     formattedToken = [[[formattedToken stringByReplacingOccurrencesOfString:@"<" withString:@""]
                        stringByReplacingOccurrencesOfString:@">" withString:@""]
                       stringByReplacingOccurrencesOfString:@" " withString:@""];
-       //ToDo: Implementation of messaging
+       // Send push token if we don't have one and when the token changed.
+       // We no longer send in start's response because saved push token will be send in start too.
+       NSString *tokenKey = [Leanplum pushTokenKey];
+       NSString *existingToken = [[NSUserDefaults standardUserDefaults] stringForKey:tokenKey];
+       if (!existingToken || ![existingToken isEqualToString:formattedToken]) {
+           
+           [[NSUserDefaults standardUserDefaults] setObject:formattedToken forKey:tokenKey];
+           [[NSUserDefaults standardUserDefaults] synchronize];
+          
+           [LPDeviceApi setDeviceId:[LPAPIConfig sharedConfig].deviceId withDeviceAttributes:@{LP_PARAM_DEVICE_PUSH_TOKEN: formattedToken} success:^ {
+               NSLog(@"Device Registered");
+           } failure:^(NSError *error) {
+            NSLog(@"Device Registration failed!");
+           }];
+       }
 }
 
 - (void)didFailToRegisterForRemoteNotificationsWithError:(NSError *)error

@@ -4,6 +4,8 @@
 #import "LPTestHelper.h"
 #import "Leanplum+Extensions.h"
 #import "LPWSManager+Categories.h"
+#import "LPDeviceApi+Categories.h"
+#import "LPSwizzle.h"
 
 @interface LPActionManager (Test)
 - (void)sendUserNotificationSettingsIfChanged:(UIUserNotificationSettings *)notificationSettings;
@@ -23,15 +25,12 @@
 {
     [super setUp];
     // Called only once to setup method swizzling.
-    //[LeanplumHelper setup_method_swizzling];
-    [LPWSManager swizzle_methods];
+    [LPDeviceApi swizzle_methods];
 }
 
 - (void)setUp
 {
     [super setUp];
-    // Automatically sets up AppId and AccessKey for development mode.
-    [LPTestHelper setup];
 }
 
 - (void)tearDown
@@ -60,14 +59,7 @@
 
 - (void)test_push_token
 {
-    //ToDo:
-    /*
-    // Partial mock Action Manager.
     LPActionManager *manager = [LPActionManager sharedManager];
-    id actionManagerMock = OCMPartialMock(manager);
-    OCMStub([actionManagerMock sharedManager]).andReturn(actionManagerMock);
-    OCMStub([actionManagerMock respondsToSelector:
-             @selector(leanplum_application:didRegisterForRemoteNotificationsWithDeviceToken:)]).andReturn(NO);
     
     // Remove Push Token.
     NSString *pushTokenKey = [Leanplum pushTokenKey];
@@ -83,9 +75,28 @@
                        stringByReplacingOccurrencesOfString:@">" withString:@""]
                       stringByReplacingOccurrencesOfString:@" " withString:@""];
 
-    [LPWSManager validate_onResponse:^(NSDictionary *response) {
+    [LPDeviceApi validate_onResponse:^(NSDictionary *response) {
         [expectNewToken fulfill];
     }];
+    [manager leanplum_application:app didRegisterForRemoteNotificationsWithDeviceToken:token];
+    [self waitForExpectationsWithTimeout:2 handler:nil];
+}
+
+- (void)test_push_token_changed
+{
+    LPActionManager *manager = [LPActionManager sharedManager];
+    // Remove Push Token.
+    NSString *pushTokenKey = [Leanplum pushTokenKey];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:pushTokenKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    // Test push token is sent on clean start.-97h
+    UIApplication *app = [UIApplication sharedApplication];
+    NSData *token = [@"sample" dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *formattedToken = [token description];
+    formattedToken = [[[formattedToken stringByReplacingOccurrencesOfString:@"<" withString:@""]
+                       stringByReplacingOccurrencesOfString:@">" withString:@""]
+                      stringByReplacingOccurrencesOfString:@" " withString:@""];
     
     // Test push token is sent if the token changes.
     token = [@"sample2" dataUsingEncoding:NSUTF8StringEncoding];
@@ -94,12 +105,11 @@
                        stringByReplacingOccurrencesOfString:@">" withString:@""]
                       stringByReplacingOccurrencesOfString:@" " withString:@""];
     XCTestExpectation *expectUpdatedToken = [self expectationWithDescription:@"expectUpdatedToken"];
-    [LPWSManager validate_onResponse:^(NSDictionary *response) {
-        [expectNewToken fulfill];
+    [LPDeviceApi validate_onResponse:^(NSDictionary *response) {
+        [expectUpdatedToken fulfill];
     }];
     [manager leanplum_application:app didRegisterForRemoteNotificationsWithDeviceToken:token];
-     */
+    [self waitForExpectationsWithTimeout:2 handler:nil];
 }
-
 
 @end
