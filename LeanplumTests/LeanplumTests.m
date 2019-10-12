@@ -7,6 +7,8 @@
 //
 
 #import <XCTest/XCTest.h>
+#import <OHHTTPStubs/OHHTTPStubs.h>
+#import "LPAPIConfig.h"
 #import "LPApiConstants.h"
 #import "LPTestHelper.h"
 #import "Leanplum.h"
@@ -33,6 +35,7 @@
     [super tearDown];
     [LPInternalState sharedState].calledStart = false;
     [LPInternalState sharedState].issuedStart = false;
+    [OHHTTPStubs removeAllStubs];
 }
 
 

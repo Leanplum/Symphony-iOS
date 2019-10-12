@@ -25,21 +25,16 @@
 + (void)setUp
 {
     [super setUp];
+    [LPApiConstants sharedState].isMulti = NO;
     [LPDeviceApi swizzle_methods];
 }
 
-- (void)setUp
-{
-    [super setUp];
-}
-
-- (void)tearDown
++ (void)tearDown
 {
     [super tearDown];
     [LPDeviceApi swizzle_methods];
-    [LPRequestManager deleteRequestsWithLimit:100];
+    [LPRequestManager deleteRequestsWithLimit:1000];
 }
-
 
 - (void) test_receive_notification
 {

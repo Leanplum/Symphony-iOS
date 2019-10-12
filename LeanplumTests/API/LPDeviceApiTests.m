@@ -54,6 +54,7 @@
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     [LPApiConstants sharedState].isMulti = YES;
     [LPDeviceApi setDeviceId:[LPAPIConfig sharedConfig].deviceId withDeviceAttributes:nil success:^ {
+        [LPApiConstants sharedState].isMulti = NO;
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
