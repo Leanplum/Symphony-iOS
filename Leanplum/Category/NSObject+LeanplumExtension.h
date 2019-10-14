@@ -14,7 +14,6 @@
 @interface NSObject (LeanplumExtension)
 
 - (void)leanplum_application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken;
-- (NSString *)leanplum_createUserNotificationSettingsKey;
 - (void)leanplum_application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings;
 - (void)leanplum_application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error;
 - (void)leanplum_application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo;

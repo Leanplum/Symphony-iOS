@@ -31,10 +31,3 @@
 + (void)reset;
 
 @end
-
-@interface LPActionManager(UnitTest)
-
-- (void)maybePerformNotificationActions:(NSDictionary *)userInfo action:(NSString *)action
-                                 active:(BOOL)active;
-
-@end

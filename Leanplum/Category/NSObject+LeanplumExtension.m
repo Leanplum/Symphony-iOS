@@ -27,13 +27,6 @@
     }
 }
 
-- (NSString *)leanplum_createUserNotificationSettingsKey
-{
-    return [NSString stringWithFormat:
-            LEANPLUM_DEFAULTS_USER_NOTIFICATION_SETTINGS_KEY,
-            [LPAPIConfig sharedConfig].appId, [LPAPIConfig sharedConfig].userId, [LPAPIConfig sharedConfig].deviceId];
-}
-
 - (void)leanplum_application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
 {
     [[LPActionManager sharedManager] didRegisterUserNotificationSettings:notificationSettings];

@@ -70,32 +70,6 @@ static dispatch_once_t leanplum_onceToken;
 
 #pragma mark - Push Notifications
 
-- (BOOL)isDuplicateNotification:(NSDictionary *)userInfo
-{
-    if ([self.notificationHandled isEqualToString:[LPJSON stringFromJSON:userInfo]] &&
-        [[NSDate date] timeIntervalSinceDate:self.notificationHandledTime] < 10.0) {
-        return YES;
-    }
-
-    self.notificationHandled = [LPJSON stringFromJSON:userInfo];
-    self.notificationHandledTime = [NSDate date];
-    return NO;
-}
-
-// Performs the notification action if
-// (a) The app wasn't active before
-// (b) The user accepts that they want to view the notification
-- (void)maybePerformNotificationActions:(NSDictionary *)userInfo
-                                 action:(NSString *)action
-                                 active:(BOOL)active
-{
-    // Don't handle duplicate notifications.
-    if ([self isDuplicateNotification:userInfo]) {
-        return;
-    }
-    //ToDo: Notification Message Handling.
-}
-
 // Handles the notification.
 // Makes sure the data is loaded, and then displays the notification.
 - (void)handleNotification:(NSDictionary *)userInfo
