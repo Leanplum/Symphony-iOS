@@ -23,6 +23,12 @@ FOUNDATION_EXPORT const unsigned char LeanplumVersionString[];
  * @{
  */
 typedef void (^LeanplumStartBlock)(BOOL success);
+typedef void (^LeanplumHandleNotificationBlock)(void);
+typedef void (^LeanplumShouldHandleNotificationBlock)(NSDictionary *userInfo, LeanplumHandleNotificationBlock response);
+typedef NSUInteger LeanplumUIBackgroundFetchResult; // UIBackgroundFetchResult
+typedef void (^LeanplumFetchCompletionBlock)(LeanplumUIBackgroundFetchResult result);
+typedef void (^LeanplumPushSetupBlock)(void);
+/**@}*/
 
  /*
  * Must call either this or {@link setAppId:withProductionKey:}
@@ -139,5 +145,38 @@ typedef enum {
 + (void)setUserId:(NSString *)userId withUserAttributes:(NSDictionary *)attributes
       withSuccess:(void (^)(void))success
       withFailure:(void (^)(NSError *error))failure;
+
+/**
+ * Handles a push notification for apps that use Background Notifications.
+ * Without background notifications, Leanplum handles them automatically.
+ * Deprecated. Leanplum calls handleNotification automatically now. If you
+ * implement application:didReceiveRemoteNotification:fetchCompletionHandler:
+ * in your app delegate, you should remove any calls to [Leanplum handleNotification]
+ * and call the completion handler yourself.
+ */
++ (void)handleNotification:(NSDictionary *)userInfo
+    fetchCompletionHandler:(LeanplumFetchCompletionBlock)completionHandler
+    __attribute__((deprecated("Leanplum calls handleNotification automatically now. If you "
+        "implement application:didReceiveRemoteNotification:fetchCompletionHandler: in your app "
+        "delegate, you should remove any calls to [Leanplum handleNotification] and call the "
+        "completion handler yourself.")));
+
++ (void)didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)token;
++ (void)didFailToRegisterForRemoteNotificationsWithError:(NSError *)error;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+#pragma clang diagnostic ignored "-Wstrict-prototypes"
++ (void)didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings;
+#pragma clang diagnostic pop
++ (void)didReceiveRemoteNotification:(NSDictionary *)userInfo;
++ (void)didReceiveRemoteNotification:(NSDictionary *)userInfo
+              fetchCompletionHandler:(LeanplumFetchCompletionBlock)completionHandler;
++ (void)didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler API_AVAILABLE(ios(10.0));
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+#pragma clang diagnostic ignored "-Wstrict-prototypes"
++ (void)didReceiveLocalNotification:(UILocalNotification *)localNotification;
+#pragma clang diagnostic pop
+
 
 @end

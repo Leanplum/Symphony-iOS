@@ -19,6 +19,7 @@
 #import "UIDevice+IdentifierAddition.h"
 #import "LPCache.h"
 #import "LPPushUtils.h"
+#import "LPActionManager.h"
 
 __weak static NSExtensionContext *_extensionContext = nil;
 
@@ -519,5 +520,106 @@ __weak static NSExtensionContext *_extensionContext = nil;
     }
 }
 
+//Handle Action Manager Swizzled methods
+/*
++ (void)handleNotification:(NSDictionary *)userInfo
+    fetchCompletionHandler:(LeanplumFetchCompletionBlock)completionHandler
+{
+    [LPInternalState sharedState].calledHandleNotification = YES;
+    [[LPActionManager sharedManager] didReceiveRemoteNotification:userInfo
+                                                       withAction:nil
+                                           fetchCompletionHandler:completionHandler];
+}
 
++ (void)didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)token
+{
+    if (![LPUtils isSwizzlingEnabled])
+    {
+        [[LPActionManager sharedManager] didRegisterForRemoteNotificationsWithDeviceToken:token];
+    }
+}
+
++ (void)didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+{
+    if (![LPUtils isSwizzlingEnabled])
+    {
+        [[LPActionManager sharedManager] didFailToRegisterForRemoteNotificationsWithError:error];
+    }
+}
+
++ (void)didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
+{
+    if (![LPUtils isSwizzlingEnabled])
+    {
+        [[LPActionManager sharedManager] didRegisterUserNotificationSettings:notificationSettings];
+    }
+}
+
++ (void)didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    if (![LPUtils isSwizzlingEnabled])
+    {
+        [[LPActionManager sharedManager] didReceiveRemoteNotification:userInfo];
+    }
+}
+
++ (void)didReceiveRemoteNotification:(NSDictionary *)userInfo
+              fetchCompletionHandler:(LeanplumFetchCompletionBlock)completionHandler
+{
+    if (![LPUtils isSwizzlingEnabled])
+    {
+        [[LPActionManager sharedManager] didReceiveRemoteNotification:userInfo
+                                               fetchCompletionHandler:completionHandler];
+    }
+}
+
++ (void)didReceiveNotificationResponse:(UNNotificationResponse *)response
+                 withCompletionHandler:(void (^)(void))completionHandler
+{
+    LP_TRY
+    if (![LPUtils isSwizzlingEnabled])
+    {
+        [[LPActionManager sharedManager] didReceiveNotificationResponse:response
+                                                  withCompletionHandler:completionHandler];
+    }
+    LP_END_TRY
+}
+
++ (void)didReceiveLocalNotification:(UILocalNotification *)localNotification
+{
+    LP_TRY
+    if (![LPUtils isSwizzlingEnabled])
+    {
+        [[LPActionManager sharedManager] didReceiveLocalNotification:localNotification];
+    }
+    LP_END_TRY
+}
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wstrict-prototypes"
++ (void)handleActionWithIdentifier:(NSString *)identifier
+              forLocalNotification:(UILocalNotification *)notification
+                 completionHandler:(void (^)())completionHandler
+{
+    LP_TRY
+    [[LPActionManager sharedManager] didReceiveRemoteNotification:[notification userInfo]
+                                                       withAction:identifier
+                                           fetchCompletionHandler:completionHandler];
+    LP_END_TRY
+}
+#pragma clang diagnostic pop
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wstrict-prototypes"
++ (void)handleActionWithIdentifier:(NSString *)identifier
+             forRemoteNotification:(NSDictionary *)notification
+                 completionHandler:(void (^)())completionHandler
+{
+    LP_TRY
+    [[LPActionManager sharedManager] didReceiveRemoteNotification:notification
+                                                       withAction:identifier
+                                           fetchCompletionHandler:completionHandler];
+    LP_END_TRY
+}
+*/
 @end

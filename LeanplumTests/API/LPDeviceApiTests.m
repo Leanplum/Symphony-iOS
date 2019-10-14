@@ -10,10 +10,12 @@
 #import <OHHTTPStubs/OHHTTPStubs.h>
 #import <OHHTTPStubs/OHPathHelpers.h>
 #import "LPDeviceApi.h"
+#import "LPDeviceApi+Categories.h"
 #import "LPAPIConfig.h"
 #import "LPTestHelper.h"
 #import "LPApiConstants.h"
 #import "LPRequestQueue.h"
+#import "LPRequestManager.h"
 
 @interface LPDeviceApiTests : XCTestCase
 
@@ -35,7 +37,7 @@
 
 - (void)testDeviceApi {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPDeviceApi setDeviceId:DEVICE_ID withDeviceAttributes:nil success:^ {
+    [LPDeviceApi setDeviceId:[LPAPIConfig sharedConfig].deviceId withDeviceAttributes:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -51,7 +53,8 @@
     sleep(1);
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     [LPApiConstants sharedState].isMulti = YES;
-    [LPDeviceApi setDeviceId:DEVICE_ID withDeviceAttributes:nil success:^ {
+    [LPDeviceApi setDeviceId:[LPAPIConfig sharedConfig].deviceId withDeviceAttributes:nil success:^ {
+        [LPApiConstants sharedState].isMulti = NO;
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -60,8 +63,8 @@
     } failure:^(NSError * _Nonnull error) {
         NSLog(@"failure");
     }];
-
-    [self waitForExpectationsWithTimeout:30.0 handler:^(NSError *error) {
+   [LPApiConstants sharedState].isMulti = NO;
+    [self waitForExpectationsWithTimeout:20.0 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);
         }

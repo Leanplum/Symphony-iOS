@@ -7,8 +7,6 @@
 //
 
 #import <XCTest/XCTest.h>
-#import <OHHTTPStubs/OHHTTPStubs.h>
-#import <OHHTTPStubs/OHPathHelpers.h>
 #import "LPFileAttribute.h"
 #import "NSObject+Keychain.h"
 #import "NSString+NSString_Extended.h"

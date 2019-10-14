@@ -1,9 +1,9 @@
 //
-//  LPUtils.h
-//  Leanplum
+//  Leanplum+Extensions.h
+//  Leanplum-SDK
 //
-//  Created by Ben Marten on 6/6/16.
-//  Copyright (c) 2016 Leanplum, Inc. All rights reserved.
+//  Created by Milos Jakovljevic on 10/17/16.
+//  Copyright © 2016 Leanplum. All rights reserved.
 //
 //  Licensed to the Apache Software Foundation (ASF) under one
 //  or more contributor license agreements.  See the NOTICE file
@@ -22,33 +22,12 @@
 //  specific language governing permissions and limitations
 //  under the License.
 
-#import <Foundation/Foundation.h>
 
-@interface LPUtils : NSObject
+#import "Leanplum.h"
+#import "LeanplumInternal.h"
 
-/**
- * Checks if the object is null or empty.
- */
-+ (BOOL)isNullOrEmpty:(id)obj;
+@interface Leanplum(UnitTest)
 
-/**
- * Checks if the string is empty or have spaces.
- */
-+ (BOOL)isBlank:(id)obj;
++ (void)reset;
 
-/**
- * Computes MD5 of NSData. Mostly used for uploading images.
- */
-+ (NSString *)md5OfData:(NSData *)data;
-
-/**
- * Returns base64 encoded string from NSData. Convenience method
- * that supports iOS6.
- */
-+ (NSString *)base64EncodedStringFromData:(NSData *)data;
-
-/**
- * Whether swizzling flag is setup in plist file
- */
-+ (BOOL)isSwizzlingEnabled;
 @end
