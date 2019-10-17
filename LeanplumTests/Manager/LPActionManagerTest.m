@@ -3,7 +3,6 @@
 #import "LPActionManager.h"
 #import "LPTestHelper.h"
 #import "Leanplum+Extensions.h"
-#import "LPWSManager+Categories.h"
 #import "LPDeviceApi+Categories.h"
 #import "LPSwizzle.h"
 #import "LPRequestManager.h"

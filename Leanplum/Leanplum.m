@@ -11,6 +11,7 @@
 #import "Leanplum.h"
 #import "LPUserApi.h"
 #import "LPStartApi.h"
+#import "LPPauseSessionApi.h"
 #import "LPPauseStateApi.h"
 #import "LPApiConstants.h"
 #import "LPUtils.h"
@@ -517,7 +518,7 @@ __weak static NSExtensionContext *_extensionContext = nil;
     backgroundTask = [application beginBackgroundTaskWithExpirationHandler:finishTaskHandler];
     
     // Send pause event.
-    [LPPauseStateApi pauseStateWithParameters:nil success:^{
+    [LPPauseSessionApi pauseSessionWithParameters:nil success:^{
         finishTaskHandler();
     } failure:^(NSError *error) {
         finishTaskHandler();

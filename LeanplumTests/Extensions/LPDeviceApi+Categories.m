@@ -26,19 +26,6 @@ static void (^responseSuccess)(NSDictionary *);
     }
 }
 
-+ (void)swizzle_methods_undo
-{
-    NSError *error;
-
-    bool success = [LPSwizzle swizzleClassMethod:@selector(swizzle_setDeviceId:withDeviceAttributes:success:failure:)
-                             withClassMethod:@selector(setDeviceId:withDeviceAttributes:success:failure:)
-                                       error:&error
-                                       class:[LPDeviceApi class]];
-    if (!success || error) {
-        NSLog(@"Failed swizzling methods for LeanplumRequest: %@", error);
-    }
-}
-
 + (void)validate_onResponse:(void (^)(NSDictionary *))response {
     responseSuccess = response;
 }
