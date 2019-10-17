@@ -283,6 +283,8 @@
 		B46B51FF2284DDE000B29663 /* Leanplum.m in Headers */ = {isa = PBXBuildFile; fileRef = B46B51FD2284D5CA00B29663 /* Leanplum.m */; };
 		B46B52022284E2FF00B29663 /* LPUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = B46B52002284E2FE00B29663 /* LPUtils.h */; };
 		B46B52032284E2FF00B29663 /* LPUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = B46B52012284E2FF00B29663 /* LPUtils.m */; };
+		B470687F235818A00053008C /* NSExtensionContext+Leanplum.h in Headers */ = {isa = PBXBuildFile; fileRef = B470687D235818A00053008C /* NSExtensionContext+Leanplum.h */; };
+		B4706880235818A00053008C /* NSExtensionContext+Leanplum.m in Sources */ = {isa = PBXBuildFile; fileRef = B470687E235818A00053008C /* NSExtensionContext+Leanplum.m */; };
 		B486913F23147A6200B6BC98 /* LPInternalState.m in Sources */ = {isa = PBXBuildFile; fileRef = B486913D23147A6200B6BC98 /* LPInternalState.m */; };
 		B48692012315D60000B6BC98 /* LeanplumInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = B48692002315D60000B6BC98 /* LeanplumInternal.h */; };
 		B48692022315DE5D00B6BC98 /* LPInternalState.h in Headers */ = {isa = PBXBuildFile; fileRef = B486913C23147A6200B6BC98 /* LPInternalState.h */; };
@@ -637,6 +639,8 @@
 		B46B51FD2284D5CA00B29663 /* Leanplum.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Leanplum.m; sourceTree = "<group>"; };
 		B46B52002284E2FE00B29663 /* LPUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPUtils.h; sourceTree = "<group>"; };
 		B46B52012284E2FF00B29663 /* LPUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPUtils.m; sourceTree = "<group>"; };
+		B470687D235818A00053008C /* NSExtensionContext+Leanplum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSExtensionContext+Leanplum.h"; sourceTree = "<group>"; };
+		B470687E235818A00053008C /* NSExtensionContext+Leanplum.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSExtensionContext+Leanplum.m"; sourceTree = "<group>"; };
 		B486913C23147A6200B6BC98 /* LPInternalState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPInternalState.h; sourceTree = "<group>"; };
 		B486913D23147A6200B6BC98 /* LPInternalState.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPInternalState.m; sourceTree = "<group>"; };
 		B48692002315D60000B6BC98 /* LeanplumInternal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LeanplumInternal.h; sourceTree = "<group>"; };
@@ -1252,6 +1256,8 @@
 				B4FCB10722722B5E004F5D63 /* NSString+NSString_Extended.m */,
 				B417861A234664760065CF9F /* NSObject+LeanplumExtension.h */,
 				B417861B234664760065CF9F /* NSObject+LeanplumExtension.m */,
+				B470687D235818A00053008C /* NSExtensionContext+Leanplum.h */,
+				B470687E235818A00053008C /* NSExtensionContext+Leanplum.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1348,6 +1354,7 @@
 				65D4AB94224D7507009BA5F3 /* LPWebInterstitialValues.h in Headers */,
 				65D4ABAC224D77A5009BA5F3 /* LPNoneClass.h in Headers */,
 				65D4AB60224D71E4009BA5F3 /* LPOpenURLKinds.h in Headers */,
+				B470687F235818A00053008C /* NSExtensionContext+Leanplum.h in Headers */,
 				65D4AC0C224D825A009BA5F3 /* LPRegion.h in Headers */,
 				65D4AB7C224D73A1009BA5F3 /* LPFluffyLayout.h in Headers */,
 				65298EF522BAE8C800B8CEE9 /* LPRequestCallbackManager.h in Headers */,
@@ -1691,6 +1698,7 @@
 				65D4ABAD224D77A5009BA5F3 /* LPNoneClass.m in Sources */,
 				65D4AB5D224D71C3009BA5F3 /* LPOpenURL.m in Sources */,
 				B417860823465B2F0065CF9F /* LPPlatform.m in Sources */,
+				B4706880235818A00053008C /* NSExtensionContext+Leanplum.m in Sources */,
 				65D4AB45224C2EA1009BA5F3 /* LPTentacledAcceptButton.m in Sources */,
 				B430A25F224C22CA00DC8140 /* LPCenterPopupKinds.m in Sources */,
 				B4FCB10322722AE1004F5D63 /* LPUserApi.m in Sources */,
