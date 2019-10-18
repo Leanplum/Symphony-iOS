@@ -545,9 +545,9 @@ __weak static NSExtensionContext *_extensionContext = nil;
 + (void)pauseStateInternal
 {
     [LPPauseStateApi pauseStateWithParameters:@{} success:^{
-        NSLog(@"pausedStateInternal");
+        NSLog(@"pausedStateInternal API successful ");
     } failure:^(NSError *error) {
-        NSLog(@"pausedStateInternalFailure");
+        NSLog(@"pausedStateInternalFailure %@", error);
     }];
 }
 
