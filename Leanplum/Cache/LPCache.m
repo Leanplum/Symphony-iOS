@@ -41,5 +41,7 @@
     return regions;
 }
 
-
+- (void)clearCache {
+    [self deleteFromKeychainWithKey:LP_KEY_REGIONS];
+}
 @end
