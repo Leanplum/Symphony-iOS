@@ -9,8 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "LPModelProtocol.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface LPAlertKinds : NSObject<LPModelProtocol, NSCoding>
 
 @property (nonatomic, copy) NSString *dismissAction;
@@ -20,4 +18,3 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-NS_ASSUME_NONNULL_END

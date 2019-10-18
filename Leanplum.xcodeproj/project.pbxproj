@@ -200,6 +200,7 @@
 		A8EF57F422952B960046473C /* LPAdvanceApi.m in Sources */ = {isa = PBXBuildFile; fileRef = A8EF57F222952B960046473C /* LPAdvanceApi.m */; };
 		B40B1B48235830B60003E915 /* LPPauseSessionApi+Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = B40B1B46235830B60003E915 /* LPPauseSessionApi+Categories.m */; };
 		B40B1B4B235832A50003E915 /* LPPauseStateApi+Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = B40B1B4A235832A50003E915 /* LPPauseStateApi+Categories.m */; };
+		B40B1B4F235A1EB70003E915 /* LPAlertTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B40B1B4E235A1EB70003E915 /* LPAlertTests.m */; };
 		B41703BC22CBFF2D0032492D /* malformed_multi_success_response.json in Resources */ = {isa = PBXBuildFile; fileRef = B41703BB22CBFF2D0032492D /* malformed_multi_success_response.json */; };
 		B417860823465B2F0065CF9F /* LPPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = B417860623465B2F0065CF9F /* LPPlatform.m */; };
 		B417860923465B2F0065CF9F /* LPPlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = B417860723465B2F0065CF9F /* LPPlatform.h */; };
@@ -576,6 +577,7 @@
 		B40B1B47235830B60003E915 /* LPPauseSessionApi+Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LPPauseSessionApi+Categories.h"; sourceTree = "<group>"; };
 		B40B1B49235832A50003E915 /* LPPauseStateApi+Categories.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LPPauseStateApi+Categories.h"; sourceTree = "<group>"; };
 		B40B1B4A235832A50003E915 /* LPPauseStateApi+Categories.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LPPauseStateApi+Categories.m"; sourceTree = "<group>"; };
+		B40B1B4E235A1EB70003E915 /* LPAlertTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPAlertTests.m; sourceTree = "<group>"; };
 		B41703BB22CBFF2D0032492D /* malformed_multi_success_response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = malformed_multi_success_response.json; sourceTree = "<group>"; };
 		B417860623465B2F0065CF9F /* LPPlatform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPPlatform.m; sourceTree = "<group>"; };
 		B417860723465B2F0065CF9F /* LPPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPPlatform.h; sourceTree = "<group>"; };
@@ -885,6 +887,7 @@
 				B4F077F122BAF0C200F2743F /* LPRequestManagerTest.m */,
 				B422E4F822BC478000E1D88D /* LPRequestQueueTests.m */,
 				B4E251B522D65A1000CEECAF /* LPUtilsTest.m */,
+				B40B1B4E235A1EB70003E915 /* LPAlertTests.m */,
 			);
 			path = LeanplumTests;
 			sourceTree = "<group>";
@@ -1807,6 +1810,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B40B1B4F235A1EB70003E915 /* LPAlertTests.m in Sources */,
 				B4B5C70F2303E2B800C76FCF /* LPCacheTests.m in Sources */,
 				A8EF578F2293BDC00046473C /* LPTrackTest.m in Sources */,
 				B430A292224C23EC00DC8140 /* LPFluffyAcceptAction.m in Sources */,
