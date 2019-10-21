@@ -1,14 +1,14 @@
 //
-//  LPDeviceApi+Categories.h
+//  LPPauseStateApi+Categories.h
 //  LeanplumTests
 //
-//  Created by Hrishikesh Amravatkar on 10/11/19.
+//  Created by Hrishikesh Amravatkar on 10/16/19.
 //  Copyright © 2019 Leanplum. All rights reserved.
 //
+#import "LPPauseStateApi.h"
 
-#import "LPDeviceApi.h"
 
-@interface LPDeviceApi (Categories)
+@interface LPPauseStateApi (Categories)
 
 + (void)validate_onResponse:(void (^)(NSDictionary *))response;
 + (void)swizzle_methods;

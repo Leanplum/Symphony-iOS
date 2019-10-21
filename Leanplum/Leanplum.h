@@ -147,6 +147,13 @@ typedef enum {
       withFailure:(void (^)(NSError *error))failure;
 
 /**
+ * Pauses the current state.
+ * You can use this if your game has a "pause" mode. You shouldn't call it
+ * when someone switches out of your app because that's done automatically.
+ */
++ (void)pauseState;
+
+/**
  * Handles a push notification for apps that use Background Notifications.
  * Without background notifications, Leanplum handles them automatically.
  * Deprecated. Leanplum calls handleNotification automatically now. If you

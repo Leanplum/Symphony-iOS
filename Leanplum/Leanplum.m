@@ -11,6 +11,8 @@
 #import "Leanplum.h"
 #import "LPUserApi.h"
 #import "LPStartApi.h"
+#import "LPPauseSessionApi.h"
+#import "LPPauseStateApi.h"
 #import "LPApiConstants.h"
 #import "LPUtils.h"
 #import "LPInternalState.h"
@@ -20,6 +22,7 @@
 #import "LPCache.h"
 #import "LPPushUtils.h"
 #import "LPActionManager.h"
+#import "LPSwizzle.h"
 
 __weak static NSExtensionContext *_extensionContext = nil;
 
@@ -459,6 +462,31 @@ __weak static NSExtensionContext *_extensionContext = nil;
     } failure:^(NSError *error) {
         failure(error);
     }];
+    
+    // Pause.
+    [[NSNotificationCenter defaultCenter]
+        addObserverForName:UIApplicationDidEnterBackgroundNotification
+                    object:nil
+                     queue:nil
+                usingBlock:^(NSNotification *notification) {
+                    if (![[[[NSBundle mainBundle] infoDictionary]
+                            objectForKey:@"UIApplicationExitsOnSuspend"] boolValue]) {
+                        [Leanplum pause];
+                    }
+                }];
+    
+    // Extension close.
+    if (_extensionContext) {
+        [LPSwizzle
+            swizzleMethod:@selector(completeRequestReturningItems:completionHandler:)
+               withMethod:@selector(leanplum_completeRequestReturningItems:completionHandler:)
+                    error:nil
+                    class:[NSExtensionContext class]];
+        [LPSwizzle swizzleMethod:@selector(cancelRequestWithError:)
+                      withMethod:@selector(leanplum_cancelRequestWithError:)
+                           error:nil
+                           class:[NSExtensionContext class]];
+    }
 }
 
 + (BOOL)hasStartedAndRegisteredAsDeveloper
@@ -477,12 +505,50 @@ __weak static NSExtensionContext *_extensionContext = nil;
 
 + (void)pause
 {
-    //ToDo: Implement the pause state management.
+    UIApplication *application = [UIApplication sharedApplication];
+    UIBackgroundTaskIdentifier __block backgroundTask;
+    
+    // Block that finish task.
+    void (^finishTaskHandler)(void) = ^(){
+        [application endBackgroundTask:backgroundTask];
+        backgroundTask = UIBackgroundTaskInvalid;
+    };
+    
+    // Start background task to make sure it runs when the app is in background.
+    backgroundTask = [application beginBackgroundTaskWithExpirationHandler:finishTaskHandler];
+    
+    // Send pause event.
+    [LPPauseSessionApi pauseSessionWithParameters:nil success:^{
+        finishTaskHandler();
+    } failure:^(NSError *error) {
+        finishTaskHandler();
+    }];
 }
 
 + (void)resume
 {
     //ToDo: Implement the resume state management
+}
+
++ (void)pauseState
+{
+    if (![LPInternalState sharedState].calledStart) {
+        [self throwError:@"You cannot call pauseState before calling start"];
+        return;
+    }
+
+    [self onStartIssued:^{
+        [self pauseStateInternal];
+    }];
+}
+
++ (void)pauseStateInternal
+{
+    [LPPauseStateApi pauseStateWithParameters:@{} success:^{
+        NSLog(@"pausedStateInternal API successful ");
+    } failure:^(NSError *error) {
+        NSLog(@"pausedStateInternalFailure %@", error);
+    }];
 }
 
 // On first run with Leanplum, determine if this app was previously installed without Leanplum.
@@ -521,7 +587,7 @@ __weak static NSExtensionContext *_extensionContext = nil;
 }
 
 //Handle Action Manager Swizzled methods
-/*
+
 + (void)handleNotification:(NSDictionary *)userInfo
     fetchCompletionHandler:(LeanplumFetchCompletionBlock)completionHandler
 {
@@ -576,23 +642,19 @@ __weak static NSExtensionContext *_extensionContext = nil;
 + (void)didReceiveNotificationResponse:(UNNotificationResponse *)response
                  withCompletionHandler:(void (^)(void))completionHandler
 {
-    LP_TRY
     if (![LPUtils isSwizzlingEnabled])
     {
         [[LPActionManager sharedManager] didReceiveNotificationResponse:response
                                                   withCompletionHandler:completionHandler];
     }
-    LP_END_TRY
 }
 
 + (void)didReceiveLocalNotification:(UILocalNotification *)localNotification
 {
-    LP_TRY
     if (![LPUtils isSwizzlingEnabled])
     {
         [[LPActionManager sharedManager] didReceiveLocalNotification:localNotification];
     }
-    LP_END_TRY
 }
 
 #pragma clang diagnostic push
@@ -601,11 +663,9 @@ __weak static NSExtensionContext *_extensionContext = nil;
               forLocalNotification:(UILocalNotification *)notification
                  completionHandler:(void (^)())completionHandler
 {
-    LP_TRY
     [[LPActionManager sharedManager] didReceiveRemoteNotification:[notification userInfo]
                                                        withAction:identifier
                                            fetchCompletionHandler:completionHandler];
-    LP_END_TRY
 }
 #pragma clang diagnostic pop
 
@@ -615,11 +675,8 @@ __weak static NSExtensionContext *_extensionContext = nil;
              forRemoteNotification:(NSDictionary *)notification
                  completionHandler:(void (^)())completionHandler
 {
-    LP_TRY
     [[LPActionManager sharedManager] didReceiveRemoteNotification:notification
                                                        withAction:identifier
                                            fetchCompletionHandler:completionHandler];
-    LP_END_TRY
 }
-*/
 @end
