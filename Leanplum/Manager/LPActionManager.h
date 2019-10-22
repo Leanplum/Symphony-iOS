@@ -20,6 +20,12 @@ static BOOL swizzledApplicationDidReceiveRemoteNotificationWithCompletionHandler
 static BOOL swizzledApplicationDidReceiveLocalNotification = NO;
 static BOOL swizzledUserNotificationCenterDidReceiveNotificationResponseWithCompletionHandler = NO;
 
+typedef enum {
+    kLeanplumActionFilterForeground = 0b1,
+    kLeanplumActionFilterBackground = 0b10,
+    kLeanplumActionFilterAll = 0b11
+} LeanplumActionFilter;
+
 @interface LPActionManager : NSObject
 
 + (LPActionManager*) sharedManager;
@@ -43,6 +49,7 @@ static BOOL swizzledUserNotificationCenterDidReceiveNotificationResponseWithComp
 #pragma clang diagnostic pop
 
 - (void)setShouldHandleNotification:(LeanplumShouldHandleNotificationBlock)block;
+- (void)sendUserNotificationSettingsIfChanged:(UIUserNotificationSettings *)notificationSettings;
 
 - (void)didReceiveRemoteNotification:(NSDictionary *)userInfo
                           withAction:(NSString *)action

@@ -104,6 +104,13 @@ typedef void (^LeanplumPushSetupBlock)(void);
 /**@}*/
 
 /**
+ * Block to call when the start call finishes, and variables are returned
+ * back from the server. Calling this multiple times will call each block
+ * in succession.
+ */
++ (void)onStartResponse:(LeanplumStartBlock)block;
+
+/**
  * Types of location accuracy. Higher value implies better accuracy.
  */
 typedef enum {

@@ -294,6 +294,8 @@ static dispatch_once_t leanplum_onceToken;
 - (void)didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
 {
    //ToDo: Implementation of messaging
+    //[self leanplum_disableAskToAsk];
+    [self sendUserNotificationSettingsIfChanged:notificationSettings];
 }
 
 #pragma mark - Local Notifications
@@ -302,6 +304,48 @@ static dispatch_once_t leanplum_onceToken;
     //ToDo: Implementation of messaging
 }
 
+
+#pragma mark - Push Notifications
+- (void)sendUserNotificationSettingsIfChanged:(UIUserNotificationSettings *)notificationSettings
+{
+    // Send settings.
+    NSString *settingsKey = [self leanplum_createUserNotificationSettingsKey];
+    NSDictionary *existingSettings = [[NSUserDefaults standardUserDefaults] dictionaryForKey:settingsKey];
+    NSNumber *types = @([notificationSettings types]);
+    NSMutableArray *categories = [NSMutableArray array];
+    for (UIMutableUserNotificationCategory *category in [notificationSettings categories]) {
+        if ([category identifier]) {
+            // Skip categories that have no identifier.
+            [categories addObject:[category identifier]];
+        }
+    }
+    NSArray *sortedCategories = [categories sortedArrayUsingSelector:@selector(compare:)];
+    NSDictionary *settings = @{LP_PARAM_DEVICE_USER_NOTIFICATION_TYPES: types,
+                               LP_PARAM_DEVICE_USER_NOTIFICATION_CATEGORIES: sortedCategories};
+    if (![existingSettings isEqualToDictionary:settings]) {
+        [[NSUserDefaults standardUserDefaults] setObject:settings forKey:settingsKey];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        NSString *tokenKey = [Leanplum pushTokenKey];
+        NSString *existingToken = [[NSUserDefaults standardUserDefaults] stringForKey:tokenKey];
+        NSMutableDictionary *params = [@{
+                LP_PARAM_DEVICE_USER_NOTIFICATION_TYPES: types,
+                LP_PARAM_DEVICE_USER_NOTIFICATION_CATEGORIES:
+                      [LPJSON stringFromJSON:sortedCategories] ?: @""} mutableCopy];
+        if (existingToken) {
+            params[LP_PARAM_DEVICE_PUSH_TOKEN] = existingToken;
+        }
+        [Leanplum onStartResponse:^(BOOL success) {
+            [LPDeviceApi setDeviceId:[LPAPIConfig sharedConfig].deviceId withDeviceAttributes:params success:nil failure:nil];
+        }];
+    }
+}
+
+- (NSString *)leanplum_createUserNotificationSettingsKey
+{
+    return [NSString stringWithFormat:
+            LEANPLUM_DEFAULTS_USER_NOTIFICATION_SETTINGS_KEY,
+            [LPAPIConfig sharedConfig].appId, [LPAPIConfig sharedConfig].userId, [LPAPIConfig sharedConfig].deviceId];
+}
 
 #pragma mark - Helper methods
 - (NSString *)hexadecimalStringFromData:(NSData *)data
