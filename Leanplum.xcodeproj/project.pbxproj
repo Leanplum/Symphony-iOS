@@ -201,6 +201,8 @@
 		B40B1B48235830B60003E915 /* LPPauseSessionApi+Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = B40B1B46235830B60003E915 /* LPPauseSessionApi+Categories.m */; };
 		B40B1B4B235832A50003E915 /* LPPauseStateApi+Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = B40B1B4A235832A50003E915 /* LPPauseStateApi+Categories.m */; };
 		B40B1B4F235A1EB70003E915 /* LPAlertTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B40B1B4E235A1EB70003E915 /* LPAlertTests.m */; };
+		B40B1B54235F8F290003E915 /* LPResumeSessionApi+Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = B40B1B53235F8F290003E915 /* LPResumeSessionApi+Categories.m */; };
+		B40B1B57235F8F400003E915 /* LPResumeStateApi+Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = B40B1B56235F8F400003E915 /* LPResumeStateApi+Categories.m */; };
 		B41703BC22CBFF2D0032492D /* malformed_multi_success_response.json in Resources */ = {isa = PBXBuildFile; fileRef = B41703BB22CBFF2D0032492D /* malformed_multi_success_response.json */; };
 		B417860823465B2F0065CF9F /* LPPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = B417860623465B2F0065CF9F /* LPPlatform.m */; };
 		B417860923465B2F0065CF9F /* LPPlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = B417860723465B2F0065CF9F /* LPPlatform.h */; };
@@ -578,6 +580,10 @@
 		B40B1B49235832A50003E915 /* LPPauseStateApi+Categories.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LPPauseStateApi+Categories.h"; sourceTree = "<group>"; };
 		B40B1B4A235832A50003E915 /* LPPauseStateApi+Categories.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LPPauseStateApi+Categories.m"; sourceTree = "<group>"; };
 		B40B1B4E235A1EB70003E915 /* LPAlertTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPAlertTests.m; sourceTree = "<group>"; };
+		B40B1B52235F8F290003E915 /* LPResumeSessionApi+Categories.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LPResumeSessionApi+Categories.h"; sourceTree = "<group>"; };
+		B40B1B53235F8F290003E915 /* LPResumeSessionApi+Categories.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LPResumeSessionApi+Categories.m"; sourceTree = "<group>"; };
+		B40B1B55235F8F400003E915 /* LPResumeStateApi+Categories.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LPResumeStateApi+Categories.h"; sourceTree = "<group>"; };
+		B40B1B56235F8F400003E915 /* LPResumeStateApi+Categories.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LPResumeStateApi+Categories.m"; sourceTree = "<group>"; };
 		B41703BB22CBFF2D0032492D /* malformed_multi_success_response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = malformed_multi_success_response.json; sourceTree = "<group>"; };
 		B417860623465B2F0065CF9F /* LPPlatform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPPlatform.m; sourceTree = "<group>"; };
 		B417860723465B2F0065CF9F /* LPPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPPlatform.h; sourceTree = "<group>"; };
@@ -1162,6 +1168,10 @@
 				B4CFEF3C2350F3C00014161C /* LPDeviceApi+Categories.m */,
 				B40B1B49235832A50003E915 /* LPPauseStateApi+Categories.h */,
 				B40B1B4A235832A50003E915 /* LPPauseStateApi+Categories.m */,
+				B40B1B52235F8F290003E915 /* LPResumeSessionApi+Categories.h */,
+				B40B1B53235F8F290003E915 /* LPResumeSessionApi+Categories.m */,
+				B40B1B55235F8F400003E915 /* LPResumeStateApi+Categories.h */,
+				B40B1B56235F8F400003E915 /* LPResumeStateApi+Categories.m */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1839,6 +1849,7 @@
 				B40B1B4B235832A50003E915 /* LPPauseStateApi+Categories.m in Sources */,
 				B4F077F222BAF0C200F2743F /* LPRequestManagerTest.m in Sources */,
 				B430A288224C23B200DC8140 /* LPConfirmKinds.m in Sources */,
+				B40B1B57235F8F400003E915 /* LPResumeStateApi+Categories.m in Sources */,
 				A82BD108229D0E8700FE1DA2 /* LPSetVarsApiTest.m in Sources */,
 				B430A2A6224C246100DC8140 /* LPInterstitialValues.m in Sources */,
 				A82BD11A229D124100FE1DA2 /* LPDeleteNewsfeedMessageApiTest.m in Sources */,
@@ -1863,6 +1874,7 @@
 				65C5BDF5228F6937003EE334 /* LPPauseSessionTest.m in Sources */,
 				B430A26A224C230700DC8140 /* LPPurpleAcceptAction.m in Sources */,
 				65C5BDB922862568003EE334 /* LPDeviceApiTests.m in Sources */,
+				B40B1B54235F8F290003E915 /* LPResumeSessionApi+Categories.m in Sources */,
 				A8EF57F022952B630046473C /* LPAdvanceApiTest.m in Sources */,
 				6515E1EF2270E1F100C5A2F0 /* LPActionDefinitionTest.m in Sources */,
 				B430A27E224C237800DC8140 /* LPPurpleTitle.m in Sources */,

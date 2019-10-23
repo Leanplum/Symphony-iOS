@@ -161,6 +161,11 @@ typedef enum {
 + (void)pauseState;
 
 /**
+ * Resumes the current state.
+ */
++ (void)resumeState;
+
+/**
  * Handles a push notification for apps that use Background Notifications.
  * Without background notifications, Leanplum handles them automatically.
  * Deprecated. Leanplum calls handleNotification automatically now. If you

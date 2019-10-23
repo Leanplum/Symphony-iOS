@@ -18,6 +18,8 @@
 #import "LPCache.h"
 #import "LPPauseSessionApi+Categories.h"
 #import "LPPauseStateApi+Categories.h"
+#import "LPResumeSessionApi+Categories.h"
+#import "LPResumeStateApi+Categories.h"
 
 @interface LeanplumTests : XCTestCase
 
@@ -30,12 +32,16 @@
     [super setUp];
     [LPPauseSessionApi swizzle_methods];
     [LPPauseStateApi swizzle_methods];
+    [LPResumeStateApi swizzle_methods];
+    [LPResumeSessionApi swizzle_methods];
 }
 
 + (void)tearDown {
     [super tearDown];
     [LPPauseSessionApi swizzle_methods];
     [LPPauseStateApi swizzle_methods];
+    [LPResumeStateApi swizzle_methods];
+    [LPResumeSessionApi swizzle_methods];
 }
 
 - (void)setUp {
@@ -498,6 +504,36 @@
     }];
 
     [Leanplum pauseState];
+    [self waitForExpectationsWithTimeout:2 handler:nil];
+}
+
+- (void)test_resume_session
+{
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    // This stub have to be removed when start command is successfully executed.
+    [LPTestHelper setupStub:200 withFileName:@"simple_start_response.json"];
+    // Remove stub after start is successful, so we don't capture requests from other methods.
+    
+    [LPResumeSessionApi validate_onResponse:^(NSDictionary *response) {
+        [expectation fulfill];
+    }];
+
+    [Leanplum resume];
+    [self waitForExpectationsWithTimeout:2 handler:nil];
+}
+
+- (void)test_resume_state
+{
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    // This stub have to be removed when start command is successfully executed.
+    [LPTestHelper setupStub:200 withFileName:@"simple_start_response.json"];
+    // Remove stub after start is successful, so we don't capture requests from other methods.
+    
+    [LPResumeStateApi validate_onResponse:^(NSDictionary *response) {
+        [expectation fulfill];
+    }];
+
+    [Leanplum resumeState];
     [self waitForExpectationsWithTimeout:2 handler:nil];
 }
 @end
