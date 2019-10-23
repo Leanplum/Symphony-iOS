@@ -514,6 +514,7 @@ BOOL inForeground = NO;
                     [Leanplum resume];
                     if (startedInBackground && !inForeground) {
                         inForeground = YES;
+                        // ToDo: These are message filters need to be implemented.
                         /*[self maybePerformActions:@[@"start", @"resume"]
                                     withEventName:nil
                                        withFilter:kLeanplumActionFilterAll
@@ -522,6 +523,7 @@ BOOL inForeground = NO;
                         //ToDo: Attribute changes
                         //[self recordAttributeChanges];
                     } else {
+                        // ToDo: These are message filters need to be implemented.
                         /*[self maybePerformActions:@[@"resume"]
                                     withEventName:nil
                                        withFilter:kLeanplumActionFilterAll
