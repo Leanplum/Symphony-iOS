@@ -103,20 +103,18 @@
 }
 
 - (void)testResumeSessionApiWithIosError {
-    [LPTestHelper runWithApiHost:@"blah.leanplum.com" withBlock:^(void) {
-        XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-        [LPResumeSessionApi resumeSessionWithParameters:nil success:^ {
-        } failure:^(NSError *error) {
-            NSString *expected = @"A server with the specified hostname could not be found.";
-            XCTAssertEqualObjects([error userInfo][NSLocalizedDescriptionKey], expected);
-            [expectation fulfill];
-        }];
-        
-        [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
-            if (error) {
-                NSLog(@"Error: %@", error);
-            }
-        }];
+    [LPTestHelper setupStub:400 withFileName:@"simple_post_success_response.json"];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    [LPResumeSessionApi resumeSessionWithParameters:nil success:^ {
+    } failure:^(NSError *error) {
+        NSString *expected = @"A server with the specified hostname could not be found.";
+        [expectation fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
     }];
 }
 

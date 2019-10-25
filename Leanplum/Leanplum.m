@@ -594,7 +594,11 @@ BOOL inForeground = NO;
 
 + (void)resume
 {
-    [LPResumeSessionApi resumeSessionWithParameters:nil success:nil failure:nil];
+    [LPResumeSessionApi resumeSessionWithParameters:nil success:^{
+        NSLog(@"LPResumeSessionApi success");
+    } failure:^(NSError *error) {
+        NSLog(@"LPResumeSessionApi failure %@", error);
+    }];
 }
 
 + (void)pauseState
