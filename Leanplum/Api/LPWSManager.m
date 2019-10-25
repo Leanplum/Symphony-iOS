@@ -139,31 +139,31 @@
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request
                                             completionHandler:
                                   ^(NSData *data, NSURLResponse *response, NSError *error) {
-                                      // handle basic connectivity issues here
-                                      if (error) {
-                                          NSLog(@"dataTaskWithRequest error: %@", error);
-                                          failure(error);
-                                      } else {
-                                          NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-                                          NSError *parseError = nil;
-                                          NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
-                                          if (httpResponse.statusCode == 200) {
-                                              NSString *myString = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-                                              NSLog(@"String data %@", myString);
-                                              NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
-                                              NSLog(@"The response is - %@",responseDictionary);
-                                              success(responseDictionary);
-                                          } else {
-                                              // Handle unsuccessful http response code.
-                                              NSLog(@"http error");
-                                              // make custom error
-                                              NSArray *responseArray = [responseDictionary valueForKey:@"response"];
-                                              NSDictionary *resultDict = responseArray[0];
-                                              NSError *responseError = [LPErrorHelper makeHttpError:httpResponse.statusCode  withResponseDict:resultDict];
-                                              failure(responseError);
-                                          }
-                                      }
-                                  }];
+        // handle basic connectivity issues here
+        if (error) {
+            NSLog(@"dataTaskWithRequest error: %@", error);
+            failure(error);
+        } else {
+            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+            NSError *parseError = nil;
+            NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
+            if (httpResponse.statusCode == 200) {
+                NSString *myString = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+                NSLog(@"String data %@", myString);
+                NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
+                NSLog(@"The response is - %@",responseDictionary);
+                success(responseDictionary);
+            } else {
+                // Handle unsuccessful http response code.
+                NSLog(@"http error");
+                // make custom error
+                NSArray *responseArray = [responseDictionary valueForKey:@"response"];
+                NSDictionary *resultDict = responseArray[0];
+                NSError *responseError = [LPErrorHelper makeHttpError:httpResponse.statusCode  withResponseDict:resultDict];
+                failure(responseError);
+            }
+        }
+    }];
     [task resume];
 }
 

@@ -15,6 +15,7 @@
 #import "LPErrorHelper.h"
 #import "LPRequestQueue.h"
 #import "LPApiUtils.h"
+#import "LPResultSuccess.h"
 
 @implementation LPResumeSessionApi
 
@@ -29,7 +30,7 @@
             failure(error);
         }
         else {
-            BOOL successBool = [[resultDict objectForKey:@"success"] boolValue];
+            BOOL successBool = [LPResultSuccess checkSuccess:resultDict];
             if (successBool) {
                 success();
             } else {
@@ -47,7 +48,7 @@
         params = [parameters mutableCopy];
     }
     params[LP_PARAM_DEVICE_ID] = [LPAPIConfig sharedConfig].deviceId;
-
+    
     if ([LPApiConstants sharedState].isMulti) {
         LPRequest *request = [[LPRequest alloc] initWithApiMethod:LPApiMethodResumeSession
                                                            params:params

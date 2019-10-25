@@ -34,6 +34,7 @@
 }
 
 - (void)testStartApiWithRegionsWithParameters {
+    [LPApiConstants sharedState].isMulti = NO;
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     NSDictionary *params = @{ @"testKey": @"testValue" };
     [LPStartApi startWithParameters:params success:^(LPStartResponse *response) {
@@ -54,12 +55,13 @@
     sleep(1);
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     NSDictionary *params = @{ @"testKey": @"testValue" };
-    [LPApiConstants sharedState].isMulti = YES;
+    [LPApiConstants sharedState].isMulti = NO;
     [LPStartApi startWithParameters:params success:^(LPStartResponse *response) {
         XCTAssertNotNil(response);
         XCTAssertNotNil(response.regions);
         [expectation fulfill];
     } failure:^(NSError *error) {
+        NSLog(@"%@", error);
     }];
     [[LPRequestQueue sharedInstance] sendRequests:^{
         NSLog(@"success");
@@ -74,22 +76,5 @@
     }];
 }
 
-- (void)testStartApiWithRegionsWithHttpError {
-    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    // change device id to empty string
-    [LPTestHelper setup:APPLICATION_ID withAccessKey:DEVELOPMENT_KEY withDeviceId:@""];
-    
-    [LPStartApi startWithParameters:nil success:^(LPStartResponse *response) {
-    } failure:^(NSError *error) {
-        NSString *expected = @"At least one of deviceId or userId is required.";
-        XCTAssertEqualObjects([error userInfo][NSLocalizedDescriptionKey], expected);
-        [expectation fulfill];
-    }];
-    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
-        if (error) {
-            NSLog(@"Error: %@", error);
-        }
-    }];
-}
 
 @end

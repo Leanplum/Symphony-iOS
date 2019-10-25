@@ -30,8 +30,7 @@ static void (^responseSuccess)(NSDictionary *);
     responseSuccess = response;
 }
 
-+ (void)swizzle_pauseSessionWithParameters:(NSMutableDictionary *)params success:(void (^)(NSDictionary *))success failure:(void (^)(NSError *))failure {
-    NSDictionary *successDict = @{@"success" : @1};
++ (void)swizzle_pauseSessionWithParameters:(NSMutableDictionary *)params success:(void (^)(NSDictionary *))success failure:(void (^)(NSError *))failure {    NSDictionary *successDict = @{@"success" : @1};
     responseSuccess(successDict);
     return [self swizzle_pauseSessionWithParameters:params success:success failure:failure];
 }

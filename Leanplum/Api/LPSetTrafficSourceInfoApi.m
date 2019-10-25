@@ -15,6 +15,7 @@
 #import "LPErrorHelper.h"
 #import "LPRequestQueue.h"
 #import "LPApiUtils.h"
+#import "LPResultSuccess.h"
 
 @implementation LPSetTrafficSourceInfoApi
 
@@ -24,18 +25,14 @@
                               failure:(void (^)(NSError *error))failure {
     void (^successResponse) (NSDictionary *) = ^(NSDictionary *response) {
         NSError *error = nil;
+        
         NSDictionary *resultDict = [LPApiUtils responseDictionaryFromResponse:response];
-        if (error != nil) {
+        BOOL successBool = [LPResultSuccess checkSuccess:resultDict];
+        if (successBool) {
+            success();
+        } else {
+            NSError *error = [LPErrorHelper makeResponseError:resultDict];
             failure(error);
-        }
-        else {
-            BOOL successBool = [[resultDict objectForKey:@"success"] boolValue];
-            if (successBool) {
-                success();
-            } else {
-                NSError *error = [LPErrorHelper makeResponseError:resultDict];
-                failure(error);
-            }
         }
     };
     void (^failureResponse) (NSError *) = ^(NSError *error ){

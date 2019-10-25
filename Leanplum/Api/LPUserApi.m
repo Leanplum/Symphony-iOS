@@ -15,6 +15,7 @@
 #import "LPJSON.h"
 #import "LPRequestQueue.h"
 #import "LPApiUtils.h"
+#import "LPResultSuccess.h"
 
 @implementation LPUserApi
 
@@ -24,18 +25,15 @@ withUserAttributes:(NSDictionary *)attributes
            failure:(void (^)(NSError *error))failure {
     void (^successResponse) (NSDictionary *) = ^(NSDictionary *response) {
         NSError *error = nil;
+        //ToDo: Use the data
         NSDictionary *resultDict = [LPApiUtils responseDictionaryFromResponse:response];
-        if (error != nil) {
+        BOOL successBool = [LPResultSuccess checkSuccess:resultDict];
+        
+        if (successBool) {
+            success();
+        } else {
+            NSError *error = [LPErrorHelper makeResponseError:resultDict];
             failure(error);
-        }
-        else {
-            BOOL successBool = [[resultDict objectForKey:@"success"] boolValue];
-            if (successBool) {
-                success();
-            } else {
-                NSError *error = [LPErrorHelper makeResponseError:resultDict];
-                failure(error);
-            }
         }
     };
     
