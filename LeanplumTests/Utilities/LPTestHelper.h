@@ -26,5 +26,6 @@ extern NSInteger DISPATCH_WAIT_TIME;
 + (void)setup:(NSString *)applicationId withAccessKey:(NSString *)accessKey withDeviceId:(NSString *)deviceId;
 + (void)setupStub:(long)errorCode withFileName:(NSString *)filename;
 + (void)runWithApiHost:(NSString *)host withBlock:(void (^)(void))block;
++ (void)removeStubs;
 
 @end

@@ -52,7 +52,7 @@
     [LPTestHelper setup];
     [LPInternalState sharedState].calledStart = false;
     [LPInternalState sharedState].issuedStart = true;
-    [LPApiConstants sharedState].isMulti = NO;
+    [LPApiConstants sharedState].isMulti = YES;
 }
 
 - (void)tearDown {
@@ -60,6 +60,7 @@
     [LPInternalState sharedState].calledStart = false;
     [LPInternalState sharedState].issuedStart = false;
     [LPApiConstants sharedState].isMulti = YES;
+    [LPTestHelper removeStubs];
 }
 
 
@@ -110,21 +111,99 @@
 }
 
 /**
+ * Tests start API Call
+ */
+- (void) testStartApiCall
+{
+    sleep(5);
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    NSString *userId = @"john.smith";
+    
+    // Try to set user id and attributes.
+    [Leanplum startWithUserId:userId userAttributes:nil withSuccess:^{
+        [expectation fulfill];
+    } withFailure:^(NSError *error) {
+        NSLog(@"failure");
+    }];
+    
+    [[LPRequestQueue sharedInstance] sendRequests:^{
+        NSLog(@"test");
+    } failure:^(NSError * _Nonnull error) {
+        NSLog(@"failure");
+    }];
+    [self waitForExpectationsWithTimeout:40.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+    }];
+}
+
+
+/**
+ * Tests start API Call with UserId
+ */
+- (void) testStartApiCallWithInvalidUserId
+{
+    sleep(5);
+    [LPApiConstants sharedState].isMulti = NO;
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    
+    // Try to set user id and attributes.
+    [Leanplum startWithUserId:@"abc" userAttributes:nil withSuccess:^{
+        [expectation fulfill];
+    } withFailure:^(NSError *error) {
+        NSLog(@"failure");
+    }];
+    
+    [self waitForExpectationsWithTimeout:40.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+    }];
+}
+
+
+/**
+ * Tests start API Call with Caching Regisions
+ */
+- (void) testStartApiCallWithRegionsCaching
+{
+    sleep(5);
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
+    
+    [[LPCache sharedCache] clearCache];
+    // Try to set user id and attributes.
+    [Leanplum startWithUserId:DEVICE_ID userAttributes:nil withSuccess:^{
+        NSArray<LPRegion *> *regions = [[LPCache sharedCache] regions];
+        XCTAssertNotNil(regions);
+        [expectation fulfill];
+    } withFailure:^(NSError *error) {
+        NSLog(@"failure");
+    }];
+    
+    [[LPRequestQueue sharedInstance] sendRequests:^{
+        NSLog(@"test");
+    } failure:^(NSError * _Nonnull error) {
+        NSLog(@"failure");
+    }];
+    [self waitForExpectationsWithTimeout:40.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+    }];
+}
+/**
  * Tests whether setting user attributes and id works correctly.
  */
-- (void) testUserId
+/*- (void) testUserId
 {
-    sleep(1);
+    sleep(5);
+    [LPApiConstants sharedState].isMulti = NO;
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     // Try to set user id and attributes.
     [Leanplum setUserId:DEVICE_ID withUserAttributes:nil withSuccess:^{
         [expectation fulfill];
     } withFailure:^(NSError *error) {
-    }];
-    [[LPRequestQueue sharedInstance] sendRequests:^{
-        NSLog(@"test");
-    } failure:^(NSError * _Nonnull error) {
-        NSLog(@"failure");
     }];
 
     [self waitForExpectationsWithTimeout:20.0 handler:^(NSError *error) {
@@ -132,7 +211,7 @@
             NSLog(@"Error: %@", error);
         }
     }];
-}
+}*/
 
 /**
  * Tests whether setting user attributes and id works error correctly.
@@ -140,6 +219,7 @@
 - (void) testUserAttributesError
 {
     sleep(1);
+    [LPApiConstants sharedState].isMulti = NO;
     [LPTestHelper setupStub:400 withFileName:@"simple_error_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     NSDictionary *userAttributes = @{@"name": @"John Smith",
@@ -154,12 +234,8 @@
         XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);
         [expectation fulfill];
     }];
-    [[LPRequestQueue sharedInstance] sendRequests:^{
-        NSLog(@"test");
-    } failure:^(NSError * _Nonnull error) {
-        NSLog(@"failure");
-    }];
-    [self waitForExpectationsWithTimeout:40.0 handler:^(NSError *error) {
+    
+    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);
         }
@@ -202,13 +278,11 @@
  */
 - (void) testSetUserAttributesError
 {
-    sleep(1);
+    sleep(5);
+    [LPApiConstants sharedState].isMulti = NO;
     [LPTestHelper setupStub:400 withFileName:@"simple_error_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    NSDictionary *userAttributes = @{@"name": @"John Smith",
-                                     @"age": @42,
-                                     @"address": @"New York"
-                                     };
+    NSDictionary *userAttributes = nil;
 
     // Try to set user id and attributes.
     [Leanplum setUserAttributes:userAttributes withSuccess:^{
@@ -217,11 +291,7 @@
         XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);
         [expectation fulfill];
     }];
-    [[LPRequestQueue sharedInstance] sendRequests:^{
-        NSLog(@"test");
-    } failure:^(NSError * _Nonnull error) {
-        NSLog(@"failure");
-    }];
+
     [self waitForExpectationsWithTimeout:40.0 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);
@@ -229,13 +299,13 @@
     }];
 }
 
-
 /**
  * Tests whether setting user attributes and id works error correctly.
  */
 - (void) testSetUserAttributesValidationScalarError
 {
-    sleep(1);
+    sleep(5);
+    [LPApiConstants sharedState].isMulti = NO;
     [LPTestHelper setupStub:400 withFileName:@"simple_error_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     NSDictionary *userAttributes = @{@"name": @"John Smith",
@@ -249,11 +319,6 @@
         NSString *expectedMessage = @"Unknown error, please contact Leanplum.";
         XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);
         [expectation fulfill];
-    }];
-    [[LPRequestQueue sharedInstance] sendRequests:^{
-        NSLog(@"test");
-    } failure:^(NSError * _Nonnull error) {
-        NSLog(@"failure");
     }];
     [self waitForExpectationsWithTimeout:20.0 handler:^(NSError *error) {
         if (error) {
@@ -294,7 +359,7 @@
 /**
  * Tests whether setting user attributes and id works error correctly.
  */
-- (void) testSetUserError
+/*- (void) testSetUserError
 {
     sleep(1);
     [LPTestHelper setupStub:400 withFileName:@"simple_error_success_response.json"];
@@ -317,14 +382,14 @@
             NSLog(@"Error: %@", error);
         }
     }];
-}
+}*/
 
 /**
  * Tests whether setting user attributes and id works correctly with API Call
  */
 - (void) testSetUserApiCall
 {
-    sleep(1);
+    sleep(5);
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     NSString *userId = @"john.smith";
 
@@ -333,36 +398,6 @@
         [expectation fulfill];
     } withFailure:^(NSError *error) {
     }];
-    [[LPRequestQueue sharedInstance] sendRequests:^{
-        NSLog(@"test");
-    } failure:^(NSError * _Nonnull error) {
-        NSLog(@"failure");
-    }];
-    [self waitForExpectationsWithTimeout:40.0 handler:^(NSError *error) {
-        if (error) {
-            NSLog(@"Error: %@", error);
-        }
-    }];
-}
-
-/**
- * Tests start API Call
- */
-- (void) testStartApiCall
-{
-    sleep(1);
-    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    NSString *userId = @"john.smith";
-    
-    [LPApiConstants sharedState].isMulti = YES;
-    
-    // Try to set user id and attributes.
-    [Leanplum startWithUserId:userId userAttributes:nil withSuccess:^{
-        [expectation fulfill];
-    } withFailure:^(NSError *error) {
-        NSLog(@"failure");
-    }];
-    
     [[LPRequestQueue sharedInstance] sendRequests:^{
         NSLog(@"test");
     } failure:^(NSError * _Nonnull error) {
@@ -402,63 +437,6 @@
     }];
 }
 
-/**
- * Tests start API Call with UserId
- */
-- (void) testStartApiCallWithInvalidUserId
-{
-    sleep(1);
-    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    
-    // Try to set user id and attributes.
-    [Leanplum startWithUserId:@"abc" userAttributes:nil withSuccess:^{
-        [expectation fulfill];
-    } withFailure:^(NSError *error) {
-        NSLog(@"failure");
-    }];
-    
-    [[LPRequestQueue sharedInstance] sendRequests:^{
-        NSLog(@"test");
-    } failure:^(NSError * _Nonnull error) {
-        NSLog(@"failure");
-    }];
-    [self waitForExpectationsWithTimeout:40.0 handler:^(NSError *error) {
-        if (error) {
-            NSLog(@"Error: %@", error);
-        }
-    }];
-}
-
-
-/**
- * Tests start API Call with Caching Regisions
- */
-- (void) testStartApiCallWithRegionsCaching
-{
-    sleep(1);
-    XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    
-    [[LPCache sharedCache] clearCache];
-    // Try to set user id and attributes.
-    [Leanplum startWithUserId:DEVICE_ID userAttributes:nil withSuccess:^{
-        NSArray<LPRegion *> *regions = [[LPCache sharedCache] regions];
-        XCTAssertNotNil(regions);
-        [expectation fulfill];
-    } withFailure:^(NSError *error) {
-        NSLog(@"failure");
-    }];
-    
-    [[LPRequestQueue sharedInstance] sendRequests:^{
-        NSLog(@"test");
-    } failure:^(NSError * _Nonnull error) {
-        NSLog(@"failure");
-    }];
-    [self waitForExpectationsWithTimeout:40.0 handler:^(NSError *error) {
-        if (error) {
-            NSLog(@"Error: %@", error);
-        }
-    }];
-}
 
 /**
  * Tests sdk states.
@@ -468,9 +446,6 @@
     [LPApiConstants sharedState].isMulti = NO;
     [LPInternalState sharedState].calledStart = YES;
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    // This stub have to be removed when start command is successfully executed.
-    [LPTestHelper setupStub:200 withFileName:@"simple_start_response.json"];
-    // Remove stub after start is successful, so we don't capture requests from other methods.
     
     [LPPauseSessionApi validate_onResponse:^(NSDictionary *response) {
         [expectation fulfill];
@@ -485,9 +460,6 @@
     [LPApiConstants sharedState].isMulti = NO;
     [LPInternalState sharedState].calledStart = YES;
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    // This stub have to be removed when start command is successfully executed.
-    [LPTestHelper setupStub:200 withFileName:@"simple_start_response.json"];
-    // Remove stub after start is successful, so we don't capture requests from other methods.
     
     [LPPauseStateApi validate_onResponse:^(NSDictionary *response) {
         [expectation fulfill];
@@ -496,15 +468,12 @@
     [Leanplum pauseState];
     [self waitForExpectationsWithTimeout:20 handler:nil];
 }
-/*
+
 - (void)test_resume_session
 {
     [LPApiConstants sharedState].isMulti = NO;
     [LPInternalState sharedState].calledStart = YES;
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    // This stub have to be removed when start command is successfully executed.
-    [LPTestHelper setupStub:200 withFileName:@"simple_start_response.json"];
-    // Remove stub after start is successful, so we don't capture requests from other methods.
     
     [LPResumeSessionApi validate_onResponse:^(NSDictionary *response) {
         [expectation fulfill];
@@ -512,16 +481,13 @@
 
     [Leanplum resume];
     [self waitForExpectationsWithTimeout:20 handler:nil];
-}*/
-/*
+}
+
 - (void)test_resume_state
 {
     [LPApiConstants sharedState].isMulti = NO;
     [LPInternalState sharedState].calledStart = YES;
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    // This stub have to be removed when start command is successfully executed.
-    [LPTestHelper setupStub:200 withFileName:@"simple_start_response.json"];
-    // Remove stub after start is successful, so we don't capture requests from other methods.
     
     [LPResumeStateApi validate_onResponse:^(NSDictionary *response) {
         [expectation fulfill];
@@ -529,5 +495,5 @@
 
     [Leanplum resumeState];
     [self waitForExpectationsWithTimeout:20 handler:nil];
-}*/
+}
 @end

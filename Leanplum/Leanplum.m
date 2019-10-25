@@ -467,6 +467,8 @@ BOOL inForeground = NO;
         params[LP_PARAM_DEV_MODE] = @(YES);
     }
     
+    params[LP_PARAM_NEW_USER_ID] = userId;
+    
     NSDictionary *timeParams = [self initializePreLeanplumInstall];
     if (timeParams) {
         [params addEntriesFromDictionary:timeParams];
