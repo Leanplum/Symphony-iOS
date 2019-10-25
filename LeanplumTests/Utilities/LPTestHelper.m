@@ -49,10 +49,6 @@ NSInteger DISPATCH_WAIT_TIME = 4;
     }];
 }
 
-+ (void)removeStubs {
-    [OHHTTPStubs removeAllStubs];
-}
-
 + (void)runWithApiHost:(NSString *)host withBlock:(void (^)(void))block {
     NSString *oldHost = [[LPApiConstants sharedState] apiHostName];
     [LPApiConstants sharedState].apiHostName = host;

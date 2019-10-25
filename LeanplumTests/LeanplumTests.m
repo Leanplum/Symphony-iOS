@@ -60,7 +60,7 @@
     [LPInternalState sharedState].calledStart = false;
     [LPInternalState sharedState].issuedStart = false;
     [LPApiConstants sharedState].isMulti = YES;
-    [LPTestHelper removeStubs];
+    [OHHTTPStubs removeAllStubs];
 }
 
 
