@@ -2,6 +2,7 @@ language: objective-c
 osx_image: xcode11
 xcode_workspace: Leanplum.xcworkspace
 xcode_scheme: Leanplum
+xcrun simctl lis
 xcode_destination: platform=iOS Simulator,OS=12.0,name=iPhone X
 cache: cocoapods
 podfile: Podfile
