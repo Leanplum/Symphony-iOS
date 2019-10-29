@@ -594,7 +594,7 @@ BOOL inForeground = NO;
 
 + (void)resume
 {
-    [LPResumeSessionApi resumeSessionWithParameters:nil success:^{
+    [LPResumeSessionApi resumeSessionWithParameters:@{} success:^{
         NSLog(@"LPResumeSessionApi success");
     } failure:^(NSError *error) {
         NSLog(@"LPResumeSessionApi failure %@", error);
@@ -636,7 +636,11 @@ BOOL inForeground = NO;
 
 + (void)resumeStateInternal
 {
-    [LPResumeStateApi resumeStateWithParameters:nil success:nil failure:nil];
+    [LPResumeStateApi resumeStateWithParameters:@{} success:^{
+        NSLog(@"resumeStateWithParameters API successful ");
+    } failure:^(NSError *error) {
+        NSLog(@"resumeStateWithParameters %@", error);
+    }];
 }
 
 // On first run with Leanplum, determine if this app was previously installed without Leanplum.
