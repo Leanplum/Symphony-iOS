@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -163,6 +163,7 @@
 		99AEB2AB07AAA8F636EB66AF /* Pods_Leanplum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECABFFC13BC4491EEC4088CE /* Pods_Leanplum.framework */; };
 		A801AFFA22DE8ADB007019F3 /* LPApiUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = A801AFF822DE8ADB007019F3 /* LPApiUtils.h */; };
 		A801AFFB22DE8ADB007019F3 /* LPApiUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A801AFF922DE8ADB007019F3 /* LPApiUtils.m */; };
+		A8288863236778D600CFC2EF /* LPSnapshotSampleTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A8288862236778D600CFC2EF /* LPSnapshotSampleTest.m */; };
 		A82BD0E9229D0B5100FE1DA2 /* LPLogApi.h in Headers */ = {isa = PBXBuildFile; fileRef = A82BD0E7229D0B5100FE1DA2 /* LPLogApi.h */; };
 		A82BD0EA229D0B5100FE1DA2 /* LPLogApi.m in Sources */ = {isa = PBXBuildFile; fileRef = A82BD0E8229D0B5100FE1DA2 /* LPLogApi.m */; };
 		A82BD0EC229D0B6D00FE1DA2 /* LPLogApiTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A82BD0EB229D0B6D00FE1DA2 /* LPLogApiTest.m */; };
@@ -533,6 +534,7 @@
 		8526ADCFCAA65F52EEA62532 /* Pods-LeanplumTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeanplumTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LeanplumTests/Pods-LeanplumTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A801AFF822DE8ADB007019F3 /* LPApiUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPApiUtils.h; sourceTree = "<group>"; };
 		A801AFF922DE8ADB007019F3 /* LPApiUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPApiUtils.m; sourceTree = "<group>"; };
+		A8288862236778D600CFC2EF /* LPSnapshotSampleTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPSnapshotSampleTest.m; sourceTree = "<group>"; };
 		A82BD0E7229D0B5100FE1DA2 /* LPLogApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPLogApi.h; sourceTree = "<group>"; };
 		A82BD0E8229D0B5100FE1DA2 /* LPLogApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPLogApi.m; sourceTree = "<group>"; };
 		A82BD0EB229D0B6D00FE1DA2 /* LPLogApiTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPLogApiTest.m; sourceTree = "<group>"; };
@@ -820,6 +822,14 @@
 			path = API;
 			sourceTree = "<group>";
 		};
+		A828885F2367789800CFC2EF /* SnapshotTests */ = {
+			isa = PBXGroup;
+			children = (
+				A8288862236778D600CFC2EF /* LPSnapshotSampleTest.m */,
+			);
+			path = SnapshotTests;
+			sourceTree = "<group>";
+		};
 		A8504656224C0A7900BACA81 = {
 			isa = PBXGroup;
 			children = (
@@ -869,6 +879,7 @@
 		A850466D224C0A7900BACA81 /* LeanplumTests */ = {
 			isa = PBXGroup;
 			children = (
+				A828885F2367789800CFC2EF /* SnapshotTests */,
 				B48F6F63234C6DA60008771B /* Extensions */,
 				B43E213A232A2CEF00C6FA27 /* Manager */,
 				B4B5C70D2303E26C00C76FCF /* Cache */,
@@ -1644,15 +1655,12 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-LeanplumTests/Pods-LeanplumTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/OCMock/OCMock.framework",
-				"${BUILT_PRODUCTS_DIR}/OHHTTPStubs/OHHTTPStubs.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LeanplumTests/Pods-LeanplumTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OCMock.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OHHTTPStubs.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LeanplumTests/Pods-LeanplumTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1825,6 +1833,7 @@
 				B430A28D224C23CE00DC8140 /* LPConfirmValues.m in Sources */,
 				B430A25B224C22A800DC8140 /* LPCenterPopup.m in Sources */,
 				65C5BDC9228B6162003EE334 /* LPRegisterDeviceApiTests.m in Sources */,
+				A8288863236778D600CFC2EF /* LPSnapshotSampleTest.m in Sources */,
 				B430A297224C240900DC8140 /* LPPurpleCancelAction.m in Sources */,
 				B4E251B422D54E8D00CEECAF /* LPFileManagerTest.m in Sources */,
 				B430A26F224C232300DC8140 /* LPPurpleAcceptButton.m in Sources */,
