@@ -7,6 +7,7 @@ target 'Leanplum' do
   
   target 'LeanplumTests' do
       inherit! :search_paths
+      pod 'iOSSnapshotTestCase'
       pod 'OCMock'
       pod 'OHHTTPStubs'
   end
