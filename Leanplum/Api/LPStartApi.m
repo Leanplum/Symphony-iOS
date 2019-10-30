@@ -16,6 +16,9 @@
 #import "LPJSON.h"
 #import "LPStartResponse.h"
 #import "LPApiUtils.h"
+#import "LPRequest.h"
+#import "LPRequestQueue.h"
+#import "LPResultSuccess.h"
 
 @implementation LPStartApi
 
@@ -31,7 +34,7 @@
             failure(error);
         }
         else {
-            BOOL successBool = [[resultDict objectForKey:@"success"] boolValue];
+            BOOL successBool = [LPResultSuccess checkSuccess:resultDict];
             if (successBool) {
                 success(startResponse);
             } else {
@@ -47,12 +50,21 @@
     if (parameters != nil) {
         params = [parameters mutableCopy];
     }
-    params[LP_PARAM_DEVICE_ID] = [LPAPIConfig sharedConfig].deviceId;
-    LPWSManager *wsManager = [[LPWSManager alloc] init];
-    [wsManager sendPOSTWebService:[LPApiMethods getApiMethod:LPApiMethodStart]
-                       withParams:params
-                     successBlock:successResponse
-                     failureBlock:failureResponse];
+    params[LP_PARAM_DEVICE_ID] = [LPAPIConfig sharedConfig].deviceId;    
+    
+    if ([LPApiConstants sharedState].isMulti) {
+        LPRequest *request = [[LPRequest alloc] initWithApiMethod:LPApiMethodStart
+                                                           params:params
+                                                          success:successResponse
+                                                          failure:failureResponse];
+        [[LPRequestQueue sharedInstance] enqueue:request];
+    } else {
+        LPWSManager *wsManager = [[LPWSManager alloc] init];
+        [wsManager sendPOSTWebService:[LPApiMethods getApiMethod:LPApiMethodStart]
+                           withParams:params
+                         successBlock:successResponse
+                         failureBlock:failureResponse];
+    }
     
 }
 @end

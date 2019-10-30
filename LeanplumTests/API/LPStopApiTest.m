@@ -15,6 +15,7 @@
 #import "LPTestHelper.h"
 #import "LPApiConstants.h"
 #import "LPRequestQueue.h"
+#import "LPInternalState.h"
 
 @interface LPStopApiTest : XCTestCase
 
@@ -52,6 +53,7 @@
     sleep(1);
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     [LPApiConstants sharedState].isMulti = YES;
+    [LPInternalState sharedState].calledStart = YES;
     [LPStopApi stopWithParameters:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {

@@ -13,6 +13,8 @@
 #import "LPStartApi.h"
 #import "LPPauseSessionApi.h"
 #import "LPPauseStateApi.h"
+#import "LPResumeSessionApi.h"
+#import "LPResumeStateApi.h"
 #import "LPApiConstants.h"
 #import "LPUtils.h"
 #import "LPInternalState.h"
@@ -23,8 +25,11 @@
 #import "LPPushUtils.h"
 #import "LPActionManager.h"
 #import "LPSwizzle.h"
+#import "NSExtensionContext+Leanplum.h"
 
 __weak static NSExtensionContext *_extensionContext = nil;
+
+BOOL inForeground = NO;
 
 @implementation Leanplum
 
@@ -294,6 +299,23 @@ __weak static NSExtensionContext *_extensionContext = nil;
     }
 }
 
++ (void)onStartResponse:(LeanplumStartBlock)block
+{
+    if (!block) {
+        [self throwError:@"[Leanplum onStartResponse:] Nil block parameter provided."];
+        return;
+    }
+
+    if ([LPInternalState sharedState].hasStarted) {
+        block([LPInternalState sharedState].startSuccessful);
+    } else {
+        if (![LPInternalState sharedState].startBlocks) {
+            [LPInternalState sharedState].startBlocks = [NSMutableArray array];
+        }
+        [[LPInternalState sharedState].startBlocks addObject:[block copy]];
+    }
+}
+
 + (BOOL)hasStarted
 {
     return [LPInternalState sharedState].hasStarted;
@@ -313,8 +335,10 @@ __weak static NSExtensionContext *_extensionContext = nil;
 + (void)startWithResponseHandler:(LeanplumStartBlock)response
 {
     [self startWithUserId:nil userAttributes:nil withSuccess:^{
+        [self triggerStartResponse:YES];
         response(true);
     } withFailure:^(NSError *error){
+        [self triggerStartResponse:NO];
         response(false);
     }];
 }
@@ -443,6 +467,8 @@ __weak static NSExtensionContext *_extensionContext = nil;
         params[LP_PARAM_DEV_MODE] = @(YES);
     }
     
+    params[LP_PARAM_NEW_USER_ID] = userId;
+    
     NSDictionary *timeParams = [self initializePreLeanplumInstall];
     if (timeParams) {
         [params addEntriesFromDictionary:timeParams];
@@ -475,6 +501,39 @@ __weak static NSExtensionContext *_extensionContext = nil;
                     }
                 }];
     
+    // Resume.
+    [[NSNotificationCenter defaultCenter]
+        addObserverForName:UIApplicationWillEnterForegroundNotification
+                    object:nil
+                     queue:nil
+                usingBlock:^(NSNotification *notification) {
+                    if ([[UIApplication sharedApplication]
+                            respondsToSelector:@selector(currentUserNotificationSettings)]) {
+                        [[LPActionManager sharedManager] sendUserNotificationSettingsIfChanged:
+                                                             [[UIApplication sharedApplication]
+                                                                 currentUserNotificationSettings]];
+                    }
+                    [Leanplum resume];
+                    if (startedInBackground && !inForeground) {
+                        inForeground = YES;
+                        // ToDo: These are message filters need to be implemented.
+                        /*[self maybePerformActions:@[@"start", @"resume"]
+                                    withEventName:nil
+                                       withFilter:kLeanplumActionFilterAll
+                                    fromMessageId:nil
+                             withContextualValues:nil];*/
+                        //ToDo: Attribute changes
+                        //[self recordAttributeChanges];
+                    } else {
+                        // ToDo: These are message filters need to be implemented.
+                        /*[self maybePerformActions:@[@"resume"]
+                                    withEventName:nil
+                                       withFilter:kLeanplumActionFilterAll
+                                    fromMessageId:nil
+                             withContextualValues:nil];*/
+                    }
+                }];
+
     // Extension close.
     if (_extensionContext) {
         [LPSwizzle
@@ -503,6 +562,14 @@ __weak static NSExtensionContext *_extensionContext = nil;
     [[LPInternalState sharedState].startIssuedBlocks removeAllObjects];
 }
 
++ (void)triggerStartResponse:(BOOL)success
+{
+    for (LeanplumStartBlock block in [LPInternalState sharedState].startBlocks.copy) {
+        block(success);
+    }
+    [[LPInternalState sharedState].startBlocks removeAllObjects];
+}
+
 + (void)pause
 {
     UIApplication *application = [UIApplication sharedApplication];
@@ -527,7 +594,11 @@ __weak static NSExtensionContext *_extensionContext = nil;
 
 + (void)resume
 {
-    //ToDo: Implement the resume state management
+    [LPResumeSessionApi resumeSessionWithParameters:@{} success:^{
+        NSLog(@"LPResumeSessionApi success");
+    } failure:^(NSError *error) {
+        NSLog(@"LPResumeSessionApi failure %@", error);
+    }];
 }
 
 + (void)pauseState
@@ -548,6 +619,27 @@ __weak static NSExtensionContext *_extensionContext = nil;
         NSLog(@"pausedStateInternal API successful ");
     } failure:^(NSError *error) {
         NSLog(@"pausedStateInternalFailure %@", error);
+    }];
+}
+
++ (void)resumeState
+{
+    if (![LPInternalState sharedState].calledStart) {
+        [self throwError:@"You cannot call resumeState before calling start"];
+        return;
+    }
+
+    [self onStartIssued:^{
+        [self resumeStateInternal];
+    }];
+}
+
++ (void)resumeStateInternal
+{
+    [LPResumeStateApi resumeStateWithParameters:@{} success:^{
+        NSLog(@"resumeStateWithParameters API successful ");
+    } failure:^(NSError *error) {
+        NSLog(@"resumeStateWithParameters %@", error);
     }];
 }
 

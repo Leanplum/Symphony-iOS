@@ -21,6 +21,7 @@
 
 - (id)init {
     if (self = [super init]) {
+        _startBlocks = nil;
         _calledStart = NO;
         _hasStarted = NO;
         _hasStartedAndRegisteredAsDeveloper = NO;

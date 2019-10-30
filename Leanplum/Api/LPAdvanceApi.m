@@ -16,6 +16,7 @@
 #import "LPJSON.h"
 #import "LPRequestQueue.h"
 #import "LPApiUtils.h"
+#import "LPResultSuccess.h"
 
 @implementation LPAdvanceApi
 
@@ -30,7 +31,7 @@
             failure(error);
         }
         else {
-            BOOL successBool = [[resultDict objectForKey:@"success"] boolValue];
+            BOOL successBool = [LPResultSuccess checkSuccess:resultDict];
             if (successBool) {
                 success();
             } else {

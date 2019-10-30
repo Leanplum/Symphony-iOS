@@ -10,7 +10,7 @@
 
 @interface LPInternalState : NSObject
 
-@property(strong, nonatomic) NSMutableArray *startIssuedBlocks;
+@property(strong, nonatomic) NSMutableArray *startIssuedBlocks, *startBlocks;
 @property(assign, nonatomic) BOOL calledStart, hasStarted, hasStartedAndRegisteredAsDeveloper,
 startSuccessful, issuedStart;
 @property(strong, nonatomic) NSString *appVersion;
