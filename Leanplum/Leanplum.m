@@ -537,10 +537,10 @@ BOOL inForeground = NO;
 
     // Stop.
     [[NSNotificationCenter defaultCenter]
-     addObserverForName:UIApplicationWillTerminateNotification
-     object:nil
-     queue:nil
-     usingBlock:^(NSNotification *notification) {
+        addObserverForName:UIApplicationWillTerminateNotification
+        object:nil
+        queue:nil
+        usingBlock:^(NSNotification *notification) {
         //ToDo: E2-2071, we need to add a proper flag for multi and non multi and use the below value.
         /*BOOL exitOnSuspend = [[[[NSBundle mainBundle] infoDictionary]
                        objectForKey:@"UIApplicationExitsOnSuspend"] boolValue];*/
