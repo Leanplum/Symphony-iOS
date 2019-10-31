@@ -11,6 +11,7 @@
 #import "Leanplum.h"
 #import "LPUserApi.h"
 #import "LPStartApi.h"
+#import "LPStopApi.h"
 #import "LPPauseSessionApi.h"
 #import "LPPauseStateApi.h"
 #import "LPResumeSessionApi.h"
@@ -534,6 +535,22 @@ BOOL inForeground = NO;
                     }
                 }];
 
+    // Stop.
+    [[NSNotificationCenter defaultCenter]
+        addObserverForName:UIApplicationWillTerminateNotification
+        object:nil
+        queue:nil
+        usingBlock:^(NSNotification *notification) {
+        //ToDo: E2-2071, we need to add a proper flag for multi and non multi and use the below value.
+        /*BOOL exitOnSuspend = [[[[NSBundle mainBundle] infoDictionary]
+                       objectForKey:@"UIApplicationExitsOnSuspend"] boolValue];*/
+        [LPStopApi stopWithParameters:@{} success:^{
+            NSLog(@"LPStopApi successful");
+        } failure:^(NSError *error) {
+            NSLog(@"LPStopApi Error %@", error);
+        }];
+    }];
+    
     // Extension close.
     if (_extensionContext) {
         [LPSwizzle
