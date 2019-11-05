@@ -561,6 +561,7 @@ BOOL inForeground = NO;
                 NSLog(@"Batch Requests failed to complete");
             }
          }];
+    }];
         
     // Extension close.
     if (_extensionContext) {
