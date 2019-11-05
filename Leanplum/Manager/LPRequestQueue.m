@@ -82,9 +82,9 @@
         }
         if (requests.count <= maxCount) {
             [[LPRequestQueue sharedInstance] sendRequests:^{
-                NSLog(@"success");
+                NSLog(@"LPRequestQueue successfully processed");
             } failure:^(NSError * _Nonnull error) {
-                NSLog(@"failure");
+                NSLog(@"LPRequestQueue failure %@", error);
             }];
         }
         [LPRequestManager deleteRequestsWithLimit:maxCount];
