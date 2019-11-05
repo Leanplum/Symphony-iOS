@@ -555,13 +555,14 @@ BOOL inForeground = NO;
     
     //Batch calls every 15 mins.
     [NSTimer scheduledTimerWithTimeInterval:HEARTBEAT_INTERVAL repeats:YES block:^(NSTimer * _Nonnull timer) {
-            [[LPRequestQueue sharedInstance] sendRequests:^{
-                NSLog(@"Batch Requests successfully complete");
-            } failure:^(NSError * _Nonnull error) {
-                NSLog(@"Batch Requests failed to complete");
-            }
-         }];
+        [[LPRequestQueue sharedInstance] sendRequests:^{
+             NSLog(@"Batch Requests successfully complete");
+        } failure:^(NSError * _Nonnull error) {
+             NSLog(@"Batch Requests successfully complete");
+        }];
     }];
+    
+
         
     // Extension close.
     if (_extensionContext) {
