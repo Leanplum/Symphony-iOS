@@ -49,8 +49,8 @@
 
 - (void)sendRequests:(void(^)(void))success failure:(void(^)(NSError *error))failure {
     //get current count of requests
-    NSInteger maxCount = [LPRequestManager count];
-    if (maxCount == 0) {
+    NSInteger totalRequestCount = [LPRequestManager count];
+    if (totalRequestCount == 0) {
         return;
     }
     //Todo: currently send all requests.
@@ -80,14 +80,14 @@
                 }
             }
         }
-        if (requests.count <= maxCount) {
+
+        if (totalRequestCount >= requests.count) {
             [[LPRequestQueue sharedInstance] sendRequests:^{
                 NSLog(@"LPRequestQueue successfully processed");
             } failure:^(NSError * _Nonnull error) {
                 NSLog(@"LPRequestQueue failure %@", error);
             }];
         }
-        [LPRequestManager deleteRequestsWithLimit:maxCount];
         if (success) {
             success();
         }
