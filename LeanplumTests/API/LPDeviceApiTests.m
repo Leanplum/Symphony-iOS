@@ -26,12 +26,10 @@
 - (void)setUp {
     [super setUp];
     [LPTestHelper setup];
-    [LPApiConstants sharedState].isMulti = NO;
 }
 
 - (void)tearDown {
     [super tearDown];
-    [LPApiConstants sharedState].isMulti = YES;
     [OHHTTPStubs removeAllStubs];
 }
 
@@ -52,9 +50,7 @@
 - (void)testDeviceApiWithMulti {
     sleep(1);
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPApiConstants sharedState].isMulti = YES;
     [LPDeviceApi setDeviceId:[LPAPIConfig sharedConfig].deviceId withDeviceAttributes:nil success:^ {
-        [LPApiConstants sharedState].isMulti = NO;
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
@@ -63,7 +59,7 @@
     } failure:^(NSError * _Nonnull error) {
         NSLog(@"failure");
     }];
-   [LPApiConstants sharedState].isMulti = NO;
+    
     [self waitForExpectationsWithTimeout:20.0 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);

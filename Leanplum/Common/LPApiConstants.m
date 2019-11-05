@@ -34,7 +34,6 @@
         _loggingEnabled = NO;
         _canDownloadContentMidSessionInProduction = NO;
         _isTestMode = NO;
-        _isMulti = YES;
         _isInPermanentFailureState = NO;
         _verboseLoggingInDevelopmentMode = NO;
         _networkActivityIndicatorEnabled = YES;

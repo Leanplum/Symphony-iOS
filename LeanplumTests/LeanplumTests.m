@@ -52,14 +52,12 @@
     [LPTestHelper setup];
     [LPInternalState sharedState].calledStart = false;
     [LPInternalState sharedState].issuedStart = true;
-    [LPApiConstants sharedState].isMulti = YES;
 }
 
 - (void)tearDown {
     [super tearDown];
     [LPInternalState sharedState].calledStart = false;
     [LPInternalState sharedState].issuedStart = false;
-    [LPApiConstants sharedState].isMulti = YES;
     [OHHTTPStubs removeAllStubs];
 }
 
@@ -145,7 +143,6 @@
 - (void) testStartApiCallWithInvalidUserId
 {
     sleep(5);
-    [LPApiConstants sharedState].isMulti = NO;
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     
     // Try to set user id and attributes.
@@ -219,7 +216,6 @@
 - (void) testUserAttributesError
 {
     sleep(1);
-    [LPApiConstants sharedState].isMulti = NO;
     [LPTestHelper setupStub:400 withFileName:@"simple_error_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     NSDictionary *userAttributes = @{@"name": @"John Smith",
@@ -279,7 +275,6 @@
 - (void) testSetUserAttributesError
 {
     sleep(5);
-    [LPApiConstants sharedState].isMulti = NO;
     [LPTestHelper setupStub:400 withFileName:@"simple_error_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     NSDictionary *userAttributes = nil;
@@ -305,7 +300,6 @@
 - (void) testSetUserAttributesValidationScalarError
 {
     sleep(5);
-    [LPApiConstants sharedState].isMulti = NO;
     [LPTestHelper setupStub:400 withFileName:@"simple_error_success_response.json"];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     NSDictionary *userAttributes = @{@"name": @"John Smith",

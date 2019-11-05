@@ -34,7 +34,6 @@
 }
 
 - (void)testStartApiWithRegionsWithParameters {
-    [LPApiConstants sharedState].isMulti = NO;
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     NSDictionary *params = @{ @"testKey": @"testValue" };
     [LPStartApi startWithParameters:params success:^(LPStartResponse *response) {
@@ -43,6 +42,7 @@
         [expectation fulfill];
     } failure:^(NSError *error) {
     }];
+    
 
     [self waitForExpectationsWithTimeout:20.0 handler:^(NSError *error) {
         if (error) {
@@ -55,7 +55,6 @@
     sleep(1);
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     NSDictionary *params = @{ @"testKey": @"testValue" };
-    [LPApiConstants sharedState].isMulti = NO;
     [LPStartApi startWithParameters:params success:^(LPStartResponse *response) {
         XCTAssertNotNil(response);
         XCTAssertNotNil(response.regions);

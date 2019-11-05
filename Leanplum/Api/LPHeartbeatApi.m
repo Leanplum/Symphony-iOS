@@ -22,7 +22,8 @@
 
 + (void) heartbeatWithParameters:(NSDictionary *)parameters
                          success:(void (^)(void))success
-                         failure:(void (^)(NSError *error))failure {
+                         failure:(void (^)(NSError *error))failure
+                         isMulti:(BOOL)isMulti {
     void (^successResponse) (NSDictionary *) = ^(NSDictionary *response) {
         NSError *error = nil;
         NSDictionary *resultDict = [LPApiUtils responseDictionaryFromResponse:response];
@@ -49,7 +50,7 @@
     }
     params[LP_PARAM_DEVICE_ID] = [LPAPIConfig sharedConfig].deviceId;
 
-    if ([LPApiConstants sharedState].isMulti) {
+    if (isMulti) {
         LPRequest *request = [[LPRequest alloc] initWithApiMethod:LPApiMethodHeartbeat
                                                            params:params
                                                           success:successResponse

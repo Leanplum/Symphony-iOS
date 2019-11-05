@@ -13,6 +13,7 @@
 
 + (void) startWithParameters:(NSDictionary *)parameters
                     success:(void (^)(LPStartResponse *))success
-                    failure:(void (^)(NSError *error))failure;
+                    failure:(void (^)(NSError *error))failure
+                    isMulti:(BOOL)isMulti;
 
 @end

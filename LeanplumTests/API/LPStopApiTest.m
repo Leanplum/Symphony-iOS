@@ -26,12 +26,10 @@
 - (void)setUp {
     [super setUp];
     [LPTestHelper setup];
-    [LPApiConstants sharedState].isMulti = NO;
 }
 
 - (void)tearDown {
     [super tearDown];
-    [LPApiConstants sharedState].isMulti = YES;
     [OHHTTPStubs removeAllStubs];
 }
 
@@ -52,7 +50,6 @@
 - (void)testStopApiWithMulti {
     sleep(1);
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPApiConstants sharedState].isMulti = YES;
     [LPInternalState sharedState].calledStart = YES;
     [LPStopApi stopWithParameters:nil success:^ {
         [expectation fulfill];

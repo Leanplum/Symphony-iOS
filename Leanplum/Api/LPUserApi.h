@@ -13,7 +13,8 @@
 + (void) setUserId:(NSString *)userId
 withUserAttributes:(NSDictionary *)attributes
            success:(void (^)(void))success
-           failure:(void (^)(NSError *error))failure;
+           failure:(void (^)(NSError *error))failure
+            isMuti:(BOOL)isMulti;
 
 @end
 

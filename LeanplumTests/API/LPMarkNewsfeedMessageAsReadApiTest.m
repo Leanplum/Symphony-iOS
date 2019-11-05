@@ -25,12 +25,10 @@
 - (void)setUp {
     [super setUp];
     [LPTestHelper setup];
-    [LPApiConstants sharedState].isMulti = NO;
 }
 
 - (void)tearDown {
     [super tearDown];
-    [LPApiConstants sharedState].isMulti = YES;
     [OHHTTPStubs removeAllStubs];
 }
 
