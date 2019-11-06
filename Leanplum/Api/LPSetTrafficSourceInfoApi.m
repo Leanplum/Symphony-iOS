@@ -25,7 +25,6 @@
                               failure:(void (^)(NSError *error))failure
                               isMulti:(BOOL)isMulti{
     void (^successResponse) (NSDictionary *) = ^(NSDictionary *response) {
-        NSError *error = nil;
         
         NSDictionary *resultDict = [LPApiUtils responseDictionaryFromResponse:response];
         BOOL successBool = [LPResultSuccess checkSuccess:resultDict];

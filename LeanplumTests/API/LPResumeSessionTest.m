@@ -37,7 +37,7 @@
     [LPResumeSessionApi resumeSessionWithParameters:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
-    }];
+    } isMulti: NO];
     
     [self waitForExpectationsWithTimeout:30.0 handler:^(NSError *error) {
         if (error) {
@@ -57,7 +57,7 @@
         NSLog(@"success");
     } failure:^(NSError * _Nonnull error) {
         NSLog(@"failure");
-    }];
+    } isMulti: NO];
 
     [self waitForExpectationsWithTimeout:30.0 handler:^(NSError *error) {
         if (error) {
@@ -72,7 +72,7 @@
     [LPResumeSessionApi resumeSessionWithParameters:attributes success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
-    }];
+    } isMulti: NO];
     
     [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
         if (error) {
@@ -90,7 +90,7 @@
         NSString *expected = @"At least one of deviceId or userId is required.";
         XCTAssertEqualObjects([error userInfo][NSLocalizedDescriptionKey], expected);
         [expectation fulfill];
-    }];
+    } isMulti: NO];
     
     [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
         if (error) {
@@ -106,7 +106,7 @@
     } failure:^(NSError *error) {
         NSString *expected = @"A server with the specified hostname could not be found.";
         [expectation fulfill];
-    }];
+    } isMulti: NO];
     
     [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
         if (error) {
@@ -121,7 +121,7 @@
     [LPResumeSessionApi resumeSessionWithParameters:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
-    }];
+    } isMulti: NO];
     
     [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
         if (error) {
@@ -137,7 +137,7 @@
     [LPResumeSessionApi resumeSessionWithParameters:attributes success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
-    }];
+    } isMulti: NO];
     
     [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
         if (error) {
@@ -154,7 +154,7 @@
         NSString *expectedMessage = @"This is a test error message";
         XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);
         [expectation fulfill];
-    }];
+    } isMulti: NO];
     
     [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
         if (error) {
@@ -171,7 +171,7 @@
         NSString *expectedMessage = @"Unknown error, please contact Leanplum.";
         XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);
         [expectation fulfill];
-    }];
+    } isMulti: NO];
     
     [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
         if (error) {

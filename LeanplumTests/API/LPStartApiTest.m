@@ -41,7 +41,7 @@
         XCTAssertNotNil(response.regions);
         [expectation fulfill];
     } failure:^(NSError *error) {
-    }];
+    } isMulti: NO];
     
 
     [self waitForExpectationsWithTimeout:20.0 handler:^(NSError *error) {
@@ -61,7 +61,7 @@
         [expectation fulfill];
     } failure:^(NSError *error) {
         NSLog(@"%@", error);
-    }];
+    } isMulti: YES];
     [[LPRequestQueue sharedInstance] sendRequests:^{
         NSLog(@"success");
     } failure:^(NSError * _Nonnull error) {
