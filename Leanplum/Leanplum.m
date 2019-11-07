@@ -12,10 +12,12 @@
 #import "LPUserApi.h"
 #import "LPStartApi.h"
 #import "LPStopApi.h"
+#import "LPHeartbeatApi.h"
 #import "LPPauseSessionApi.h"
 #import "LPPauseStateApi.h"
 #import "LPResumeSessionApi.h"
 #import "LPResumeStateApi.h"
+#import "LPRequestQueue.h"
 #import "LPApiConstants.h"
 #import "LPUtils.h"
 #import "LPInternalState.h"
@@ -551,6 +553,17 @@ BOOL inForeground = NO;
         }];
     }];
     
+    //Batch calls every 15 mins.
+    [NSTimer scheduledTimerWithTimeInterval:HEARTBEAT_INTERVAL repeats:YES block:^(NSTimer * _Nonnull timer) {
+        [[LPRequestQueue sharedInstance] sendRequests:^{
+             NSLog(@"Batch Requests successfully complete");
+        } failure:^(NSError * _Nonnull error) {
+             NSLog(@"Batch Requests successfully complete");
+        }];
+    }];
+    
+
+        
     // Extension close.
     if (_extensionContext) {
         [LPSwizzle
