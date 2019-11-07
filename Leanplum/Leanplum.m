@@ -488,7 +488,7 @@ BOOL inForeground = NO;
         success();
     } failure:^(NSError *error) {
         failure(error);
-    } isMulti:YES];
+    } isMulti:NO];
     
     // Pause.
     [[NSNotificationCenter defaultCenter]

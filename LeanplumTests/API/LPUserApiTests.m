@@ -72,7 +72,7 @@
     [LPUserApi setUserId:DEVICE_ID withUserAttributes:userAttributes success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
-    } isMuti:YES];
+    } isMuti:NO];
     
     [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
         if (error) {

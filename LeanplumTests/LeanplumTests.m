@@ -144,10 +144,10 @@
 {
     sleep(5);
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    
+    [[LPCache sharedCache] clearCache];
     // Try to set user id and attributes.
     [Leanplum startWithUserId:@"abc" userAttributes:nil withSuccess:^{
-        [expectation fulfill];
+         [expectation fulfill];
     } withFailure:^(NSError *error) {
         NSLog(@"failure");
     }];
@@ -178,11 +178,6 @@
         NSLog(@"failure");
     }];
     
-    [[LPRequestQueue sharedInstance] sendRequests:^{
-        NSLog(@"test");
-    } failure:^(NSError * _Nonnull error) {
-        NSLog(@"failure");
-    }];
     [self waitForExpectationsWithTimeout:40.0 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);
@@ -256,11 +251,7 @@
         [expectation fulfill];
     } withFailure:^(NSError *error) {
     }];
-    [[LPRequestQueue sharedInstance] sendRequests:^{
-        NSLog(@"test");
-    } failure:^(NSError * _Nonnull error) {
-        NSLog(@"failure");
-    }];
+
     [self waitForExpectationsWithTimeout:40.0 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);
@@ -338,11 +329,7 @@
         [expectation fulfill];
     } withFailure:^(NSError *error) {
     }];
-    [[LPRequestQueue sharedInstance] sendRequests:^{
-        NSLog(@"test");
-    } failure:^(NSError * _Nonnull error) {
-        NSLog(@"failure");
-    }];
+
     [self waitForExpectationsWithTimeout:20.0 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);
@@ -392,11 +379,7 @@
         [expectation fulfill];
     } withFailure:^(NSError *error) {
     }];
-    [[LPRequestQueue sharedInstance] sendRequests:^{
-        NSLog(@"test");
-    } failure:^(NSError * _Nonnull error) {
-        NSLog(@"failure");
-    }];
+
     [self waitForExpectationsWithTimeout:40.0 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);
@@ -419,11 +402,6 @@
         NSLog(@"failure");
     }];
     
-    [[LPRequestQueue sharedInstance] sendRequests:^{
-        NSLog(@"test");
-    } failure:^(NSError * _Nonnull error) {
-        NSLog(@"failure");
-    }];
     [self waitForExpectationsWithTimeout:40.0 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);
