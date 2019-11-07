@@ -32,7 +32,7 @@ static void (^responseSuccess)(NSDictionary *);
 
 + (void)swizzle_pauseSessionWithParameters:(NSMutableDictionary *)params success:(void (^)(NSDictionary *))success failure:(void (^)(NSError *))failure isMulti:(_Bool)isMulti {    NSDictionary *successDict = @{@"success" : @1};
     responseSuccess(successDict);
-    return [self swizzle_pauseSessionWithParameters:params success:success failure:failure];
+    return [self swizzle_pauseSessionWithParameters:params success:success failure:failure isMulti:NO];
 }
 
 @end

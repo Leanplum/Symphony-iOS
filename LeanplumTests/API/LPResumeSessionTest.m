@@ -52,12 +52,12 @@
     [LPResumeSessionApi resumeSessionWithParameters:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
-    }];
+    } isMulti:YES];
     [[LPRequestQueue sharedInstance] sendRequests:^{
         NSLog(@"success");
     } failure:^(NSError * _Nonnull error) {
         NSLog(@"failure");
-    } isMulti: NO];
+    }];
 
     [self waitForExpectationsWithTimeout:30.0 handler:^(NSError *error) {
         if (error) {

@@ -18,8 +18,8 @@ static void (^responseSuccess)(NSDictionary *);
 {
     NSError *error;
     
-    bool success = [LPSwizzle swizzleClassMethod:@selector(resumeStateWithParameters:success:failure:)
-                             withClassMethod:@selector(swizzle_resumeStateWithParameters:success:failure:)
+    bool success = [LPSwizzle swizzleClassMethod:@selector(resumeStateWithParameters:success:failure:isMulti:)
+                             withClassMethod:@selector(swizzle_resumeStateWithParameters:success:failure:isMulti:)
                                        error:&error
                                        class:[LPResumeStateApi class]];
     if (!success || error) {
@@ -31,10 +31,10 @@ static void (^responseSuccess)(NSDictionary *);
     responseSuccess = response;
 }
 
-+ (void)swizzle_resumeStateWithParameters:(NSMutableDictionary *)params success:(void (^)(NSDictionary *))success failure:(void (^)(NSError *))failure {
++ (void)swizzle_resumeStateWithParameters:(NSMutableDictionary *)params success:(void (^)(NSDictionary *))success failure:(void (^)(NSError *))failure isMulti:(BOOL)isMulti{
     NSDictionary *successDict = @{@"success" : @1};
     responseSuccess(successDict);
-    return [self swizzle_resumeStateWithParameters:params success:success failure:failure];
+    return [self swizzle_resumeStateWithParameters:params success:success failure:failure isMulti:NO];
 }
 
 @end

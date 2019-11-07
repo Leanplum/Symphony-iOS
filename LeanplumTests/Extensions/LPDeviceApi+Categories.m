@@ -17,8 +17,8 @@ static void (^responseSuccess)(NSDictionary *);
 {
     NSError *error;
     
-    bool success = [LPSwizzle swizzleClassMethod:@selector(setDeviceId:withDeviceAttributes:success:failure:)
-                             withClassMethod:@selector(swizzle_setDeviceId:withDeviceAttributes:success:failure:)
+    bool success = [LPSwizzle swizzleClassMethod:@selector(setDeviceId:withDeviceAttributes:success:failure:isMulti:)
+                             withClassMethod:@selector(swizzle_setDeviceId:withDeviceAttributes:success:failure:isMulti:)
                                        error:&error
                                        class:[LPDeviceApi class]];
     if (!success || error) {
@@ -30,10 +30,10 @@ static void (^responseSuccess)(NSDictionary *);
     responseSuccess = response;
 }
 
-+ (void)swizzle_setDeviceId:(NSString*)service withDeviceAttributes:(NSMutableDictionary *)params success:(void (^)(NSDictionary *))success failure:(void (^)(NSError *))failure {
++ (void)swizzle_setDeviceId:(NSString*)service withDeviceAttributes:(NSMutableDictionary *)params success:(void (^)(NSDictionary *))success failure:(void (^)(NSError *))failure isMulti:(BOOL)isMulti {
     NSDictionary *successDict = @{@"success" : @1};
     responseSuccess(successDict);
-    return [self swizzle_setDeviceId:service withDeviceAttributes:params success:success failure:failure];
+    return [self swizzle_setDeviceId:service withDeviceAttributes:params success:success failure:failure isMulti:NO];
 }
 
 @end

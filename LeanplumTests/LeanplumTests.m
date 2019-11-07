@@ -437,7 +437,6 @@
  */
 - (void)test_pause_session
 {
-    [LPApiConstants sharedState].isMulti = NO;
     [LPInternalState sharedState].calledStart = YES;
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     
@@ -451,7 +450,6 @@
 
 - (void)test_pause_state
 {
-    [LPApiConstants sharedState].isMulti = NO;
     [LPInternalState sharedState].calledStart = YES;
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     
@@ -465,7 +463,6 @@
 
 - (void)test_resume_session
 {
-    [LPApiConstants sharedState].isMulti = NO;
     [LPInternalState sharedState].calledStart = YES;
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     
@@ -479,7 +476,6 @@
 
 - (void)test_resume_state
 {
-    [LPApiConstants sharedState].isMulti = NO;
     [LPInternalState sharedState].calledStart = YES;
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
     

@@ -49,7 +49,6 @@
 - (void)testPauseSessionApiWithMulti {
     sleep(1);
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPApiConstants sharedState].isMulti = YES;
     [LPPauseSessionApi pauseSessionWithParameters:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {

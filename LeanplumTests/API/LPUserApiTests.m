@@ -34,16 +34,16 @@
 
 - (void)testUserApi {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPUserApi setUserId:DEVICE_ID withUserAttributes:nil success:^ {
+    
+    [LPUserApi setUserId:DEVICE_ID withUserAttributes:nil success:^{
         [expectation fulfill];
     } failure:^(NSError *error) {
-    } isMulti: NO];
-
+    } isMuti:NO];
     [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);
         }
-    } isMuti:YES];
+    }];
 }
 
 - (void)testUserApiWithMulti {
@@ -52,12 +52,12 @@
     [LPUserApi setUserId:DEVICE_ID withUserAttributes:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
-    }];
+    } isMuti:YES];
     [[LPRequestQueue sharedInstance] sendRequests:^{
         NSLog(@"success");
     } failure:^(NSError * _Nonnull error) {
         NSLog(@"failure");
-    } isMuti:YES];
+    }];
 
     [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
         if (error) {
