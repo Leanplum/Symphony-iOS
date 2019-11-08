@@ -49,15 +49,20 @@
 
 - (void)sendRequests:(void(^)(void))success failure:(void(^)(NSError *error))failure {
     //get current count of requests
-    NSInteger maxCount = [LPRequestManager count];
+    NSInteger totalRequestCount = [LPRequestManager count];
+    if (totalRequestCount == 0) {
+        return;
+    }
     //Todo: currently send all requests.
-    NSArray *requests = [LPRequestManager requestsWithLimit:maxCount];
+    NSArray *requests = [LPRequestManager requestsWithLimit:MAX_EVENTS_PER_API_CALL];
+
     [LPMultiApi multiWithData:requests success:^(NSArray *results) {
         for (NSDictionary *result in results) {
             NSString *reqId = result[LP_PARAM_REQUEST_ID];
             if ([result[@"success"] boolValue]
                 && !result[@"error"]) {
                 [LPRequestManager deleteRequestsWithRequestId:reqId];
+                
                 void (^successCallback)(NSDictionary *dictionary) = [[LPRequestCallbackManager sharedManager] retrieveSuccessByRequestId:reqId];
                 if (successCallback) {
                     successCallback(result);
@@ -75,7 +80,14 @@
                 }
             }
         }
-        [LPRequestManager deleteRequestsWithLimit:maxCount];
+
+        if (totalRequestCount >= requests.count) {
+            [[LPRequestQueue sharedInstance] sendRequests:^{
+                NSLog(@"LPRequestQueue successfully processed");
+            } failure:^(NSError * _Nonnull error) {
+                NSLog(@"LPRequestQueue failure %@", error);
+            }];
+        }
         if (success) {
             success();
         }
