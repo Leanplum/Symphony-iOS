@@ -490,7 +490,7 @@ BOOL inForeground = NO;
         success();
     } failure:^(NSError *error) {
         failure(error);
-    } isMulti:NO];
+    } isMulti:YES];
     
     // Pause.
     [[NSNotificationCenter defaultCenter]
@@ -553,6 +553,11 @@ BOOL inForeground = NO;
         } isMulti:YES];
     }];
     
+    [[LPRequestQueue sharedInstance] sendRequests:^{
+        NSLog(@"success");
+    } failure:^(NSError * _Nonnull error) {
+        NSLog(@"failure");
+    }];
     //Batch calls every 15 mins.
     [NSTimer scheduledTimerWithTimeInterval:HEARTBEAT_INTERVAL repeats:YES block:^(NSTimer * _Nonnull timer) {
         [[LPRequestQueue sharedInstance] sendRequests:^{

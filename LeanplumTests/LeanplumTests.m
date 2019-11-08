@@ -152,6 +152,12 @@
         NSLog(@"failure");
     }];
     
+    [[LPRequestQueue sharedInstance] sendRequests:^{
+        NSLog(@"success");
+    } failure:^(NSError * _Nonnull error) {
+        NSLog(@"failure");
+    }];
+    
     [self waitForExpectationsWithTimeout:40.0 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);
@@ -175,6 +181,12 @@
         XCTAssertNotNil(regions);
         [expectation fulfill];
     } withFailure:^(NSError *error) {
+        NSLog(@"failure");
+    }];
+    
+    [[LPRequestQueue sharedInstance] sendRequests:^{
+        NSLog(@"success");
+    } failure:^(NSError * _Nonnull error) {
         NSLog(@"failure");
     }];
     
