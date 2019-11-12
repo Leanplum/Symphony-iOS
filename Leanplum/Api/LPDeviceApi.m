@@ -21,7 +21,8 @@
 + (void) setDeviceId:(NSString *)deviceId
 withDeviceAttributes:(NSDictionary *)attributes
              success:(void (^)(void))success
-             failure:(void (^)(NSError *error))failure {
+             failure:(void (^)(NSError *error))failure
+              isMulti:(BOOL)isMulti {
     
     void (^successResponse) (NSDictionary *) = ^(NSDictionary *response) {
         NSError *error = nil;
@@ -49,7 +50,7 @@ withDeviceAttributes:(NSDictionary *)attributes
     }
     params[LP_PARAM_DEVICE_ID] = deviceId;
 
-    if ([LPApiConstants sharedState].isMulti) {
+    if (isMulti) {
         LPRequest *request = [[LPRequest alloc] initWithApiMethod:LPApiMethodSetDeviceAttributes
                                                            params:params
                                                           success:successResponse

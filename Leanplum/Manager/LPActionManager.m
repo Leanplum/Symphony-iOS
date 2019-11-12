@@ -282,7 +282,7 @@ static dispatch_once_t leanplum_onceToken;
                NSLog(@"Device Registered");
            } failure:^(NSError *error) {
             NSLog(@"Device Registration failed!");
-           }];
+           } isMulti:YES];
        }
 }
 
@@ -335,7 +335,14 @@ static dispatch_once_t leanplum_onceToken;
             params[LP_PARAM_DEVICE_PUSH_TOKEN] = existingToken;
         }
         [Leanplum onStartResponse:^(BOOL success) {
-            [LPDeviceApi setDeviceId:[LPAPIConfig sharedConfig].deviceId withDeviceAttributes:params success:nil failure:nil];
+            [LPDeviceApi setDeviceId:[LPAPIConfig sharedConfig].deviceId
+                withDeviceAttributes:params
+                             success:^{
+                NSLog(@"setDevice success");
+            } failure:^(NSError *error) {
+                NSLog(@"setDevice failure. %@", error);
+            }
+            isMulti:YES];
         }];
     }
 }

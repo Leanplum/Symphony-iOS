@@ -23,7 +23,8 @@
 + (void) logWithMessage:(NSString *)message
              parameters:(NSDictionary *)parameters
                 success:(void (^)(void))success
-                failure:(void (^)(NSError *error))failure {
+                failure:(void (^)(NSError *error))failure
+                isMulti:(BOOL)isMulti {
     void (^successResponse) (NSDictionary *) = ^(NSDictionary *response) {
         NSError *error = nil;
         NSDictionary *resultDict = [LPApiUtils responseDictionaryFromResponse:response];
@@ -52,7 +53,7 @@
     params[LP_PARAM_TYPE] = LP_VALUE_SDK_LOG;
     params[LP_PARAM_MESSAGE] = message;
 
-    if ([LPApiConstants sharedState].isMulti) {
+    if (isMulti) {
         LPRequest *request = [[LPRequest alloc] initWithApiMethod:LPApiMethodLog
                                                            params:params
                                                           success:successResponse

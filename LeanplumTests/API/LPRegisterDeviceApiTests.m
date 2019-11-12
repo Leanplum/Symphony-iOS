@@ -25,12 +25,10 @@
 - (void)setUp {
     [super setUp];
     [LPTestHelper setup];
-    [LPApiConstants sharedState].isMulti = NO;
 }
 
 - (void)tearDown {
     [super tearDown];
-    [LPApiConstants sharedState].isMulti = YES;
     [OHHTTPStubs removeAllStubs];
 }
 
@@ -75,7 +73,7 @@
         NSString *expected = @"At least one of deviceId or userId is required.";
         XCTAssertEqualObjects([error userInfo][NSLocalizedDescriptionKey], expected);
         [expectation fulfill];
-    }];
+    } isMulti: NO];
 
     [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
         if (error) {
@@ -92,7 +90,7 @@
             NSString *expected = @"A server with the specified hostname could not be found.";
             XCTAssertEqualObjects([error userInfo][NSLocalizedDescriptionKey], expected);
             [expectation fulfill];
-        }];
+        } isMulti: NO];
 
         [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
             if (error) {
@@ -108,7 +106,7 @@
     [LPRegisterDeviceApi registerDeviceWithParameters:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
-    }];
+    } isMulti: NO];
 
     [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
         if (error) {
@@ -124,7 +122,7 @@
     [LPRegisterDeviceApi registerDeviceWithParameters:attributes success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
-    }];
+    } isMulti: NO];
 
     [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
         if (error) {
@@ -141,7 +139,7 @@
         NSString *expectedMessage = @"This is a test error message";
         XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);
         [expectation fulfill];
-    }];
+    } isMulti: NO];
 
     [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
         if (error) {
@@ -158,7 +156,7 @@
         NSString *expectedMessage = @"Unknown error, please contact Leanplum.";
         XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);
         [expectation fulfill];
-    }];
+    } isMulti: NO];
 
     [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
         if (error) {

@@ -13,6 +13,7 @@
 + (void) setDeviceId:(NSString *)deviceId
 withDeviceAttributes:(NSDictionary *)attributes
              success:(void (^)(void))success
-             failure:(void (^)(NSError *error))failure;
+             failure:(void (^)(NSError *error))failure
+              isMulti:(BOOL)isMulti;
 
 @end

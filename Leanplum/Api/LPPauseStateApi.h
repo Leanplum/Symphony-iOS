@@ -12,7 +12,8 @@
 
 + (void) pauseStateWithParameters:(NSDictionary *)parameters
                           success:(void (^)(void))success
-                          failure:(void (^)(NSError *error))failure;
+                          failure:(void (^)(NSError *error))failure
+                          isMulti:(BOOL)isMulti;
 
 @end
 

@@ -24,7 +24,6 @@
 + (void)setUp
 {
     [super setUp];
-    [LPApiConstants sharedState].isMulti = NO;
     [LPDeviceApi swizzle_methods];
 }
 

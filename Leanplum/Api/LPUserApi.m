@@ -22,9 +22,9 @@
 + (void) setUserId:(NSString *)userId
 withUserAttributes:(NSDictionary *)attributes
            success:(void (^)(void))success
-           failure:(void (^)(NSError *error))failure {
+           failure:(void (^)(NSError *error))failure
+            isMuti:(BOOL)isMulti {
     void (^successResponse) (NSDictionary *) = ^(NSDictionary *response) {
-        NSError *error = nil;
         //ToDo: Use the data
         NSDictionary *resultDict = [LPApiUtils responseDictionaryFromResponse:response];
         BOOL successBool = [LPResultSuccess checkSuccess:resultDict];
@@ -49,7 +49,7 @@ withUserAttributes:(NSDictionary *)attributes
         params[LP_PARAM_USER_ATTRIBUTES] =  [LPJSON stringFromJSON:attributes];
     }
 
-    if ([LPApiConstants sharedState].isMulti) {
+    if (isMulti) {
         LPRequest *request = [[LPRequest alloc] initWithApiMethod:LPApiMethodSetUserAttributes
                                                            params:params
                                                           success:successResponse

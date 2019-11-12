@@ -23,7 +23,8 @@
 + (void) advanceToState:(NSString *)state
          withParameters:(NSDictionary *)parameters
                 success:(void (^)(void))success
-                failure:(void (^)(NSError *error))failure {
+                failure:(void (^)(NSError *error))failure
+                isMulti:(BOOL)isMulti{
     void (^successResponse) (NSDictionary *) = ^(NSDictionary *response) {
         NSError *error = nil;
         NSDictionary *resultDict = [LPApiUtils responseDictionaryFromResponse:response];
@@ -54,7 +55,7 @@
         params[LP_PARAM_PARAMS] =  [LPJSON stringFromJSON:parameters];
     }
 
-    if ([LPApiConstants sharedState].isMulti) {
+    if (isMulti) {
         LPRequest *request = [[LPRequest alloc] initWithApiMethod:LPApiMethodAdvance
                                                            params:params
                                                           success:successResponse

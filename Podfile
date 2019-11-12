@@ -3,7 +3,7 @@ project  'Leanplum.xcodeproj'
 use_frameworks!
 
 target 'Leanplum' do
-  platform :ios, '9.0'
+  platform :ios, '10.0'
   
   target 'LeanplumTests' do
       inherit! :search_paths

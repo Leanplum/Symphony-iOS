@@ -23,7 +23,8 @@
 + (void) deleteNewsfeedMessageWithMessageId:(NSString *)messageId
                                  parameters:(NSDictionary *)parameters
                                     success:(void (^)(void))success
-                                    failure:(void (^)(NSError *error))failure {
+                                    failure:(void (^)(NSError *error))failure
+                                    isMulti:(BOOL)isMulti{
     void (^successResponse) (NSDictionary *) = ^(NSDictionary *response) {
         NSError *error = nil;
         NSDictionary *resultDict = [LPApiUtils responseDictionaryFromResponse:response];
@@ -48,7 +49,7 @@
     params[LP_PARAM_DEVICE_ID] = [LPAPIConfig sharedConfig].deviceId;
     params[LP_PARAM_INBOX_MESSAGE_ID] = messageId;
 
-    if ([LPApiConstants sharedState].isMulti) {
+    if (isMulti) {
         LPRequest *request = [[LPRequest alloc] initWithApiMethod:LPApiMethodDeleteInboxMessage
                                                            params:params
                                                           success:successResponse

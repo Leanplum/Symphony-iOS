@@ -25,12 +25,10 @@
 - (void)setUp {
     [super setUp];
     [LPTestHelper setup];
-    [LPApiConstants sharedState].isMulti = NO;
 }
 
 - (void)tearDown {
     [super tearDown];
-    [LPApiConstants sharedState].isMulti = YES;
     [OHHTTPStubs removeAllStubs];
 }
 
@@ -39,7 +37,7 @@
     [LPHeartbeatApi heartbeatWithParameters:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
-    }];
+    } isMulti: NO];
     
     [self waitForExpectationsWithTimeout:30.0 handler:^(NSError *error) {
         if (error) {
@@ -51,17 +49,15 @@
 - (void)testHeartbeatApiWithMulti {
     sleep(1);
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPApiConstants sharedState].isMulti = YES;
     [LPHeartbeatApi heartbeatWithParameters:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
-    }];
+    } isMulti: NO];
     [[LPRequestQueue sharedInstance] sendRequests:^{
         NSLog(@"success");
     } failure:^(NSError * _Nonnull error) {
         NSLog(@"failure");
     }];
-    [LPApiConstants sharedState].isMulti = NO;
     [self waitForExpectationsWithTimeout:30.0 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);
@@ -75,7 +71,7 @@
     [LPHeartbeatApi heartbeatWithParameters:params success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
-    }];
+    } isMulti: NO];
     
     [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
         if (error) {
@@ -93,7 +89,7 @@
         NSString *expected = @"At least one of deviceId or userId is required.";
         XCTAssertEqualObjects([error userInfo][NSLocalizedDescriptionKey], expected);
         [expectation fulfill];
-    }];
+    } isMulti: NO];
     
     [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
         if (error) {
@@ -110,7 +106,7 @@
             NSString *expected = @"A server with the specified hostname could not be found.";
             XCTAssertEqualObjects([error userInfo][NSLocalizedDescriptionKey], expected);
             [expectation fulfill];
-        }];
+        } isMulti: NO];
         
         [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
             if (error) {
@@ -126,7 +122,7 @@
     [LPHeartbeatApi heartbeatWithParameters:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
-    }];
+    } isMulti: NO];
     
     [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
         if (error) {
@@ -142,7 +138,7 @@
     [LPHeartbeatApi heartbeatWithParameters:params success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
-    }];
+    } isMulti: NO];
     
     [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
         if (error) {
@@ -159,7 +155,7 @@
         NSString *expectedMessage = @"This is a test error message";
         XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);
         [expectation fulfill];
-    }];
+    } isMulti: NO];
     
     [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
         if (error) {
@@ -176,7 +172,7 @@
         NSString *expectedMessage = @"Unknown error, please contact Leanplum.";
         XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);
         [expectation fulfill];
-    }];
+    } isMulti: NO];
     
     [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
         if (error) {

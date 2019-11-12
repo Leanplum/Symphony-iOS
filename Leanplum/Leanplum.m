@@ -217,7 +217,7 @@ BOOL inForeground = NO;
         success();
     } failure:^(NSError *error) {
         failure(error);
-    }];
+    } isMuti:NO];
 }
 
 + (NSDictionary *)validateAttributes:(NSDictionary *)attributes named:(NSString *)argName
@@ -490,7 +490,7 @@ BOOL inForeground = NO;
         success();
     } failure:^(NSError *error) {
         failure(error);
-    }];
+    } isMulti:YES];
     
     // Pause.
     [[NSNotificationCenter defaultCenter]
@@ -550,9 +550,14 @@ BOOL inForeground = NO;
             NSLog(@"LPStopApi successful");
         } failure:^(NSError *error) {
             NSLog(@"LPStopApi Error %@", error);
-        }];
+        } isMulti:YES];
     }];
     
+    [[LPRequestQueue sharedInstance] sendRequests:^{
+        NSLog(@"success");
+    } failure:^(NSError * _Nonnull error) {
+        NSLog(@"failure");
+    }];
     //Batch calls every 15 mins.
     [NSTimer scheduledTimerWithTimeInterval:HEARTBEAT_INTERVAL repeats:YES block:^(NSTimer * _Nonnull timer) {
         [[LPRequestQueue sharedInstance] sendRequests:^{
@@ -619,7 +624,7 @@ BOOL inForeground = NO;
         finishTaskHandler();
     } failure:^(NSError *error) {
         finishTaskHandler();
-    }];
+    } isMulti:YES];
 }
 
 + (void)resume
@@ -628,7 +633,7 @@ BOOL inForeground = NO;
         NSLog(@"LPResumeSessionApi success");
     } failure:^(NSError *error) {
         NSLog(@"LPResumeSessionApi failure %@", error);
-    }];
+    } isMulti:YES];
 }
 
 + (void)pauseState
@@ -649,7 +654,7 @@ BOOL inForeground = NO;
         NSLog(@"pausedStateInternal API successful ");
     } failure:^(NSError *error) {
         NSLog(@"pausedStateInternalFailure %@", error);
-    }];
+    } isMulti:YES];
 }
 
 + (void)resumeState
@@ -670,7 +675,7 @@ BOOL inForeground = NO;
         NSLog(@"resumeStateWithParameters API successful ");
     } failure:^(NSError *error) {
         NSLog(@"resumeStateWithParameters %@", error);
-    }];
+    } isMulti:YES];
 }
 
 // On first run with Leanplum, determine if this app was previously installed without Leanplum.

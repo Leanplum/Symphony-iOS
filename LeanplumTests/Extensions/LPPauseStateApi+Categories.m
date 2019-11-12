@@ -17,8 +17,8 @@ static void (^responseSuccess)(NSDictionary *);
 {
     NSError *error;
     
-    bool success = [LPSwizzle swizzleClassMethod:@selector(pauseStateWithParameters:success:failure:)
-                             withClassMethod:@selector(swizzle_pauseStateWithParameters:success:failure:)
+    bool success = [LPSwizzle swizzleClassMethod:@selector(pauseStateWithParameters:success:failure:isMulti:)
+                             withClassMethod:@selector(swizzle_pauseStateWithParameters:success:failure:isMulti:)
                                        error:&error
                                        class:[LPPauseStateApi class]];
     if (!success || error) {
@@ -30,10 +30,10 @@ static void (^responseSuccess)(NSDictionary *);
     responseSuccess = response;
 }
 
-+ (void)swizzle_pauseStateWithParameters:(NSMutableDictionary *)params success:(void (^)(NSDictionary *))success failure:(void (^)(NSError *))failure {
++ (void)swizzle_pauseStateWithParameters:(NSMutableDictionary *)params success:(void (^)(NSDictionary *))success failure:(void (^)(NSError *))failure isMulti:(BOOL)isMulti{
     NSDictionary *successDict = @{@"success" : @1};
     responseSuccess(successDict);
-    return [self swizzle_pauseStateWithParameters:params success:success failure:failure];
+    return [self swizzle_pauseStateWithParameters:params success:success failure:failure isMulti:NO];
 }
 
 @end

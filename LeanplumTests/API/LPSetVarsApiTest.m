@@ -25,12 +25,10 @@
 - (void)setUp {
     [super setUp];
     [LPTestHelper setup];
-    [LPApiConstants sharedState].isMulti = NO;
 }
 
 - (void)tearDown {
     [super tearDown];
-    [LPApiConstants sharedState].isMulti = YES;
     [OHHTTPStubs removeAllStubs];
 }
 
@@ -39,7 +37,7 @@
     [LPVarsApi setVarsWithVars:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
-    }];
+    } isMulti: NO];
 
     [self waitForExpectationsWithTimeout:30.0 handler:^(NSError *error) {
         if (error) {
@@ -51,11 +49,10 @@
 - (void)testSetVarsApiWithMulti {
     sleep(1);
     XCTestExpectation *expectation = [self expectationWithDescription:@"Query timed out."];
-    [LPApiConstants sharedState].isMulti = YES;
     [LPVarsApi setVarsWithVars:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
-    }];
+    } isMulti: YES];
     [[LPRequestQueue sharedInstance] sendRequests:^{
         NSLog(@"success");
     } failure:^(NSError * _Nonnull error) {
@@ -75,7 +72,7 @@
     [LPVarsApi setVarsWithVars:vars success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
-    }];
+    } isMulti: NO];
     
     [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
         if (error) {
@@ -112,7 +109,7 @@
             NSString *expected = @"A server with the specified hostname could not be found.";
             XCTAssertEqualObjects([error userInfo][NSLocalizedDescriptionKey], expected);
             [expectation fulfill];
-        }];
+        } isMulti: NO];
         
         [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
             if (error) {
@@ -128,7 +125,7 @@
     [LPVarsApi setVarsWithVars:nil success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
-    }];
+    } isMulti: NO];
     
     [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
         if (error) {
@@ -144,7 +141,7 @@
     [LPVarsApi setVarsWithVars:params success:^ {
         [expectation fulfill];
     } failure:^(NSError *error) {
-    }];
+    } isMulti: NO];
     
     [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
         if (error) {
@@ -161,7 +158,7 @@
         NSString *expectedMessage = @"This is a test error message";
         XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);
         [expectation fulfill];
-    }];
+    } isMulti: NO];
     
     [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
         if (error) {
@@ -178,7 +175,7 @@
         NSString *expectedMessage = @"Unknown error, please contact Leanplum.";
         XCTAssertEqualObjects(expectedMessage, [error userInfo][NSLocalizedDescriptionKey]);
         [expectation fulfill];
-    }];
+    } isMulti: NO];
     
     [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
         if (error) {
