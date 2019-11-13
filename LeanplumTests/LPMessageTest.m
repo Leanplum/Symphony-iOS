@@ -30,19 +30,19 @@
     NSString *content = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
     NSError *error = nil;
     id jsonObj = [NSJSONSerialization JSONObjectWithData:[content dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:&error];
-    
+
     id response = jsonObj[@"response"][0];
     id messages = response[@"messages"];
     LPMessage *message0 = [[LPMessage alloc] initWithDictionary:messages[0]];
     LPMessage *message1 = [[LPMessage alloc] initWithDictionary:messages[1]];
-    
+
     XCTAssertEqualObjects([message0 id], @"4529829664129024");
     XCTAssertEqualObjects([message0 action], @"Alert");
     XCTAssertEqual([message0 countdown], 86400);
     XCTAssertFalse([message0 hasImpressionCriteria]);
     XCTAssertEqualObjects([message0 parentCampaignId], [NSNull null]);
     XCTAssertEqual([message0 priority], 1000);
-    
+
     XCTAssertEqualObjects([message1 id], @"4543656572354560");
     XCTAssertEqualObjects([message1 action], @"Center Popup");
     XCTAssertEqual([message1 countdown], 86400);
