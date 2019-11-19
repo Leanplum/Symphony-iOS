@@ -1,6 +1,4 @@
 #import <XCTest/XCTest.h>
-#import "LPFileManager.h"
-#import "LPConstants.h"
 #import <FBSnapshotTestCase/FBSnapshotTestCase.h>
 
 @interface LPSnapshotSampleTest : FBSnapshotTestCase
