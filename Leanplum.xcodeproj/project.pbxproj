@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -202,6 +202,8 @@
 		A8EF57F022952B630046473C /* LPAdvanceApiTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A8EF57EF22952B630046473C /* LPAdvanceApiTest.m */; };
 		A8EF57F322952B960046473C /* LPAdvanceApi.h in Headers */ = {isa = PBXBuildFile; fileRef = A8EF57F122952B960046473C /* LPAdvanceApi.h */; };
 		A8EF57F422952B960046473C /* LPAdvanceApi.m in Sources */ = {isa = PBXBuildFile; fileRef = A8EF57F222952B960046473C /* LPAdvanceApi.m */; };
+		B40847DD238DB38B00F00A41 /* LPExceptionHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = B40847DB238DB38B00F00A41 /* LPExceptionHandler.h */; };
+		B40847DE238DB38B00F00A41 /* LPExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B40847DC238DB38B00F00A41 /* LPExceptionHandler.m */; };
 		B40B1B48235830B60003E915 /* LPPauseSessionApi+Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = B40B1B46235830B60003E915 /* LPPauseSessionApi+Categories.m */; };
 		B40B1B4B235832A50003E915 /* LPPauseStateApi+Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = B40B1B4A235832A50003E915 /* LPPauseStateApi+Categories.m */; };
 		B40B1B4F235A1EB70003E915 /* LPAlertTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B40B1B4E235A1EB70003E915 /* LPAlertTests.m */; };
@@ -585,6 +587,8 @@
 		A8EF57EF22952B630046473C /* LPAdvanceApiTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPAdvanceApiTest.m; sourceTree = "<group>"; };
 		A8EF57F122952B960046473C /* LPAdvanceApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPAdvanceApi.h; sourceTree = "<group>"; };
 		A8EF57F222952B960046473C /* LPAdvanceApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPAdvanceApi.m; sourceTree = "<group>"; };
+		B40847DB238DB38B00F00A41 /* LPExceptionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPExceptionHandler.h; sourceTree = "<group>"; };
+		B40847DC238DB38B00F00A41 /* LPExceptionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPExceptionHandler.m; sourceTree = "<group>"; };
 		B40B1B46235830B60003E915 /* LPPauseSessionApi+Categories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LPPauseSessionApi+Categories.m"; sourceTree = "<group>"; };
 		B40B1B47235830B60003E915 /* LPPauseSessionApi+Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LPPauseSessionApi+Categories.h"; sourceTree = "<group>"; };
 		B40B1B49235832A50003E915 /* LPPauseStateApi+Categories.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LPPauseStateApi+Categories.h"; sourceTree = "<group>"; };
@@ -868,6 +872,7 @@
 		A8504662224C0A7900BACA81 /* Leanplum */ = {
 			isa = PBXGroup;
 			children = (
+				B40847DA238DB36100F00A41 /* Monitoring */,
 				A88DF6F2237C814A00741156 /* Messages */,
 				B4E251B722D65ABC00CEECAF /* Vendor */,
 				B4F077E822B97E3D00F2743F /* Manager */,
@@ -1059,6 +1064,15 @@
 				A88DF6F4237C816800741156 /* LPAlertMessage.m */,
 			);
 			path = Messages;
+			sourceTree = "<group>";
+		};
+		B40847DA238DB36100F00A41 /* Monitoring */ = {
+			isa = PBXGroup;
+			children = (
+				B40847DB238DB38B00F00A41 /* LPExceptionHandler.h */,
+				B40847DC238DB38B00F00A41 /* LPExceptionHandler.m */,
+			);
+			path = Monitoring;
 			sourceTree = "<group>";
 		};
 		B430A228224C1C8100DC8140 /* Classes */ = {
@@ -1349,6 +1363,7 @@
 				B4591DD2227BA2B80076F9E2 /* LPUserApi.h in Headers */,
 				A8EF578D2293BBE90046473C /* LPTrackApi.h in Headers */,
 				B430A263224C22E900DC8140 /* LPCenterPopupValues.h in Headers */,
+				B40847DD238DB38B00F00A41 /* LPExceptionHandler.h in Headers */,
 				65D4ABB0224D77BF009BA5F3 /* LPNone.h in Headers */,
 				B430A2A4224C246100DC8140 /* LPInterstitialValues.h in Headers */,
 				65D4ABD4224D7F99009BA5F3 /* LPPurpleDismissAction.h in Headers */,
@@ -1712,20 +1727,11 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-LeanplumTests/Pods-LeanplumTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/OCMock/OCMock.framework",
-				"${BUILT_PRODUCTS_DIR}/OHHTTPStubs/OHHTTPStubs.framework",
-				"${BUILT_PRODUCTS_DIR}/iOSSnapshotTestCase/FBSnapshotTestCase.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-LeanplumTests/Pods-LeanplumTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OCMock.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OHHTTPStubs.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSnapshotTestCase.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-LeanplumTests/Pods-LeanplumTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1842,6 +1848,7 @@
 				B4FCB11722723277004F5D63 /* LPConstants.m in Sources */,
 				65D4ABF5224D807C009BA5F3 /* LPFluffyDismissAction.m in Sources */,
 				65C5BDC7228B60FF003EE334 /* LPRegisterDeviceApi.m in Sources */,
+				B40847DE238DB38B00F00A41 /* LPExceptionHandler.m in Sources */,
 				B4591DCF227A4A260076F9E2 /* LPAPIConfig.m in Sources */,
 				65D4AB55224D6EB8009BA5F3 /* LPFluffyTitle.m in Sources */,
 				65D4AB79224D7379009BA5F3 /* LPCencelButton.m in Sources */,

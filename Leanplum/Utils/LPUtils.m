@@ -25,6 +25,7 @@
 #import "LPUtils.h"
 #import "LPConstants.h"
 #import <CommonCrypto/CommonDigest.h>
+#import "LPExceptionHandler.h"
 
 @implementation LPUtils
 
@@ -82,6 +83,16 @@
     }
 
     return swizzlingEnabled;
+}
+
++ (void)initExceptionHandling
+{
+    [LPExceptionHandler sharedExceptionHandler];
+}
+
++ (void)handleException:(NSException *)exception
+{
+    [[LPExceptionHandler sharedExceptionHandler] reportException:exception];
 }
 
 @end

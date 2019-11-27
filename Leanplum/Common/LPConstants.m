@@ -7,6 +7,7 @@
 //
 
 #import "LPConstants.h"
+#import "LPUtils.h"
 
 @implementation LPConstants
 
@@ -194,3 +195,46 @@ NSString *LP_APP_ICON_PRIMARY_NAME = @"PrimaryIcon";
 NSString *LP_INVALID_IDFA = @"00000000-0000-0000-0000-000000000000";
 
 NSString *LP_NOTIFICATION_LOCATION_UPDATE = @"updateLocationForUser";
+
+void leanplumIncrementUserCodeBlock(int delta)
+{
+    NSMutableDictionary *threadDict = [[NSThread currentThread] threadDictionary];
+    threadDict[LP_USER_CODE_BLOCKS] = @([threadDict[LP_USER_CODE_BLOCKS] intValue] + delta);
+}
+
+void leanplumInternalError(NSException *e)
+{
+    [LPUtils handleException:e];
+    if ([e.name isEqualToString:@"Leanplum Error"]) {
+        @throw e;
+    }
+    
+    for (id symbol in [e callStackSymbols]) {
+        NSString *description = [symbol description];
+        if ([description rangeOfString:@"+[Leanplum trigger"].location != NSNotFound
+            || [description rangeOfString:@"+[Leanplum throw"].location != NSNotFound
+            || [description rangeOfString:@"-[LPVar trigger"].location != NSNotFound
+            || [description rangeOfString:@"+[Leanplum setApiHostName"].location != NSNotFound) {
+            @throw e;
+        }
+    }
+    NSString *versionName = [[[NSBundle mainBundle] infoDictionary]
+                             objectForKey:@"CFBundleVersion"];
+    if (!versionName) {
+        versionName = @"";
+    }
+    int userCodeBlocks = [[[[NSThread currentThread] threadDictionary]
+                           objectForKey:LP_USER_CODE_BLOCKS] intValue];
+    if (userCodeBlocks <= 0) {
+        @try {
+            //We need to investigate here. stackTrace is an API currentlty made.
+        } @catch (NSException *e) {
+            // This empty try/catch is needed to prevent crash <-> loop.
+        }
+        NSLog(@"Leanplum: INTERNAL ERROR: %@\n%@", e, [e callStackSymbols]);
+    } else {
+        NSLog(@"Leanplum: Caught exception in callback code: %@\n%@", e, [e callStackSymbols]);
+        LP_END_USER_CODE
+        @throw e;
+    }
+}

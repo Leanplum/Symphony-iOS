@@ -86,9 +86,11 @@ BOOL inForeground = NO;
         return;
     }
     
+    LP_TRY
     [LPApiConstants sharedState].apiHostName = hostName;
     [LPApiConstants sharedState].apiServlet = servletName;
     [LPApiConstants sharedState].apiSSL = ssl;
+    LP_END_TRY
 }
 
 + (void)setDeviceId:(NSString *)deviceId
@@ -498,10 +500,12 @@ BOOL inForeground = NO;
                     object:nil
                      queue:nil
                 usingBlock:^(NSNotification *notification) {
+                    LP_TRY
                     if (![[[[NSBundle mainBundle] infoDictionary]
                             objectForKey:@"UIApplicationExitsOnSuspend"] boolValue]) {
                         [Leanplum pause];
                     }
+                    LP_END_TRY
                 }];
     
     // Resume.
@@ -510,6 +514,7 @@ BOOL inForeground = NO;
                     object:nil
                      queue:nil
                 usingBlock:^(NSNotification *notification) {
+                    LP_END_TRY
                     if ([[UIApplication sharedApplication]
                             respondsToSelector:@selector(currentUserNotificationSettings)]) {
                         [[LPActionManager sharedManager] sendUserNotificationSettingsIfChanged:
@@ -535,6 +540,7 @@ BOOL inForeground = NO;
                                     fromMessageId:nil
                              withContextualValues:nil];*/
                     }
+                    LP_END_TRY
                 }];
 
     // Stop.
@@ -543,14 +549,13 @@ BOOL inForeground = NO;
         object:nil
         queue:nil
         usingBlock:^(NSNotification *notification) {
-        //ToDo: E2-2071, we need to add a proper flag for multi and non multi and use the below value.
-        /*BOOL exitOnSuspend = [[[[NSBundle mainBundle] infoDictionary]
-                       objectForKey:@"UIApplicationExitsOnSuspend"] boolValue];*/
+        LP_TRY
         [LPStopApi stopWithParameters:@{} success:^{
             NSLog(@"LPStopApi successful");
         } failure:^(NSError *error) {
             NSLog(@"LPStopApi Error %@", error);
         } isMulti:YES];
+        LP_END_TRY
     }];
     
     [[LPRequestQueue sharedInstance] sendRequests:^{
@@ -560,11 +565,13 @@ BOOL inForeground = NO;
     }];
     //Batch calls every 15 mins.
     [NSTimer scheduledTimerWithTimeInterval:HEARTBEAT_INTERVAL repeats:YES block:^(NSTimer * _Nonnull timer) {
+        LP_TRY
         [[LPRequestQueue sharedInstance] sendRequests:^{
              NSLog(@"Batch Requests successfully complete");
         } failure:^(NSError * _Nonnull error) {
              NSLog(@"Batch Requests successfully complete");
         }];
+        LP_END_TRY
     }];
     
 
@@ -581,6 +588,10 @@ BOOL inForeground = NO;
                            error:nil
                            class:[NSExtensionContext class]];
     }
+    
+    LP_TRY
+    [LPUtils initExceptionHandling];
+    LP_END_TRY
 }
 
 + (BOOL)hasStartedAndRegisteredAsDeveloper

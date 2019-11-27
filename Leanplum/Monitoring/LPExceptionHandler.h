@@ -1,9 +1,8 @@
 //
-//  LPUtils.h
-//  Leanplum
+//  LPExceptionHandler.h
+//  Leanplum iOS SDK Version 2.0.6
 //
-//  Created by Ben Marten on 6/6/16.
-//  Copyright (c) 2016 Leanplum, Inc. All rights reserved.
+//  Copyright (c) 2018 Leanplum, Inc. All rights reserved.
 //
 //  Licensed to the Apache Software Foundation (ASF) under one
 //  or more contributor license agreements.  See the NOTICE file
@@ -24,41 +23,13 @@
 
 #import <Foundation/Foundation.h>
 
-@interface LPUtils : NSObject
+@protocol LPExceptionReporting
+-(void)reportException:(NSException *)exception;
+@end
 
-/**
- * Checks if the object is null or empty.
- */
-+ (BOOL)isNullOrEmpty:(id)obj;
+@interface LPExceptionHandler : NSObject
 
-/**
- * Checks if the string is empty or have spaces.
- */
-+ (BOOL)isBlank:(id)obj;
++(instancetype)sharedExceptionHandler;
+-(void)reportException:(NSException *)exception;
 
-/**
- * Computes MD5 of NSData. Mostly used for uploading images.
- */
-+ (NSString *)md5OfData:(NSData *)data;
-
-/**
- * Returns base64 encoded string from NSData. Convenience method
- * that supports iOS6.
- */
-+ (NSString *)base64EncodedStringFromData:(NSData *)data;
-
-/**
- * Whether swizzling flag is setup in plist file
- */
-+ (BOOL)isSwizzlingEnabled;
-
-/**
- * Initialize exception handling
- */
-+ (void)initExceptionHandling;
-
-/**
- * Report an exception
- */
-+ (void)handleException:(NSException *)exception;
 @end

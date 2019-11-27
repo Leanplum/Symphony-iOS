@@ -219,6 +219,8 @@ OBJC_EXPORT NSString *LP_INVALID_IDFA;
 
 OBJC_EXPORT NSString *LP_NOTIFICATION_LOCATION_UPDATE;
 
+#define LP_USER_CODE_BLOCKS @"leanplum_userCodeBlocks"
+
 // Exception handling.
 
 #define LP_TRY @try {
@@ -234,6 +236,8 @@ leanplumInternalError(e); }
 #define IS_JAILBROKEN ([[[NSBundle mainBundle] infoDictionary] objectForKey: @"SignerIdentity"] != nil)
 
 #define IS_NOOP ((!IS_SUPPORTED_IOS_VERSION) || IS_JAILBROKEN || [LPApiConstants sharedState].isTestMode || [LPApiConstants sharedState].isInPermanentFailureState)
+
+#define RETURN_IF_NOOP if (IS_NOOP) return
 
 void leanplumIncrementUserCodeBlock(int delta);
 void leanplumInternalError(NSException *e);
