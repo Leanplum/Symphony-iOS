@@ -323,7 +323,10 @@ BOOL inForeground = NO;
 
 + (BOOL)hasStarted
 {
+    LP_TRY
     return [LPInternalState sharedState].hasStarted;
+    LP_END_TRY
+    return NO;
 }
 
 + (NSString *)pushTokenKey
@@ -514,7 +517,7 @@ BOOL inForeground = NO;
                     object:nil
                      queue:nil
                 usingBlock:^(NSNotification *notification) {
-                    LP_END_TRY
+                    LP_TRY
                     if ([[UIApplication sharedApplication]
                             respondsToSelector:@selector(currentUserNotificationSettings)]) {
                         [[LPActionManager sharedManager] sendUserNotificationSettingsIfChanged:
@@ -596,7 +599,10 @@ BOOL inForeground = NO;
 
 + (BOOL)hasStartedAndRegisteredAsDeveloper
 {
+    LP_TRY
     return [LPInternalState sharedState].hasStartedAndRegisteredAsDeveloper;
+    LP_END_TRY
+    return NO;
 }
 
 + (void)triggerStartIssued
@@ -729,70 +735,114 @@ BOOL inForeground = NO;
 + (void)handleNotification:(NSDictionary *)userInfo
     fetchCompletionHandler:(LeanplumFetchCompletionBlock)completionHandler
 {
+    LP_TRY
     [LPInternalState sharedState].calledHandleNotification = YES;
     [[LPActionManager sharedManager] didReceiveRemoteNotification:userInfo
                                                        withAction:nil
                                            fetchCompletionHandler:completionHandler];
+    LP_END_TRY
 }
 
 + (void)didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)token
 {
+    LP_TRY
     if (![LPUtils isSwizzlingEnabled])
     {
         [[LPActionManager sharedManager] didRegisterForRemoteNotificationsWithDeviceToken:token];
     }
+    else
+    {
+        NSLog(@"Call to didRegisterForRemoteNotificationsWithDeviceToken will be ignored due to swizzling.");
+    }
+    LP_END_TRY
 }
 
 + (void)didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
 {
+    LP_TRY
     if (![LPUtils isSwizzlingEnabled])
     {
         [[LPActionManager sharedManager] didFailToRegisterForRemoteNotificationsWithError:error];
     }
+    else
+    {
+        NSLog(@"Call to didFailToRegisterForRemoteNotificationsWithError will be ignored due to swizzling.");
+    }
+    LP_END_TRY
 }
 
 + (void)didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
 {
+    LP_TRY
     if (![LPUtils isSwizzlingEnabled])
     {
         [[LPActionManager sharedManager] didRegisterUserNotificationSettings:notificationSettings];
     }
+    else
+    {
+        NSLog(@"Call to didRegisterUserNotificationSettings will be ignored due to swizzling.");
+    }
+    LP_END_TRY
 }
 
 + (void)didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
+    LP_TRY
     if (![LPUtils isSwizzlingEnabled])
     {
         [[LPActionManager sharedManager] didReceiveRemoteNotification:userInfo];
     }
+    else
+    {
+        NSLog(@"Call to didReceiveRemoteNotification will be ignored due to swizzling.");
+    }
+    LP_END_TRY
 }
 
 + (void)didReceiveRemoteNotification:(NSDictionary *)userInfo
               fetchCompletionHandler:(LeanplumFetchCompletionBlock)completionHandler
 {
+    LP_TRY
     if (![LPUtils isSwizzlingEnabled])
     {
         [[LPActionManager sharedManager] didReceiveRemoteNotification:userInfo
                                                fetchCompletionHandler:completionHandler];
     }
+    else
+    {
+        NSLog(@"Call to didReceiveRemoteNotification will be ignored due to swizzling.");
+    }
+    LP_END_TRY
 }
 
 + (void)didReceiveNotificationResponse:(UNNotificationResponse *)response
                  withCompletionHandler:(void (^)(void))completionHandler
 {
+    LP_TRY
     if (![LPUtils isSwizzlingEnabled])
     {
         [[LPActionManager sharedManager] didReceiveNotificationResponse:response
                                                   withCompletionHandler:completionHandler];
     }
+    else
+    {
+        NSLog(@"Call to didReceiveNotificationResponse will be ignored due to swizzling.");
+    }
+    LP_END_TRY
 }
 
 + (void)didReceiveLocalNotification:(UILocalNotification *)localNotification
 {
+    LP_TRY
     if (![LPUtils isSwizzlingEnabled])
     {
         [[LPActionManager sharedManager] didReceiveLocalNotification:localNotification];
     }
+    else
+    {
+        NSLog(@"Call to didReceiveLocalNotification: will be ignored due to swizzling.");
+    }
+    LP_END_TRY
 }
 
 #pragma clang diagnostic push
@@ -801,9 +851,11 @@ BOOL inForeground = NO;
               forLocalNotification:(UILocalNotification *)notification
                  completionHandler:(void (^)())completionHandler
 {
+    LP_TRY
     [[LPActionManager sharedManager] didReceiveRemoteNotification:[notification userInfo]
                                                        withAction:identifier
                                            fetchCompletionHandler:completionHandler];
+    LP_END_TRY
 }
 #pragma clang diagnostic pop
 
@@ -813,8 +865,10 @@ BOOL inForeground = NO;
              forRemoteNotification:(NSDictionary *)notification
                  completionHandler:(void (^)())completionHandler
 {
+    LP_TRY
     [[LPActionManager sharedManager] didReceiveRemoteNotification:notification
                                                        withAction:identifier
                                            fetchCompletionHandler:completionHandler];
+    LP_END_TRY
 }
 @end
