@@ -40,10 +40,12 @@
 
 - (void)enqueue:(LPRequest *)request {
     @synchronized (self) {
+        LP_TRY
         [LPRequestManager addRequest:request];
         [self.callbackManager add:request.requestId
                         onSuccess:request.successResponse
                         onFailure:request.failureResponse];
+        LP_END_TRY
     }
 }
 
@@ -69,6 +71,7 @@
                 }
             } else {
                 void (^failureCallback)(NSError *error) = [[LPRequestCallbackManager sharedManager] retrieveFailureByRequestId:reqId];
+                LP_TRY
                 if (failureCallback) {
                     // TODO: figure out correct NSError to run
                     NSString *errorMessage = @"Uknown error";
@@ -78,6 +81,7 @@
                     NSError *error = [NSError errorWithDomain:NSURLErrorDomain code:500 userInfo:errorMessage];
                     failureCallback(error);
                 }
+                LP_END_TRY
             }
         }
 
