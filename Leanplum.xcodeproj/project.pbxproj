@@ -193,6 +193,10 @@
 		A88DF6F6237C816800741156 /* LPAlertMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = A88DF6F4237C816800741156 /* LPAlertMessage.m */; };
 		A88DF6F9237C825900741156 /* LPMessageDisplayManager.h in Headers */ = {isa = PBXBuildFile; fileRef = A88DF6F7237C825900741156 /* LPMessageDisplayManager.h */; };
 		A88DF6FA237C825900741156 /* LPMessageDisplayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A88DF6F8237C825900741156 /* LPMessageDisplayManager.m */; };
+		A896BAE92385E5F700D4B8FB /* LPConfirmationMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = A896BAE72385E5F700D4B8FB /* LPConfirmationMessage.h */; };
+		A896BAEA2385E5F700D4B8FB /* LPConfirmationMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = A896BAE82385E5F700D4B8FB /* LPConfirmationMessage.m */; };
+		A8E4B6982395FD5F00B8A768 /* LPCenterPopupMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = A8E4B6962395FD5F00B8A768 /* LPCenterPopupMessage.h */; };
+		A8E4B6992395FD5F00B8A768 /* LPCenterPopupMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = A8E4B6972395FD5F00B8A768 /* LPCenterPopupMessage.m */; };
 		A8EF578C2293BBE90046473C /* LPTrackApi.m in Sources */ = {isa = PBXBuildFile; fileRef = A8EF578A2293BBE80046473C /* LPTrackApi.m */; };
 		A8EF578D2293BBE90046473C /* LPTrackApi.h in Headers */ = {isa = PBXBuildFile; fileRef = A8EF578B2293BBE80046473C /* LPTrackApi.h */; };
 		A8EF578F2293BDC00046473C /* LPTrackTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A8EF578E2293BDBF0046473C /* LPTrackTest.m */; };
@@ -578,6 +582,10 @@
 		A88DF6F4237C816800741156 /* LPAlertMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPAlertMessage.m; sourceTree = "<group>"; };
 		A88DF6F7237C825900741156 /* LPMessageDisplayManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPMessageDisplayManager.h; sourceTree = "<group>"; };
 		A88DF6F8237C825900741156 /* LPMessageDisplayManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPMessageDisplayManager.m; sourceTree = "<group>"; };
+		A896BAE72385E5F700D4B8FB /* LPConfirmationMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPConfirmationMessage.h; sourceTree = "<group>"; };
+		A896BAE82385E5F700D4B8FB /* LPConfirmationMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPConfirmationMessage.m; sourceTree = "<group>"; };
+		A8E4B6962395FD5F00B8A768 /* LPCenterPopupMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPCenterPopupMessage.h; sourceTree = "<group>"; };
+		A8E4B6972395FD5F00B8A768 /* LPCenterPopupMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPCenterPopupMessage.m; sourceTree = "<group>"; };
 		A8EF578A2293BBE80046473C /* LPTrackApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPTrackApi.m; sourceTree = "<group>"; };
 		A8EF578B2293BBE80046473C /* LPTrackApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPTrackApi.h; sourceTree = "<group>"; };
 		A8EF578E2293BDBF0046473C /* LPTrackTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPTrackTest.m; sourceTree = "<group>"; };
@@ -1062,6 +1070,10 @@
 				A88DF6F8237C825900741156 /* LPMessageDisplayManager.m */,
 				A88DF6F3237C816800741156 /* LPAlertMessage.h */,
 				A88DF6F4237C816800741156 /* LPAlertMessage.m */,
+				A8E4B6962395FD5F00B8A768 /* LPCenterPopupMessage.h */,
+				A8E4B6972395FD5F00B8A768 /* LPCenterPopupMessage.m */,
+				A896BAE72385E5F700D4B8FB /* LPConfirmationMessage.h */,
+				A896BAE82385E5F700D4B8FB /* LPConfirmationMessage.m */,
 			);
 			path = Messages;
 			sourceTree = "<group>";
@@ -1370,6 +1382,7 @@
 				B430A29A224C242900DC8140 /* LPInterstitial.h in Headers */,
 				A82D32ED22B05E280030FBEA /* LPRequestStoring.h in Headers */,
 				65D4ABA8224D777C009BA5F3 /* LPFine2PNGClass.h in Headers */,
+				A8E4B6982395FD5F00B8A768 /* LPCenterPopupMessage.h in Headers */,
 				65D4AC04224D8102009BA5F3 /* LPMischievousChild.h in Headers */,
 				65D4AB84224D73EF009BA5F3 /* LPTentacledTitle.h in Headers */,
 				6515E1CE2270DE0300C5A2F0 /* LPActionDefinition.h in Headers */,
@@ -1831,6 +1844,7 @@
 				65D4AB89224D741C009BA5F3 /* LPRegisterForPush.m in Sources */,
 				B41E7897227FB08500D2AE63 /* LPJSON.m in Sources */,
 				65D4AB69224D7275009BA5F3 /* LPPushAskToAsk.m in Sources */,
+				A8E4B6992395FD5F00B8A768 /* LPCenterPopupMessage.m in Sources */,
 				65D4AC05224D8102009BA5F3 /* LPMischievousChild.m in Sources */,
 				A88DF6F6237C816800741156 /* LPAlertMessage.m in Sources */,
 				B430A291224C23EC00DC8140 /* LPFluffyAcceptAction.m in Sources */,
