@@ -105,6 +105,7 @@ static dispatch_once_t leanplum_onceToken;
 
 - (void)didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler
 {
+    LP_TRY
     NSDictionary *userInfo = response.notification.request.content.userInfo;
     LPInternalState *state = [LPInternalState sharedState];
     state.calledHandleNotification = NO;
@@ -122,6 +123,7 @@ static dispatch_once_t leanplum_onceToken;
                     fetchCompletionHandler:leanplumCompletionHandler];
     }
     state.calledHandleNotification = NO;
+    LP_END_TRY
 }
 
 - (void)didReceiveLocalNotification:(UILocalNotification *)localNotification
@@ -264,6 +266,7 @@ static dispatch_once_t leanplum_onceToken;
 
 - (void)didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)token
 {
+    LP_TRY
     // Format push token.
     NSString *formattedToken = [self hexadecimalStringFromData:token];
     formattedToken = [[[formattedToken stringByReplacingOccurrencesOfString:@"<" withString:@""]
@@ -284,6 +287,7 @@ static dispatch_once_t leanplum_onceToken;
             NSLog(@"Device Registration failed!");
            } isMulti:YES];
        }
+    LP_END_TRY
 }
 
 - (void)didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
