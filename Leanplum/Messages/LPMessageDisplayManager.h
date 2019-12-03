@@ -13,6 +13,5 @@
 
 @interface LPMessageDisplayManager : NSObject
 
--(void)display:(LPMessage *)message;
 
 @end

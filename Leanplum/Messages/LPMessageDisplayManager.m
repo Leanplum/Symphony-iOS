@@ -8,14 +8,15 @@
 
 #import "LPMessageDisplayManager.h"
 #import "LPAlertMessage.h"
+#import "LPConfirmationMessage.h"
 
 @implementation LPMessageDisplayManager
 
--(UIAlertController *)create:(LPAlertMessage *)message {
-    UIAlertController * alert=   [UIAlertController
-                                  alertControllerWithTitle:message.title
-                                  message:message.message
-                                  preferredStyle:UIAlertControllerStyleAlert];
+-(UIAlertController *)createAlert:(LPAlertMessage *)message {
+    UIAlertController * alert = [UIAlertController
+                                 alertControllerWithTitle:message.title
+                                 message:message.message
+                                 preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *dismiss = [UIAlertAction
                              actionWithTitle:message.dismissText
@@ -27,7 +28,33 @@
     return alert;
 }
 
--(void)display:(LPAlertMessage *)message {
+-(void)displayAlert:(LPAlertMessage *)message {
+}
+
+-(UIAlertController *)createConfirmation:(LPConfirmationMessage *)message {
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:message.title
+                                message:message.message
+                                preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *accept = [UIAlertAction
+                             actionWithTitle:message.acceptText
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+        [alert dismissViewControllerAnimated:YES completion:nil];
+    }];
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:message.cancelText
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+        [alert dismissViewControllerAnimated:YES completion:nil];
+    }];
+    [alert addAction:accept];
+    [alert addAction:cancel];
+    return alert;
+}
+
+-(void)displayConfirmation:(LPConfirmationMessage *)message {
 }
 
 @end
