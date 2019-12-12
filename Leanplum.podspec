@@ -27,6 +27,6 @@ Analytics.
   s.weak_frameworks = 'AdSupport', 'StoreKit'
   s.library = 'sqlite3'
   s.documentation_url = 'https://www.leanplum.com/docs#/docs'
-  s.source_files = 'Leanplum/Classes/**/*'
+  s.source_files = 'Leanplum/**/*'
   s.module_name = 'Leanplum'
 end
