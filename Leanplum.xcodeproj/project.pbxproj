@@ -569,7 +569,7 @@
 		A835F36422A174F60040FD14 /* LPMarkNewsfeedMessageAsReadApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPMarkNewsfeedMessageAsReadApi.m; sourceTree = "<group>"; };
 		A8504660224C0A7900BACA81 /* Leanplum.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Leanplum.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8504663224C0A7900BACA81 /* Leanplum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Leanplum.h; sourceTree = "<group>"; };
-		A8504664224C0A7900BACA81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A8504664224C0A7900BACA81 /* Leanplum-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Leanplum-Info.plist"; sourceTree = "<group>"; };
 		A8504669224C0A7900BACA81 /* LeanplumTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LeanplumTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A850466E224C0A7900BACA81 /* LeanplumTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LeanplumTests.m; sourceTree = "<group>"; };
 		A8504670224C0A7900BACA81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -889,7 +889,7 @@
 				B430A228224C1C8100DC8140 /* Classes */,
 				A8504663224C0A7900BACA81 /* Leanplum.h */,
 				B46B51FD2284D5CA00B29663 /* Leanplum.m */,
-				A8504664224C0A7900BACA81 /* Info.plist */,
+				A8504664224C0A7900BACA81 /* Leanplum-Info.plist */,
 				A82D32EC22B05E280030FBEA /* LPRequestStoring.h */,
 			);
 			path = Leanplum;
@@ -2147,7 +2147,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Leanplum/Info.plist;
+				INFOPLIST_FILE = "Leanplum/Leanplum-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2175,7 +2175,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Leanplum/Info.plist;
+				INFOPLIST_FILE = "Leanplum/Leanplum-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
